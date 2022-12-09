@@ -1,0 +1,19 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    {% if page.title %}{{ page.title }}{% else %}DreamStone{% endif %}
+{%- endblock -%}
+
+{%- block meta_description -%}
+    {% if page.description %}{{ page.description }}{% else %}DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone{% endif %}
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    {% if page.keywords %}{{ page.keywords }}{% else %}DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone{% endif %}
+{%- endblock -%}
+
+{% block content %}
+    <div class="content">
+        {{ page.content | raw }}
+    </div>
+{% endblock %}

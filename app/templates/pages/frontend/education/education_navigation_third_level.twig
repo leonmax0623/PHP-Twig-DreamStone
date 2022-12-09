@@ -1,0 +1,17 @@
+<ul class="t-educations-list">
+    {% for item in education %}
+        {% if item.url == filter.first %}
+            {% for child in item.children %}
+                {% if child.url == filter.second %}
+                    {% for grandchild in child.children %}
+                        <li class="{{ grandchild.url == filter.third ? 'active' : ''}}">
+                            <a href="{{ path_for('education-Page', {'filter': [filter.first, filter.second, grandchild.url] |join('/')}) }}">
+                                {{ grandchild.name }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</ul>

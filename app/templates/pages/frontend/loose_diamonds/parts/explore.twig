@@ -1,0 +1,55 @@
+<div class="content">
+    <div class="u-clear-20"></div>
+    <h6 class="u-color-dark-gray u-tc u-f28">explore loose diamonds</h6>
+    <div class="clear"></div>
+    <!-- tablet & desc explore slider -->
+    <div id="slider" class="cut-diamond-slider explore-ld-slider">
+        <nav id="cut">
+            {% for shape in shapes %}
+                <a class="tablinks" href="javascript:void(0)" onclick="openCut(event, '{{shape.code}}')"><div><img src="images/shape/{{shape.code|lower}}.jpg" alt="loose_diamonds"><span>{{ shape.code }}</span></div></a>
+            {% endfor %}
+        </nav>
+        <ul id="diamond_shape_desc" class="c-product-slider">
+            {% for shape in shapes %}
+                <li id="{{shape.code}}" class="tabcontent">
+                    <div class="c-slide-img">
+                        {{ shape.image | raw }}
+                    </div>
+                    <div class="c-slide-content">
+                        <h6>{{ shape.code }} Cut Diamonds</h6>
+                        <p>{{ shape.desc }}</p>
+                    </div>
+                    <div class="u-clear"></div>
+                    <div class="search-diamond-btn"><a href="{{ path_for('looseDiamonds-Search', {'filter': 'search?shape=' ~ shape.code}) }}" class="c-learn-more">Search diamond</a></div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- mobile explore slider -->
+    <div id="explore-sm-slider" class="explore-sm-slider">
+            {% for shape in shapes %}
+                <div>
+                    <div class="holder-img-explore">
+                        <div class="visual-explore">
+                            <img src="images/shape/{{shape.code|lower}}.jpg" alt="loose_diamonds">
+                        </div>
+                        <div class="text-explore">
+                            <span>{{ shape.code }}</span>
+                        </div>
+                    </div>
+                    <div class="holder-desc-explore">
+                        <div class="desc-img">
+                            {{ shape.image | raw }}
+                        </div>
+                        <div class="desc-content">
+                            <h6>{{ shape.code }} Cut Diamonds</h6>
+                            <p>{{ shape.desc }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+    <div class="search-diamond-btn hide-mobile480"><a href="{{ path_for('looseDiamonds-Search', {'filter': 'search?shape=' ~ shape.code}) }}" class="c-learn-more">Search diamond</a></div>
+    <!--  -->
+    <div class="u-clear"></div>
+</div>

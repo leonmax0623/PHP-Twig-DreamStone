@@ -1,0 +1,129 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    About Us - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    About Us,DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{% set page = 'payment-affirm' %}
+
+{% block content %}
+    {% include "pages/frontend/cart/order_page_navigation.twig" %}
+
+<script>
+  // Begin Affirm runtime JS embed code
+  // =======================
+  var _affirm_config = {
+    script: "{{ js_script }}", // This script URL references the Affirm Sandbox environment
+    public_api_key: "{{ public_api_key }}" // Sandbox public API key
+  };
+  (function(l,g,m,e,a,f,b){var d,c=l[m]||{},h=document.createElement(f),n=document.getElementsByTagName(f)[0],k=function(a,b,c){return function(){a[b]._.push([c,arguments])}};c[e]=k(c,e,"set");d=c[e];c[a]={};c[a]._=[];d._=[];c[a][b]=k(c,a,b);a=0;for(b="set add save post open empty reset on off trigger ready setProduct".split(" ");a<b.length;a++)d[b[a]]=k(c,e,b[a]);a=0;for(b=["get","token","url","items"];a<b.length;a++)d[b[a]]=function(){};h.async=!0;h.src=g[f];n.parentNode.insertBefore(h,n);delete g[f];d(g);l[m]=c})(window,_affirm_config,"affirm","checkout","ui","script","ready");
+  // =======================
+  // End Affirm JS embed code
+
+  // Money helper
+  function correctPrice(sourcePrice) {
+    // return 100 * String(sourcePrice).replace(/[$,]/g,"");
+    return Math.ceil(100 * sourcePrice);
+  }
+
+  affirmCheckout();
+
+  // Checkout function
+  function affirmCheckout() {
+    // UI feedback
+
+    // Checkout data
+    const checkoutData = {
+      "config": {
+        "financial_product_key": "5Y4IU0V0J35L0UCT"
+      },
+      // "financing_program":"YOUR_CUSTOM_FINANCING_PROGRAM_NAME",
+      "merchant": {
+        "name": "DreamStone Shop",
+
+        // User is sent to this URL if they voluntarily cancel/close checkout, or are denied
+        "user_cancel_url": "{{ user_cancel_url }}",
+        // User is sent to this URL if the checkout is successful
+        "user_confirmation_url": "{{ user_confirmation_url }}",
+        // This is always 'POST'
+        "user_confirmation_url_action": "POST"
+      },
+      // Add each product to this array
+      "items": [
+        {% for item in items %}
+          {
+            "display_name": "{{ item.title }}",
+            "sku": "{{ item.sku }}",
+            "unit_price": correctPrice("{{ item.price }}"),
+            "qty": {{ item.qty }},
+            // "item_image_url": "{{ item.image }}",
+            "item_url": "{{ item.url }}"
+          }{% if loop.last == false %},{% endif %}
+        {% endfor %}
+      ],
+      // Add each discount that applies
+      // "discounts": { // The name of each discount is the name of the nested discount object
+      //     "discountABC123": {
+      //       "discount_amount": toInteger(discount)
+      //     },
+      //     "discountDEF456": {
+      //       "discount_amount": toInteger(discount2)
+      //     }
+      // },
+      "order_id": "{{ orderId }}",
+      // "metadata": {
+      //     "shipping_type": "UPS Ground",
+      //     // "entity_name": "YOUR_INTERNAL_SUB-BRAND_OR_CHILD-COMPANY_NAME"
+      // },
+      "shipping": {
+        "name": {
+          "first": "{{ shipping.first_name }}",
+          "last": "{{ shipping.last_name }}"
+        },
+        "address": {
+          "line1": "{{ shipping.address }}",
+          "line2": "{{ shipping.company }}",
+          "city": "{{ shipping.city }}",
+          "state": "{{ shipping.state }}",
+          "zipcode": "{{ shipping.zip }}"
+        }
+        // "phone_number": "+380669998877",
+        // "email": "0000@0000.0000"
+      },
+      "billing": {
+        "name": {
+          "first": "{{ billing.first_name }}",
+          "last": "{{ billing.last_name }}"
+        },
+        "address": {
+          "line1": "{{ billing.address }}",
+          "line2": "{{ billing.company }}",
+          "city": "{{ billing.city }}",
+          "state": "{{ billing.state }}",
+          "zipcode": "{{ billing.zip }}"
+        }
+        // "phone_number": "+380669998877",
+        // "email": "0000@0000.0000"
+      },
+      // "shipping_amount": toInteger(shipping),
+      // "tax_amount": toInteger(tax),
+      "total": correctPrice("{{ amount }}")
+    };
+
+    // Define checkout object
+    affirm.checkout(checkoutData);
+
+    // Initialize Affirm checkout
+    affirm.checkout.post();
+  }
+</script>
+
+{% endblock %}

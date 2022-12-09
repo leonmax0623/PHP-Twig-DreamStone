@@ -1,0 +1,28 @@
+{% set left = product.weight / 0.02 - 13.75 %}
+{% if left > 100 %}{% set left = 100 %}{% endif %}
+<div class="diamond-size-block">
+    <h6 id="diamond-size-learn" class="t-learn-more u-f24 u-color-black u-tc">
+        Size <span class="u-color-blue">{{ product.weight }} CT</span>
+    </h6>
+    <div id="diamond-size-info" class="content-sm s-sm-invisible u-tc">
+        <p class="u-tl">The "carat" refers to the weight of the diamond. The bigger the carat, the more money the diamond. There is no "good" or "bad" carat, it strictly has to do with budget. Some trade off quality to get a bigger rock, while others want the finest diamond and settle for a smaller carat weight. </p>
+        <div class="t-size-scale">
+            <div class="t-diamond-size-block">
+                <!-- left position is calculated by the formula n/0.02-13.75, where n - value of carats -->
+                <div class="t-diamond-size-value" style="left: {{ left }}%;">{{ product.weight }} CT</div>
+            </div>
+            <div class="t-diamond-size-coin"></div>
+        </div>
+        <div class="u-clear-10"></div>
+        <a href="/education/diamond-education/4cs/carat" class="c-learn-more">Learn more</a>
+        <div class="u-clear"></div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#diamond-size-learn").on("click", function(e) {
+            $('#diamond-size-info').toggle("slow");
+            $(this).toggleClass('t-open');
+        });
+    });
+</script>

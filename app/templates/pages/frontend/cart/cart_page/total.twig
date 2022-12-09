@@ -1,0 +1,153 @@
+{% include "pages/frontend/_partials/affirm.twig" %}
+<div class="t-total-table">
+    <div class="o-col-md-12 o-col-lg-4 u-fr">
+        <table class="t-order-details">
+            <tbody>
+                <tr>
+                    <td>Sub Total:</td>
+                    <td>{{ subtotal | price }}</td>
+                </tr>
+                <tr> 
+                    <td>Free Shipping:</td>
+                    <td>{{ shipping | price }}</td>
+                </tr>
+                <tr>
+                    <td>Sales Tax:</td>
+                    <td>{{ tax | price }}</td>
+                </tr>
+                {% if coupon %}
+                <tr>
+                    <td style="padding-top: 10px;">Promo Code:</td>
+                    <td>{{ coupon }}</td>
+                </tr>
+                <tr>
+                    <td>Discount:</td>
+                    <td>-{{ discount | price }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <span
+                            class="u-color-blue"
+                            style="cursor: pointer"
+                            onclick="(() => {
+                              if (confirm('Are you sure?')) $.ajax({
+                                type: 'DELETE',
+                                url: '/cart/coupon',
+                                success: () => location.reload()
+                              });
+                            })()"
+                        >Remove Promo Code</span>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td style="padding-top: 2px;"><input id="promocode" type="text" placeholder="Promo Code"></td>
+                    {% if products is empty and diamonds is empty and composite is empty %}
+                        <td><button id="applyPromoCode" class="bg-gray" disabled>Apply</button></td>
+                    {% else %}
+                        <td><button id="applyPromoCode">Apply</button></td>
+                    {% endif %}
+                </tr>
+                {% endif %}
+                {% if bankDiscount != 0 %}
+                <tr>
+                    <td>Bank Discount:</td>
+                    <td>-{{ bankDiscount }}%</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td style="padding: 10px 10px 20px;" class="u-color-blue u-text-upper">Total:</td>
+                    <td class="u-color-blue">{{ total | price }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="o-col-lg-6 o-row">
+            <p
+                class="affirm-as-low-as"
+                data-learnmore-show="true"
+                data-page-type="cart"
+                data-amount="{{ 100 * total|replace({',': ''}) }}"
+            ></p>
+        </div>
+        <div class="u-clear-20"></div>
+        <a
+            href="/payment-method"
+            id="cart-checkout"
+            style="text-align: center"
+            class="btn{% if products is empty and diamonds is empty and composite is empty %} s-blocked-link bg-gray{% endif %}"
+        >Checkout</a>
+    </div>
+    <div class="o-col-sm-12 o-col-md-6 o-col-lg-4 u-fr">
+        <a href="#" class="t-payment-method t-visa"></a>
+        <a href="#" class="t-payment-method t-mastercard"></a>
+        <a href="#" class="t-payment-method t-aexpress"></a>
+        <a href="#" class="t-payment-method t-paypal"></a>
+        <a href="#" class="t-payment-method t-discover"></a>
+        <a href="#" class="t-payment-method t-payment-method-large t-transfer"></a>
+        <a href="#" class="t-payment-method t-payment-method-large t-flexible"></a>
+    </div>
+    <div class="o-col-sm-12 o-col-md-6 o-col-lg-4 u-fr hold-total">
+        <a href="#" class="t-total-icon t-24"></a>
+        <a id="product-mail-btn" onclick="showPopupMail()" class="t-total-icon t-mail"></a>
+        {% include "pages/frontend/loose_diamonds/details/form_mail.twig" %}
+        <a id="my_custom_link" href="mailto:HELP@YOUR-APP.COM" class="t-total-icon t-chat"></a>
+        <div class="u-clear"></div>
+        <a href="tel:800-818-8386" class="t-total-icon t-phone">800-818-8386</a>
+    </div>
+    <div class="u-clear-20"></div>
+    <div class="o-col-lg-12">
+        <div class="o-col-sm-12 o-col-md-4 o-col-lg-4">
+            {% if shipsDate %}
+                <p>Order By: <span>{{ orderDate | date('gA') }} EST Today</span></p>
+                <p>Ships By: 
+                {% if user == false %}
+                    <span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F j, Y") }}</span>
+                {% else %}
+                    {% if not user.city %}
+                        {#<span>{{ product.shippingDetails.shipsBy|date("l, F jS") }}</span>#}
+                        <span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F j, Y") }}</span>
+                    {% elseif user.city == 'New York' %}   
+                        <span>{{ product.shippingDetails.shipsBy|date_modify("+5 day")|date("l, F j, Y") }}</span>
+                    {% elseif user.country == 'US' %} 
+                        <span>{{ product.shippingDetails.shipsBy|date_modify("+7 day")|date("l, F j, Y") }}</span>
+                    {% else %}
+                        <span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F j, Y") }}</span>
+                    {% endif %} 
+                {% endif %}
+                </p>
+            {% endif %}
+        </div>
+        <div class="o-col-sm-12 o-col-md-8 o-col-lg-8">
+
+        </div>
+    </div>
+    {% include "/pages/frontend/cart/cart_page/coupon.twig" %}
+</div>
+
+<script>
+    const $body = $('body');
+$(document).ready(function() {
+  let couponData = null;
+
+  $('.close_coupon_modal').on('click', function() {
+    $('#coupon_modal').removeClass('s-show');
+    if (!couponData.error) location.reload();
+    else alert(couponData.error.msg);
+  });
+
+  $('#applyPromoCode').click(function(){
+    var code = $('#promocode').val();
+    if (code) $.post('/cart/coupon', { code }, function(data) {
+      $('#coupon_modal').addClass('s-show');
+      couponData = data;
+    });
+  });
+
+  {% if user is empty %}
+  $('#cart-checkout').click(function(){
+    $('#login_modal, .registration').addClass('s-show');
+    return false;
+  });
+  {% endif %}
+});
+</script>

@@ -1,0 +1,13 @@
+<ul class="t-education-details-nav">
+    {% for item in education %}
+        {% if item.url == filter.first %}
+            {% for children in item.children %}
+                <li class="{{ children.url == filter.second ? 'active' : '' }}">
+                    <a href="{{ path_for('education-Page', {'filter': [filter.first , children.url] | join('/')}) }}">
+                        {{ children.name }}
+                    </a>
+                </li>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+</ul>

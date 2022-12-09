@@ -1,0 +1,17 @@
+<div class="content">
+    <div class="u-clear-30"></div>
+    <h6 class="u-f24 u-color-black u-tc">WEDDING RINGS FOR WOMEN</h6>
+    <div class="u-clear"></div>
+    <div id="wedding_ring_women" class="o-col-lg-12 o-row t-propositions-carousel">
+        {% for weddingwomen in weddingwomens %}
+            <a href="#" title="{{ weddingwomen.code }}">
+                <div class="u-tc t-similar-items">
+                    <div class="t-ring-icon-block">
+                        <img src="images/wedding/women_{{ weddingwomen.code }}.svg" alt="wedding">
+                    </div>
+                    <p class="u-f16 u-color-dark-gray u-text-upper">{{ weddingwomen.code }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>

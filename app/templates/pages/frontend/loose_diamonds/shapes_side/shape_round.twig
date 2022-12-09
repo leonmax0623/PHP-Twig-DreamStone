@@ -1,0 +1,21 @@
+<div id="normalSideDimensions" style="position: absolute; visibility: visible; vertical-align: top; font-size: 10px; z-index: 50;">
+    <div style="position:absolute; left:-16px; bottom:82px; background-color:#FFFFFF;width:40px;">Table %<br>
+        {% if product %}
+            {{ product.table }}%
+        {% endif %}
+        {% if diamond %}
+            {{ diamond.table }}%
+        {% endif %}
+    </div>
+    {# <div style="position:absolute; right:72px; top:-12px; background-color:#FFFFFF;width:40px;">height<br>{{ product.height }}mm</div> #}
+    <div style="position:absolute; left:74px; bottom:0px; background-color:#FFFFFF;width:40px;">Depth %<br>
+        {% if product %}
+            {{ product.depth }}%
+        {% endif %}
+        {% if diamond %}
+            {{ diamond.depth }}%
+        {% endif %}
+    </div>
+    {% if diamond.culet %}<div style="position:absolute; right: 22px; top: 42px; background-color:#FFFFFF;width:40px;">Culet<br>{{ product.culet.code }}</div>{% endif %}
+    {# <div style="position:absolute; left: 36px; top: 25px; background-color:#FFFFFF;width:40px;">Girdle<br></div> #}
+</div>

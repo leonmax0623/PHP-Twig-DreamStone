@@ -1,0 +1,555 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+html{
+    height: 100%;
+    width: 100%;
+    min-width: 320px;
+}
+body{
+	height: 100%;
+	width: 100%;
+	font-family: 'futura_btbook';
+	font-size: 18px;
+	background: #ffffff;
+	color: #565656;
+	line-height: 1.25;
+	position: relative;
+}
+.main{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.content{
+	display: block;
+	max-width: 1300px;
+	width: calc(100% - 20px);
+	margin: 5px auto;
+}
+.content-md{
+	display: block;
+	width: calc(100% - 10px);
+	max-width: 1024px;
+	margin: 5px auto;
+}
+.content-sm{
+	width: calc(100% - 10px);
+    display: block;
+    max-width: 800px;
+    margin: 5px auto;
+}
+.content-xs{
+	display: block;
+	max-width: 670px;
+	margin: 0 auto;
+}
+.logo{
+	display: inline-block;
+	margin: 0 auto 30px auto;
+	max-width: 300px;
+}
+.logo img{
+	width: 100%;
+	height: auto;
+}
+/*-------------header-----------*/
+header{
+	display: block;
+}
+/*-------------/header-----------*/
+/*-------------footer-----------*/
+footer{
+	display: block;
+	width: 100%;
+}
+footer .content{
+	width: 100%;
+	max-width: 1182px;
+	margin: 0 auto;
+}
+/*-------------/footer-----------*/
+/*-------------navigation-----------*/
+nav{
+	display: block;
+	width: 100%;
+}
+/*-------------/navigation-----------*/
+/*-------------forms-----------*/
+form{
+	display: block;
+}
+label{
+	display: inline-block;
+	font-size: 1em;
+	margin-bottom: 10px;
+	font-weight: normal;
+}
+input, textarea, select, option{
+	color: #000000;
+	background: #ffffff;
+	border: 1px solid #cccccc;
+	box-shadow: none;
+	font-size: 1em;
+	font-family: 'futura_btbook';
+	font-weight: normal;
+	line-height: 1;
+	box-sizing: border-box;
+	padding: 5px 10px;
+	margin-bottom: 20px;
+	outline: none;
+}
+select{
+	height: 30px;
+	border-radius: 0;
+}
+input[type=text], input[type=email], input[type=phone],input[type=password],input[type=tel]{
+	height: 30px;
+}
+input[type=text], input[type=email], input[type=phone],input[type=password], input[type=tel] , textarea, select, option{
+	width: 100%;
+}
+input:focus, textarea:focus, select:focus{
+	border-color: #bbbbbb;
+	outline: none;
+}
+input:disabled, textarea:disabled, select:disabled{
+	background: #f4f6fa;
+}
+textarea{
+	resize: none;
+}
+button, .b-btn{
+	display: block;
+	cursor: pointer;
+	background: #cccccc;
+	color: #ffffff;
+	border: 0 none;
+	box-shadow: none;
+	font-size: 1em;
+	text-decoration: none;
+}
+.btn.btn_light{
+	background: #f4f5f6;
+	color: #2e2e2e;
+	border: 1px solid #97a6ce;
+}
+.b-btn:hover{
+	text-decoration: none;
+}
+/*-------------/forms-----------*/
+/*-------------lists-----------*/
+ul, ol{
+	margin-bottom: 15px;
+}
+li{
+	list-style-position: inside;
+}
+/*-------------/lists-----------*/
+/*-------------tables-----------*/
+table{
+	border: 0 none;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+tbody{
+	border: 0 none;
+}
+table tr{
+	border: 0 none;
+}
+table tr th{
+	border: 0 none;
+	background: #e5e8f2;
+	font-size: 0.9em;
+	color: #363636;
+	padding: 10px;
+	text-align: left;
+}
+table tr td{
+	background: #ffffff;
+	border-bottom: 1px solid #d9d9d9;
+	font-size: 0.9em;
+	color: #363636;
+	padding: 10px;
+	text-align: left;
+}
+table tr:nth-child(2n) td{
+	border-bottom-color: #f4f6fa;
+	background-color: #f4f6fa;
+}
+/*-------------/tables-----------*/
+/*-------------typography-----------*/
+h1, h2, h3, h4, h5, h6{
+	margin-bottom:10px;
+	font-weight: normal;
+	color: #000000;
+	font-family: 'futura_btbook';
+}
+h1{
+	font-size: 3.2em;
+}
+h2{
+	font-size: 24px;
+	color: #000000;
+	text-transform: uppercase;
+	margin-bottom: 25px;
+}
+h3{
+	font-family: 'bodoni_bt';
+	color: #333333;
+	font-size: 1.33em;
+	margin-bottom: 20px;
+}
+h4{
+	font-size: 20px;
+	color: #333333;
+	text-transform: uppercase;
+	margin-bottom: 20px;
+}
+h5{
+	font-size: 1.1em;
+}
+h6{
+	font-size: 14px;
+	color: #333333;
+	text-transform: uppercase;
+	margin-bottom: 15px;
+}
+p{
+	margin-bottom: 15px;
+	line-height: 1.25;
+	font-size: 16px;
+	color: #333333;
+}
+a{
+	font-size: 1em;
+	color: #0000ff;
+	text-decoration: underline;
+}
+a:hover{
+	text-decoration: none;
+	cursor: pointer;
+}
+a:focus{
+	text-decoration: none;
+}
+/*-------------/typography-----------*/
+/*-------------checkbox-----------*/
+.checkbox-block{
+	display: block;
+	position: relative;
+	float: left;
+}
+.checkbox-block input[type=checkbox]{
+	display: none;
+}
+.checkbox-view{
+	float: left;
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: #ffffff;
+	border: 1px solid #dadada;
+	position: relative;
+	margin-right: 10px;
+}
+.checkbox-label{
+	float: left;
+	font-size: 14px;
+	line-height: 22px;
+	color: #565656;
+	text-transform: uppercase;
+}
+input[type=checkbox]:checked + .checkbox-view:after{
+	content: '';
+	width: 12px;
+	height: 5px;
+	position: absolute;
+	left: 3px;
+	top: 3px;
+	background: transparent;
+	border-bottom: 1px solid transparent;
+	border-left: 1px solid transparent;
+	border-top: 1px solid #879bbf;
+	border-right: 1px solid #879bbf;
+	transform: rotate(130deg);
+}
+/*-------------/checkbox-----------*/
+/*-------------radiobox-----------*/
+.radiobox-block{
+	display: block;
+	position: relative;
+	float: left;
+}
+.radiobox-block input[type=radio]{
+	display: none;
+}
+.radiobox-view{
+	float: left;
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: #ffffff;
+	border-radius: 50%;
+	border: 1px solid #dadada;
+	position: relative;
+	margin-right: 10px;
+}
+.radiobox-label{
+	float: left;
+	font-size: 14px;
+	line-height: 22px;
+	color: #565656;
+	text-transform: uppercase;
+}
+input[type=radio]:checked + .radiobox-view:after{
+	content: '';
+	position: absolute;
+	left: 2px;
+	top: 2px;
+	background: #dadada;
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+}
+.btn, button{
+	width: 100%;
+	padding: 10px;
+	text-transform: uppercase;
+	color: #ffffff;
+	background: #97a6ce;
+	display: block;
+	margin-bottom: 20px;
+	font-size: 0.85em;
+}
+.btn:disabled, button:disabled{
+	opacity: 0.6;
+	cursor: default;
+}
+/*-------------/radiobox-----------*/
+/*-------------select-----------*/
+.select-node{
+	display: block;
+}
+.select-node label{
+	font-size: 16px;
+	color: #565656;
+	line-height: 40px;
+	margin-right: 7px;
+	float: left;
+}
+.select-block{
+	float: left;
+	position: relative;
+	height: 40px;
+	width: 225px;
+	border: 1px solid #dadada;
+	overflow: hidden;
+}
+.select-node-md .select-block{
+	width: 145px;
+}
+.select-block:after{
+	content: '';
+	display: block;
+	position: absolute;
+	z-index: 5;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: #ffffff;
+	width: 36px;
+}
+.select-block:before{
+	content: '';
+	width: 5px;
+	height: 4px;
+	position: absolute;
+	right: 13px;
+	top: 14px;
+	z-index: 6;
+	background: transparent;
+	border-bottom: 1px solid transparent;
+	border-left: 1px solid transparent;
+	border-top: 1px solid #879bbf;
+	border-right: 1px solid #879bbf;
+	transform: rotate(130deg);
+}
+.select-block select{
+	width: 100%;
+	height: 38px;
+	color: #565656;
+	line-height: 1.5;
+	font-size: 16px;
+	padding: 8px 36px 8px 8px;
+	border: 0 none;
+	outline: none!important;;
+	-moz-outline: none!important;;
+}
+#select-product {
+	height: 40px;
+    width: 225px;
+	border: 1px solid #dadada;
+	-moz-appearance: none;
+  	-webkit-appearance: none;
+	appearance: none;
+	background: url('../images/arrow-down.svg') no-repeat;
+	background-size: 16px;
+    background-position: 192px 10px;
+}
+
+*:focus {outline:none;}
+*::-moz-focus-inner {border:0;}
+/*-------------/select-----------*/
+/*------------modal--------------*/
+.modal{
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 0;
+	background: rgba(255, 255, 255, 0.5);
+	z-index: 9998;
+	display: none;
+}
+#forgot_moadal{
+	z-index: 9999;
+}
+.popup{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #ffffff;
+	padding: 20px;
+	width: 960px;
+	border: 1px solid #d9d9d9;
+	box-shadow: -2px 2px 2px rgba(0, 0, 0, 0.35);
+}
+.popup_sm{
+	width: 500px;
+	height: auto;
+	padding: 40px 100px;
+	text-align: left;
+}
+.close_popup_btn{
+	width: 17px;
+	height: 17px;
+	background: url(../images/close_btn.png) center center/100% auto no-repeat;
+	position: absolute;
+	right: 15px;
+	top: 15px;
+}
+.popup input{
+	width: 100%;
+	padding: 10px;
+}
+.popup .btn,
+.popup button,
+.popup input[type=submit],
+.blue_btn{
+	width: 100%;
+	padding: 10px;
+	text-transform: uppercase;
+	color: #ffffff;
+	background: #92a8d1;
+	display: block;
+	margin-bottom: 20px;
+	font-size: 0.85em;
+}
+.popup .btn.btn_light{
+	background: #f4f5f6;
+	color: #2e2e2e;
+}
+.popup .popup_link,
+.forgot_link{
+	color: #6c7daa;
+	font-size: 1.1em;
+}
+.popup .checkbox,
+.gender.checkbox{
+	width: 49%;
+	float: left;
+	display: block;
+}
+.popup .checkbox label,
+.gender.checkbox label{
+	display: block;
+	width: 100%;
+	padding: 10px;
+	background: #f4f5f6;
+	border: 1px solid transparent;
+	font-size: 0.8em;
+	text-transform: uppercase;
+	color: #6c7daa;
+	text-align: center;
+	position: relative;
+	cursor: pointer;
+}
+.popup .checkbox input[type=radio],
+.gender.checkbox input[type=radio]{
+	display: none;
+}
+.popup .checkbox input[type=radio]:checked + label,
+.gender.checkbox input[type=radio]:checked + label{
+	border-color: #97a6ce;
+	color: #000000;
+}
+.popup .checkbox input[type=radio] + label:before,
+.gender.checkbox input[type=radio] + label:before{
+	content: '';
+	display: inline-block;
+	width: 17px;
+	height: 17px;
+	margin-right: 10px;
+}
+.popup .checkbox input[type=radio]:checked + label:before,
+.gender.checkbox input[type=radio]:checked + label:before{
+	background: url(../images/popup_checkbox.png) center center no-repeat;
+}
+/*------------/modal--------------*/
+form label.error{
+	color: red;
+	font-size: 0.9em;
+	margin-bottom: 5px;
+	margin-top: 3px;
+}
+form input.error{
+	margin-bottom: 0px;
+}
+.modal .login_form{
+	display: none;
+}
+@media screen and (max-width: 480px){
+    body {
+        font-size: 14px;
+	}
+	.content{width: calc(100% - 10px);}
+	input, textarea, select, option{
+		margin-bottom: 10px;
+	}
+	h4 {
+		font-size: 16px;
+	}
+	p{
+		font-size: 14px;
+	}
+	label{
+		margin-bottom: 5px;
+	}
+}
+@media screen and (max-width: 390px){
+	label{
+		font-size: 0.9em;
+	}
+}
+.faq_block h4{
+	font-family: 'bodoni_bt';
+	margin-bottom: 10px;
+}

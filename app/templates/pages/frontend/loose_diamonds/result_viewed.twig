@@ -1,0 +1,80 @@
+<li class="t-search-result-block t-search-block diamond-item">
+    <a href="{{ diamond.permalink }}">
+        <div class="t-search-result-image-block">
+            <a href={{ diamond.permalink }}>
+                {% if '.j' in diamond.imageExternal %}
+                    <img src="{{ diamond.imageExternal }}" alt="loose_diamonds" />
+                {% elseif '.J' in diamond.imageExternal %}  
+                    <img src="{{ diamond.imageExternal }}" alt="loose_diamonds" />
+                {% elseif 'http' in diamond.imageExternal %}
+                    <img src="/content/diagram_loose_diamonds/Cut_{{ diamond.shape.code }}.svg" style="height: 100%;" alt="loose_diamonds">
+                {% elseif diamond.imageExternal %}
+                    <img src="{{ diamond.imageExternal }}" alt="loose_diamonds"/>
+                {% else %}
+                    <img src="/content/diagram_loose_diamonds/Cut_{{ diamond.shape.code }}.svg" style="height: 100%;" alt="loose_diamonds">
+                {% endif %}
+            </a>
+        </div>
+    </a>
+    <div class="t-show-image-block"></div>
+    <div class="t-search-result-description-block">
+        <div class="t-product-hidden-block">
+            <div class="result-images-slider">
+                <a href="{{ diamond.permalink }}">
+                    {% if '.j' in diamond.imageExternal %}
+                        <img src="{{ diamond.imageExternal }}" alt="loose_diamonds" />
+                    {% elseif '.J' in diamond.imageExternal %}  
+                        <img src="{{ diamond.imageExternal }}" alt="loose_diamonds" />
+                    {% elseif 'http' in diamond.imageExternal %}
+                        <img src="/content/diagram_loose_diamonds/Cut_{{ diamond.shape.code }}.svg" style="width: 90%;" alt="loose_diamonds">
+                    {% elseif diamond.imageExternal %}
+                        <img src="{{ diamond.imageExternal }}" alt="loose_diamonds"/>
+                    {% else %}
+                        <img src="/content/diagram_loose_diamonds/Cut_{{ diamond.shape.code }}.svg" style="width: 90%;" alt="loose_diamonds">
+                    {% endif %}
+                </a> 
+            </div>
+        </div>
+        <a href="{{ diamond.permalink }}">
+            <div class="t-search-result-block-data">
+                <span class="t-search-result-short-desc u-text-non-upper u-f16">Carat {{ diamond.weight }}</span>
+                <span class="t-search-result-short-desc u-text-non-upper u-f16">{{ diamond.shape.code }}</span>
+                <div class="t-search-result-short-desc-text-block">
+                    <span class="u-text-non-upper u-f16">Color{{ diamond.color.code }}<span class="comma">,</span></span>
+                    <span class="u-text-non-upper u-f16">Clarity{{ diamond.clarity.code }}<span class="comma">,</span></span>
+                    <span class="u-text-non-upper u-f16">Cut{{ diamond.cut.code }}<span class="comma">,</span></span>
+                    <span class="u-text-non-upper u-f16">Lab {{ diamond.lab }}</span>
+                </div>
+                {% if diamond.isEnabled and diamond.vendorEnabled %}
+                    <span class="t-search-result-price">Price: {{ diamond.price | price }}</span>
+                {% endif %}
+            </div>
+        </a>
+        <div class="t-search-result-block-data-icons">
+            <button
+                class="t-table-view-icon t-table-view-icon-compare"
+                onclick="$(this).toggleClass('active');"
+            ></button>
+            <button
+                data-id="{{diamond._id}}"
+                id="wishlist{{diamond._id}}"
+                class="t-table-view-icon t-table-view-icon-wishlist{{ diamond.isFavorite ? ' active' : '' }}"
+            ></button>
+        </div>
+    </div>
+</li>
+
+<script>
+    $('#wishlist{{ diamond._id }}').click(function() {
+        const $this = $(this);
+        const method = $this.hasClass('active') ? 'DELETE' : 'POST';
+        const id = $this.data('id');
+        const FavoriteModel = (new Favorites({{ user ? 'true' : 'false' }}));
+        FavoriteModel[method === 'POST' ? 'add' : 'delete']('diamonds', { _id: id }, function(){
+        $this[method === 'POST' ? 'addClass' : 'removeClass']('active');
+
+        const $icon = $('.t-top-icon-wishlist, .t-top-icon-mob-wishlist');
+        $icon.attr('data-count', +($icon.attr('data-count') || 0) + (method === 'POST' ? 1 : -1));
+        });
+    });
+</script>

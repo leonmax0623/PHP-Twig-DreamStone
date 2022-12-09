@@ -1,0 +1,105 @@
+<form id="popup-sku" class="popup-choose-setting" novalidate>
+    <div class="popup-content">
+    <button onclick="closeSku()" class="btn-popup-close close-sku">X</button>
+        <div class="popup-header">
+            <h5>Request certificate</h5>
+        </div>
+        <div class="personal-info sku-info">
+            <div class="mb-20 o-col-sm-12 o-col-lg-4">
+                <h5>Your name <span class="red">*</span></h5>
+                <input type="text" name="user_sku_name" id="sku_name" required>
+            </div>
+            <div class="mb-20 o-col-sm-12 o-col-lg-8">
+                <h5>Your email <span class="red">*</span></h5>
+                <div class="book-email">
+                    <input type="email" name="user_sku_email" id="sku_email" placeholder="myname@example.com" required>
+                </div>
+            </div>
+            <div class="o-col-lg-12">
+                <button type="submit" class="btn_sku_submit">Send</button>
+            </div>
+            <div class="out_sku" style="color: red;"></div>
+        </div>
+    </div>
+</form>
+
+{# popup Sku desctop #}
+<script>
+    function showSkuForm(certificateNumber, stockNumber, certificateURL) {
+        const skuPopup = $('#popup-sku');
+        skuPopup.css({ display: 'flex' });
+        $('#popup-sku').attr("data-certificateNumber", certificateNumber);
+        $('#popup-sku').attr("data-stockNumber", stockNumber);
+        $('#popup-sku').attr("data-certificateURL", certificateURL);
+        $body.css({ "overflow": 'hidden' }); 
+    }
+
+    function closeSku() {
+        $('#popup-sku').hide();
+        $body.css({ "overflow": 'auto' });
+    }   
+</script>
+
+{# submit sku form #}
+<script>
+    $('#popup-sku').submit(function(){
+        let certificateNumber = $('#popup-sku').attr("data-certificateNumber");
+        let stockNumber = $('#popup-sku').attr("data-stockNumber");
+        let certificateURL = $('#popup-sku').attr("data-certificateURL");
+        
+        let hasEmptyMail = false;
+        $('.sku-info').find('input').each(function(){
+            if ($(this).prop('required')) {
+                hasEmptyMail = hasEmptyMail || !$(this).val();
+            }
+        })
+        let localHrefSku = `${document.location.hostname}/loose-diamonds/item/${certificateNumber}_${stockNumber}`;
+        let regexp = /^[\.a-z0-9_\-]+[@][a-z0-9_\-]+([.][a-z0-9_\-]+)+[a-z]{1,4}/i;
+        let sEmail = document.getElementById('sku_email').value;
+        let result = regexp.test(sEmail);
+        
+        if (hasEmptyMail) {
+           $('.out_sku').html('*required fields are not filled');
+           if (!$('#sku_name').val()) {
+               $('#sku_name').css('background-color', 'wheat');
+           }
+           if (!$('#sku_email').val()) {
+               $('#sku_email').css('background-color', 'wheat');
+           }
+
+           return false
+        } else if (!result) {
+            $('.out_sku').html('*enter the correct email');
+            $('#sku_email').css('background-color', 'wheat');
+            return false
+        }
+        else {
+            $.post(
+                '/loose-diamonds/sku-form',
+                {
+                    user_sku_name: $('#sku_name').val(),
+                    user_sku_email: sEmail,
+                    pageFromSku: localHrefSku,
+                    certificateURL: certificateURL,
+                },
+                function(msg) {  
+                    $('#my_message').html(msg);
+                }
+            );
+    }
+
+    $('#popup-sku').hide();
+    $('.c-header_main').css({ "z-index": 1001 })
+    $body.css({ "overflow": 'auto' });
+    return false;
+});
+</script>
+<script>
+    $('input').change(function(){
+        $('.sku-info').find('input').each(function(){
+            if ($(this).val()) {
+                $(this).css('background-color', 'white');
+            }
+        })
+    })
+</script>

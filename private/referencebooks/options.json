@@ -1,0 +1,360 @@
+[
+  {
+    "name": "shipping",
+    "value": {
+      "price": 10,
+      "defaultDeliveryTime" : {
+        "jewelry": 15,
+        "rings": 15,
+        "diamonds": 5
+      }
+    }
+  },
+  {
+    "name": "cut_conditions",
+    "value": {
+      "Round": [
+        {
+          "set": "Very Good",
+          "includes": {
+            "depth": { "min": 58.5, "max": 64 },
+            "table": { "min": 52, "max": 62 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "Excellent",
+          "includes": {
+            "depth": { "min": 59, "max": 63.9 },
+            "table": { "min": 53, "max": 61 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "DreamStone Ideal",
+          "includes": {
+            "cut": ["Excellent"],
+            "depth": { "min": 59, "max": 63 },
+            "table": { "min": 54, "max": 61 },
+            "polish": ["Excellent"],
+            "symmetry": ["Excellent"]
+          },
+          "excludes": {
+            "flourence": ["Strong", "Very Strong"],
+            "color": ["L", "K"],
+            "clarity": ["I1"]
+          }
+        }
+      ],
+      "Princess": [
+        {
+          "set": "Very Good",
+          "includes": {
+            "depth": { "min": 63, "max": 82 },
+            "table": { "min": 56, "max": 78 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "Excellent",
+          "includes": {
+            "depth": { "min": 67, "max": 79 },
+            "table": { "min": 63, "max": 75 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "DreamStone Ideal",
+          "includes": {
+            "depth": { "min": 65, "max": 76 },
+            "table": { "min": 61, "max": 73 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"],
+            "lab": ["GIA"]
+          },
+          "excludes": {
+            "flourence": ["Strong", "Very Strong"],
+            "color": ["L", "K"],
+            "clarity": ["I1"]
+          }
+        }
+      ],
+      "Cushion": [
+        {
+          "set": "Very Good",
+          "includes": {
+            "depth": { "min": 47, "max": 76 },
+            "table": { "min": 53, "max": 71 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Fair", "Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "Excellent",
+          "includes": {
+            "depth": { "min": 55, "max": 70 },
+            "table": { "min": 55, "max": 68 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "DreamStone Ideal",
+          "includes": {
+            "depth": { "min": 60, "max": 69 },
+            "table": { "min": 64, "max": 66 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          },
+          "excludes": {
+            "flourence": ["Strong"],
+            "color": ["L"],
+            "clarity": ["I1"]
+          }
+        }
+      ],
+      "Emerald": [
+        {
+          "set": "Very Good",
+          "includes": {
+            "depth": { "min": 0, "max": 100 },
+            "table": { "min": 54, "max": 78 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "Excellent",
+          "includes": {
+            "depth": { "min": 62, "max": 70 },
+            "table": { "min": 62, "max": 70 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "DreamStone Ideal",
+          "includes": {
+            "depth": { "min": 59, "max": 68 },
+            "table": { "min": 59, "max": 69 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          },
+          "excludes": {
+            "flourence": ["Strong"],
+            "color": ["L"],
+            "clarity": ["I1"]
+          }
+        }
+      ],
+      "Asscher": [
+        {
+          "set": "Very Good",
+          "includes": {
+            "depth": { "min": 0, "max": 74 },
+            "table": { "min": 45, "max": 74 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "Excellent",
+          "includes": {
+            "depth": { "min": 61, "max": 72 },
+            "table": { "min": 56, "max": 6 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "DreamStone Ideal",
+          "includes": {
+            "depth": { "min": 59, "max": 69 },
+            "table": { "min": 54, "max": 66 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          },
+          "excludes": {
+            "flourence": ["Strong"],
+            "color": ["L"],
+            "clarity": ["I1"]
+          }
+        }
+      ],
+      "Marquise": [
+        {
+          "set": "Very Good",
+          "includes": {
+            "depth": { "min": 48, "max": 68 },
+            "table": { "min": 45, "max": 70 },
+            "polish": ["Fair", "Good", "Very Good", "Excellent"],
+            "symmetry": ["Fair", "Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "Excellent",
+          "includes": {
+            "depth": { "min": 59, "max": 66 },
+            "table": { "min": 54, "max": 66 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "DreamStone Ideal",
+          "includes": {
+            "depth": { "min": 57, "max": 64 },
+            "table": { "min": 52, "max": 64 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          },
+          "excludes": {
+            "flourence": ["Strong"],
+            "color": ["L"],
+            "clarity": ["I1"]
+          }
+        }
+      ],
+      "Oval": [
+        {
+          "set": "Very Good",
+          "includes": {
+            "depth": { "min": 48, "max": 69 },
+            "table": { "min": 48, "max": 70 },
+            "polish": ["Fair", "Good", "Very Good", "Excellent"],
+            "symmetry": ["Fair", "Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "Excellent",
+          "includes": {
+            "depth": { "min": 58, "max": 66 },
+            "table": { "min": 54, "max": 66 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "DreamStone Ideal",
+          "includes": {
+            "depth": { "min": 56, "max": 64 },
+            "table": { "min": 52, "max": 64 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          },
+          "excludes": {
+            "flourence": ["Strong"],
+            "color": ["L"],
+            "clarity": ["I1"]
+          }
+        }
+      ],
+      "Radiant": [
+        {
+          "set": "Very Good",
+          "includes": {
+            "depth": { "min": 55, "max": 75 },
+            "table": { "min": 55, "max": 75 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "Excellent",
+          "includes": {
+            "depth": { "min": 65, "max": 72 },
+            "table": { "min": 65, "max": 72 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "DreamStone Ideal",
+          "includes": {
+            "depth": { "min": 60, "max": 70 },
+            "table": { "min": 60, "max": 70 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          },
+          "excludes": {
+            "flourence": ["Strong"],
+            "color": ["L"],
+            "clarity": ["I1"]
+          }
+        }
+      ],
+      "Pear": [
+        {
+          "set": "Very Good",
+          "includes": {
+            "depth": { "min": 0, "max": 100 },
+            "table": { "min": 48, "max": 70 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "Excellent",
+          "includes": {
+            "depth": { "min": 0, "max": 100 },
+            "table": { "min": 55, "max": 66 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "DreamStone Ideal",
+          "includes": {
+            "depth": { "min": 57, "max": 65 },
+            "table": { "min": 53, "max": 64 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          },
+          "excludes": {
+            "flourence": ["Strong"],
+            "color": ["L"],
+            "clarity": ["I1"]
+          }
+        }
+      ],
+      "Heart": [
+        {
+          "set": "Very Good",
+          "includes": {
+            "depth": { "min": 50, "max": 70 },
+            "table": { "min": 50, "max": 70 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "Excellent",
+          "includes": {
+            "depth": { "min": 56, "max": 66 },
+            "table": { "min": 54, "max": 66 },
+            "polish": ["Good", "Very Good", "Excellent"],
+            "symmetry": ["Good", "Very Good", "Excellent"]
+          }
+        },
+        {
+          "set": "DreamStone Ideal",
+          "includes": {
+            "depth": { "min": 54, "max": 64 },
+            "table": { "min": 52, "max": 64 },
+            "polish": ["Very Good", "Excellent"],
+            "symmetry": ["Very Good", "Excellent"]
+          },
+          "excludes": {
+            "flourence": ["Strong"],
+            "color": ["L"],
+            "clarity": ["I1"]
+          }
+        }
+      ]
+    }
+  }
+]

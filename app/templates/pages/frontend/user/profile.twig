@@ -1,0 +1,93 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Diamond Engagement Rings | Diamond Rings| Loose Diamonds | Wedding Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    DreamStone - New York's largest retailer of Diamond Engagement Rings, Wedding Rings, Diamond Rings, Loose Diamonds, Diamond Studs Earrings, Diamond Pendants, White Gold Engagement Rings, Platinum Engagement Rings.
+{%- endblock -%}
+
+
+{%- block meta_keywords -%}
+    Engagement Rings, Wedding Rings, Diamond Engagement Rings, Diamond Rings, Loose Diamonds, Design Your Own Engagement Ring, White Gold Engagement Rings, Platinum Engagement Rings
+{%- endblock -%}
+
+{% set error_current = '' %}
+{% set error_new_pass = '' %}
+
+{% block content %}
+    {% if not isValid %}
+        {% for error in errors %}
+            {% if 'current' in error.dataPath %}
+                {% set error_current = error.message %}
+            {% else %}
+                 {% set error_new_pass = error.message %}   
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        {% if method == "POST" %}
+            Profile are successfully updated
+        {% endif %}
+    {% endif %}
+
+    <div class="content content-xs">   
+        <div class="u-clear-30"></div>
+        <h6 class="u-f24 u-color-black u-tl">login details</h6>
+        <form id="change-login" class="login-form" method="post">
+            <div class="o-col-lg-6 o-col-md-12">
+                <label>First name</label>
+                <input type="text" name="first_name" value="{{ post.first_name }}">
+                <div class="u-clear"></div>
+                <label>Last name</label>
+                <input type="text" name="last_name" value="{{ post.last_name }}">
+                <div class="u-clear"></div>
+                <label>Email address</label>
+                <input type="email" name="email" value="{{ post.email }}" disabled>
+                <div class="u-clear"></div>
+                <div class="u-clear-10"></div>
+            </div>
+            <div class="o-col-lg-6 o-col-md-12">
+                <label>Current Password</label>
+                    {% if error_current %}
+                        <p style="color: red; margin: -10px 0px 6px 0px;">{{error_current}}</p>
+                    {% endif %}                
+                <input type="password" name="current_password">
+                <div class="u-clear"></div>
+                <label>New Password</label>
+                {% if error_new_pass %}
+                    <p style="color: red; margin: -10px 0px 6px 0px;">{{error_new_pass}}</p>
+                {% endif %}
+                <input type="password" name="password">
+                <div class="u-clear"></div>
+                <label>Confirm Password</label>
+                <input type="password" name="password2">
+                <div class="u-clear"></div>
+                    {% if isValid %}
+                       <label>&nbsp;</label> 
+                    {% endif %}
+                <button class="btn-continue">Continue</button>
+            </div>
+            <div class="u-clear"></div>
+        </form>
+    </div>
+<script>
+    $(document).ready(function() {
+        $('.login-form').find('input').each(function(){
+            if (!$(this).val()) {
+                $('.btn-continue').css('background-color', '#c0c0c0');
+                $('.btn-continue').prop("disabled", true);
+            }
+        })
+    });
+    $('input').change(function(){
+        $('.login-form').find('input').each(function(){
+            if ($(this).val()) {
+                $('.btn-continue').css('background-color', '#97a6ce');
+                $('.btn-continue').prop("disabled", false);
+            }
+        })
+    })
+</script>    
+{% endblock %}
+

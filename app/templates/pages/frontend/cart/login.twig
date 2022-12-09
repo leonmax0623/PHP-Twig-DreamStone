@@ -1,0 +1,61 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+About Us - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+About Us,DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of
+dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of
+dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{% set page = 'login' %}
+
+{% block content %}
+{%  include "pages/frontend/cart/order_page_navigation.twig" %}
+
+<div class="content">
+    <form method="post" action="/user/login?returnUrl=/cart" id="cart-login">
+        <h5>Log in</h5>
+        <div class="u-clear-10"></div>
+        <div class="o-col-sm-12 o-col-md-5 o-col-lg-4 o-row">
+            <a href="#" id="registration_btn" class="btn btn_light u-fl u-tc t-cart-registration-btn">Create new
+                account</a>
+        </div>
+        <div class="o-col-sm-12 o-col-md-7 o-col-lg-4">
+            <div class="o-col-lg-5 u-tr">
+                <label class="u-pdg-10">Email address</label>
+            </div>
+            <div class="o-col-lg-7">
+                <input name="email" class="u-pdg-10" type="email">
+            </div>
+            <div class="u-clear"></div>
+            <div class="o-col-lg-5 u-tr">
+                <label class="u-pdg-10">Password</label>
+            </div>
+            <div class="o-col-lg-7">
+                <input name="password" class="u-pdg-10" type="password">
+            </div>
+        </div>
+        <div class="o-col-sm-12 o-col-md-12 o-col-lg-4 o-row">
+            <a href="#" id="forgot_btn" class="forgot">Forgot password?</a>
+            <button class="g-recaptcha t-cart-login-btn" data-sitekey="6Lc2jQoeAAAAAIzf4K1jjmHP5WqLqky7Fa8_0i8t"
+                data-callback='onCartLoginSubmit' data-action='cartLogin'>Continue</button>
+        </div>
+        <div class="u-clear"></div>
+    </form>
+    <div class="u-clear-20 u-border-hor-light"></div>
+    {%  include "pages/frontend/cart/cards.twig" %}
+</div>
+<script>
+    function onCartLoginSubmit(token) {
+        console.log('Cart Login form submitted');
+        setTimeout(() => document.getElementById("cart-login").submit(), 0);
+    }
+</script>
+{% endblock %}

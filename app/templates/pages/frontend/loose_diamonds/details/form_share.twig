@@ -1,0 +1,143 @@
+<form id="popup-share" class="popup-choose-setting" novalidate>
+    <div class="popup-content">
+        <button onclick="closeShare()" class="btn-popup-close close-share">X</button>
+        <div class="popup-header">
+            <h5>This is too good to keep secret. Send a hint to someone you’d think would be interested.</h5>
+        </div>
+        <div class="personal-info share-info">
+            <div class="mb-20 o-col-lg-12">
+                <h5>Recipient’s email <span class="red">*</span></h5>
+                <input type="text" name="recipient_share_email" id="recipient_email"
+                    placeholder="recipient’s@example.com" required>
+            </div>
+            <div class="mb-20 o-col-sm-12 o-col-lg-4">
+                <h5>Your name <span class="red">*</span></h5>
+                <input type="text" name="user_share_name" id="share_name" required>
+            </div>
+            <div class="mb-20 o-col-sm-12 o-col-lg-8">
+                <h5>Your email <span class="red">*</span></h5>
+                <div class="book-email">
+                    <input type="email" name="user_share_email" id="share_email" placeholder="myname@example.com"
+                        required>
+                </div>
+            </div>
+        </div>
+        <div class="o-col-lg-12">
+            <h5>Message</h5>
+            <textarea name="share_text" id="share_request" cols="20" rows="4"></textarea>
+        </div>
+        <div class="o-col-lg-12">
+            <button type="submit" class="g-recaptcha btn_share_submit"
+                data-sitekey="6Lc2jQoeAAAAAIzf4K1jjmHP5WqLqky7Fa8_0i8t" data-callback='onShareSubmit'
+                data-action='share'>Send</button>
+        </div>
+        <div class="out_share" style="color: red;"></div>
+    </div>
+</form>
+
+{# popup Share #}
+<script>
+    function showSharePopup(certificateNumber, stockNumber) {
+        const popupShare = $('#popup-share');
+        popupShare.css({
+            display: 'flex'
+        });
+        $('#popup-share').attr("data-certificateNumber", certificateNumber);
+        $('#popup-share').attr("data-stockNumber", stockNumber);
+        $body.css({
+            "overflow": 'hidden'
+        });
+    }
+
+    function closeShare() {
+        $('#popup-share').hide();
+        $body.css({
+            "overflow": 'auto'
+        });
+    }
+</script>
+{# submit Share #}
+<script>
+    function shareSubmit(token) {
+        let hasEmptyShare = false;
+
+        $('.share-info').find('input').each(function () {
+            if ($(this).prop('required')) {
+                hasEmptyShare = hasEmptyShare || !$(this).val();
+            }
+        })
+
+        let regexp = /^[\.a-z0-9_\-]+[@][a-z0-9_\-]+([.][a-z0-9_\-]+)+[a-z]{1,4}/i;
+        let sEmail = document.getElementById('share_email').value;
+        let reEmail = document.getElementById('recipient_email').value;
+        let result = regexp.test(sEmail);
+        let result2 = regexp.test(reEmail);
+
+        if (hasEmptyShare) {
+            $('.out_share').html('*required fields are not filled');
+            if (!$('#recipient_email').val()) {
+                $('#recipient_email').css('background-color', 'wheat');
+            }
+            if (!$('#share_name').val()) {
+                $('#share_name').css('background-color', 'wheat');
+            }
+            if (!$('#share_email').val()) {
+                $('#share_email').css('background-color', 'wheat');
+            }
+
+            return false
+        } else if (!result) {
+            $('.out_share').html('*enter the correct email');
+            $('#share_email').css('background-color', 'wheat');
+
+            return false
+        } else if (!result2) {
+            $('.out_share').html('*enter the correct email');
+            $('#recipient_email').css('background-color', 'wheat');
+            return false
+        } else {
+            $.post(
+                '/loose-diamonds/share-form',
+
+                {
+                    recipient_share_email: reEmail,
+                    user_share_name: $('#share_name').val(),
+                    user_share_email: sEmail,
+                    share_text: $('#share_request').val(),
+                    pageFromShare: location.href,
+                    gToken: token,
+                },
+
+                function (msg) {
+                    $('#my_message').html(msg);
+                }
+            );
+        }
+
+        $('#popup-share').hide();
+        $body.css({
+            "overflow": 'auto'
+        });
+        return false;
+    }
+
+    $('#popup-share').submit((ev) => {
+        ev.preventDefault();
+        shareSubmit();
+    });
+</script>
+<script>
+    $('input').change(function () {
+        $('.share-info').find('input').each(function () {
+            if ($(this).val()) {
+                $(this).css('background-color', 'white');
+            }
+        })
+    })
+</script>
+<script>
+    function onShareSubmit(token) {
+        // console.log('Share form submitted', token);
+        setTimeout(shareSubmit, 0, token);
+    }
+</script>

@@ -1,0 +1,25 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Engagement Rings | Unique Engagement Rings | Design Your Own Engagement Ring | Design Her Dream Ring | Diamond Engagement Rings | Platinum Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Browse our diamond engagement ring settings, modern engagement rings, classic engagement rings, along with thousands of certified diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Engagement rings, Diamond Rings, unique engagement rings, engagement ring settings, design your own engagement ring, custom engagement rings, modern engagement rings, best engagement rings, build engagement ring, designer engagement rings, antique engagement ring settings, engagement ring set, engagement diamond ring, gold engagement ring
+{%- endblock -%}
+
+{% block content %}
+    {%  include "pages/frontend/_partials/bread_crumbs.twig" %}
+
+    {%  include "pages/frontend/engagement_rings/order_page_navigation.twig" %}
+
+    <div class="u-clear"></div>
+    <div class="content">
+        {% include "pages/frontend/engagement_rings/filter_deprecated.twig" %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% set title = 'Brilliant Diamond' %} {#0.4 CARAT - ROUND BRILLIANT DIAMOND#}
+{% if product.diamond.shape %}
+    {% set title = product.diamond.shape.code ~ ' ' ~ title %}
+{% endif %}
+{% if product.diamond.weight %}
+    {% set title = product.diamond.weight ~ ' Carat - ' ~ title %}
+{% endif %}
+
+<!-- one result -->
+<li class="t-search-result-block t-search-block">
+    <div class="t-search-result-image-block">
+        <img src="/images/jewelry/default.png" alt="jewelry">
+    </div>
+    <div class="t-search-result-description-block">
+        <div class="t-search-result-block-data">
+            <span class="t-search-result-short-desc u-f16">
+                {{ product.product.title }}
+                {% for key, value in product.product.withAttributes %}
+                    <span>- {{ key }}: {{ value }}</span>
+                {% endfor %}
+            </span>
+            <span class="t-search-result-short-desc u-f16">{{ title }}</span>
+            <span class="t-search-result-price">Price: {{
+                (product.product.price + product.diamond.priceInternal) | price
+            }}</span>
+        </div>
+    </div>
+</li>
+<!-- /one result -->

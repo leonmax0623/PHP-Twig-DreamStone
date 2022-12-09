@@ -1,0 +1,117 @@
+<div class="t-shipping-details-block">
+    <div class="content-md">
+        <div class="o-col-lg-6 o-col-md-12 u-fl t-shipping-data">
+            <div class="u-clear-30"></div>
+            <h6 class="u-f24 u-color-black">Shipping details</h6>
+            <div class="u-clear-10"></div>
+        </div>
+        <div class="o-col-lg-6 o-col-md-12 o-row u-fr t-shipping-img">
+            <div class="u-clear-30"></div>
+            <img src="../../images/shipping_details_block.png" alt="shipping_details">
+            <div class="u-clear-30"></div>
+        </div>
+        <div class="o-col-lg-6 o-col-md-12 o-row u-fl t-shipping-data">
+            <div class="u-bg-white o-col-lg-12">
+                <table class="c-shipping-table">
+                    <tr>
+                        <td>Order by:</td>
+                        <td>{{ product.shippingDetails.orderBy | date('gA') }} EST Today</td>{# 3PM #}
+                    </tr>
+                    <tr>
+                        <td>Item delivered by:</td>
+                        <td style="text-transform: uppercase;">
+                            {% if user == false %}
+                                {{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}
+                            {% else %}
+                                {% if not user.city %}
+                                    {{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}
+                                {% elseif user.city == 'New York' %}   
+                                    {{ product.shippingDetails.shipsBy|date_modify("+5 day")|date("l, F jS") }}
+                                {% elseif user.country == 'US' %} 
+                                    {{ product.shippingDetails.shipsBy|date_modify("+7 day")|date("l, F jS") }}
+                                {% else %}
+                                    {{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}
+                                {% endif %} 
+                            {% endif %} 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="tooltip">Need it faster? <span style="cursor: default;" class="u-color-blue u-text-none-underline u-text-upper=-">Let us know
+                            <span class="tooltiptext">
+                                <p style="text-transform: none; text-align: left; color:white;">For diamonds set in jewelry, you should allow at least 10-12 business days to process and package your order for shipment. For loose diamonds, you should allow about 7 business days. Our state-of-the-art manufacturing facilities and seasoned staff ensure prompt and scheduled delivery with every order. For Saturday delivery, or if you need your package sooner than our expected delivery time, please contact customer service at 1-800-818-8386 or email us at service@dreamstone.com and we will be more than happy to accommodate your requests. Whenever possible we will strive to rush orders to meet your deadlines.</p>
+                            </span>
+                        </span></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="o-col-lg-12 o-col-md-12">
+                <div class="u-clear-20"></div>
+                <label class="u-mrg-0 u-mrg-left-10 u-text-upper">Included with your order</label>
+                <table class="c-shipping-table">
+                    <tr>
+                        <td>Shipped via:</td>
+                        <td>Free FedEx Shipping</td>
+                    </tr>
+                    <tr>
+                        <td>Insurance:</td>
+                        <td>Free coverage door to door</td>
+                    </tr>
+                    <tr>
+                        <td>Returns</td>
+                        <td>30-days, money back guarantee</td>
+                    </tr>
+                </table>
+                <div class="u-clear-20"></div>
+                <table class="t-shipping-details-links">
+                    <tr>
+                        <td class="tooltip"><span style="cursor: default;" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">30-day returns
+                            <span class="tooltiptext" style="text-transform: none;">
+                                <p style="text-transform: none; text-align: left; color:white;">Our return policy gives you plenty of time to make an informed decision. If you are not completely satisfied with your purchase, you can return any item within 30 days of your purchase date for a 100% full refund. No restocking fee. </p>
+                                <p style="text-transform: none; text-align: left; color:white;">For further details, please review our full return policy.</p>
+                            </span>
+                        </span></td>
+                        <td class="tooltip"><span style="cursor: default;" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Jewelry gift box
+                            <span class="tooltiptext" style="text-transform: none;">
+                                <p style="text-transform: none; text-align: left; color:white;">
+                                    As a finishing touch to your fine jewelry gift, is our complementary gift box. It is our way to make sure you're prepared for the big day!
+                                </p>
+                            </span>
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td  class="tooltip"><span style="cursor: default;" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Lifetime upgrade
+                            <span class="tooltiptext" style="text-transform: none;">Diamond Upgrades & Exchange Policies
+                                <p style="text-transform: none; text-align: left; color:white;">DreamStone wants to be your jeweler for life. For that reason, we've implemented three policies to help you shop with confidence not only today, but years down the line. These policies apply to our laboratory graded diamonds only. Please call our offices for details or to answer any questions you may have.</p>
+                                <p style="text-transform: none; text-align: left; color:white;">Lifetime Upgrade Policy - Any loose diamond purchased from DreamStone.com can be exchanged at 100% credit for any replacement diamond of at least 2x or greater in value. The diamond being upgraded must be in original condition and accompanied by original laboratory grading document.</p>
+                                <p style="text-transform: none; text-align: left; color:white;">Diamond Purchase Program - Do you have a diamond you would like to sell, even though you didn't purchase it from us? We can provide you with a free purchase quote on any GIA or AGS graded diamond of 1/2ct or larger. Just contact our office for details at 800-818-8386.</p>
+                            </span>
+                        </span></td>
+                        <td class="tooltip"><span style="cursor: default;" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Insurance appraisal
+                            <span class="tooltiptext" style="text-transform: none;">
+                                <p style="text-transform: none; text-align: left; color:white;">Your purchase will come with a complete insurance appraisal by an independent certified gemologist. The appraisal will state the retail value of your item along with all its specifications. For diamond jewelry and diamond engagement rings, the appraisal will list the cut, color, clarity, carat weight of the stone(s), and metal type. In addition, we will have your name and address printed on the appraisal.</p>
+                                <p style="text-transform: none; text-align: left; color:white;">You can give this documentation to your home owner's insurance company or independent insurance company to insure your product.</p>
+                                <p style="text-transform: none; text-align: left; color:white;">You will receive an appraisal on any:</p>
+                                <p style="text-transform: none; text-align: left; color:white; padding-top: 15px;">
+                                    - diamond, gemstone, pearl, gold, or platinum item priced over $100 <br>
+                                    - on any custom made diamond jewelry <br>
+                                    - any loose diamond or engagement ring</p>
+                            </span>
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td class="tooltip"><span style="cursor: default;" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Free fedex® shipping
+                            <span class="tooltiptext" style="text-transform: none;">
+                                <p style="text-transform: none; text-align: left; color:white;">Free Shipping</p>
+                                <p style="text-transform: none; text-align: left; color:white;">We are happy to offer Free Fully Insured FedEx Shipping on All Orders worldwide. Once your order is processed it goes through a quality check inspection - after our final approval it is neatly packaged in our distinctive jewelry box and secured with all your documentation and shipped to you insured with FedEx Air. As soon as it ships we will send you an email with the tracking information.</p>
+                            </span>
+                        </span></td>
+                        <td><span class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Fully insured to your door</span></td>
+                    </tr>
+                </table>
+                <div class="u-clear-30"></div>
+            </div>
+        </div>
+        <div class="u-clear"></div>
+    </div>
+</div>

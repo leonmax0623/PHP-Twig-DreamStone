@@ -1,0 +1,14 @@
+{% if product.banner_show %}
+    {#
+        <div class="parallax-holder">
+        {{ product.banner_html | raw }}
+        <div id="parallax-block" class="parallax-block">
+            <div class="parallax-image" style="background-image: url({{ product.banner_image }})"></div>
+        </div>
+    </div>#}
+
+    <div class="product-banner">
+        {{ product.banner_html | raw }}
+        <img src="{{product.banner_image}}" alt="banner_image" />
+    </div>
+{% endif %}

@@ -1,0 +1,34 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Engagement Rings | Unique Engagement Rings | Design Your Own Engagement Ring | Design Her Dream Ring | Diamond Engagement Rings | Platinum Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Browse our diamond engagement ring settings, modern engagement rings, classic engagement rings, along with thousands of certified diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Engagement rings, Diamond Rings, unique engagement rings, engagement ring settings, design your own engagement ring, custom engagement rings, modern engagement rings, best engagement rings, build engagement ring, designer engagement rings, antique engagement ring settings, engagement ring set, engagement diamond ring, gold engagement ring
+{%- endblock -%}
+
+{% block content %}
+   <!-- BANNER  -->
+    <div class="t-jewelry-banner">
+        <div class="t-banner-header-jewelry-block">
+            <div class="t-header-jewelry-btns">
+                <a href="{{ path_for('jewelry-Search', {'filter': 'earrings'}) }}" class="t-banner-button t-banner-button-opacity">stud earrings</a>
+                <a href="{{ path_for('jewelry-Search', {'filter': 'pendants'}) }}" class="t-banner-button t-banner-button-opacity">solitaire pendants</a>
+                <a href="{{ path_for('jewelry-Search', {'filter': 'rings'}) }}" class="t-banner-button t-banner-button-opacity">tree-stone rings</a>
+            </div>
+            <h5 class="t-banner-header-jewelry-headline">Fine jewelry collection</h5>
+            <p>For a truly unique gift, desing your own jewelry:</p>
+            <div class="u-clear"></div>
+        </div>
+        {% include "pages/frontend/jewelry/_subcategories.twig" %}
+    </div>
+    <div class="u-clear"></div>
+    <!-- /BANNER  -->
+    <div class="u-clear"></div>
+
+{% endblock %}

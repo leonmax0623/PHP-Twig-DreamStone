@@ -1,0 +1,5 @@
+<div class="content t-fancy_color-slider" id="fancy_color">
+    {% for color in colors %}
+        <a href="{{ path_for('looseDiamonds-Search', {'filter': 'color-' ~ color.code | lower}) }}"><div><img src="images/color/{{fancycolor.code | lower}}.png" alt="images"><span>{{ color.code }}</span></div></a>
+    {% endfor %}
+</div>

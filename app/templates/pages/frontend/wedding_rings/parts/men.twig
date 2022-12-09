@@ -1,0 +1,16 @@
+<div class="content-md">
+    <h6 class="u-f24 u-color-black u-tc">WEDDING RINGS FOR MEN</h6>
+    <div class="u-clear"></div>
+    <div id="wedding_ring_men" class="o-col-lg-12 o-row t-propositions-carousel">
+        {% for weddingmen in weddingmens %}
+            <a href="#" title="{{ weddingmen.code }}">
+                <div class="u-tc t-similar-items">
+                    <div class="t-ring-icon-block">
+                        <img src="images/wedding/men_{{ weddingmen.code }}.svg" alt="wedding">
+                    </div>
+                    <p class="u-f16 u-color-dark-gray u-text-upper">{{ weddingmen.code }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>

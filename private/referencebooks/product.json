@@ -1,0 +1,163 @@
+[
+  {
+    "_id": "5d1a07eca5b0a50b5862fe21",
+    "title": "Product1",
+    "sku": "123456",
+    "purchase_price": null,
+    "price": "20.20",
+    "retail_price": null,
+    "url": "product1",
+    "description": "First product",
+    "category_id": "5d1a0972a5b0a50b5c055ebb",
+    "metal_id": null,
+    "jewelrystone_id": null,
+    "jewelrytype_id": "5d1a07eca5b0a50b5862fe28",
+    "jewelrytypestyle_id": null,
+    "jewelrypearl_id": null,
+    "birthstone_id": null,
+    "ringstyle_id": null,
+    "is_diamond": false,
+    "is_pearl": false,
+    "is_birthstone": false,
+    "template": "",
+    "attributes": [],
+    "images": [
+      {
+        "type": "html",
+        "value": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/M2kSJbLbIgQ\" frameborder=\"0\" allowfullscreen></iframe>"
+      },
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe21/DS2802-Round.jpeg"
+      },
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe21/DSR95-6_1.jpg"
+      },
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe21/DSR95-6_2.jpg"
+      }
+    ],
+    "customer_images": [
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe21/customer/Screenshot_1.png",
+        "text": "text0"
+      },
+      {
+        "type": "html",
+        "value": "<iframe src=\"https://player.vimeo.com/video/60701290\" width=\"640\" height=\"480\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen></iframe>"
+      },
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe21/customer/Screenshot_5.png",
+        "text": ""
+      },
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe21/customer/WB2190-5-DETAIL.jpg",
+        "text": "text2"
+      }
+    ],
+    "information": [],
+    "order": null,
+    "shipping_time": null,
+    "banner_show": false,
+    "banner_image": "",
+    "banner_html": "",
+    "is_for_builder": true,
+    "builder_compatible": null
+  },
+  {
+    "_id": "5d1a07eca5b0a50b5862fe22",
+    "title": "Ring1",
+    "sku": "654321",
+    "purchase_price": null,
+    "price": "33.33",
+    "retail_price": null,
+    "url": "ring1",
+    "description": "First ring",
+    "category_id": "5d1a07eca5b0a50b5862ff70",
+    "metal_id": null,
+    "jewelrystone_id": null,
+    "jewelrytype_id": "5d1a07eca5b0a50b5862fe29",
+    "jewelrytypestyle_id": null,
+    "jewelrypearl_id": null,
+    "birthstone_id": null,
+    "ringstyle_id": "5d1a07eca5b0a50b5862fe20",
+    "is_diamond": false,
+    "is_pearl": false,
+    "is_birthstone": false,
+    "template": "",
+    "attributes": [],
+    "images": [
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe22/sdeft3.jpg"
+      },
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe22/slide_2.jpg"
+      }
+    ],
+    "customer_images": [
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe22/customer/DD9944.jpg",
+        "text": "TEST"
+      },
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe22/customer/180737-22.jpg",
+        "text": "TEST"
+      },
+      {
+        "type": "img",
+        "value": "/content/items/5d1a07eca5b0a50b5862fe22/customer/IMG_0010.MOV",
+        "text": ""
+      }
+    ],
+    "information": [],
+    "order": null,
+    "shipping_time": null,
+    "banner_show": true,
+    "banner_image": "/images/parallax_1.jpg",
+    "banner_html": "<h3 style=\"position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;\">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia accusamus ab iure minima, ea eius doloremque molestiae molestias aut recusandae velit in quis laudantium modi minus eum reprehenderit totam rem!</h3>",
+    "is_for_builder": true,
+    "builder_compatible": null
+  },
+  {
+    "_id": "5d1a07eca5b0a50b5862fe23",
+    "title": "Ring2",
+    "sku": "654322",
+    "purchase_price": null,
+    "price": "44.11",
+    "retail_price": null,
+    "url": "ring2",
+    "description": "Ring details",
+    "category_id": "5d1a07eca5b0a50b5862ff70",
+    "metal_id": null,
+    "jewelrystone_id": null,
+    "jewelrytype_id": "5d1a07eca5b0a50b5862fe29",
+    "jewelrytypestyle_id": null,
+    "jewelrypearl_id": null,
+    "birthstone_id": null,
+    "ringstyle_id": "5d1a07eca5b0a50b5862fe20",
+    "is_diamond": false,
+    "is_pearl": false,
+    "is_birthstone": false,
+    "template": "",
+    "attributes": [],
+    "images": [],
+    "customer_images": [],
+    "information": [],
+    "order": null,
+    "shipping_time": null,
+    "banner_show": false,
+    "banner_image": "",
+    "banner_html": "",
+    "is_for_builder": true,
+    "builder_compatible": null
+  }
+]

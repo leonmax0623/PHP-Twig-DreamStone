@@ -1,0 +1,133 @@
+<div class="holder-diamonds-list">
+    <div id="image-{{ diamond._id }}" class="diamond-list">
+        <a href="{{ diamond.permalink }}">
+            <div class="holder-diamond-svg">
+                {% if '.j' in diamond.imageExternal %}
+                    <img src="{{ diamond.imageExternal }}" alt="loose_diamonds" />
+                {% elseif '.J' in diamond.imageExternal %}
+                    <img src="{{ diamond.imageExternal }}" alt="loose_diamonds" />
+                {% elseif 'http' in diamond.imageExternal %}
+                    <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" alt="loose_diamonds" />
+                {% elseif diamond.imageExternal %}
+                    <img src="{{ diamond.imageExternal }}" />
+                {% else %}
+                    <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" alt="loose_diamonds" />
+                {% endif %}
+            </div>
+        </a>
+    </div>
+
+    <div
+        class="diamonds-list-item diamond-item t-table-view-icon-details"
+        onclick="showInfoDiamond('{{ diamond._id }}')"
+        id="{{ diamond._id }}"
+        data-id="diamond-{{ diamond._id }}"
+    >
+        <div class="diamond-list-item"><span>{{ diamond.shape.code }}</span></div>
+        <div class="diamond-list-item"><span>{{ diamond.weight }}</span></div>
+        <div class="diamond-list-item"><span>{{ diamond.color.code }}</span></div>
+        <div class="diamond-list-item"><span>{{ diamond.clarity.code }}</span></div>
+        <div class="diamond-list-item"><span>{{ diamond.cut.code }}</span></div>
+        <div class="diamond-list-item"><span>{{ diamond.lab }}</span></div>
+        <div class="diamond-list-item">
+            {% if diamond.isEnabled and diamond.vendorEnabled %}
+                <span>{{ diamond.price | price }}</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="holder-btn-list">
+        <div>
+            <button
+                id="c2{{ diamond._id }}"
+                class="t-table-view-icon mb-0 t-table-view-icon-compare{{
+                    diamond.isCompare ? ' active' : ''
+                }} compare-button"
+            ></button>
+        </div>
+        <div>
+            <button
+                id="w2{{ diamond._id }}"
+                class="t-table-view-icon mb-0 t-table-view-icon-wishlist{{
+                    diamond.isFavorite ? ' active' : ''
+                }} wishlist{{ diamond._id }}"
+            ></button>
+        </div>
+        <div><a href="{{diamond.permalink}}" id="details-btn" class="btn mb-0">Details</a></div>
+    </div>
+</div>
+<div class="t-table-view-details-block" id="diamond-{{ diamond._id }}">{{ include('pages/frontend/loose_diamonds/result_inline_details.twig') }}</div>
+
+<script>
+    $(function() {
+        $( '#di_slider-{{ diamond._id }}' ).cbpContentSlider();
+    });
+</script>
+
+{# compares #}
+<script>
+  $('#c2{{ diamond._id }}').click(function() {
+    const $this = $(this);
+    const $icon = $('.results-btn-comparison');
+    const method = $this.hasClass('active') ? 'delete' : 'add';
+    (new Compares())[method]('diamonds', '{{ diamond._id }}', function(){
+      $this[method === 'add' ? 'addClass' : 'removeClass']('active');
+      const count = +$icon.attr('data-count') + (method === 'add' ? 1 : -1);
+      $icon.attr('data-count', count).text(`comparison${count ? ` ${count}` : ''}`);
+    });
+  });
+</script>
+
+{# wishlist #}
+<script>
+    $('#w2{{ diamond._id }}').click(function() {
+    const $this = $(this);
+    const method = $this.hasClass('active') ? 'DELETE' : 'POST';
+    const FavoriteModel = (new Favorites({{ user ? 'true' : 'false' }}));
+    FavoriteModel[method === 'POST' ? 'add' : 'delete']('diamonds', { _id: '{{ diamond._id }}' }, function(){
+        $this[method === 'POST' ? 'addClass' : 'removeClass']('active');
+
+        const $icon = $('.t-top-icon-wishlist, .t-top-icon-mob-wishlist');
+        $icon.attr('data-count', +($icon.attr('data-count') || 0) + (method === 'POST' ? 1 : -1));
+    });
+    });
+</script>
+
+{# share #}
+<script>
+function sharePage() {
+    let pageUrl = document.location.href;
+    const canonicalElement = document.querySelector('link[rel=canonical]');
+    if (canonicalElement !== null) {
+        pageUrl = canonicalElement.href;
+    }
+    if (navigator.share) {
+        navigator.share({
+            title: 'DreamStone' + ' {{ diamond.title }}',
+            text: '{{ diamond.title }}',
+            url: pageUrl,
+        })
+        .then(() => console.log('Successful share'))
+        .catch((error) => console.log('Error sharing', error));
+    } else {
+        console.log('No Navigator Share feature');
+    }
+}
+</script>
+
+{# popup certificate #}
+<script>
+    function showCertsGia(id) {
+        let popupId = '#certs-' + id;
+        const modalGia = $(popupId);
+        $(modalGia).css({ display: 'flex' });
+    }
+    function showCertsIgi(id) {
+        let popupId = '#certs-' + id;
+        const modalIgi = $(popupId);
+        $(modalIgi).css({ display: 'flex' });
+    }
+    function closeCerts() {
+        $('.popup-gia').css({ display: 'none' });
+    }
+</script>

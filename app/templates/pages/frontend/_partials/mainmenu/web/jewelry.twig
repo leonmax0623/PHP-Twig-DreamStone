@@ -1,0 +1,39 @@
+<li {% if isJewelrySection or isJewelryRingsSection %}class="active"{% endif %}>
+    <a class="c-nav-link" href="/jewelry">JEWELRY</a>
+    <div id="nav_jewelry_web" class="c-main-nav-second-level">
+        <div class="o-col-lg-4 o-row">
+            <h6>ready to ship jewelry</h6>
+            <div class="u-clear"></div>
+            <ul class="t-second-nav-list t-second-nav-build">
+                <li class="t-scnav-eng-ring"><a href="/jewelry/rings">Rings</a></li>
+                <li class="t-scnav-stud"><a href="/jewelry/earrings">Earrings</a></li>
+                <li class="t-scnav-bracelets"><a href="/jewelry/bracelets">Bracelets</a></li>
+                <li class="t-scnav-necklaces"><a href="/jewelry/pendants">Pendants</a></li>
+                <li class="t-scnav-g-jewelry"><a href="/jewelry/all?jewelrystone=all">GemStone Jewelry</a></li>
+                <li class="t-scnav-person-jewelry"><a href="/jewelry/all?birthstone=all">Personalized Jewelry</a></li>
+            </ul>
+        </div>
+        <div class="o-col-lg-4 o-row u-bg-light-gray">
+            <h6>design your own jewelry</h6>
+            <div class="u-clear"></div>
+            <ul class="t-second-nav-list t-second-nav-build">
+                <li class="t-scnav-earrings"><a href="/jewelry/earrings?jewelrystone=diamond">Diamond Earrings</a></li>
+                <li class="t-scnav-pendatn"><a href="/jewelry/pendants?jewelrystone=diamond">Diamond Pendants</a></li>
+                <li class="t-scnav-rings"><a href="/jewelry/rings?jewelrystone=diamond">Diamond Rings</a></li>
+                <li class="t-scnav-g-earrings"><a href="/jewelry/?jewelrystone=all">GemStone Earrings</a></li>
+                <li class="t-scnav-g-pendants"><a href="/jewelry/pendants?jewelrystone=all">GemStone Pendants</a></li>
+                <li class="t-scnav-g-rings"><a href="/jewelry/rings?jewelrystone=all">GemStone Rings</a></li>
+            </ul>
+        </div>
+        <div class="o-col-lg-4 o-row">
+            <h6>gifts</h6>
+            <div class="u-clear"></div>
+            <ul class="t-second-nav-list">
+                <li><a href="#">All Gifts</a></li>
+                <li><a href="#">Gifts Under {{ 250 | price }}</a></li>
+                <li><a href="#">Anniversary Gifts</a></li>
+                <li><a href="#">Top 20 Best Gifts</a></li>
+            </ul>
+        </div>
+    </div>
+</li>

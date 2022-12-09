@@ -1,0 +1,31 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Diamond Education - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Diamond Education,diamond guide, diamond education, diamond cut, diamond color, diamond clarity, diamond carat weight, learn about diamonds, diamond buyers guide, diamond buying guide,DreamStone
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    diamond guide, diamond education, diamond cut, diamond color, diamond clarity, diamond carat weight, learn about diamonds, diamond buyers guide, diamond buying guide,DreamStone
+{%- endblock -%}
+
+{% block content %}
+    <div class="t_education_start">
+        <div class="content">
+            <div class="u-clear-20"></div>
+            <ul class="t_education_list_block">
+                {% for item in education %}
+                    <li>
+                        <div class="t_education_img t_education_img_{{ item.name | lower | replace({' ': '-'}) }}"></div>
+                        <p>{{ item.name }}</p>
+                        <a class="t_education_read_more" href="{{ path_for('education-Page', {'filter': item.url }) }}">Read more</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="u-clear"></div>
+        </div>
+    </div>
+{% endblock %}

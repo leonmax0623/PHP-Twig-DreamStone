@@ -1,0 +1,22 @@
+{% set currentPath = current_path(app.request.attributes.get('_route')) %}
+<ul class="t-order-pages-nav">
+    <li{% if currentPath == '/engagement-rings/search' %} class="active"{% endif %}>
+        {% include "pages/frontend/composite/bread_crumbs/setting.twig" %}
+    </li>
+    <li{% if currentPath == '/loose-diamonds/search' %} class="active"{% endif %}>
+        {% include "pages/frontend/composite/bread_crumbs/diamond.twig" %}
+    </li>
+    <li{% if currentPath == '/builder' %} class="active"{% endif %}>
+        <a
+            href="{{ composite.permalink }}"{% if composite.diamond is empty or composite.product is empty %}
+            class="s-blocked-link"{% endif %}
+        >
+            <span class="c-step-icon t-step-complete"></span>
+            <p class="t-step-text" style="text-align:left;width:150px;white-space:normal;line-height:1.4;padding-top:5px;">
+                <span>review </span>
+                <span style="display:inline-block">complete ring</span>
+            </p>
+        </a>
+    </li>
+</ul>
+<div class="u-border-hor-light"></div>

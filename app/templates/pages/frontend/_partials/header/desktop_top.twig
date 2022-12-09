@@ -1,0 +1,51 @@
+<div id="c-top" class="c-top">
+	<div class="content">
+		<div class="o-row o-col-md-5 o-col-lg-6">
+			<p class="t-work-hour-icon">24/7</p>
+			<p class="u-line-h-sm u-fl">800-818-8386</p>
+			<a href="mailto:service@dreamstone.com" class="c-icon c-top-icon t-top-icon-mail u-fl"></a>
+			<a id="my_custom_link" href="mailto:HELP@YOUR-APP.COM" class="c-icon c-top-icon t-top-icon-chat u-fl"></a>
+			<a href="#" class="c-icon c-top-icon t-top-icon-geo u-fl"></a>
+		</div>
+		<!--  CURRENCY SELECT  -->
+		<div class="o-row o-col-md-7 o-col-lg-6">
+			<div class="t-currency-blcok">
+				<span id="currency_value" style="margin:0" class="c-icon c-top-icon t-top-icon-{{ currency ? currency.name : 'dollar' }} u-fr t-currency"></span>
+				<div class="t-currency-checks">
+					<div class="radiobox-block u-fl">
+						<input type="radio" id="currency_dollar" name="currency" {{ currency.name != 'euro' ? ' checked' : '' }}>
+						<label class="radiobox-view" for="currency_dollar" onclick="CooseCurrency('t-top-icon-dollar');"></label>
+					</div>
+					<label class="radiobox-label u-fl" for="currency_dollar" onclick="CooseCurrency('t-top-icon-dollar');">USD</label>
+					<div class="u-clear"></div>
+					<div class="radiobox-block u-fl">
+						<input type="radio" id="currency_euro" name="currency" {{ currency.name == 'euro' ? ' checked' : '' }}>
+						<label class="radiobox-view" for="currency_euro" onclick="CooseCurrency('t-top-icon-euro');"></label>
+					</div>
+					<label class="radiobox-label u-fl" for="currency_euro" onclick="CooseCurrency('t-top-icon-euro');">EURO</label>
+					<div class="u-clear"></div>
+				</div>
+			</div>
+			<!--  /CURRENCY SELECT  -->
+			<a href="/wish-list" class="c-icon c-top-icon t-top-icon-wishlist u-fr"></a>
+			<a href="/my-orders" class="c-icon c-top-icon t-top-icon-orderstatus u-fr"></a>
+			<a href="/user/profile" class="c-icon c-top-icon t-top-icon-myaccount u-fr"></a>
+			<a href="/cart" class="c-icon c-top-icon t-top-icon-cart u-fr"></a>
+			{% if user == false %}
+				<a href="/user/login" class="u-fr t-login">login</a>
+			{% else %}
+				<div class="t-user-block">
+					<span>{{ user.first_name }}</span>
+					<div class="t-user-data">
+						<a href="/wish-list" class="u-fr">Wish list</a>
+						<a href="/my-orders" class="u-fr">My orders</a>
+						<a href="/user/profile" class="u-fr">My details</a>
+						<a href="/user/logout" class="u-fr">Logout</a>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+
+		<div class="u-clear"></div>
+	</div>
+</div>

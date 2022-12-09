@@ -1,0 +1,144 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative hideblock">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            <p>Don't sacrifice the cut. A diamond's cut also referred to as the stone's "make" is the proportions of its
+                facets and its overall finish. Cut is a result of a craftsman's skill in transforming a rough crystal
+                into a magnificent gem. A well-proportioned (well-cut) stone will create that fire and brilliance of
+                flashing rainbow colors and liveliness. Stick to excellent or DreamStone Ideal.</p>
+            <a href="/education/diamond-education/Diamond-Cut">learn more...</a>
+        </div>
+    </div>
+
+    <p class="t-filter-label open" onclick="toggleBlock(this, 'cutBlock');">Cut</p>
+    <div class="u-clear"></div>
+    <div id="cutBlock" class="cut-range t-price-block t-range-scaleble show">
+        <ul class="t-range-data">
+            {% for cut in cuts %}
+            <li data-value="{{ cut.code }}">
+                <span>{{ cut.code }}{% if cut.code == 'DreamStone Ideal' %}{% endif %}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        <div id="steps-slider-cut"></div>
+    </div>
+</div>
+<!-- nouislider -->
+<script>
+    $(document).ready(function () {
+        var divCut = document.querySelector('.hideblock');
+        divCut && divCut.classList.remove('hideblock')
+    })
+
+    function setActiveLabels(labelsSelector, currentValues) {
+        if (currentValues && currentValues.length) {
+            $(labelsSelector).each(function () {
+                if (currentValues.includes($(this).data('value'))) {
+                    $(this).removeClass('inactive');
+                } else {
+                    $(this).addClass('inactive');
+                }
+            });
+        }
+    }
+    const CutFilter = function () {};
+
+    var cuts = [];
+    $(".cut-range li").each(function (index, elem) {
+        cuts.push($(this).data('value'));
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const stepSliderCut = document.getElementById('steps-slider-cut');
+        const getVars = UrlParams.get();
+        const min = 0;
+        const max = cuts.length;
+        var current_cuts = getVars.cut_id ? getVars.cut_id.split(",") : null;
+        const currentMin = getVars.cut_id ? cuts.indexOf(current_cuts[0]) : 0;
+        const currentMax = getVars.cut_id ? cuts.indexOf(current_cuts[current_cuts.length - 1]) + 1 : cuts
+            .length;
+        setActiveLabels('#cutBlock li', current_cuts);
+        noUiSlider.create(stepSliderCut, {
+            start: [currentMin, currentMax],
+            snap: true,
+            connect: true,
+            range: {
+                'min': min,
+                '25%': 1,
+                '50%': 2,
+                '75%': 3,
+                'max': max
+            }
+        });
+
+        const onSliderChange = (values, handle) => {
+            let val = stepSliderCut.noUiSlider.get();
+            if (val[1] - val[0] < 1) {
+                if (handle === 0) {
+                    let left = Number(values[handle]);
+                    stepSliderCut.noUiSlider.set(left - 1);
+                    handleChangeCut([left - 1, val[1]], handle);
+                    return false;
+                } else if (handle === 1) {
+                    let right = Number(values[handle]);
+                    stepSliderCut.noUiSlider.set([val[0], right + 1]);
+                    handleChangeCut([+val[0], right + 1], handle);
+                    return false;
+                }
+            }
+            values = values.map(function (value) {
+                return Number(value);
+            });
+            handleChangeCut(values, handle)
+        };
+
+        const handleChangeCut = function (values, handle) {
+            var cut_str = "";
+            for (let i = values[0]; i <= values[1] - 1; i++) {
+                cut_str += cuts[i] + ',';
+            }
+            setActiveLabels('#cutBlock li', cut_str.split(','));
+            UrlParams.set({
+                cut_id: cut_str.slice(0, -1)
+            }, false);
+            if (min == values[0] && max == values[1]) {
+                const params = UrlParams.get();
+                delete params.cut_id;
+                UrlParams.delete(false);
+                UrlParams.set(params, false);
+            }
+
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if (total == 0) {
+                    $('.results-message').html(
+                        '<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if (total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        };
+
+        stepSliderCut.noUiSlider.on('change', onSliderChange);
+
+        $(".cut-range li").each(function (index, elem) {
+            const cut = $(this).data('value');
+            $(this).on('click', function (e) {
+                const currentPair = stepSliderCut.noUiSlider.get();
+                const currentCut = cuts.indexOf(cut);
+                if (currentCut - Number(currentPair[0]) < Number(currentPair[1]) - currentCut) {
+                    onSliderChange([currentCut, Number(currentPair[1])], 0);
+                    stepSliderCut.noUiSlider.set(currentCut);
+                } else {
+                    onSliderChange([Number(currentPair[0]), currentCut + 1], 1);
+                    stepSliderCut.noUiSlider.set([currentPair[0], currentCut + 1]);
+                }
+            })
+        });
+
+    });
+</script>

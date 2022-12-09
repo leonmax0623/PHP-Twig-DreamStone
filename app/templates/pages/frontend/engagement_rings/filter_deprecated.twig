@@ -1,0 +1,196 @@
+<script>
+    const filter = {
+        'ringstyle': '{{ filter.ringstyle }}',
+        'metal': '{{ filter.metal }}',
+        'price_min': '{{ filter.price_min }}',
+        'price_max': '{{ filter.price_max }}',
+        'bridal_sets_only': '{{ filter.bridal_sets_only }}',
+        'engagement_rings_only': '{{ filter.engagement_rings_only }}',
+        'shape': '{{ filter.shape }}',
+        'shipping_date': '{{ filter.shipping_date }}',
+        'sort_by': '{{ filter.sort_by }}',
+        'list_mode': '{{ filter.list_mode }}',
+        'offset': '{{ filter.offset }}',
+        'limit': '{{ filter.limit }}'
+    };
+    console.log(filter);
+
+    function optionChanged(e) {
+        search(e.name, e.value)
+    }
+
+    function cbClicked(cbID) {
+        const cb = document.getElementById(cbID);
+
+        if (cb) {
+            cb.checked= !cb.checked;
+            search(cb.name, cb.checked ? 1 : 0)
+        }
+    }
+
+    function search(key, value, fullReload = true) {
+        filter[key] = value;
+
+        let url = [location.protocol, '//', location.host, location.pathname, '?'].join('');
+
+        for(const l in filter)
+            if (filter[l])
+                url += l + '=' + filter[l] + '&';
+
+        if (fullReload) {
+            window.location = url;
+        } else {
+            loadPageData(url, '.t-search-results', true);
+        }
+    }
+
+</script>
+
+<!-- Filter -->
+<div class="o-col-lg-12  o-row">
+    <div class="c-filter-block">
+        <div class="o-col-lg-7 o-col-md-12">
+            <spna class="c-info-label s-sm-invisible">?</spna>
+            <p class="t-filter-label" onclick="toggleBlock(this, 'ringStile');">Engagement ring style</p>
+            <div class="u-clear"></div>
+            <ul id="ringStile" class="t-filter-list">
+                {% for ringstyle in ringstyles %}
+                <li class="{{ ringstyle.code | lower == filter.ringstyle ? 'active' : '' }}" onclick="search('ringstyle', '{{ ringstyle.code | lower }}', false)">
+                    <a>
+                        {{ ringstyle.image | raw }}
+                    </a>
+                    {{ ringstyle.code }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="o-col-lg-5 o-col-md-12">
+            <spna class="c-info-label s-sm-invisible">?</spna>
+            <p class="t-filter-label" onclick="toggleBlock(this, 'ringMetal');">Metal</p>
+            <div class="u-clear"></div>
+            <ul id="ringMetal" class="t-filter-list">
+                {% for metal in metals %}
+                <li class="{{ metal.code | lower == filter.metal ? 'active' : '' }}" onclick="search('metal', '{{ metal.code | lower }}', false)">
+                    <a href="#" title="{{ metal.code }}">
+                        {{ metal.image | raw }}
+                    </a>
+                    {{ metal.code }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="u-clear"></div>
+        <div class="o-col-lg-6 o-col-md-12">
+            <spna class="c-info-label s-sm-invisible">?</spna>
+            <p class="t-filter-label"  onclick="toggleBlock(this, 'priceBlock');">Price</p>
+            <div class="u-clear"></div>
+            <div id="priceBlock" class="t-price-block">
+                <div class="t-range-block">
+                    <div class="t-range-scale"></div>
+                </div>
+                <input class="t-price-input u-fl" type="text" value="{{ filter.price_min }}"/>
+                <input class="t-price-input u-fr" type="text" value="{{ filter.price_max }}"/>
+                <div class="u-clear"></div>
+            </div>
+        </div>
+        <div class="o-col-lg-6 o-col-md-12 s-sm-invisible">
+            <div  class="u-clear-40 s-md-invisible"></div>
+            <div class="o-col-lg-5 o-col-md-3 u-fr">
+                <label class="checkbox-label u-fr" for="bridal_rings" onclick="cbClicked('bridal_sets_only')">bridal sets only</label>
+                <div class="checkbox-block u-fr" onclick="cbClicked('bridal_sets_only')">
+                    <input type="checkbox" id="bridal_sets_only" name="bridal_sets_only" value="1" {{ filter.bridal_sets_only == 1 ? 'checked' : ''}}>
+                    <label class="checkbox-view" for="bridal_rings"></label>
+                </div>
+            </div>
+            <div class="o-col-lg-6 o-col-md-4 u-fr">
+                <label class="checkbox-label u-fr" for="engagement_rings"  onclick="cbClicked('engagement_rings_only')">engagement rings only</label>
+                <div class="checkbox-block u-fr" onclick="cbClicked('engagement_rings_only')">
+                    <input type="checkbox" id="engagement_rings_only" name="engagement_rings_only" value="1" {{ filter.engagement_rings_only == 1 ? 'checked' : ''}}>
+                    <label class="checkbox-view" for="engagement_rings"></label>
+                </div>
+            </div>
+        </div>
+        <div class="u-clear"></div>
+    </div>
+    <div class="o-col-lg-12 o-row">
+        <div class="o-col-lg-2 o-col-md-3 s-sm-invisible"></div>
+        <div class="o-col-lg-8 o-col-md-6 o-col-sm-6 t-filter-btn-block">
+            <a href="#" id="t-filter-close-btn" class="t-filter-close-btn">Close Filters</a>
+        </div>
+        <div class="o-col-lg-2 o-col-md-3 o-col-sm-6 t-filter-btn-block">
+            <a href="#" id="clear-filters" class="u-fr" onclick="resetFilters(); return false;">Clear Filters</a>
+        </div>
+    </div>
+</div>
+<div class="u-clear"></div>
+<!-- /Filter -->
+
+<div class="o-results-block">
+    <header class="t-results-header">
+        <div class="o-col-lg-12 o-col-md-8">
+            <h3>Results - 317  ITEMS</h3>
+        </div>
+        <div class="o-col-lg-12 o-col-md-4">
+            <div class="select-node u-fr">
+                <label class="s-md-invisible">Sort by:</label>
+                <div class="select-block">
+                    <select name="sort_by" onchange="optionChanged(this)">
+                        {% for sort in possibleSort %}
+                        <option value="{{ sort.code }}" {{ sort.code | lower == filter.sort_by | lower ? 'selected' : '' }}>{{ sort.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="select-node u-fr s-md-invisible">
+                <label>Shipping date:</label>
+                <div class="select-block">
+                    <select>
+                        <option>Ships on or before</option>
+                        <option>Low to high</option>
+                    </select>
+                </div>
+            </div>
+            <div class="select-node u-fr s-md-invisible">
+                <label>View with diamond:</label>
+                <div class="select-block">
+                    <select name="shape" onchange="optionChanged(this)">
+                        {% for shape in shapes %}
+                        <option value="{{ shape.code | lower }}" {{ shape.code | lower == filter.shape | lower ? 'selected' : '' }}>{{ shape.code }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="u-fl s-md-invisible">
+                <a href="#" class="t-display-style-btn t-display-style-list"></a>
+                <a href="#" class="t-display-style-btn active t-display-style-block"></a>
+            </div>
+        </div>
+        <div class="u-clear"></div>
+    </header>
+
+    <div class="u-clear"></div>
+    <div class="o-col-lg-12 o-row">
+        <ul class="t-search-results">
+            {%  include "pages/frontend/engagement_rings/result.twig" %}
+            {%  include "pages/frontend/engagement_rings/result.twig" %}
+            {%  include "pages/frontend/engagement_rings/result.twig" %}
+            {%  include "pages/frontend/engagement_rings/banner/one.twig" %}
+
+
+            {%  include "pages/frontend/engagement_rings/banner/double.twig" %}
+            {%  include "pages/frontend/engagement_rings/result.twig" %}
+            {%  include "pages/frontend/engagement_rings/result.twig" %}
+
+            {%  include "pages/frontend/engagement_rings/result.twig" %}
+            {%  include "pages/frontend/engagement_rings/result.twig" %}
+            {%  include "pages/frontend/engagement_rings/result.twig" %}
+            {%  include "pages/frontend/engagement_rings/banner/one.twig" %}
+        </ul>
+    </div>
+    <div class="u-clear"></div>
+</div>
+<script>
+    function resetFilters() {
+        UrlParams.delete(true);
+    }
+</script>

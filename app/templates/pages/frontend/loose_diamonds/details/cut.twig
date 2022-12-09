@@ -1,0 +1,69 @@
+{% set cuts = {
+    fair: 'Fair',
+    good: 'Good',
+    vgood: 'Very good',
+    ideal: 'Excellent',
+    uideal: 'DreamStone Ideal'
+} %}
+{% set className = '' %}
+<div class="bg-light-gray-mobile">
+    <h6 id="diamond-cut-learn" class="t-learn-more u-f24 u-color-black u-tc">
+        Cut <span class="u-color-blue">{{ product.cut.code }}</span>
+    </h6>    
+</div>
+<div class="diamond-cut-block u-bg-light-gray">
+    <div id="diamond-cut-info" class="mt-0 content-sm s-sm-invisible u-tc">
+        <ul class="t-cut-scale">
+            {% for key, cut in cuts %}
+                {% if product.cut.code == cut %}
+                    {% set className = key %}
+                    <li class="active">
+                {% else %}
+                    <li>
+                {% endif %}<span class="cut-text">{{ cut }}</span></li>
+            {% endfor %}
+        </ul>
+        <div class="u-clear"></div>
+        <div class="t-diamond-cut-quality">
+            <!-- if list "t-cut-scale" has active Poor/Fair/Good you should add here class "u-fr" -->
+            {% if product.cut.code in 'Good' %}
+                <div class="o-col-lg-6 u-tc{% if className in ['poor', 'fair', 'good'] %} u-fr{% endif %}">
+                    <img style="max-width: 50%;" src="../../images/diamond_cut_good.png" alt="diamond_cut_good">
+                </div>
+            {% endif %}
+            {% if product.cut.code in 'Very good' %}
+                <div class="o-col-lg-6 u-tc{% if className in ['poor', 'fair', 'good'] %} u-fr{% endif %}">
+                    <img style="max-width: 50%;" src="../../images/diamond_cut_very_good.png" alt="diamond_cut_very_good">
+                </div>
+            {% endif %}
+            {% if product.cut.code in 'Excellent' %}
+                <div class="o-col-lg-6 u-tc{% if className in ['poor', 'fair', 'good'] %} u-fr{% endif %}">
+                    <img style="max-width: 50%;" src="../../images/diamond_cut_ideal.png" alt="diamond_cut_ideal">
+                </div>
+            {% endif %}
+            {% if product.cut.code in 'DreamStone Ideal' %}
+                <div class="o-col-lg-6 u-tc{% if className in ['poor', 'fair', 'good'] %} u-fr{% endif %}">
+                    <img style="max-width: 50%;" src="../../images/diamond_cut_super_ideal.png" alt="diamond_cut_super_ideal">
+                </div>
+            {% endif %}
+            <!--   according to "t-cut-scale" list's active element you should add appropriate class to div below
+                t-cut-poor/t-cut-fair/t-cut-good/t-cut-vgood/t-cut-ideal/t-cut-uideal -->
+            <div class="c-tooltip c-tooltip-bottom t-cut-{{ className }}">
+                <p>{{ product.cut.desc }}</p>
+            </div>
+        </div>
+        <div class="u-clear"></div>
+        <p>A diamond's cut also referred to as the stone's "make" is the proportions of its facets and its overall finish. Cut is a result of a craftsman's skill in transforming a rough crystal into a magnificent gem. A well-proportioned (well-cut) stone will create that fire and brilliance of flashing rainbow colors and liveliness. </p>
+        <div class="u-clear-10"></div>
+        <a href="/education/diamond-education/4cs/cut" class="c-learn-more">Learn more </a>
+        <div class="u-clear"></div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#diamond-cut-learn").on("click", function(e) {
+            $('#diamond-cut-info').toggle("slow");
+            $(this).toggleClass('t-open');
+        });
+    });
+</script>

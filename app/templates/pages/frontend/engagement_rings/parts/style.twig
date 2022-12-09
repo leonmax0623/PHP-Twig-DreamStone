@@ -1,0 +1,19 @@
+<div class="content">
+    <div class="u-clear-30"></div>
+    <h6 class="u-f24 u-color-black u-tc">ENGAGEMENT RING STYLE</h6>
+    <div class="u-clear-10"></div>
+    <div id="engagement_ring_style" class="o-col-lg-12 o-row t-propositions-carousel">
+        {% for ringstyle in ringstyles %}
+            <a href="{{ path_for('engagementRings-Search') }}{{ '?ringstyle=' ~ ringstyle.code }}" title="{{ ringstyle.code }}">
+                <div class="u-tc t-similar-items">
+                    <div class="t-ring-icon-block">
+                        {{ ringstyle.image | raw }}
+                    </div>
+                    <p class="u-f20 u-color-dark-gray u-text-upper">{{ ringstyle.code }}</p>
+                    <p class="u-f14 u-color-dark-gray">{{ ringstyle.description }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    <div class="u-clear"></div>
+</div>

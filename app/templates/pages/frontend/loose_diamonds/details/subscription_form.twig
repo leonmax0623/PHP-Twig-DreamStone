@@ -1,0 +1,66 @@
+{# submit subscription #}
+<script>
+    $('#subscription_form').submit(function(ev){
+        ev.preventDefault();
+        
+        let hasEmpty = false;
+        
+        $('.subscription').find('input').each(function(){
+            if ($(this).prop('required')) {
+                hasEmpty = hasEmpty || !$(this).val();
+            }
+        })
+        
+        let regexp = /^[\.a-z0-9_\-]+[@][a-z0-9_\-]+([.][a-z0-9_\-]+)+[a-z]{1,4}/i;
+        let email = document.getElementById('subscription_email').value;
+        let result = regexp.test(email);
+        
+        if (hasEmpty) {
+        //    $('.out_subscription').html('*required fields are not filled');
+           if (!$('#subscription_name').val()) {
+               $('#subscription_name').css('background-color', 'wheat');
+           }
+           if (!$('#subscription_email').val()) {
+               $('#subscription_email').css('background-color', 'wheat');
+           }
+
+           return false
+        } else if (!result) {
+            // $('.out_subscription').html('*enter the correct email');
+            $('#subscription_email').css('background-color', 'wheat');
+
+            return false
+        }
+        else {
+            $.post(
+                '/loose-diamonds/subscription-form',
+
+                {
+                    subscription_name: $('#subscription_name').val(),
+                    subscription_email: email,
+                },
+                
+                function(msg) {  
+                    $('#my_message').html(msg);
+                }
+            );
+    }
+    $('#subscription_form').find('input').each(function(){
+        if ($(this).val()) {
+            $(this).css('background-color', 'white');
+            $(this).val("");
+            console.log($(this).val());
+        }
+    });
+    $('.text-subscription-submit').html("Thank you for signing up, we’ll be in touch! After submitting!");
+
+    return false;
+});
+$('input').change(function(){
+    $('#subscription_form').find('input').each(function(){
+        if ($(this).val()) {
+            $(this).css('background-color', '#f5f5f5');
+        }
+    })
+})
+</script>

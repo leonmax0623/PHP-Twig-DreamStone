@@ -1,0 +1,64 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    About Us - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    About Us,DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{% set page = 'cart' %}
+
+{% block content %}
+    {%  include "pages/frontend/cart/order_page_navigation.twig" %} 
+
+    <div class="content">
+        <div class="t-cart-table">
+            <div class="t-cart-table-body">
+                {% if products or diamonds or composite %}
+                    {% for index, product in products %}
+                        {% include "pages/frontend/cart/cart_page/unit_product.twig" %}
+                    {% endfor %}
+                    {% for index, product in diamonds %}
+                        {% include "pages/frontend/cart/cart_page/unit_diamond.twig" %}
+                    {% endfor %}
+                    {% for index, product in composite %}
+                        {% include "pages/frontend/cart/cart_page/unit_composite.twig" %}
+                    {% endfor %}
+                    <script>
+                    // Criteo Product Tag -->
+                    window.criteo_q = window.criteo_q || [];
+                    var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+                    window.criteo_q.push(
+                      { event: "setAccount", account: 91590},
+                      { event: "setEmail", email: "{{ user.email_hash }}", hash_method: "sha256" },
+                      { event: "setSiteType", type: deviceType},
+                      { event: "setZipcode", zipcode: "{{ user.zip_code }}" },
+                      { event: "viewBasket", item: [
+                      {% for index, product in composite %}
+                        {id: '{{ product.product.sku }} {{ product.diamond.certificateNumber }}/{{ product.diamond.stockNumber }}', price: '{{ product.product.price + product.diamond.price }}', quantity: 1 },
+                      {% endfor %}
+                      {% for index, product in diamonds %}
+                        {id: '{{ product._id }}', price: '{{ product.priceInternal }}', quantity: 1 },
+                      {% endfor %}
+                      {% for index, product in products %}
+                        {id: '{{ product._id }}', price: '{{ product.price }}', quantity: 1 },
+                      {% endfor %}
+                      ]}
+                    );
+                    // END Criteo Product Tag -->
+                    </script>
+                {% else %}
+                    <p style="margin-bottom: 40px; font-size: 18px;">Looks like you haven't added your item to the cart yet. Message us if you need any help.</p>
+                {% endif %}
+            </div>
+        </div>
+        {%  include "pages/frontend/cart/cart_page/total.twig" %} 
+        <div class="u-clear-20"></div>
+    </div>
+{% endblock %}

@@ -1,0 +1,75 @@
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	/* min-height: 9999px; */
+}
+
+li {
+	display: inline-block;
+	vertical-align: top;
+}
+
+.tab-content {
+	/* background: #ccc; */
+	/* overflow: hidden; */
+	position: relative;
+}
+
+.tab-content.transition {
+	transition: height .5s ease;
+}
+@media screen and (max-width: 480px) {
+	.slide-tabset {
+		margin: 0 -10px;
+	}
+}
+
+.slide-tabset .tab {
+	transform: translateY(-100%);
+	transition: transform .5s ease;
+}
+
+.slide-tabset .tab.active {
+	transform: translateY(0);
+}
+
+.fade-tabset .tab {
+	opacity: 0;
+	transition: opacity .5s ease;
+}
+
+.fade-tabset .tab.active {
+	opacity: 1;
+}
+@media screen and (min-width: 1024px) {
+	.tabset {
+		padding: 50px 0;
+	}
+}
+.tab {
+	/* overflow: hidden; */
+	width: 100%;
+}
+
+.custom-tabset .tab {
+	color: #fc0;
+	transform: rotate(-18deg) scale(.75) translateX(-5%);
+	transform-origin: 50% 50%;
+	transition: all .5s ease;
+}
+
+.custom-tabset .tab.active {
+	color: #f00;
+	transform: rotate(0) scale(1) translateX(0);
+}
+
+.js-tab-hidden {
+	display:block !important;
+	left:-9999px !important;
+	position: absolute !important;
+	top:-9999px !important;
+}

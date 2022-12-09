@@ -1,0 +1,24 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Loose Diamonds | Ideal Cut Diamonds | Certified Diamonds | Diamond Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Shop diamond engagement rings, diamond stud earrings, diamond pendants, GIA diamonds online at dreamstone.com. DreamStone's comprehensive interactive education center will guide you through everything you need to know about diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Loose Diamonds, Ideal Cut Diamonds, Certified Diamonds, Princess Cut Diamond, Round Diamond, Diamond Engagement Rings, Diamond Stud Earrings, Solitaire Diamond Pendant, diamond education, designer engagement rings, unique engagement rings.
+{%- endblock -%}
+
+{%- block head_end -%}
+    {%  include "pages/frontend/jewelry/details/metatags.twig" %}
+{%- endblock -%}
+
+{% block content %}
+<script src="{{ app.request.getSchemeAndHttpHost() }}/js/modernizr.custom.js"></script>
+    {% include "pages/frontend/composite/complete/main.twig" %}
+    {% set product = composite %}
+    {% include "pages/frontend/jewelry/details/shipping.twig" %}
+{% endblock %}

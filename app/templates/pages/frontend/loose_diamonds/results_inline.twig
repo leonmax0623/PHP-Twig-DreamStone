@@ -1,0 +1,64 @@
+<script>
+    // $(function() {
+    //     $( '#product_slider' ).cbpContentSlider();
+    // });
+
+
+    function showTableImg(element) {
+        $('#image-' + element + ' > a > img').show();
+        $('#image-' + element + ' > a > #svg-' + element).hide();
+    }
+
+    function showTableSVG(element) {
+        $('#image-' + element + ' > a > img').hide();
+        $('#image-' + element + ' > a > #svg-' + element).show();
+    }
+</script>
+
+<div class="t-resalt-table" style="display: none;">
+    <div id="sticky-sidebar" class="t-resalt-table-head">
+        <ul id="diamond-table-list" class="fixed-table-list sidebar__inner">
+            <li style="width: 15%;">Photo</li>
+            <li style="width: 9%;">Shape</li>
+            <li style="width: 9%;">Carat</li>
+            <li style="width: 9%;">Color</li>
+            <li style="width: 9%;">Clarity</li>
+            <li style="width: 10%;">Cut</li>
+            <li style="width: 9%;">Lab</li>
+            <li style="width: 9%;">Price</li>
+            <li style="width: 20%;">Compare Wishlist Details</li>
+        </ul>
+    </div>
+    <div class="t-resalt-table-body">
+        {% for diamond in diamonds %}
+        {% include "pages/frontend/loose_diamonds/result_inline.twig" %}
+        {% endfor %}
+    </div>
+</div>
+<!-- <script src="/js/jquery.cbpContentSlider.min.js"></script> -->
+<script src="/js/jquery.cbpContentSlider.min.js"></script>
+<script src="{{ app.request.getSchemeAndHttpHost() }}/js/modernizr.custom.js"></script>
+<script>
+    const addToCart = id => {
+        const $topCart = $('.t-top-icon-cart, .t-top-icon-mob-cart');
+
+        $.ajax({
+            method: 'POST',
+            url: '/cart',
+            data: {
+                product_id: id,
+                group: 'diamonds',
+            }
+        }).done(function () {
+            $topCart.attr('data-count', +($topCart.attr('data-count') || 0) + 1);
+        });
+    };
+</script>
+
+<!-- show info block -->
+<script>
+    function showInfoDiamond(diamondId) {
+        const $block = $('#diamond-' + diamondId);
+        $block.toggleClass('flexx');
+    }
+</script>

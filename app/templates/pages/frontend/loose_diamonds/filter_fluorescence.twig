@@ -1,0 +1,83 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            <p>Fluorescence refers to whether or not a stone will produce a color reaction when exposed to long-wave ultraviolet (UV) light (such as the light that comes from black light). None and faint is considered more desirable for diamonds graded D through G, and medium and strong can make diamonds H color and lower look whiter.</p>
+        </div>
+    </div>
+    
+    <p class="t-filter-label open" onclick="toggleBlock(this, 'flourenceFilter');">Fluorescence</p>
+    <div class="u-clear"></div>
+    <ul id="flourenceFilter" class="t-filter-list t-filter-flourence_list show">
+        {% for flourence in flourences %}
+            <li
+                id="s_{{ flourence.code|split(' ')|join('') }}"
+                class="{{ flourence.code in filter.flourence_id ? 'active' : '' }}"
+                onclick="searchFlourence('{{ flourence.code }}')"
+            >
+                <a href="#" class="c-btn c-btn-sm c-light-btn" onclick="return false;">
+                    <p>{{ flourence.code }}</p></a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function searchFlourence(value) {
+        var allFlourences = 'All fluorescences';
+        var param = UrlParams.get().flourence_id;
+        if (!param) {
+            UrlParams.set({ flourence_id: value }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        } else if (value === allFlourences) {
+            UrlParams.set({ flourence_id: param === value ? '' : value }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        } else {
+            var values = param.split(',');
+            ~values.indexOf(value) ? values.splice(values.indexOf(value), 1) : values.push(value);
+            ~values.indexOf(allFlourences) && values.splice(values.indexOf(allFlourences), 1);
+            UrlParams.set({ flourence_id: values.join(',') }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        }
+        $('#flourenceFilter > li').removeClass('active');
+        var flourenceNames = UrlParams.get().flourence_id;
+        if (flourenceNames && flourenceNames.split(',').length) {
+            flourenceNames.split(',').map((flourenceName) => {
+                $('#s_' + flourenceName.split(' ').join('')).addClass('active');
+            });
+        }
+    }
+</script>

@@ -1,0 +1,515 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+Loose Diamonds | Ideal Cut Diamonds | Certified Diamonds | Diamond Engagement Rings - DreamStone{%- endblock -%}{%- block meta_description -%}Shop diamond engagement rings, diamond stud earrings, diamond pendants, GIA diamonds online at dreamstone.com. DreamStone's comprehensive interactive education center will guide you through everything you need to know about diamonds.{%- endblock -%}{%- block meta_keywords -%}Loose Diamonds, Ideal Cut Diamonds, Certified Diamonds, Princess Cut Diamond, Round Diamond, Diamond Engagement Rings, Diamond Stud Earrings, Solitaire Diamond Pendant, diamond education, designer engagement rings, unique engagement rings.{%- endblock -%}{% block content %}<script>$(document).ready(function () {
+$(".t-discover-more").on("click", function (e) {
+$('#discover_more_block').toggle("slow");
+$(this).toggleClass('t-open');
+});
+});</script><script src="{{ app.request.getSchemeAndHttpHost() }}/js/modernizr.custom.js"></script><!-- DIAMOND DETAILS --><divclass="content-md"><!-- BREAD CRUMBS --><div class="u-fl">
+{%  include "pages/frontend/_partials/bread_crumbs.twig" %}</div><div class="u-clear"></div><!-- /BREAD CRUMBS --><div
+class="o-col-lg-6 o-col-sm-12">
+<!-- main product slider -->
+<div
+	id="diamond_slider" class="cbp-contentslider">
+	<!-- main slides -->
+	<ul class="c-product-slider">
+		<li id="slide1">
+			<img src="../../images/productpage/slider/slide_1.jpg" alt="images">
+		</li>
+		<li id="slide2">
+			<img src="../../images/productpage/slider/slide_2.png">
+		</li>
+		<li id="slide3">
+			<div class="t-search-result-image-block">
+				<label class="c-video-label"></label>
+				<!-- max image width = 330px -->
+				<img src="../../images/example.jpg" width="330" height="151" class="reel" data-image="../../images/example.jpg" data-footage="6" data-frames="35" data-entry="1" alt="images">
+				<label class="c-rotate-360-label"></label>
+			</div>
+		</li>
+		<li id="slide4">
+			<img src="../../images/productpage/slider/slide_1.jpg" alt="images">
+		</li>
+		<li id="slide5">
+			<img src="../../images/productpage/slider/slide_2.png" alt="images">
+		</li>
+	</ul>
+	<!-- preview slides -->
+	<nav>
+		<a href="#slide1">
+			<div><img src="../../images/productpage/slider/slide_1_min.jpg" alt="images"></div>
+		</a>
+		<a href="#slide2">
+			<div><img src="../../images/productpage/slider/slide_2_min.png" alt="images"></div>
+		</a>
+		<a href="#slide3">
+			<div><img src="../../images/productpage/slider/slide_3_min.jpg" alt="images"></div>
+		</a>
+		<a href="#slide4">
+			<div><img src="../../images/productpage/slider/slide_1_min.jpg" alt="images"></div>
+		</a>
+		<a href="#slide5">
+			<div><img src="../../images/productpage/slider/slide_2_min.png" alt="images"></div>
+		</a>
+	</nav>
+</div>
+<!-- main product slider --></div><div class="o-col-lg-6 o-col-sm-12 u-color-dark-gray">
+<p class="u-text-upper u-f20">0.30 Carat - Round Brilliant Diamond</p>
+<p class="u-f18">K Color, SI1 Clarity, Fair Cut,
+	<br>
+	Round Diamond accompanied by a grading report from GIA<br>
+	SKU : DS0070489982</p>
+<p class="u-f18 u-color-blue u-text-upper u-text-none-underline u-mrg-0">FREE SHIPPING & 30 DAY RETURNS</p>
+<p class="u-f18 u-color-light-gray">Order loose diamond, ships by
+	<span>{{ product.shippingDetails.shipsBy|date("l, F jS") }}</span>
+</p>
+<div class="u-clear-30"></div>
+<div class="o-col-lg-6 o-row">
+	<a href="#" class="c-btn c-light-btn product-price">Price: $400.00</a>
+</div>
+<div class="o-col-lg-6 o-row">
+	<a href="#" class="c-btn c-dark-btn">Add to cart</a>
+</div>
+<div class="u-clear"></div>
+<div class="o-col-lg-6 o-row u-tl">
+	<ul class="t-product-action">
+		<li>
+			<a href="#" class="t-product-action-icon t-product-action-wishlist"></a>
+		</li>
+		<li>
+			<a href="#" class="t-product-action-icon t-product-action-search"></a>
+		</li>
+		<li>
+			<a href="#" class="t-product-action-icon t-product-action-send"></a>
+		</li>
+		<li>
+			<a href="#" class="t-product-action-icon t-product-action-print"></a>
+		</li>
+	</ul>
+</div>
+<div class="u-clear-10"></div>
+{# <div
+	class="o-col-lg-11 o-col-md-10 o-row u-tl"><p>Our in-house gemologist at DreamStone inspect every diamond before it reaches you and we ship the diamond with the grading report and an insurance appraisal.</p>
+</div>
+<div class="o-col-lg-1 o-col-md-2 o-row u-tr">
+	<img class="t-examitation-img" src="../../images/examination.png" alt="images">
+</div> #}
+<div class="u-clear"></div></div><div class="u-clear"></div><a href="javascript: void(0);" class="t-discover-more">
+<span>Discover more</span></a></div><div id="discover_more_block" class="t-product-details-block u-bg-light-gray"><div class="content-md">
+<h6 class="u-f24 u-color-dark-gray u-tc">Product Details</h6>
+<div class="u-clear"></div>
+<div class="o-col-lg-5 o-col-md-6 o-col-sm-12">
+	<label>Diamond Information</label>
+	<table class="c-details-table">
+		<tr>
+			<td>Stock Number</td>
+			<td>DS0070489982</td>
+		</tr>
+		<tr>
+			<td>Carats</td>
+			<td>0.30 carats</td>
+		</tr>
+		<tr>
+			<td>Cut</td>
+			<td>Fair</td>
+		</tr>
+		<tr>
+			<td>Color</td>
+			<td>K</td>
+		</tr>
+		<tr>
+			<td>Clarity</td>
+			<td>SI1</td>
+		</tr>
+	</table>
+	<label>Shipping Information</label>
+	<table class="c-details-table">
+		<tr>
+			<td>Order By</td>
+			<td>3PM EST Today</td>
+		</tr>
+		<tr>
+			<td>Ships By</td>
+			<td>Tuesday, March 14, 2017</td>
+		</tr>
+	</table>
+</div>
+<div class="o-col-lg-5 o-col-md-6 o-col-sm-12 u-fr">
+	<label>Additional Diamond Information</label>
+	<table class="c-details-table">
+		<tr>
+			<td>Depth %</td>
+			<td>56.9%</td>
+		</tr>
+		<tr>
+			<td>Table %</td>
+			<td>62%</td>
+		</tr>
+		<tr>
+			<td>Symmetry</td>
+			<td>Good</td>
+		</tr>
+		<tr>
+			<td>Polish</td>
+			<td>Very Good</td>
+		</tr>
+		<tr>
+			<td>Culet</td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td>Fluorescence</td>
+			<td>None</td>
+		</tr>
+		<tr>
+			<td>Measurement</td>
+			<td>3.83 x 3.88 x 2.19 mm
+			</td>
+		</tr>
+		<tr>
+			<td>GIA Report Number</td>
+			<td>2254831967</td>
+		</tr>
+	</table>
+</div></div><div class="u-clear"></div></div><div class="u-clear-30"></div><!-- /DIAMOND DETAIOLS --><!-- SIZE --><div class="content-sm s-sm-invisible u-tc"><h6 class="u-f24 u-color-black u-tc">Size
+<span class="u-color-blue">0.30 CT</span></h6><p class="u-tl">Quisque eu enim eget ante aliquet sollicitudin. Vivamus pellentesque dui ut orci dignissim, sed dictum dui maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla in leo at est euismod efficitur. Proin convallis lacus a libero semper rhoncus. Quisque porttitor dolor enim, at facilisis purus pulvinar ut. Proin grida erat ac lorem consequat rutrum. Oci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus.</p><div class="t-size-scale">
+<div
+	class="t-diamond-size-block">
+	<!-- left position is calculated by the formula n/0.02-13.75, where n - value of carats -->
+	<div class="t-diamond-size-value" style="left: 1.25%;">0.30 CT</div>
+</div>
+<div class="t-diamond-size-coin"></div></div><div class="u-clear-10"></div><a href="#" class="c-learn-more">Learn more</a><div class="u-clear"></div></div><!-- /SIZE --><!-- CUT --><div class="u-bg-light-gray"><div class="content-sm s-sm-invisible u-tc">
+<div class="u-clear-20"></div>
+<h6 class="u-f24 u-color-black u-tc">cut
+	<span class="u-color-blue">IDEAL</span>
+</h6>
+<ul class="t-cut-scale">
+	<li>
+		<span>Poor</span>
+	</li>
+	<li>
+		<span>Fair</span>
+	</li>
+	<li>
+		<span>Good</span>
+	</li>
+	<li>
+		<span>Very good</span>
+	</li>
+	<li class="active">
+		<span>Ideal</span>
+	</li>
+	<li>
+		<span>Ultimate ideal</span>
+	</li>
+</ul>
+<div class="u-clear"></div>
+<div class="t-diamond-cut-quality">
+	<div
+		class="o-col-lg-6 u-tc">
+		<!-- if list "t-cut-scale" has active Poor/Fair/Good you should add here class "u-fr" -->
+		<img src="../../images/diamond_cut.png" alt="images">
+	</div>
+	<!--   according to "t-cut-scale" list's active element you should add appropriate class to div below
+		                        t-cut-poor/t-cut-fair/t-cut-good/t-cut-vgood/t-cut-ideal/t-cut-uideal -->
+	<div class="c-tooltip c-tooltip-bottom t-cut-ideal">
+		<p>Exquisite quality cut to create the optimal combination of brilliance and fire. Reflects nearly all light that enters the diamond. Top 3% of diamond quality based on cut.</p>
+	</div>
+</div>
+<div class="u-clear"></div>
+<p>Top 1% of diamond quality - with precise proportions, polish and symmetry - allowing the diamond to reflect even more light than the standard Ideal cut. A cut grade is the measure of a diamond's light performance. Cut with proper proportions, light is returned out of the top of the diamond. If it is cut too shallow, light leaks out of the bottom; too deep and it escapes out of the side.
+</p>
+<div class="u-clear-10"></div>
+<a href="#" class="c-learn-more">Learn more
+</a>
+<div class="u-clear"></div></div></div><!-- /CUT --><!-- COLOR --><div class="content-sm s-sm-invisible  u-tc"><div class="u-clear-20"></div><h6 class="u-f24 u-color-black">color
+<span class="u-color-blue">E</span></h6><p class="u-tl">The cut refers to the angles and proportions of a diamond. The cut of a diamond - its form and finish, its depth and width, the uniformity of the facets - determines its beauty. The skill with which a diamond is cut determines how well it reflects and refracts light.</p><div class="u-clear"></div></div><div class="content-md s-sm-invisible u-tc"><div class="t-diamond-color-scale">
+<div
+	class="o-col-lg-6 u-tc">
+	<!-- if list "t-cut-scale" has active ZN/MK/J/I you should add here class "u-fr" -->
+	<img src="../../images/diamond_color.png" alt="images">
+</div>
+<!--   according to "t-color-scale" list's active element you should add appropriate class to div below -->
+<div class="c-tooltip c-tooltip-top t-color-e">
+	<p>For the untrained eye E-Color is indistinguishable from D and only an expert gemologist using sophisticated equipment and the proper lighting conditions can detect any trace of color. E-Color is considered exceptionally fine and very rare.</p>
+</div></div><div class="u-clear"></div><ul class="t-scale t-color-scale">
+<li>
+	<span>Z-N</span>
+</li>
+<li>
+	<span>M-K</span>
+</li>
+<li>
+	<span>J</span>
+</li>
+<li>
+	<span>I</span>
+</li>
+<li>
+	<span>H</span>
+</li>
+<li>
+	<span>G</span>
+</li>
+<li>
+	<span>F</span>
+</li>
+<li class="active">
+	<span>E</span>
+</li>
+<li>
+	<span>D</span>
+</li></ul><div class="u-clear"></div><img class="t-color-scale-image" src="../../images/diamond_color_scale.png" alt="images"><div class="u-clear-10"></div><a href="#" class="c-learn-more">Learn more</a><div class="u-clear"></div></div><!-- /COLOR --><!-- CLARITY --><div class="u-bg-light-gray"><div class="content-sm u-tc s-sm-invisible">
+<div class="u-clear-20"></div>
+<h6 class="u-f24 u-color-black u-tc">Clarity
+	<span class="u-color-blue">VS1</span>
+</h6>
+<p class="u-tl">This diamond contains very, few inclusions that are difficult for the untrained eye to see under 10x magnification. VS1 diamonds have no visible blemishes and are less expensive than higher clarity grades, therefore offering exceptional value while not compromising on quality.
+</p>
+<div class="t-diamond-color-scale">
+	<div
+		class="o-col-lg-6 u-tc u-fr">
+		<!-- if list "t-cut-scale" has active I3/I2/I1/S2/SI1 you should add here class "u-fr" -->
+		<img src="../../images/diamond_clearity.png" alt="images">
+	</div>
+	<!--   according to "t-color-scale" list's active element you should add appropriate class to div below -->
+	<div class="c-tooltip c-tooltip-top t-clarity-i2">
+		<p>Exquisite quality cut to create the optimal combination of brilliance and fire. Reflects nearly all light that enters the diamond. Top 3% of diamond quality based on cut.</p>
+	</div>
+</div>
+<div class="u-clear-10"></div>
+<ul class="t-scale t-clarity-scale">
+	<li>
+		<span>I3</span>
+	</li>
+	<li class="active">
+		<span>I2</span>
+	</li>
+	<li>
+		<span>I1</span>
+	</li>
+	<li>
+		<span>S2</span>
+	</li>
+	<li>
+		<span>SI1</span>
+	</li>
+	<li>
+		<span>VS2</span>
+	</li>
+	<li>
+		<span>VS1</span>
+	</li>
+	<li>
+		<span>VVS2</span>
+	</li>
+	<li>
+		<span>VVS1</span>
+	</li>
+	<li>
+		<span>IF</span>
+	</li>
+	<li>
+		<span>F</span>
+	</li>
+</ul>
+<div class="u-clear"></div>
+<img class="t-clarity-scale-image" src="../../images/diamond_clarity_scale.png" alt="images">
+<div class="u-clear-10"></div>
+<a href="#" class="c-learn-more">Learn more
+</a>
+<div class="u-clear"></div></div></div><!-- /CLARITY --><!-- SHIPPING DETAILS --><div class="t-shipping-details-block"><div class="content-md">
+<div class="o-col-lg-6 o-col-md-12 u-fl t-shipping-data">
+	<div class="u-clear-30"></div>
+	<h6 class="u-f24 u-color-black">Shipping details</h6>
+	<div class="u-clear-10"></div>
+</div>
+<div class="o-col-lg-6 o-col-md-12 o-row u-fr t-shipping-img">
+	<div class="u-clear-30"></div>
+	<img src="../../images/shipping_details_block.png" alt="images">
+	<div class="u-clear-30"></div>
+</div>
+<div class="o-col-lg-6 o-col-md-12 o-row u-fl t-shipping-data">
+	<div class="u-bg-white o-col-lg-12">
+		<table class="c-shipping-table">
+			<tr>
+				<td>Order by:</td>
+				<td>3PM EST Today</td>
+			</tr>
+			<tr>
+				<td>Item delivered by:</td>
+				<td>TUE, 15 NOV</td>
+			</tr>
+			<tr>
+				<td>Need it faster?
+					<a href="#" class="u-color-blue u-text-none-underline u-text-upper=-">Let us know</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	<div class="o-col-md-12">
+		<div class="u-clear-20"></div>
+		<label class="u-mrg-0 u-mrg-left-10 u-text-upper">Included with your order</label>
+		<table class="c-shipping-table">
+			<tr>
+				<td>Shipped via:</td>
+				<td>Free FedEx Priority Overnight</td>
+			</tr>
+			<tr>
+				<td>Insurance:</td>
+				<td>Free coverage door to door</td>
+			</tr>
+			<tr>
+				<td>Returns</td>
+				<td>30-days, picked up at your door</td>
+			</tr>
+		</table>
+		<div class="u-clear-20"></div>
+		<table class="t-shipping-details-links">
+			<tr>
+				<td>
+					<a href="#" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Diamond certificate</a>
+				</td>
+				<td>
+					<a href="#" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Jewelry gift box</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="#" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Lifetime upgrade</a>
+				</td>
+				<td>
+					<a href="#" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Insurance appraisal</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="#" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Free fedex® shipping</a>
+				</td>
+				<td>
+					<a href="#" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">Fully insured to your door</a>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="#" class="u-color-dark-gray u-text-upper u-f16 u-text-none-underline">30-day returns</a>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+		<div class="u-clear-30"></div>
+	</div>
+</div>
+<div class="u-clear"></div></div></div><!-- /SHIPPING DETAILS --><!-- FLEXIBLE FINANCING OPTIONS --><div class="u-bg-light-gray t-flexible-block"><div class="content">
+<div class="u-clear-30"></div>
+<h6 class="u-f24 u-color-black u-tc">WHY DREAMSTONE?</h6>
+<div class="t-slide-hide">
+	<div id="flexible_options" class="o-col-lg-12 o-row t-propositions-carousel">
+		<div class="t-options-slider">
+			<label class="u-text-upper u-f16 u-color-dark-gray">FINANCING</label>
+			<p class="u-color-dark-gray">Get what you need now with
+			</p>
+			<p class="u-color-dark-gray">Synchrony Financing</p>
+			<p class="u-color-dark-gray">No Interest for 6, 12 month*</p>
+			<p class="u-color-dark-gray">36 month @ 9/99%</p>
+			<div class="u-clear-10"></div>
+			<a href="#" class="u-f14 u-color-blue u-text-none-underline u-text-upper">APPLY NOW</a>
+			<a href="#" class="c-learn-more">Learn more
+			</a>
+		</div>
+		<div class="t-options-slider">
+			<label class="u-text-upper u-f16 u-color-dark-gray">Layaway plan</label>
+			<p class="u-color-dark-gray">Split your Payments up to 6 month</p>
+			<p class="u-color-dark-gray">Once final payment is made,</p>
+			<p class="u-color-dark-gray">we`ll ship your item</p>
+			<div class="u-clear-10"></div>
+			<a href="#" class="c-learn-more">Learn more
+			</a>
+		</div>
+		<div class="t-options-slider">
+			<label class="u-text-upper u-f16 u-color-dark-gray">diamond upgrade program</label>
+			<p class="u-color-dark-gray">Get 6 month to pay</p>
+			<p class="u-color-dark-gray">Check out with PayPal</p>
+			<p class="u-color-dark-gray">Choose Bill Me Latter</p>
+			<div class="u-clear-10"></div>
+			<a href="#" class="c-learn-more">Learn more
+			</a>
+		</div>
+		<!-- <div class="s-lg-invisible s-sm-visible"></div> -->
+	</div>
+</div>
+<div class="u-clear"></div></div></div><!-- /FLEXIBLE FINANCING OPTIONS --><!-- RECENTLY VIEWED --><div class="recently_viewed_block"><div class="u-clear-30"></div><h6 class="u-f24 u-color-black u-tc">Recently viewed</h6><div class="u-clear-10"></div><div id="recently_viewed" class="o-col-lg-12 o-row t-propositions-carousel">
+<div class="u-tc">
+	<img src="../../images/recently/slide_1.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray">Classic Four-Prong<br>Engagement Ring in White Gold (2mm)</p>
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.29 Carat Round Good</p>
+</div>
+<div class="u-tc">
+	<img src="../../images/recently/slide_2.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray">Classic Four-Prong<br>Yellow Gold
+	</p>
+	<p class="u-f20 u-color-dark-gray u-text-upper">Engagement Ring</p>
+</div>
+<div class="u-tc">
+	<img src="../../images/recently/slide_3.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray">Round Brilliant<br>Orange Diamond</p>
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.4 Carat Round Good</p>
+</div>
+<div class="u-tc">
+	<img src="../../images/recently/slide_1.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray">Classic Four-Prong<br>Engagement Ring in White Gold (2mm)</p>
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.29 Carat Round Good</p>
+</div>
+<div class="u-tc">
+	<img src="../../images/recently/slide_2.jpg">
+	<p class="u-f20 u-color-dark-gray">Classic Four-Prong<br>Yellow Gold
+	</p>
+	<p class="u-f20 u-color-dark-gray u-text-upper">Engagement Ring</p>
+</div>
+<div class="u-tc">
+	<img src="../../images/recently/slide_3.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray">Round Brilliant<br>Orange Diamond</p>
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.4 Carat Round Good</p>
+</div>
+<div class="u-tc">
+	<img src="../../images/recently/slide_1.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray">Classic Four-Prong<br>Engagement Ring in White Gold (2mm)</p>
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.29 Carat Round Good</p>
+</div></div></div><div class="u-clear"></div><!-- /RECENTLY VIEWED --><!-- SIMILAR ITEMS --><div class="t-similar-block"><div class="u-clear-30"></div><h6 class="u-f24 u-color-black u-tc">Similar items</h6><div class="u-clear-10"></div><div id="similar_items" class="o-col-lg-12 o-row t-propositions-carousel">
+<div class="u-tc t-similar-items">
+	<img src="../../images/productpage/diamond_1.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+	<p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+</div>
+<div class="u-tc t-similar-items">
+	<img src="../../images/productpage/diamond_1.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+	<p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+</div>
+<div class="u-tc t-similar-items">
+	<img src="../../images/productpage/diamond_1.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+	<p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+</div>
+<div class="u-tc t-similar-items">
+	<img src="../../images/productpage/diamond_1.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+	<p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+</div>
+<div class="u-tc t-similar-items">
+	<img src="../../images/productpage/diamond_1.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+	<p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+</div>
+<div class="u-tc t-similar-items">
+	<img src="../../images/productpage/diamond_1.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+	<p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+</div>
+<div class="u-tc t-similar-items">
+	<img src="../../images/productpage/diamond_1.jpg" alt="images">
+	<p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+	<p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+</div></div></div><div class="u-clear"></div><!-- /SIMILAR ITEMS -->{% endblock %}

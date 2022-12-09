@@ -1,0 +1,57 @@
+<div class="o-col-lg-7 o-col-md-12 u-relative">
+    <a href="/education/diamond-education/shape" class="c-info-label s-sm-invisible">?</a>
+    <p class="t-filter-label shape-mb mr-10" onclick="toggleBlock(this, 'shapeFilter');">Shape</p>
+    {% if isBuilder %}
+        <span style="font-size: 18px; color: #9d9c9c; text-transform: initial;">Can be set with</span>
+    {% endif %}
+    <div class="u-clear"></div>
+    <ul id="shapeFilter" class="t-filter-list t-filter-shape_list">
+        {% for shape in shapes %}
+            <li
+                id="{{ shape.code }}"
+                class="{{ shape.code in filter.shape ? 'active' : '' }}"
+                onclick="searchShape('{{ shape.code }}')"
+            >
+                <div class="flex-center">
+                    <a href="#" title="{{ shape.code }}" onclick="return false;">
+                        <img src="/content/diagram_loose_diamonds/Cut_{{shape.code}}.svg" alt="diamond shape">
+                    </a>
+                    <span>{{ shape.code }}</span>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function searchShape(value) {
+        var allShapes = 'All shapes';
+        var param = UrlParams.get().shape;
+        $('#' + value).toggleClass('active');
+        if (!param) {
+            UrlParams.set({ shape: value }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+            });
+        } else if (value === allShapes) {
+            UrlParams.set({ shape: param === value ? '' : value }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+            });
+        } else {
+            var values = param.split(',');
+            ~values.indexOf(value) ? values.splice(values.indexOf(value), 1) : values.push(value);
+            ~values.indexOf(allShapes) && values.splice(values.indexOf(allShapes), 1);
+            UrlParams.set({ shape: values.join(',') }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+            });
+        }
+    }
+</script>

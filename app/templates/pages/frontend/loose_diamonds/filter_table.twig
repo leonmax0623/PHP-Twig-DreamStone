@@ -1,0 +1,124 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative hideblock">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            <p>The table percentage refers to the width of the table divided by the diameter of the diamond. The table is an important factor affecting the brilliance and beauty in a diamond. A gemstone with a depth percentage too wide (shallow-cut) or too small (deep-cut) will lack fire and sparkle.</p>
+            <img src="/images/table.jpg" alt="table">
+        </div>
+    </div>
+    
+    <p class="t-filter-label open" onclick="toggleBlock(this, 'tableBlock');">Table %</p>
+    <div class="u-clear"></div>
+    <div id="tableBlock" class="t-price-block t-table-block show">
+        <div class="u-clear-20"></div>
+        <div id="steps-slider-table"></div>
+        <div class="steps-slider-input">
+            <input type="text" id="input-with-keypress-6">
+            <input type="text" id="input-with-keypress-7">
+        </div>
+    </div>
+</div>
+
+<!-- nouislider -->
+<script>
+    $(document).ready(function(){
+        var divTable = document.querySelector('.hideblock');
+        divTable && divTable.classList.remove('hideblock')
+    })
+
+    const handleChangeTable = function(handle, value){
+        let newValue = value.replace('%', '');
+
+        UrlParams.set({ [handle ? 'table_max' : 'table_min']:  newValue}, false);
+        const viewMode = UrlParams.get().v || 'g';
+        const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+        loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+            if(total == 0) {
+                $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+            }
+            if(total > 0) {
+                $('.results-message').html('');
+            }
+          updateLinks();
+          refreshResultCounter(total);
+        });
+    };
+    document.addEventListener("DOMContentLoaded", () => {
+      const stepsSlider = document.getElementById('steps-slider-table');
+      const input6 = document.getElementById('input-with-keypress-6');
+      const input7 = document.getElementById('input-with-keypress-7');
+      const inputs = [input6, input7];
+      const getVars = UrlParams.get();
+      const min = parseFloat({{ table_min }});
+      const max = parseFloat({{ table_max }});
+      const currentMin = getVars.table_min && +getVars.table_min > min ? +getVars.table_min : min;
+      const currentMax = getVars.table_max && +getVars.table_max < max ? +getVars.table_max : max;
+      noUiSlider.create(stepsSlider, {
+        start: [currentMin, currentMax],
+        connect: true,
+        range: {
+            'min': [min],
+            'max': max
+        },
+        format: {
+            to: function (value) {
+                value = value.toFixed(1).toString();
+                return value + '%';
+            },
+            from: function (value) {
+                return Number(value.replace('%', ''));
+            }
+        }
+      });
+      stepsSlider.noUiSlider.on('update', function (values, handle) {
+        inputs[handle].value = values[handle];
+      });
+      stepsSlider.noUiSlider.on('change', function (values, handle) {
+        inputs[handle].value = values[handle];
+        handleChangeTable(handle, inputs[handle].value);
+      });
+      inputs.forEach(function (input, handle) {
+        input.addEventListener('change', function () {
+            stepsSlider.noUiSlider.setHandle(handle, this.value);
+        });
+        input.addEventListener('blur', function(e) {
+            let values = stepsSlider.noUiSlider.get();
+            let value = Number(values[handle]);
+
+            stepsSlider.noUiSlider.setHandle(handle, this.value);
+            handleChangeTable(handle, this.value);
+        })
+        input.addEventListener('keydown', function (e) {
+            let values = stepsSlider.noUiSlider.get();
+            let value = Number(values[handle]);
+            let steps = stepsSlider.noUiSlider.steps();
+            let step = steps[handle];
+            let position;
+            switch (e.which) {
+                case 13:
+                    stepsSlider.noUiSlider.setHandle(handle, this.value);
+                    handleChangeTable(handle, this.value);
+                    break;
+                case 38:
+                    position = step[1];
+                    if (position === false) {
+                        position = 1;
+                    }
+                    if (position !== null) {
+                        stepsSlider.noUiSlider.setHandle(handle, value + position);
+                    }
+                    break;
+                case 40:
+                    position = step[0];
+                    if (position === false) {
+                        position = 1;
+                    }
+                    if (position !== null) {
+                        stepsSlider.noUiSlider.setHandle(handle, value - position);
+                    }
+                    break;
+                }
+            });
+      });
+    })
+</script>

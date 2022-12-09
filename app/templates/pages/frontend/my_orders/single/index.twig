@@ -1,0 +1,115 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Diamond Engagement Rings | Diamond Rings| Loose Diamonds | Wedding Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    DreamStone - New York's largest retailer of Diamond Engagement Rings, Wedding Rings, Diamond Rings, Loose Diamonds, Diamond Studs Earrings, Diamond Pendants, White Gold Engagement Rings, Platinum Engagement Rings.
+{%- endblock -%}
+
+
+{%- block meta_keywords -%}
+    Engagement Rings, Wedding Rings, Diamond Engagement Rings, Diamond Rings, Loose Diamonds, Design Your Own Engagement Ring, White Gold Engagement Rings, Platinum Engagement Rings
+{%- endblock -%}
+
+{% block content %}
+    <div class="content">
+        <div class="u-clear-30"></div>
+        <h6 class="u-f24 u-color-black u-tc">my order</h6>
+        <table border="0" class="my_orders_table">
+            <thead>
+                <tr>
+                    <th>Order No.</th>
+                    <th class="row_sm_hide">Tax</th>
+                    {# {% if order.totalCorrection.type %}
+                        <th class="row_sm_hide">Correction</th>
+                    {% endif %} #}
+                    <th class="row_sm_hide">Amount</th>
+                    <th>Order Status</th>
+                    <th class="row_sm_hide">Order Date</th>
+                    <th class="row_sm_hide">Est. Ship Date</th>
+                    <th>Tracking number</th>
+                    <th>Shipping status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ order.number }}</td>
+                    <td class="row_sm_hide">{{ order.amount.tax | price }}</td>
+                    {# {% if order.totalCorrection.type %}
+                        <td class="row_sm_hide">
+                            {% if order.totalCorrection.type == "percent" %}
+                                {{order.totalCorrection.value}}%
+                            {% elseif order.totalCorrection.type == "fixed" %}
+                                ${{order.totalCorrection.value}}
+                            {% endif %}
+                        </td>
+                    {% endif %} #}
+                    <td class="row_sm_hide">{{ order.amount.total | price }}</td>
+                    <td>{{ order.status }}</td>
+                    <td class="row_sm_hide">{{ order.created | date('m/d/Y') }}</td>
+                    <td class="row_sm_hide">{{ order.shipping.date | date('m/d/Y') }}</td>
+                    <td>
+                        {% if order.shipping.tracking.number %}
+                            <a target="_blank" href="https://www.fedex.com/fedextrack/?tracknumbers={{ order.shipping.tracking.number }}">
+                                {{ order.shipping.tracking.number }}
+                            </a>
+                        {% endif %}
+                    </td>
+                    <td>{{ order.shipping.tracking.status }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="u-clear-30"></div>
+
+        <h6 class="u-f24 u-color-black u-tc">details</h6>
+        <div class="o-col-lg-3 o-col-md-6 o-col-sm-6"></div>
+        <div class="o-col-lg-6 o-col-md-6 o-col-sm-12">
+            <table class="c-details-table">
+                <tr><td>First Name</td><td>{{ order.billingInfo.shipping_first_name }}</td></tr>
+                <tr><td>Last Name</td><td>{{ order.billingInfo.shipping_last_name }}</td></tr>
+                <tr><td>Company</td><td>{{ order.billingInfo.shipping_company }}</td></tr>
+                <tr><td>Address</td><td>{{ order.billingInfo.shipping_address }}</td></tr>
+                <tr><td>Apt / Suite</td><td>{{ order.billingInfo.shipping_address2 }}</td></tr>
+                <tr><td>City</td><td>{{ order.billingInfo.shipping_city }}</td></tr>
+                <tr><td>State</td><td>{{ order.billingInfo.shipping_state }}</td></tr>
+                <tr><td>Zip</td><td>{{ order.billingInfo.shipping_zip }}</td></tr>
+                <tr><td>Country</td><td>{{ order.billingInfo.shipping_country }}</td></tr>
+                <tr><td>Phone</td><td>{{ order.billingInfo.shipping_phone }}</td></tr>
+                {% if order.billingInfo.same_billing_address == 'on' %}
+                    <tr><td>Same Billing info</td><td>yes</td></tr>
+                {% else %}
+                    <tr><td>Billing First Name</td><td>{{ order.billingInfo.billing_first_name }}</td></tr>
+                    <tr><td>Billing Last Name</td><td>{{ order.billingInfo.billing_last_name }}</td></tr>
+                    <tr><td>Billing Company</td><td>{{ order.billingInfo.billing_company }}</td></tr>
+                    <tr><td>Billing Address</td><td>{{ order.billingInfo.billing_address }}</td></tr>
+                    <tr><td>Billing Apt / Suite</td><td>{{ order.billingInfo.billing_address2 }}</td></tr>
+                    <tr><td>Billing City</td><td>{{ order.billingInfo.billing_city }}</td></tr>
+                    <tr><td>Billing State</td><td>{{ order.billingInfo.billing_state }}</td></tr>
+                    <tr><td>Billing Zip</td><td>{{ order.billingInfo.billing_zip }}</td></tr>
+                    <tr><td>Billing Country</td><td>{{ order.billingInfo.billing_country }}</td></tr>
+                    <tr><td>Billing Phone</td><td>{{ order.billingInfo.billing_phone }}</td></tr>
+                {% endif %}
+            </table>
+        </div>
+        <div class="u-clear"></div>
+
+        <h6 class="u-f24 u-color-black u-tc">products</h6>
+        <div class="o-col-lg-12 o-row">
+            <ul class="t-search-results">
+                {% for product in order.products %}
+                    {%  include "pages/frontend/my_orders/single/product.twig" %}
+                {% endfor %}
+                {% for product in order.diamonds %}
+                    {%  include "pages/frontend/my_orders/single/diamond.twig" %}
+                {% endfor %}
+                {% for product in order.composite %}
+                    {%  include "pages/frontend/my_orders/single/composite.twig" %}
+                {% endfor %}
+            </ul>
+            <div class="u-clear"></div>
+        </div>
+        <div class="u-clear"></div>
+    </div>
+{% endblock %}

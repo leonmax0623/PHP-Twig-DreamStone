@@ -1,0 +1,26 @@
+<!-- one result -->
+<li class="t-search-result-block t-search-block">
+    <a href={{ path_for('gemstones-Search', {'filter': 'color-' ~ 'green/87984'}) }}>
+        <div class="t-search-result-image-block">
+            <img src="../images/example.jpg" width="276" height="126"
+                class="reel"
+                data-image="../images/example.jpg"
+                data-footage="6"
+                data-frames="35"
+                data-entry="1"
+                alt="images"
+                >
+            <label class="c-rotate-360-label"></label>
+        </div>
+        
+        <div class="t-search-result-description-block">
+            <span class="t-search-result-short-desc u-f16">0.30 Carat</span>
+            <span class="t-search-result-short-desc u-f16">Round Brilliant Diamond</span>
+            <span class="t-search-result-short-desc u-text-non-upper u-f18">K Color, SI1 Clarity, Fair Cut,</span>
+            <span class="t-search-result-price">Price: {{ currency_sign ? currency_sign : '$' }}1.450</span>
+            <a href="javascipt: void(0);" onclick="$(this).toggleClass('active');" class="t-table-view-icon t-table-view-icon-compare"></a>
+            <a href="javascipt: void(0);" onclick="$(this).toggleClass('active');" class="t-table-view-icon t-table-view-icon-wishlist"></a>
+        </div>
+    </a>
+</li>
+<!-- /one result -->

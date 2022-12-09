@@ -1,0 +1,24 @@
+<!-- Login form -->
+{{ app.request.get }}
+<form class="login_form login" name="loginForm" id="loginForm" action="/user/login?returnUrl={%
+    if get.returnUrl != ""%}{{ get.returnUrl }}{% else %}{{ currentPath }}{% endif
+%}" method="post">
+    <h4>Login in your account</h4>
+    <div class="u-clear-40"></div>
+    <a href="#" id="registration_btn" class="btn btn_light">Create new account</a>
+    <div class="u-clear-10"></div>
+    <input type="email" name="email" placeholder="Email address" value="{{ post.email }}">
+    <div class="u-clear-10"></div>
+    <input name="password" type="password" placeholder="Password">
+    <div class="u-clear-10"></div>
+    <input type="submit" value="Continue" class="g-recaptcha blue_btn"
+        data-sitekey="6Lc2jQoeAAAAAIzf4K1jjmHP5WqLqky7Fa8_0i8t" data-callback='onLoginSubmit' data-action='login' />
+    <a href="#" id="forgot_btn" class="popup_link forgot_link">Forgot password?</a>
+</form>
+<script>
+    function onLoginSubmit(token) {
+        console.log('Login form submitted');
+        setTimeout(() => document.getElementById("loginForm").submit(), 0);
+    }
+</script>
+<!-- /Login form -->

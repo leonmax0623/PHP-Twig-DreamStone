@@ -1,0 +1,39 @@
+<footer>
+    <div class="t-singup-footer-block">
+        <div class="content">
+            <form class="subscription" id="subscription_form" novalidate>
+                <div class="o-col-lg-12 o-col-md-2"></div>
+                <div class="o-col-lg-3 o-col-md-8 o-col-sm-12 u-tc">
+                    <label style="margin-bottom: 0;">Sign Up for Special Offers</label>
+                </div>
+                <div class="o-col-lg-3 o-col-md-12">
+                    <input type="text" id="subscription_name" name="subscription_name" value="" placeholder="Name*" required>
+                </div>
+                <div class="o-col-lg-3 o-col-md-12">
+                    <input name="subscription_email" id="subscription_email" type="email" placeholder="E-Mail*" required>
+                </div>
+                <div class="o-col-lg-3 o-col-md-12">
+                    <button type="submit" class="blue_btn">Sign up</button> 
+                    {# <button style="margin-bottom: 0;">Sign up</button> #}
+                </div>
+                <div class="o-col-lg-12 o-col-md-12 u-tc">
+                    <div class="text-subscription-submit" style="color: #fff;"></div>
+                </div>
+            </form>
+            <div class="u-clear"></div>
+        </div>
+    </div>
+    <div class="u-clear"></div>
+    <div class="content">
+        {{ include(template_from_string(templates.footer.featured)) }}
+        <div class="u-clear"></div>
+
+        {{ include(template_from_string(templates.footer.links)) }}
+        {{ include(template_from_string(templates.footer.payment)) }}
+        {{ include(template_from_string(templates.footer.follow)) }}
+        <div class="u-clear"></div>
+
+        {{ include(template_from_string(templates.footer.copyright)) }}
+    </div>
+    {% include "pages/frontend/loose_diamonds/details/subscription_form.twig" %}
+</footer>

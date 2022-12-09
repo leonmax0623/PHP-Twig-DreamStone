@@ -1,0 +1,29 @@
+<a href="/engagement-rings/search?builder=1">
+    <span class="c-step-icon t-step-setting"></span>
+    <p class="t-step-text" style="text-align:left;width:95px;white-space:normal;line-height:1.4;padding-top:5px;">
+        <span>Choose</span>
+        <span>a SETTING</span>
+    </p>
+</a>
+{% if composite.product %}
+    <!-- <span class="step-setting-left s-sm-invisible">
+        <img src="/images/jewelry/default.png" width="100%">
+    </span> -->
+    <span class="step-setting-right s-sm-invisible">
+        <div class="check" style="display: block !important;"></div>
+        <span style="display:block;">{{ composite.product.price | price }}</span>
+        <a
+            href="{{ composite.product.permalink }}"
+            style="padding:5px;font-size:14px;line-height:1.4;"
+        >view</a>
+        <a
+            href="/engagement-rings/search?builder=1"
+            style="padding:5px;font-size:14px;line-height:1.4;"
+            onclick="(new Composite()).delete('products');"
+        >remove</a>
+    </span>
+{% endif %}
+
+<script>
+ 
+</script>

@@ -1,0 +1,29 @@
+<div class="o-results-block">
+    <header class="t-results-header jewelry-header">
+        <div class="o-col-lg-12 u-fr">
+            <div class="t-diamond-chat s-md-invisible">
+                <a id="my_custom_link" class="u-color-blue u-fr u-f14 u-text-upper u-text-none-underline">chat with a diamond expert</a>
+            </div>
+            <div class="select-node u-fr">
+                <label>Sort by:</label>
+                <div class="select-block-control jewelty-control">
+                    <select class="select-control" onchange="search('sort_by', this.value, false)">
+                        <option value="">Best sellers</option>
+                        {% for sort in possibleSort %}
+                            <option value="{{ sort.code }}"{{ filter.sort_by == sort.code ? ' selected' : ''}}>{{ sort.title }}</option>
+                        {% endfor %}
+                    </select>
+                    <span class="select-icon"></span>
+                </div>
+            </div>
+            <div class="u-clear"></div>
+        </div>
+        <div class="u-clear"></div>
+    </header>
+
+    <div class="u-clear"></div>
+    <div class="o-col-lg-12 o-row">
+        {%  include "pages/frontend/jewelry/results.twig" %}
+    </div>
+    <div class="u-clear"></div>
+</div>

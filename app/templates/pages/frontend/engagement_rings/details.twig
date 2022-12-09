@@ -1,0 +1,399 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Engagement Rings | Unique Engagement Rings | Design Your Own Engagement Ring | Design Her Dream Ring | Diamond Engagement Rings | Platinum Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Browse our diamond engagement ring settings, modern engagement rings, classic engagement rings, along with thousands of certified diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Engagement rings, Diamond Rings, unique engagement rings, engagement ring settings, design your own engagement ring, custom engagement rings, modern engagement rings, best engagement rings, build engagement ring, designer engagement rings, antique engagement ring settings, engagement ring set, engagement diamond ring, gold engagement ring
+{%- endblock -%}
+
+{% block content %}
+    <script>
+        $( document ).ready(function(){
+            $(".t-discover-more").on( "click", function(e) {
+                $('#discover_more_block').toggle("slow");
+                $(this).toggleClass('t-open');
+            });
+            $( "#product_slider_viewed" ).click(function() {
+                $(this).css('zIndex', '120');
+            });
+            $( "#product_slider" ).click(function() {
+                $("#product_slider_viewed").css('zIndex', '100');
+            });
+        });
+    </script>
+    <script src="{{ app.request.getSchemeAndHttpHost() }}/js/modernizr.custom.js"></script>
+
+    <div class="u-clear"></div>
+    <div>
+        <!-- DIAMOND DETAILS -->
+        <div class="content-md">
+            <!-- BREAD CRUMBS -->
+            <div class="u-fl">
+              {%  include "pages/frontend/_partials/bread_crumbs.twig" %}
+            </div>
+            <!-- /BREAD CRUMBS -->
+            <div class="u-clear-20"></div>
+            <div class="o-col-lg-5 o-col-sm-12 t-ring-sliders">
+                <!-- MAIN PRODUCT SLIDER -->
+                <div id="product_slider" class="cbp-contentslider">
+                    <ul class="c-product-slider">
+                        <li id="slide1">
+                            <img src="../../../images/productpage/slider/slide_1.jpg" alt="images">
+                        </li>
+                        <li id="slide2">
+                            <img src="../../../images/productpage/slider/slide_2.png" alt="images">
+                        </li>
+                        <li id="slide3">
+                            <img src="../../../images/productpage/slider/slide_2.png" alt="images">
+                        </li>
+                        <li id="slide4">
+                            <img src="../../../images/productpage/slider/slide_1.jpg" alt="images">
+                        </li>
+                        <li id="slide5">
+                            <img src="../../../images/productpage/slider/slide_2.png" alt="images">
+                        </li>
+                    </ul>
+                    <nav>
+                        <a href="#slide1"><div><img src="../../../images/productpage/slider/slide_1_min.jpg" alt="images"></div></a>
+                        <a href="#slide2"><div><img src="../../../images/productpage/slider/slide_2_min.png" alt="images"></div></a>
+                        <a href="#slide3"><div><img src="../../../images/productpage/slider/slide_2_min.png" alt="images"></div></a>
+                        <a href="#slide4"><div><img src="../../../images/productpage/slider/slide_1_min.jpg" alt="images"></div></a>
+                        <a href="#slide5"><div><img src="../../../images/productpage/slider/slide_2_min.png" alt="images"></div></a>
+                    </nav>
+                </div>
+                <!-- /MAIN PRODUCT SLIDER -->
+                <!-- SECOND PRODUCT SLIDER -->
+                <div id="product_slider_viewed" class="cbp-contentslider second-cbp-contentslider">
+                    <nav>
+                        <a href="#slide1"><div><img src="../../../images/tops/ring-1.jpg" alt="images"></div></a>
+                        <a href="#slide2"><div><img src="../../../images/tops/ring-2.jpg" alt="images"></div></a>
+                        <a href="#slide3"><div><img src="../../../images/tops/ring-3.jpg" alt="images"></div></a>
+                        <a href="#slide4"><div><img src="../../../images/tops/ring-4.jpg" alt="images"></div></a>
+                        <a href="#slide5"><div><img src="../../../images/tops/ring-5.jpg" alt="images"></div></a>
+                    </nav>
+                    <ul class="c-product-slider">
+                        <li id="slide1">
+                            <img src="../../../images/tops/ring-1.jpg" alt="images">
+                        </li>
+                        <li id="slide2">
+                            <img src="../../../images/tops/ring-2.jpg" alt="images">
+                        </li>
+                        <li id="slide3">
+                            <img src="../../../images/tops/ring-3.jpg" alt="images">
+                        </li>
+                        <li id="slide4">
+                            <img src="../../../images/tops/ring-4.jpg" alt="images">
+                        </li>
+                        <li id="slide5">
+                            <img src="../../../images/tops/ring-5.jpg" alt="images">
+                        </li>
+                    </ul>
+                </div>
+                <!-- /SECOND PRODUCT SLIDER -->
+            </div>
+            <div class="o-col-lg-7 o-col-sm-12 u-color-dark-gray">
+                <p class="u-text-upper u-f20">14K WHITE GOLD PETITE PAVE CATHEDRAL ENGAGEMENT RING</p>
+                <div class="o-col-lg-6 o-row">
+                    <div class="select-node">
+                        <div class="select-block">
+                            <select>
+                                <option>14K White gold</option>
+                                <option>14K Yellow gold</option>
+                                <option>14K Rose gold</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="u-clear-10"></div>
+                    <div class="select-node">
+                        <div class="select-block">
+                            <select>
+                                <option disabled>Ring size</option>
+                                <option>3</option>
+                                <option>3.5</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="u-clear-10"></div>
+                    <div class="select-node">
+                        <div class="select-block">
+                            <select>
+                                <option>Round</option>
+                                <option>Oval</option>
+                                <option>Emerald</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="o-col-lg-6 o-row">
+                    <p class="u-f18">SKU : DS0070489982</p>
+                </div>
+                <div class="o-col-lg-12 o-row">
+                    <p class="u-f18 u-color-blue u-text-upper u-text-none-underline u-mrg-0">FREE SHIPPING & 30 DAY RETURNS</p>
+                    <p class="u-f18 u-color-light-gray">Order today, ships by <span>{{ product.shippingDetails.shipsBy|date("l, F jS") }}</span></p>
+                </div>
+                <div class="u-clear-30"></div>
+                <div class="o-col-lg-6 o-row"><a href="#" class="c-btn c-light-btn product-price">Price: $400.00</a></div>
+                <div class="o-col-lg-6 o-row"><a href="#" class="c-btn c-dark-btn">select this SETTING</a></div>
+                <div class="u-clear"></div>
+                <div class="o-col-lg-6 o-row u-tl">
+                    <ul class="t-product-action">
+                        <li><a href="#" class="t-product-action-icon t-product-action-wishlist"></a></li>
+                        <li><a href="#" class="t-product-action-icon t-product-action-search"></a></li>
+                        <li><a href="#" class="t-product-action-icon t-product-action-send"></a></li>
+                        <li><a href="#" class="t-product-action-icon t-product-action-print"></a></li>
+                    </ul>
+                </div>
+                <div class="u-clear"></div>
+            </div>
+            <div class="u-clear"></div>
+            <a href="javascript: void(0);" class="t-discover-more"><span>Discover more</span></a>
+            <div class="u-clear"></div>
+        </div>
+        <div id="discover_more_block" class="t-product-details-block u-bg-light-gray">
+            <div class="content-md">
+                <h6 class="u-f24 u-color-dark-gray u-tc">Product Details</h6>
+                <div class="u-clear"></div>
+                <div class="o-col-lg-5 o-col-md-6 o-col-sm-12">
+                    <label>Ring Information</label>
+                    <table class="c-details-table">
+                        <tr>
+                            <td>Metal</td>
+                            <td>14K White Gold</td>
+                        </tr>
+                        <tr>
+                            <td>Width</td>
+                            <td>1.8-1.6 mm </td>
+                        </tr>
+                    </table>
+                    <label>Stone Information</label>
+                    <table class="c-details-table">
+                        <tr>
+                            <td>Type</td>
+                            <td>Diamond</td>
+                        </tr>
+                        <tr>
+                            <td>Placement</td>
+                            <td>Band</td>
+                        </tr>
+                         <tr>
+                            <td># Of Diamonds</td>
+                            <td>16</td>
+                        </tr>
+                        <tr>
+                            <td>Shape</td>
+                            <td>Round</td>
+                        </tr>
+                        <tr>
+                            <td>Total Carat (Min)</td>
+                            <td>0.18 ctw</td>
+                        </tr>
+                        <tr>
+                            <td>Average Color</td>
+                            <td>F-G</td>
+                        </tr>
+                        <tr>
+                            <td>Average Clarity</td>
+                            <td>VS2-SI1</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="o-col-lg-5 o-col-md-6 o-col-sm-12 u-fr">
+                    <label>Can Be Set With</label>
+                    <table class="c-details-table">
+                        <tr>
+                            <td>Round</td>
+                            <td>0.25 - 3.00</td>
+                        </tr>
+                        <tr>
+                            <td>Princess</td>
+                            <td>0.25 - 3.00</td>
+                        </tr>
+                        <tr>
+                            <td>Radiant</td>
+                            <td>0.25 - 3.00</td>
+                        </tr>
+                        <tr>
+                            <td>Emerld</td>
+                            <td>0.25 - 3.00</td>
+                        </tr>
+                        <tr>
+                            <td>Marquise</td>
+                            <td>0.25 - 3.00</td>
+                        </tr>
+                        <tr>
+                            <td>Oval</td>
+                            <td>0.25 - 3.00</td>
+                        </tr>
+                        <tr>
+                            <td>Pear</td>
+                            <td>0.25 - 3.00</td>
+                        </tr>
+                        <tr>
+                            <td>Heart</td>
+                            <td>0.25 - 3.00</td>
+                        </tr>
+                        <tr>
+                            <td>Asscher</td>
+                            <td>0.25 - 3.00</td>
+                        </tr>
+                        <tr>
+                            <td>Cushion</td>
+                            <td>0.25 - 3.00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="u-clear"></div>
+        </div>
+        <div class="u-clear-30"></div>
+        <!-- /DIAMOND DETAILS -->
+        <div class="t-comments">
+            <div class="content-md">
+                <div class="content">
+                    <div class="o-col-lg-4 o-col-md-1 o-row">
+                        <ul class="c-reviews">
+                            <li class="c-reviews-star-full"></li>
+                            <li class="c-reviews-star-full"></li>
+                            <li class="c-reviews-star-full"></li>
+                            <li class="c-reviews-star-full"></li>
+                            <li class="c-reviews-star-empty"></li>
+                        </ul>
+                        <span>54 Reviews</span>
+                    </div>
+                    <div class="o-col-lg-4 o-col-md-1 o-row">
+                        <h6 class="u-f24 u-color-black u-tc">item review</h6>
+                    </div>
+                    <div class="o-col-lg-4 o-col-md-1 o-row">
+                        <a href="#" class="t-review-link">ask a question</a>
+                        <a href="#" class="t-review-link">Write a review</a>
+                    </div>
+                    <div class="u-clear-20"></div>
+                    <div class="o-col-lg-3 o-col-md-1 o-row s-sm-invisible"></div>
+                    <div class="o-col-lg-3 o-col-md-5 o-col-sm-6 o-row">
+                        <a href="#" class="c-btn c-dark-btn">Review <span>(54)</span></a>
+                    </div>
+                    <div class="o-col-lg-3 o-col-md-5 o-col-sm-6 o-row">
+                        <a href="#" class="c-btn c-light-btn">Questions <span>(8)</span></a>
+                    </div>
+                    <div class="o-col-lg-3 o-col-md-1 o-row">
+                        <div class="select-node select-node-md u-fr">
+                            <label class="s-md-invisible">Sort by:</label>
+                            <div class="select-block">
+                                <select>
+                                    <option>High to low</option>
+                                    <option>Low to high</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="u-clear"></div>
+                    {%  include "pages/frontend/engagement_rings/review.twig" %}
+                    {%  include "pages/frontend/engagement_rings/review.twig" %}
+                    {%  include "pages/frontend/engagement_rings/review.twig" %}
+                    {%  include "pages/frontend/engagement_rings/review.twig" %}
+                    <div class="u-clear"></div>
+                    {%  include "pages/frontend/_partials/pagination.twig" %}
+                </div>
+            </div>
+        </div>
+        <!-- RECENTLY VIEWED -->
+        <div>
+            <div class="u-clear-30"></div>
+            <h6 class="u-f24 u-color-black u-tc">Recently viewed</h6>
+            <div class="u-clear-10"></div>
+            <div id="recently_viewed" class="o-col-lg-12 o-row t-propositions-carousel">
+                <div class="u-tc">
+                    <img src="../../../images/recently/slide_1.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray">Classic Four-Prong<br>Engagement Ring in White Gold (2mm)</p>
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.29 Carat Round Good</p>
+                </div>
+                <div class="u-tc">
+                    <img src="../../../images/recently/slide_2.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray">Classic Four-Prong<br>Yellow Gold </p>
+                    <p class="u-f20 u-color-dark-gray u-text-upper">Engagement Ring</p>
+                </div>
+                <div class="u-tc">
+                    <img src="../../../images/recently/slide_3.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray">Round Brilliant<br>Orange Diamond</p>
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.4 Carat Round Good</p>
+                </div>
+                <div class="u-tc">
+                    <img src="../../../images/recently/slide_1.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray">Classic Four-Prong<br>Engagement Ring in White Gold (2mm)</p>
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.29 Carat Round Good</p>
+                </div>
+                <div class="u-tc">
+                    <img src="../../../images/recently/slide_2.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray">Classic Four-Prong<br>Yellow Gold </p>
+                    <p class="u-f20 u-color-dark-gray u-text-upper">Engagement Ring</p>
+                </div>
+                <div class="u-tc">
+                    <img src="../../../images/recently/slide_3.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray">Round Brilliant<br>Orange Diamond</p>
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.4 Carat Round Good</p>
+                </div>
+                <div class="u-tc">
+                    <img src="../../../images/recently/slide_1.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray">Classic Four-Prong<br>Engagement Ring in White Gold (2mm)</p>
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.29 Carat Round Good</p>
+                </div>
+            </div>
+        </div>
+        <div class="u-clear"></div>
+        <!-- /RECENTLY VIEWED -->
+        <!-- SIMILAR ITEMS -->
+        <div>
+            <div class="u-clear-30"></div>
+            <h6 class="u-f24 u-color-black u-tc">Similar items</h6>
+            <div class="u-clear-10"></div>
+            <div id="similar_items" class="o-col-lg-12 o-row t-propositions-carousel">
+                <div class="u-tc t-similar-items">
+                    <img src="../../../images/productpage/diamond_1.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+                    <p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+                </div>
+                <div class="u-tc t-similar-items">
+                    <img src="../../../images/productpage/diamond_1.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+                    <p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+                </div>
+                <div class="u-tc t-similar-items">
+                    <img src="../../../images/productpage/diamond_1.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+                    <p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+                </div>
+                <div class="u-tc t-similar-items">
+                    <img src="../../../images/productpage/diamond_1.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+                    <p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+                </div>
+                <div class="u-tc t-similar-items">
+                    <img src="../../../images/productpage/diamond_1.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+                    <p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+                </div>
+                <div class="u-tc t-similar-items">
+                    <img src="../../../images/productpage/diamond_1.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+                    <p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+                </div>
+                <div class="u-tc t-similar-items">
+                    <img src="../../../images/productpage/diamond_1.jpg" alt="images">
+                    <p class="u-f20 u-color-dark-gray u-text-upper">0.2 carat</p>
+                    <p class="u-f14 u-color-dark-gray u-text-upper">Round Brilliant Diamond</p>
+                </div>
+            </div>
+        </div>
+        <div class="u-clear"></div>
+        <!-- /SIMILAR ITEMS -->
+        
+    </div>
+    
+
+{% endblock %}

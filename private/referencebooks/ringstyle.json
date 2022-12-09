@@ -1,0 +1,45 @@
+[
+    {
+        "code": "Solitaire",
+        "image": "<img src='../content/shapes/Solitaire_01.svg' alt='Solitaire'>",
+
+        "description": "A classic, timeless choice, made up of a single stone and a plain setting, simple and elegant in appearance."
+    },
+    {
+        "_id": "5d1a07eca5b0a50b5862fe20",
+        "code": "Pave",
+        "image": "<img src='../content/shapes/Pave_02.svg' alt='Pave'>",
+        "description": "Small diamonds lace the band, giving the appearance of a luminous, solid diamond surface."
+    },
+    {
+        "code": "Channel",
+        "image": "<img src='../content/shapes/Channel_02.svg' alt='Channel'>",
+        "description": "Side diamonds are carefully embedded without prongs into the channel groove of this sturdy setting."
+    },
+    {
+        "code": "Side stone",
+        "image": "<img src='../content/shapes/Side_Stones_02.svg' alt='Side_Stones'>",
+        "description": "Side diamonds bring out the briliance of the center diamond, creating a true 'statement piece'."
+    },
+    {
+        "code": "Three stone",
+        "image": "<img src='../content/shapes/Side_Stone_02.svg' alt='Side_Stone'>",
+        "description": "2 side diamonds accentuate the size and brilliance of the center stone, creating a stunning wow effect."
+    },
+    
+    {
+        "code": "Halo",
+        "image": "<img src='../content/shapes/Halo_02.svg' alt='Halo'>",
+        "description": "Many tiny diamonds surround the center stone, giving extra sparkle to these stunning rings."
+    },
+    {
+        "code": "Vintage",
+        "image": "<img src='../content/shapes/vintage_02.svg' alt='vintage'>",
+        "description": "Ideal for the true romantic, these antique-style rings bring back memories of days gone by."
+    },
+    {
+        "code": "Bridal Sets",
+        "image": "<img src='../content/shapes/women_eternity.svg' alt='eternity'>",
+        "description": "The diamond is held in place by the physical force of this bold setting, perfect for the modern woman."
+    }
+]

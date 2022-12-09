@@ -1,0 +1,305 @@
+<form id="popup-book" class="popup-choose-setting popup-book" novalidate>
+    <div class="popup-content book-form">
+        <button onclick="closeBook()" class="btn-popup-close btn-book-close">X</button>
+        <div class="popup-header">
+            <h2>Appointment Request</h2>
+            <p>View your selection in person before you buy!</p>
+        </div>
+        <div class="location checkbox-group required">
+            <h5>Preferred location <span class="red">*</span></h5>
+            <div class="form-check">
+                <label for="check1">
+                    <input type="checkbox" name="check1" value="15 West 47th Street, Suite 803, New York, NY 10036"
+                        id="check1" style="display: none;">
+                    <span class="before"></span>
+                    <span class="title-checkbox">15 West 47th Street, Suite 803, New York, NY 10036</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <label for="check2">
+                    <input type="checkbox" name="check2" value="675 West Jericho Tpke, Huntington, NY 11743" id="check2"
+                        style="display: none;">
+                    <span class="before"></span>
+                    <span class="title-checkbox">675 West Jericho Tpke, Huntington, NY 11743</span>
+                </label>
+            </div>
+            <div class="form-check">
+                <label for="check3">
+                    <input type="checkbox" name="check3"
+                        value="777 South Flagler Drive, West Tower, Suite 800, West Palm Beach, Florida, 33401"
+                        id="check3" style="display: none;">
+                    <span class="before"></span>
+                    <span class="title-checkbox">777 South Flagler Drive, West Tower, Suite 800, West Palm Beach,
+                        Florida, 33401</span>
+                </label>
+            </div>
+        </div>
+        <div class="personal-info">
+            <div class="personal-name mb-20">
+                <h5>Full name <span class="red">*</span></h5>
+                <div class="full-name">
+                    <div class="o-col-6">
+                        <input type="text" name="user_name" id="personal-name" required>
+                        <label for="personal-name">
+                            First Name
+                        </label>
+                    </div>
+                    <div class="o-col-6">
+                        <input type="text" name="user_surname" id="personal-surname" required>
+                        <label for="personal-surname">
+                            Last Name
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="personal-phone mb-20">
+                <h5>Phone <span class="red">*</span></h5>
+                <div class="flexx">
+                    <div style="width: 98px;">
+                        <input class="area-code" type="tel" name="phone_code" id="personal-code" required>
+                        <label class="flexx" for="personal-code">
+                            Area Code
+                        </label>
+                    </div>
+                    <span>-</span>
+                    <div>
+                        <input type="tel" name="phone_number" id="personal-phone" required>
+                        <label class="flexx" for="personal-phone">
+                            Phone Number
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="personal-email mb-20">
+                <h5>Email <span class="red">*</span></h5>
+                <div class="book-email">
+                    <div class="o-col-6">
+                        <input type="email" name="user_email" id="personal-email" placeholder="myname@example.com"
+                            required>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="choose-day">
+            <h5>Choose your day and time. Appointments available 10:00 am - 7:00 pm for our New York location and 12:00
+                pm - 3:00 pm for our Florida location. (Earliest appointment must be 2 days from today) <span
+                    class="red">*</span></h5>
+            <div class="flexx">
+                <div class="choose-day-month u-mrg-right-10">
+                    <input type="date" id="personal-calendar" min="{{ "now"|date_modify("+2 day")|date("Y-m-d") }}">
+                    <span>Date</span>
+                </div>
+                <div class="flexx">
+                    <span>at&nbsp</span>
+                    <div style="width: 66px;">
+                        <select name="hour" id="select-hour">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                        <label for="select-hour">Hour</label>
+                    </div>
+                    <span>&nbsp:&nbsp</span>
+                    <div style="width: 70px;">
+                        <select name="minutes" id="select-minutes">
+                            <option value="0">00</option>
+                            <option value="10">10</option>
+                            <option value="20">20</option>
+                            <option value="30">30</option>
+                            <option value="40">40</option>
+                            <option value="50">50</option>
+                        </select>
+                        <label for="select-minutes">Minutes</label>
+                    </div>
+                    <span>&nbsp</span>
+                    <div style="width: 70px;">
+                        <select name="twentyFourHours" id="select-am-pm">
+                            <option value="am">am</option>
+                            <option value="pm">pm</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="book-text">
+            <h5>This booking request is for the item you’re currently viewing. Are there are any other specific diamonds
+                / products you’re interested in? (You can copy and paste the URL or SKU of the item below):</h5>
+            <textarea name="text" id="booking-request" cols="20" rows="10"></textarea>
+        </div>
+        <div class="o-col-lg-12">
+            <button name="sub" type="submit" class="g-recaptcha book-submit"
+                data-sitekey="6Lc2jQoeAAAAAIzf4K1jjmHP5WqLqky7Fa8_0i8t" data-callback='onAppointmentSubmit'
+                data-action='appointment'>Submit</button>
+        </div>
+        <div class="out" style="color: red;"></div>
+    </div>
+</form>
+
+{# popup Book #}
+<script>
+    const $body = $('body');
+
+    function showBookForm(certificateNumber, stockNumber) {
+        const bookPopup = $('#popup-book');
+        bookPopup.css({
+            display: 'flex'
+        });
+        $('#popup-book').attr("data-certificateNumber", certificateNumber);
+        $('#popup-book').attr("data-stockNumber", stockNumber);
+        $body.css({
+            "overflow": 'hidden'
+        });
+    }
+
+    function closeBook() {
+        $('#popup-book').hide();
+        $body.css({
+            "overflow": 'auto'
+        });
+    }
+</script>
+
+{# book submit #}
+<script>
+    function bookSubmit(token) {
+        let certificateNumber = $('#popup-book').attr("data-certificateNumber");
+        let stockNumber = $('#popup-book').attr("data-stockNumber");
+
+        let hasEmpty = false;
+        $('.popup-book-content').find('input').each(function () {
+            if ($(this).prop('required')) {
+                hasEmpty = hasEmpty || !$(this).val();
+            }
+        })
+        let localHref = document.location.href;
+        if (certificateNumber) {
+            localHref = `${document.location.hostname}/loose-diamonds/item/${certificateNumber}_${stockNumber}`;
+        }
+        let isChacked = false;
+        if ($('div.checkbox-group.required :checkbox:checked').length == 0) {
+            hasEmpty = true;
+        }
+
+        let regexp = /^[\.a-z0-9_\-]+[@][a-z0-9_\-]+([.][a-z0-9_\-]+)+[a-z]{1,4}/i;
+        let uEmail = document.getElementById('personal-email').value;
+        let result = regexp.test(uEmail);
+
+        let calendar = document.getElementById('personal-calendar').value;
+
+        $('#personal-calendar').css('background-color', 'white');
+
+        if (!calendar) {
+            hasEmpty = true;
+        }
+
+        if (hasEmpty) {
+            $('.out').html('*required fields are not filled');
+            if (!calendar) {
+                $('#personal-calendar').css('background-color', 'wheat');
+            }
+            if (!uEmail) {
+                $('#personal-email').css('background-color', 'wheat');
+            }
+            if (!$('#personal-name').val()) {
+                $('#personal-name').css('background-color', 'wheat');
+            }
+            if (!$('#personal-surname').val()) {
+                $('#personal-surname').css('background-color', 'wheat');
+            }
+            if (!$('#personal-code').val()) {
+                $('#personal-code').css('background-color', 'wheat');
+            }
+            if (!$('#personal-phone').val()) {
+                $('#personal-phone').css('background-color', 'wheat');
+            }
+            if ($('div.checkbox-group.required :checkbox:checked').length == 0) {
+                $('.before').css('background-color', 'wheat');
+            }
+
+            return false
+        } else if (!result) {
+            $('.out').html('*enter the correct email');
+            $('#personal-email').css('background-color', 'wheat');
+            return false
+        } else {
+            let check1 = '';
+            let check2 = '';
+            let check3 = '';
+            if ($('#check1').prop("checked") == true) {
+                check1 = $('#check1')[0].value;
+            }
+            if ($('#check2').prop("checked") == true) {
+                check2 = $('#check2')[0].value;
+            }
+            if ($('#check3').prop("checked") == true) {
+                check3 = $('#check3')[0].value;
+            }
+
+            $.post(
+                '/loose-diamonds/book-form',
+
+                {
+                    check1: check1,
+                    check2: check2,
+                    check3: check3,
+                    user_name: $('#personal-name').val(),
+                    user_surname: $('#personal-surname').val(),
+                    user_email: uEmail,
+                    phone_code: $('#personal-code').val(),
+                    phone_number: $('#personal-phone').val(),
+                    calendar: calendar,
+                    hour: $('#select-hour').val(),
+                    minutes: $('#select-minutes').val(),
+                    twentyFourHours: $('#select-am-pm').val(),
+                    text: $('#booking-request').val(),
+                    pageFrom: localHref,
+                    gToken: token,
+                },
+
+                function (msg) {
+                    $('#my_message').html(msg);
+                }
+            );
+        }
+
+        $('#popup-book').hide();
+        $body.css({
+            "overflow": 'auto'
+        });
+        $('.text-book-submit').html(
+            "We look forward to seeing you soon! We'll be in touch to confirm your appointment!");
+        return false;
+    }
+    $('#popup-book').submit((ev) => {
+        ev.preventDefault();
+        bookSubmit();
+    });
+</script>
+<script>
+    $('input').change(function () {
+        $('.book-form').find('input').each(function () {
+            if ($(this).val()) {
+                $(this).css('background-color', 'white');
+            }
+        })
+    })
+
+    $('.before, input[type=checkbox]').click(function () {
+        $('.before').css('background-color', 'white');
+    })
+</script>
+<script>
+    function onAppointmentSubmit(token) {
+        // console.log('Appoinment form submitted', token);
+        setTimeout(bookSubmit, 0, token);
+    }
+</script>

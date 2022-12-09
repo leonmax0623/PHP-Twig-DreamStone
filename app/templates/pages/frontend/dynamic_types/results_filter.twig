@@ -1,0 +1,60 @@
+<div class="o-results-block">
+    <header class="t-results-header">
+        <div class="o-col-lg-12 u-fr">
+            <div class="t-diamond-chat s-md-invisible">
+                <a href="#" class="u-color-blue u-fr u-f14 u-text-upper u-text-none-underline">chat with a diamond expert</a>
+            </div>
+            <div class="select-node u-fr">
+                <label>Sort by:</label>
+                <div class="select-block">
+                    <select onchange="search('sort_by', this.value, false)">
+                        <option value="">Best sellers</option>
+                        {% for sort in possibleSort %}
+                            <option value="{{ sort.code }}"{{ filter.sort_by == sort.code ? ' selected' : ''}}>{{ sort.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="u-clear"></div>
+        </div>
+        <div class="u-clear"></div>
+    </header>
+
+    <div class="u-clear"></div>
+    <div class="o-col-lg-12 o-row">
+        {%  include "pages/frontend/dynamic_types/results.twig" %}
+    </div>
+    <div class="u-clear"></div>
+</div>
+    <script>
+        $(document).ready(function () {
+            var win = $(window);
+            var footerHeight = $("footer").height();
+            window.limit = +"{{ filter.limit }}" || 10;
+            window.offset = +window.limit;
+            var type = "{{ filter.jewelrytype }}";
+            window.finish = false;
+            window.lastOffset = 0;
+            win.scroll(function () {
+                if (window.lastOffset == window.offset) return;
+                scroll =
+                    $(document).height() - win.height() - (win.scrollTop() + footerHeight + win.height() / 2);
+                if (scroll < 1 && !window.finish) {
+                    window.lastOffset = window.offset;
+                    $.ajax({
+                        url: `${location.pathname}?${location.search.length ? location.search.substring(1) + "&" : ""
+                            }json&limit=${window.limit}&offset=${window.offset}`,
+                        dataType: "json",
+                        success: function (loadedData) {
+                            if (!loadedData.finish && loadedData.items) {
+                                window.offset = +window.offset + window.limit;
+                                $(".t-search-results").append(loadedData.items.join("\n"));
+                                return;
+                            }
+                            window.finish = true;
+                        },
+                    });
+                }
+            });
+        });
+    </script>

@@ -1,0 +1,39 @@
+<script>
+    $(function() {
+        $( '#product_slider' ).cbpContentSlider();
+    });
+
+    function showG360(element) {
+        const frameG360 = $('#image-' + element + ' > iframe');
+        $('#image-' + element + ' > img').hide();
+        frameG360.prop('src', frameG360.data('source'));
+        frameG360.show();
+    }
+
+    function showImg(element) {
+        $('#image-' + element + ' > img').show();
+        $('#svg-' + element).hide();
+    }
+
+    function showSVG(element) {
+        $('#image-' + element + ' > img').hide();
+        $('#svg-' + element).show();
+    }
+
+    function showSliderSVG(element) {
+        $('#sl-image-' + element + ' > img').hide();
+        $('#sl-svg-' + element).show();
+    }
+
+    function showSliderImg(element) {
+        $('#sl-svg-' + element).hide();
+        $('#sl-image-' + element + ' > img').show();
+    }
+</script>
+<div class="o-col-lg-12 o-row">
+    <ul class="t-search-results">
+        {% for diamond in diamonds %}
+            {% include "pages/frontend/loose_diamonds/result.twig" %}
+        {% endfor %}
+    </ul>
+</div>

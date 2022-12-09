@@ -1,0 +1,50 @@
+<div class="t-similar-block">
+    <div class="u-clear-30"></div>
+    <h6 class="u-f24 u-color-black u-tc">Similar items</h6>
+    <div class="u-clear-10"></div>
+    <div id="similar_items" class="o-col-lg-12 o-row t-propositions-carousel">
+        {% for item in similar %}
+            {% set title = 'Brilliant Diamond' %} {#ROUND BRILLIANT DIAMOND#}
+            {% if item.shape %}
+                {% set title = item.shape.code ~ ' ' ~ title %}
+            {% endif %}
+
+            <a href="{{ item.permalink }}" class="u-tc t-similar-items">
+                <div class="similar-card">
+                    <div class="similar-visual">
+                        {% if '.j' in item.imageExternal %}
+                            <img src="{{ item.imageExternal }}" alt="loose_diamonds" />
+                        {% elseif '.J' in item.imageExternal %}
+                            <img src="{{ item.imageExternal }}" alt="loose_diamonds" />
+                        {% else %}
+                            <img src="/images/loose_diamonds/nm_{{item.shape.code}}.png" alt="loose_diamonds">
+                        {% endif %}
+                    </div>
+                    <div class="similar-text">
+                        <p class="u-f20 u-color-dark-gray u-text-upper">{{ title }}</p>
+                        <p class="u-f14 u-color-dark-gray u-text-upper">Carat: {%
+                            if item.weight != product.weight %}{{ (item.weight > product.weight
+                                ? '<span style="color:green;font-size:130%">↑</span> '
+                                : '<span style="color:red;font-size:130%">↓</span> ') | raw
+                            }}{% endif
+                        %}{{ item.weight }}</p>
+                        <p class="u-f14 u-color-dark-gray u-text-upper">Color: {%
+                            if item.color.code != product.color.code %}{{ (item.color.code < product.color.code
+                                ? '<span style="color:green;font-size:130%">↑</span> '
+                                : '<span style="color:red;font-size:130%">↓</span> ') | raw
+                            }}{% endif
+                        %}{{ item.color.code }}</p>
+                        <p class="u-f14 u-color-dark-gray u-text-upper">Clarity: {%
+                            if item.clarity.code != product.clarity.code %}{{ (item.clarity.position > product.clarity.position
+                                ? '<span style="color:green;font-size:130%">↑</span> '
+                                : '<span style="color:red;font-size:130%">↓</span> ') | raw
+                            }}{% endif
+                        %}{{ item.clarity.code }}</p>
+                        <p class="u-f22 u-color-blue">{{ item.price | price }}</p>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+<div class="u-clear"></div>

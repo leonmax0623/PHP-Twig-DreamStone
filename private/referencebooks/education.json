@@ -1,0 +1,202 @@
+[
+  {
+    "_id": "5d1a07eca5b0a50b58600011",
+    "isEnabled": true,
+    "parent_id": null,
+    "name": "Diamond Education",
+    "url": "diamond-education",
+    "content": ""
+  },
+  {
+    "_id": "5d1a07eca5b0a50b58600018",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600011",
+    "name": "4CS",
+    "url": "4cs",
+    "content": ""
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Price",
+    "url": "price",
+    "content": "price content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Color",
+    "url": "color",
+    "content": "color content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Carat",
+    "url": "carat",
+    "content": "carat content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Clarity",
+    "url": "clarity",
+    "content": "clarity content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Cut",
+    "url": "cut",
+    "content": "cut content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Lab",
+    "url": "lab",
+    "content": "lab content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Polish",
+    "url": "polish",
+    "content": "polish content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Symmetry",
+    "url": "symmetry",
+    "content": "symmetry content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Depth",
+    "url": "depth",
+    "content": "depth content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Table",
+    "url": "table",
+    "content": "table content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Ratio",
+    "url": "ratio",
+    "content": "ratio content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600018",
+    "name": "Fluorescence",
+    "url": "fluorescence",
+    "content": "fluorescence content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600011",
+    "name": "Shape",
+    "url": "shape",
+    "content": "shape content"
+  },
+  {
+    "_id": "5d1a07eca5b0a50b58600012",
+    "isEnabled": true,
+    "parent_id": null,
+    "name": "Engagement Rings",
+    "url": "engagement-rings",
+    "content": ""
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600012",
+    "name": "Style",
+    "url": "style",
+    "content": "style content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600012",
+    "name": "Metal",
+    "url": "metal",
+    "content": "metal content"
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600012",
+    "name": "Price",
+    "url": "price",
+    "content": "price content"
+  },
+  {
+    "_id": "5d1a07eca5b0a50b58600013",
+    "isEnabled": true,
+    "parent_id": null,
+    "name": "Natural Gemstones",
+    "url": "natural-gemstones",
+    "content": ""
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600013",
+    "name": "Green Emeralds",
+    "url": "green-emeralds",
+    "content": "GREEN EMERALDS content"
+  },
+  {
+    "_id": "5d1a07eca5b0a50b58600014",
+    "isEnabled": true,
+    "parent_id": null,
+    "name": "Wedding rings",
+    "url": "wedding-rings",
+    "content": ""
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600014",
+    "name": "Wedding ring styles",
+    "url": "wedding-ring-styles",
+    "content": "WEDDING RING STYLES content"
+  },
+  {
+    "_id": "5d1a07eca5b0a50b58600015",
+    "isEnabled": true,
+    "parent_id": null,
+    "name": "Jewelry",
+    "url": "fine-jewelry",
+    "content": ""
+  },
+  {
+    "_id": "",
+    "isEnabled": true,
+    "parent_id": "5d1a07eca5b0a50b58600015",
+    "name": "Diamond studs",
+    "url": "diamond-studs",
+    "content": "DIAMOND STUDS content"
+  }
+]

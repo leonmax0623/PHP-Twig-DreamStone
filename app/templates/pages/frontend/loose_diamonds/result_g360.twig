@@ -1,0 +1,129 @@
+<li class="t-search-result-block t-search-block diamond-item">
+    <div class="t-search-result-image-block">
+        <div id="image-{{ diamond._id }}" style="height: 100%;">
+            {% if diamond.videoExternal %}
+                <iframe
+                    src="{{ diamond.videoExternal }}"
+                    style="width: 100%; height: 100%;"
+                ></iframe>
+            {% else %}
+                {% if diamond.imageExternal %}
+                    <img
+                        src="{{ diamond.imageExternal }}"
+                        onerror="showG360('{{ diamond._id }}');"
+                        alt="images"
+                    />
+                    {% if diamond.shape and diamond.shape.image %}
+                        <div id="svg-{{ diamond._id }}" style="display: none;">
+                            {{ diamond.shape.image | raw }}
+                        </div>
+                    {% endif %}
+                {% elseif diamond.shape and diamond.shape.image %}
+                    <div style="height: 100%;" id="svg-{{ diamond._id }}">
+                        {{ diamond.shape.image | raw }}
+                    </div>
+                {% else %}
+                    <img src="/images/jewelry/default.png" alt=" alt="images"">
+                {% endif %}
+                <iframe
+                    src="about:blank"
+                    data-source="{{ diamond.imageExternal }}"
+                    style="width: 100%; height: 100%; display: none;"
+                    {% if diamond.shape and diamond.shape.image %}
+                        onerror="showSVG('{{ diamond._id }}');"
+                    {% endif %}
+                ></iframe>
+            {% endif %}
+        </div>
+    </div>
+    <div class="t-show-image-block"></div>
+    <div class="t-search-result-description-block">
+        <div class="t-product-hidden-block">
+            <div class="result-images-slider">
+                <a href="{{ diamond.permalink }}">
+        <div id="sl-image-{{ diamond._id }}" style="height: 100%;">
+            {% if diamond.videoExternal %}
+                <img src="/images/loose_diamonds/g360.png" width="50"  alt="images" />
+            {% else %}
+                {% if diamond.imageExternal %}
+                    <img
+                      src="{{ diamond.imageExternal }}"
+                      alt="images"
+                      {% if diamond.shape and diamond.shape.image %}
+                        onerror="showSliderSVG('{{ diamond._id }}');"
+                      {% endif %}
+                    />
+                    {% if diamond.shape and diamond.shape.image %}
+                        <div id="sl-svg-{{ diamond._id }}" style="display: none;">
+                            {{ diamond.shape.image | raw }}
+                        </div>
+                    {% endif %}
+                {% elseif diamond.shape and diamond.shape.image %}
+                    <div id="sl-svg-{{ diamond._id }}">
+                        {{ diamond.shape.image | raw }}
+                    </div>
+                {% else %}
+                    <img src="/images/jewelry/default.png" alt="images">
+                {% endif %}
+            {% endif %}
+        </div>
+                </a>
+            </div>
+        </div>
+        <div class="t-search-result-block-data" style="padding: 0 22px;">
+            <a href="{{ diamond.permalink }}">
+                <span class="t-search-result-short-desc u-f16">{{ diamond.weight }}</span>
+                <span class="t-search-result-short-desc u-f16">{{ diamond.certificateNumber }}</span>
+                <span class="t-search-result-short-desc u-text-non-upper u-f16">
+                    {% if diamond.color.code %} {{ diamond.color.code }} Color, {% endif %}
+                    {% if diamond.clarity.code %} {{ diamond.clarity.code }} Clarity, {% endif %}
+                    {% if diamond.cut.code %} {{ diamond.cut.code }} Cut, {% endif %}
+                </span>
+                <span class="t-search-result-short-desc u-text-non-upper u-f16">
+                    {% if diamond.shape.code %} {{ diamond.shape.code }} Shape, {% endif %}
+                    {% if diamond.polish.code %} {{ diamond.polish.code }} Polish, {% endif %}
+                </span>
+                <span class="t-search-result-short-desc u-text-non-upper u-f16">
+                    {% if diamond.symmetry.code %} {{ diamond.symmetry.code }} Symmetry, {% endif %}
+                    {% if diamond.flourence.code %} {{ diamond.flourence.code }} Flourence {% endif %}
+                </span>
+                {% if diamond.isEnabled and diamond.vendorEnabled %}
+                    <span class="t-search-result-price">Price: {{ diamond.price | price }}</span>
+                {% endif %}
+            </a>
+            <div class="t-search-result-a">
+                <button
+                    id="c3{{ diamond._id }}"
+                    class="t-table-view-icon t-table-view-icon-compare{{ diamond.isCompare ? ' active' : '' }}"
+                ></button>
+                <button
+                    id="w3{{ diamond._id }}"
+                    class="t-table-view-icon t-table-view-icon-wishlist{{ diamond.isFavorite ? ' active' : '' }}"
+                ></button>
+            </div>
+            
+        </div>
+    </div>
+</li>
+<script>
+  $('#c3{{ diamond._id }}').click(function() {
+    const $this = $(this);
+    const $icon = $('.results-btn-comparison');
+    const method = $this.hasClass('active') ? 'delete' : 'add';
+    (new Compares())[method]('diamonds', '{{ diamond._id }}', function(){
+      $this[method === 'add' ? 'addClass' : 'removeClass']('active');
+      const count = +$icon.attr('data-count') + (method === 'add' ? 1 : -1);
+      $icon.attr('data-count', count).text(`comparison${count ? ` ${count}` : ''}`);
+    });
+  });
+  $('#w3{{ diamond._id }}').click(function() {
+    const $this = $(this);
+    const $icon = $('.t-top-icon-wishlist, .t-top-icon-mob-wishlist');
+    const method = $this.hasClass('active') ? 'delete' : 'add';
+    const FavoriteModel = new Favorites({{ user ? 'true' : 'false' }});
+    FavoriteModel[method]('diamonds', { _id: '{{ diamond._id }}' }, function(){
+      $this[method === 'add' ? 'addClass' : 'removeClass']('active');
+      $icon.attr('data-count', +($icon.attr('data-count') || 0) + (method === 'add' ? 1 : -1));
+    });
+  });
+</script>

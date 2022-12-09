@@ -1,0 +1,296 @@
+{% set selectedCategory = {} %}
+{% for category in (subsubcategories ? subcategories : categories) %}
+    {% if category.url == (subsubcategories ? filter.subcategory : filter.category) %}
+        {% set selectedCategory = category %}
+    {% endif %}
+{% endfor %}
+<!-- Filter -->
+<div class="o-col-lg-12  o-row">
+    <div class="c-filter-block jewelry-filter-block" style="border: none">
+        <div class="o-col-lg-12 o-col-md-12 u-relative" style="text-align: center;">
+            <p class="t-filter-label" onclick="toggleBlock(this, 'category');" style="width:100%">Type</p>
+            <div class="u-clear"></div>
+            <ul id="category" class="t-filter-list t-jewelry-list" style="display: flex; justify-content: center;">
+                {% for category in (subsubcategories ? subcategories : categories) %}
+                    <li data-id="{{ category.url }}" style="float: none">
+                        <input
+                            type="checkbox"
+                            id="{{ category.url }}"
+                            {{ category.url == (subsubcategories ? filter.subcategory : filter.category) ? 'checked' : ''}}
+                        >
+                        <label
+                            for="{{ category.url }}"
+                            style="background-image:url({{ category.images[0]}});width:150px;padding-top:120px;height:150px"
+                            title="{{ category.title }}"
+                        >{{ category.title }}</label>
+                    </li>
+                {% endfor %}
+            </ul>
+            <p>{{ selectedCategory.description }}</p>
+            <script>
+              $('#category li').click(function(ev){
+                ev.preventDefault();
+                search('{{ subsubcategories ? 'subcategory' : 'category' }}', $(this).data('id'), true);
+              });
+            </script>
+        </div>
+    </div>
+    <div class="c-filter-block jewelry-filter-block">
+        <div class="o-col-lg-6 o-col-md-12 u-relative">
+            {% if subcategories %}
+                <p class="t-filter-label" onclick="toggleBlock(this, 'subcategory');">Style</p>
+                <div class="u-clear"></div>
+                <ul id="subcategory" class="t-filter-list t-jewelry-list">
+                    {% for category in (subsubcategories ? subsubcategories : subcategories) %}
+                        <li data-id="{{ category.url }}">
+                            <input
+                                type="checkbox"
+                                id="{{ category.url }}"
+                                {{ category.url == (subsubcategories ? filter.subsubcategory : filter.subcategory) ? 'checked' : ''}}
+                            >
+                            <label
+                                for="{{ category.url }}"
+                                style="background-image: url({{ category.images[0]}})"
+                                title="{{ category.title }}"
+                            >{{ category.title }}</label>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <script>
+                  $('#subcategory li').click(function(ev){
+                    ev.preventDefault();
+                    search('{{ subsubcategories ? 'subsubcategory' : 'subcategory' }}', $(this).data('id'), true);
+                  });
+                </script>
+            {% endif %}
+        </div>
+        <div class="o-col-lg-6 o-col-md-12 u-relative">
+            <p class="t-filter-label" onclick="toggleBlock(this, 'stoneselection');">Stone</p>
+            <div class="u-clear"></div>
+            <div id="stoneselection" class="t-stones-block">
+                <a class="c-btn c-btn-sm c-{{ filter.jewelrystone is empty ? 'light' : 'dark' }}-btn"
+                href="javascript: void(0)" id="jewelrystone_btn" onClick="StonesToggle('stones')">Stones</a>
+                <a class="c-btn c-btn-sm c-{{ filter.jewelrypearl is empty ? 'light' : 'dark' }}-btn"
+                href="javascript: void(0)" id="pearl_btn" onClick="StonesToggle('pearl')">Pearl</a>
+                <a class="c-btn c-btn-sm c-{{ filter.birthstone is empty ? 'light' : 'dark' }}-btn"
+                href="javascript: void(0)" id="birthstone_btn" onClick="StonesToggle('birthstone')">Birthstone</a>
+                <div class="t-tooltip jewelry_stones" id="stones">
+                    <div class="t-tooltip-top">
+                        <h5>choose a stone</h5>
+                        <a href="javascript: void(0);" class="c-close-btn"></a>
+                    </div>
+                    <div class="t-tooltip-body">
+                        <div class="t-stone-tooltip">
+                            <div class="jewelry_checkbox">
+                                <input type="checkbox" id="all_stones" {{ 'all' in filter.jewelrystone ? 'checked' : ''}}>
+                                <label class="checkbox_label" for="all_stones">All Stone Types</label>
+                            </div>
+                            {% for jewelrystone in jewelrystones %}
+                                <div class="jewelry_checkbox">
+                                    <input
+                                        class="jewelrystone_checkbox"
+                                        type="checkbox"
+                                        name="jewelrystone"
+                                        id="{{ jewelrystone.code }}"
+                                        {{ jewelrystone.code in filter.jewelrystone ? 'checked'
+                                            : 'all' in filter.jewelrystone ? 'checked' : ''}}
+                                    >
+                                    <label class="checkbox_label" for={{jewelrystone.code}}>{{jewelrystone.title}}</label>
+                                    <img src="../images/jwl_stones/{{jewelrystone.code}}.png" alt="jewelry">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="u-clear-20"></div>
+                        <p>Nulla auctor urna nec ipsum pellentesque maximus. In felis sapien, rhoncus non lectus at, facilisis vulputate urna.</p>
+                    </div>
+                    <!-- /tooltip gemstoneshape -->
+                </div>
+                <div class="t-tooltip jewelry_stones jewelry_pearl" id="pearl">
+                    <div class="t-tooltip-top">
+                        <h5>choose a pearl</h5>
+                        <a href="javascript: void(0);" class="c-close-btn"></a>
+                    </div>
+                    <div class="t-tooltip-body">
+                        <div class="t-stone-tooltip">
+                            <div class="jewelry_checkbox">
+                                <input type="checkbox" id="all_pearls" {{ 'all' in filter.jewelrypearl ? 'checked' : ''}}>
+                                <label class="checkbox_label" for="all_pearls">All Pearls</label>
+                            </div>
+                            {% for jewelrypearl in jewelrypearls %}
+                                <div class="jewelry_checkbox">
+                                    <input
+                                        class="pearl_checkbox"
+                                        type="checkbox"
+                                        name="pearl"
+                                        id="{{ jewelrypearl.code }}"
+                                        {{ jewelrypearl.code in filter.jewelrypearl ? 'checked'
+                                        : 'all' in filter.jewelrypearl ? 'checked' : ''}}
+                                    >
+                                    <label class="checkbox_label" for={{jewelrypearl.code}}>{{jewelrypearl.title}}</label>
+                                    <img src="../images/jwl_pearl/{{jewelrypearl.code}}.png" alt="jewelry">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- /tooltip gemstoneshape -->
+                </div>
+                <div class="t-tooltip jewelry_stones" id="birthstone">
+                    <div class="t-tooltip-top">
+                        <h5>choose a stone by date of birth</h5>
+                        <a href="javascript: void(0);" class="c-close-btn"></a>
+                    </div>
+                    <div class="t-tooltip-body">
+                        <div class="t-stone-tooltip">
+                            <div class="jewelry_checkbox">
+                                <input type="checkbox" id="all_birthstone" {{ 'all' in filter.birthstone ? 'checked' : ''}}>
+                                <label class="checkbox_label" for="all_birthstone">All birthstone</label>
+                            </div>
+                            {% for birthstone in birthstones %}
+                                <div class="jewelry_checkbox">
+                                    <input
+                                        class="birthstone_checkbox"
+                                        type="checkbox"
+                                        name="birthstone"
+                                        id="{{birthstone.date}}_{{birthstone.code}}"
+                                            {{ birthstone.code in filter.birthstone ? 'checked'
+                                            : 'all' in filter.birthstone ? 'checked' : ''}}
+                                    >
+                                    <label class="checkbox_label" for="{{birthstone.date}}_{{birthstone.code}}"><span>{{birthstone.date}}</span>{{birthstone.title}}</label>
+                                    <img src="../images/jwl_stones/{{birthstone.code}}.png" alt="jewelry">
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- /tooltip gemstoneshape -->
+                </div>
+            </div>
+        </div>
+        <div class="u-clear-jewelry"></div>
+        {%  include "pages/frontend/jewelry/filter_metal.twig" %}
+        <div class="o-col-lg-6 o-col-md-12 u-relative">
+            <p class="t-filter-label"  onclick="toggleBlock(this, 'priceBlock');">Price</p>
+            <div class="u-clear"></div>
+            <div id="priceBlock" class="t-price-block">
+                <div class="u-clear-20"></div>
+                <div class="t-range-block">
+                    <div class="t-range-scale"><div class="t-range-scale-active"></div></div>
+                </div>
+                <input class="t-price-input u-fl" type="text" value="">
+                <input class="t-price-input u-fr" type="text" value="">
+                <div class="u-clear"></div>
+            </div>
+        </div>
+        <div class="u-clear"></div>
+    </div>
+    <div class="o-col-lg-12 o-row">
+        <div class="o-col-lg-2 o-col-md-3 s-sm-invisible"></div>
+        <div class="o-col-lg-8 o-col-md-6 o-col-sm-6 t-filter-btn-block">
+            <a href="#" id="t-filter-close-btn" class="t-filter-close-btn">Close Filters</a>
+        </div>
+        <div class="o-col-lg-2 o-col-md-3 o-col-sm-6 t-filter-btn-block">
+            <a href="#" id="clear-filters" class="u-fr" onclick="resetFilters(); return false;">Clear Filters</a>
+        </div>
+    </div>
+</div>
+<div class="u-clear"></div>
+<!-- /Filter -->
+<div class="u-clear-20"></div>
+<div class="o-col-lg-4 o-row s-md-invisible"></div>
+<div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+    <a href="#" id="search-results-count" class="c-btn c-dark-btn t-results-btn-view">results ({{ products | length }})</a>
+</div>
+<div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+    <a href="/viewed" class="c-btn c-light-btn">recently viewed ({{ viewedCount }})</a>
+</div>
+<div class="u-clear-20"></div>
+
+<script>
+$(document).ready(function() {
+  var JewelryPriceFilter = function(){};
+  $.extend(JewelryPriceFilter.prototype, {
+    $range: $('.t-range-scale'),
+    $min: $('#priceBlock .u-fl'),
+    $max: $('#priceBlock .u-fr'),
+    init: function(){
+      var getVars = UrlParams.get();
+      {% if currency %}
+      if (getVars.price_min) getVars.price_min = getVars.price_min / {{ currency.rate }};
+      if (getVars.price_max) getVars.price_max = getVars.price_max / {{ currency.rate }};
+      {% endif %}
+
+      this.min = Math.floor({{ currency ? price_min / currency.rate : price_min }});
+      this.max = Math.ceil({{ currency ? price_max / currency.rate : price_max }});
+
+      this.currentMin = getVars.price_min && +getVars.price_min > this.min ? +getVars.price_min : this.min;
+      this.currentMax = getVars.price_max && +getVars.price_max < this.max ? +getVars.price_max : this.max;
+
+      this.initSlider();
+      this.initInputs();
+    },
+    initSlider: function(){
+      var self = this;
+
+      this.$slider = this.$range.slider({
+        classes: {
+          "ui-slider": 't-price-block',
+          "ui-slider-range": 't-range-scale-active',
+          "ui-slider-handle": 't-range-slider'
+        },
+        range: true,
+        min: this.min,
+        max: this.max,
+        values: [this.currentMin, this.currentMax],
+        slide: function(event, ui) { self.updateRange(ui.values[0], ui.values[1]); },
+        stop: function(event, ui) {
+            UrlParams.set({
+              price_min: ui.values[0]{{ currency ? ' * ' ~ currency.rate : '' }},
+              price_max: ui.values[1]{{ currency ? ' * ' ~ currency.rate : '' }}
+            }, false);
+            loadPageData(location.href, '.t-search-results', true, function (finish, total) {
+                updateLinks();
+                $('#search-results-count').html(`Results (${total})`);
+          });
+        }
+      });
+
+      this.updateRange(
+        this.$slider.slider('values', 0),
+        this.$slider.slider('values', 1)
+      );
+    },
+    initInputs: function(){
+      this.$min.keyup(function(ev){
+        ev.keyCode === 13 &&
+            UrlParams.set({
+              price_min: this.value.replace('{{ currency ? currency.sign : "$" }}', ''){{ currency ? ' * ' ~ currency.rate : '' }}
+            }, false) &&
+            loadPageData(location.href, '.t-search-results', true, function (finish, total) {
+                updateLinks();
+                $('#search-results-count').html(`Results (${total})`);
+          });
+      });
+      this.$max.keyup(function(ev){
+        ev.keyCode === 13 &&
+            UrlParams.set({
+              price_max: this.value.replace('{{ currency ? currency.sign : "$" }}', ''){{ currency ? ' * ' ~ currency.rate : '' }}
+            }, false) &&
+            loadPageData(location.href, '.t-search-results', true, function (finish, total) {
+                console.log(3);
+                updateLinks();
+                $('#search-results-count').html(`Results (${total})`);
+          });
+      });
+    },
+    updateRange: function(min, max){
+      this.$min.val('{{ currency ? currency.sign : "$" }}' + min);
+      this.$max.val('{{ currency ? currency.sign : "$" }}' + max);
+    }
+  });
+  (new JewelryPriceFilter()).init();
+});
+</script>
+<script>
+    function resetFilters() {
+        UrlParams.delete(true);
+    }
+</script>

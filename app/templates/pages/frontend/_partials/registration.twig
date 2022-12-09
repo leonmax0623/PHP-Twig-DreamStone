@@ -1,0 +1,30 @@
+<!-- Registration form -->
+{{ app.request.get }}
+<form class="login_form registration" id="registration" action="/user/register?returnUrl={%
+    if get.returnUrl != ""%}{{ get.returnUrl }}{% else %}{{ currentPath }}{% endif
+%}" method="post">
+    <h4>Create new account</h4>
+    <div class="u-clear-40"></div>
+    <a href="#" id="login_btn" class="btn btn_light">returning customer? log in</a>
+    <div class="u-clear"></div>
+    <input type="text" name="first_name" placeholder="First name" value="{{ post.first_name }}">
+    <div class="u-clear"></div>
+    <input type="text" name="last_name" placeholder="Last name" value="{{ post.last_name }}">
+    <div class="u-clear"></div>
+    <input type="email" name="email" placeholder="Email address" value="{{ post.email }}">
+    <div class="u-clear"></div>
+    <input type="password" name="password" id="registerPassword" placeholder="Password">
+    <div class="u-clear"></div>
+    <input type="password" name="password2" placeholder="Confirm password">
+    <div class="u-clear"></div>
+    <div class="u-clear-10"></div>
+    <button type="submit" class="g-recaptcha" data-sitekey="6Lc2jQoeAAAAAIzf4K1jjmHP5WqLqky7Fa8_0i8t"
+        data-callback='onRegistrationSubmit' data-action='registration'>Continue</button>
+</form>
+<script>
+    function onRegistrationSubmit(token) {
+        console.log('Registration form submitted');
+        setTimeout(() => document.getElementById("registration").submit(), 0);
+    }
+</script>
+<!-- /Registration form -->

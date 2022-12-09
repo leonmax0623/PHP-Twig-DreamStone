@@ -1,0 +1,54 @@
+<div class="o-col-lg-6 o-col-sm-12 u-relative mb-15">
+  <div class="holder-info">
+    <a class="c-info-label s-sm-invisible">?</a>
+    <div class="info-desc">
+      <p>The report certificates grade the diamond. For natural diamonds, the GIA certificate report is the gold standard. For lab grown diamonds, we recommend IGI.</p>       
+    </div>
+  </div>
+
+    <p class="t-filter-headres">Report</p>
+    <div class="u-clear"></div>
+    <a
+        href="#"
+        data-value="GIA"
+        class="filter-lab c-btn c-btn-sm c-{{ 'GIA' in filter.lab ? 'dark' : 'light' }}-btn"
+    >GIA</a>
+    <a
+        href="#"
+        data-value="IGI"
+        class="filter-lab c-btn c-btn-sm c-{{ 'IGI' in filter.lab ? 'dark' : 'light' }}-btn"
+    >IGI</a>
+</div>
+
+<script>
+$(document).ready(function(){
+  $('.filter-lab').click(function(){
+    const $el = $(this);
+    const value = $el.data('value');
+    const { lab, v } = UrlParams.get();
+    let labs = lab ? lab.split(',') : [];
+
+    if ($el.hasClass('c-dark-btn')) {
+      $el.removeClass('c-dark-btn').addClass('c-light-btn');
+      labs = labs.filter(l => l !== value);
+    } else {
+      $el.removeClass('c-light-btn').addClass('c-dark-btn');
+      labs.push(value);
+    }
+    UrlParams.set({ lab: labs.join(',') }, false);
+    const viewMode = v || 'g';
+    const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+    loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+      updateLinks();
+      refreshResultCounter(total);
+      if(total == 0) {
+        $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+      }
+      if(total > 0) {
+          $('.results-message').html('');
+      }
+    });
+    return false;
+  });
+});
+</script>

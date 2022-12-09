@@ -1,0 +1,263 @@
+{% include "pages/frontend/_partials/affirm.twig" %}
+<div
+	class="content u-relative-content">
+	<!-- BREAD CRUMBS -->
+	<div>
+		{% include "pages/frontend/_partials/bread_crumbs.twig" %}
+	</div>
+	<div class="u-clear"></div>
+	<div class="u-tc o-col-lg-3 o-col-sm-12 o-row">
+		{% if product.ringstyle.code %}
+			{# link to Engagement Rings #}
+			<a class="btn-sm t-return-to-search" href="{{ path_for('engagementRings-Search', {'filter': product.category.url}, params) }}">
+				&lt; Return to search</a>
+		{% else %}
+			{# link to Jewerly #}
+			<a class="btn-sm t-return-to-search" href="{{ path_for('jewelry-Search', {'filter': product.category.url}, params) }}">
+				&lt; Return to search</a>
+		{% endif %}
+	</div>
+	<div class="u-clear"></div>
+	<!-- /BREAD CRUMBS -->
+	<div class="o-col-lg-7 o-col-md-6 o-col-sm-12 u-color-dark-gray mt-100">
+		{%  include "pages/frontend/jewelry/details/main_slider.twig" %}
+	</div>
+	<div class="o-col-lg-5 o-col-md-6 o-col-sm-12 u-color-dark-gray mt-100">
+		<p class="u-f20">{{ product.title }}</p>
+		{# <p class="u-f18 u-color-light-gray">SKU:
+																							{{ product.sku }}</p> #}
+		{% if product.attributes %}
+			{% for attribute in product.attributes %}
+				{% include "pages/frontend/jewelry/details/main_attribute.twig" %}
+			{% endfor %}
+		{% endif %}
+		{% set currentPath = current_path(app.request.attributes.get('_route')) %}
+		{% set currentDomain = base_url() %}
+		<div class="yotpo bottomLine" data-product-id={{product._id}} data-url={{currentDomain ~ currentPath}}></div>
+		<div class="u-clear-20"></div>
+		<div class="o-col-lg-12 o-row">
+			<p class="u-f18 u-color-blue u-text-upper u-text-none-underline u-mrg-0">FREE SHIPPING & 30 DAY RETURNS</p>
+			<p class="u-f18 u-color-light-gray">Order today, ships by
+				{% if user == false %}
+					{% if product.shippingDetails.days == 0 %}
+						<span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+					{% else %}
+						<span>{{ product.shippingDetails.shipsBy|date("l, F jS") }}</span>
+					{% endif %}
+				{% else %}
+					{% if product.shippingDetails.days == 0 %}
+						<span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+					{% else %}
+						<span>{{ product.shippingDetails.shipsBy|date("l, F jS") }}</span>
+					{% endif %}
+				{% endif %}
+			</p>
+		</div>
+		<div class="u-clear-20"></div>
+		<div class="o-col-sm-12 o-col-md-8 o-col-lg-6 o-row">
+			<span class="c-btn c-light-btn product-price">
+				{% if product.retail_price %}
+					<s>{{ product.retail_price | price }}</s>
+				{% endif %}
+				{{ product.price | price }}
+			</span>
+		</div>
+		{% if isBuilder %}
+			<div class="o-col-sm-12 o-col-md-8 o-col-lg-6 o-row">{% include "pages/frontend/jewelry/details/main_builder.twig" %}</div>
+		{% endif %}
+		{% if not isBuilder or not composite.diamond %}
+			<div class="o-col-sm-12 o-col-md-8 o-col-lg-6 o-row">{% include "pages/frontend/jewelry/details/main_cart.twig" %}</div>
+		{% endif %}
+		<div class="u-clear"></div>
+		<div class="o-col-lg-6 o-row u-tl tlp print_invisible">
+			<ul
+				class="t-product-action">
+				{#<li>{% include "pages/frontend/jewelry/details/main_favorite.twig" %}</li>#}
+				<li>
+					<button class="t-product-action-icon t-product-action-wishlist{{ isFavorite ? ' active' : '' }}"></button>SAVE
+				</li>
+				<li class="desctop-hide">
+					<button id="product-share-btn" class="t-product-action-icon t-product-action-send" onclick="sharePage()"></button>SHARE
+				</li>
+				<li class="hide-mobile">
+					<button onclick="showSharePopup()" id="product-share-btn-desctop" class="t-product-action-icon t-product-action-send"></button>SHARE
+				</li>
+				<li>
+					<button href="tel:800-818-8386" title="800-818-8386" class="t-product-action-icon t-product-action-phone"></button>CALL
+				</li>
+				<li>
+					<button id="product-mail-btn" onclick="showPopupMail()" class="t-product-action-icon t-product-action-mail"></button>EMAIL
+				</li>
+				{% include "pages/frontend/loose_diamonds/details/form_mail.twig" %}
+				<li>
+					<button id="my_custom_link" href="mailto:HELP@YOUR-APP.COM" class="t-product-action-icon t-product-action-chat"></button>CHAT
+				</li>
+				{# <li><button class="t-product-action-icon t-product-action-print" onclick="window.print()"></button></li> #}
+			</ul>
+			{% include "pages/frontend/loose_diamonds/details/form_share.twig" %}
+		</div>
+		<div class="u-clear"></div>
+		{# <div class="o-col-lg-6 o-row print_invisible">
+																	<ul class="t-product-action">
+																		<li>
+																			<a href="tel:800-818-8386" title="800-818-8386" class="t-product-action-icon t-product-action-phone"></a>
+																		</li>
+																		<li>
+																			<a id="product-mail-btn" onclick="showPopupMail()" class="t-product-action-icon t-product-action-mail"></a>
+																		</li>
+																		{% include "pages/frontend/loose_diamonds/details/form_mail.twig" %}
+																		<li>
+																			<a id="my_custom_link" href="mailto:HELP@YOUR-APP.COM" class="t-product-action-icon t-product-action-chat"></a>
+																		</li>
+																	</ul>
+																</div> #}
+		<div class="o-col-lg-12 o-row print_invisible">
+			<p class="text-mail-submit" style="color: green;"></p>
+		</div>
+		<div class="u-clear-10"></div>
+		<div class="o-col-lg-12 o-row">
+			<div class="o-col-lg-6 o-row">
+				<p class="affirm-as-low-as" data-learnmore-show="true" data-page-type="product" data-amount="{{ 100 * product.price }}"></p>
+			</div>
+		</div>
+		{% if product.is_diamond %}
+			{# <div
+																																					class="o-col-lg-11 o-col-md-10 o-row u-tl"><p>Our in-house gemologist at DreamStone inspect every diamond before it reaches you and we ship the diamond with the grading report and an insurance appraisal.</p>
+																																				</div>
+																																				<div class="o-col-lg-1 o-col-md-2 o-row u-tr">
+																																					<img class="t-examitation-img" src="../../images/examination.png" alt="examination">
+																																				</div> #}
+			<div class="u-clear"></div>
+		{% endif %}
+	</div>
+</div>
+<div class="u-clear"></div>
+{% if product.information or product.description %}
+	<a href="javascript: void(0);" class="t-discover-more">
+		<span>Discover more</span>
+	</a>
+{% endif %}
+{% if product.information or product.description %}
+	{% include "pages/frontend/jewelry/details/main_more.twig" %}
+{% endif %}
+
+<script>
+	$('.t-product-action-wishlist').click(function () {
+const $this = $(this);
+const method = $this.hasClass('active') ? 'DELETE' : 'POST';
+const FavoriteModel = (new Favorites({{ user ? 'true' : 'false' }}));
+FavoriteModel[method === 'POST' ? 'add' : 'delete']('products', product, function () {
+$this[method === 'POST' ? 'addClass' : 'removeClass']('active');
+
+const $icon = $('.t-top-icon-wishlist, .t-top-icon-mob-wishlist');
+$icon.attr('data-count', + ($icon.attr('data-count') || 0) + (method === 'POST' ? 1 : -1));
+});
+});
+</script></script><style>
+@keyframes nodeInserted {
+	from {
+		outline-color: #fff;
+	}
+	to {
+		outline-color: #000;
+	}
+}
+div.yotpo.bottomLine .star-clickable {
+	animation-duration: 0.01s;
+	animation-name: nodeInserted;
+}
+.yotpo .primary-color-btn,
+.yotpo input[type="button"].primary-color-btn,
+.yotpo .primary-color-btn:hover,
+.yotpo input[type="button"].primary-color-btn:hover {
+	background: #92a8d1 !important;
+	color: #ffffff;
+	font-size: 16px;
+	text-align: center;
+	height: 46px;
+	text-transform: uppercase;
+	text-decoration: none;
+	line-height: 46px;
+	margin-bottom: 20px;
+	padding: 0;
+}</style><script>
+function sharePage() {
+let pageUrl = document.location.href;
+const canonicalElement = document.querySelector('link[rel=canonical]');
+if (canonicalElement !== null) {
+pageUrl = canonicalElement.href;
+}
+if (navigator.share) {
+navigator.share({
+title: 'DreamStone' + '                  {{ title }}',
+text: '{{ title }}',
+url: pageUrl
+}).then(() => console.log('Successful share')).catch((error) => console.log('Error sharing', error));
+} else {
+console.log('No Navigator Share feature');
+}
+}</script><script>
+document.addEventListener('animationstart', function (event) {
+if (event.animationName == 'nodeInserted') {
+var reviews = jQuery('.total-reviews-search').attr('total-reviews-search');
+if (reviews == '0') {
+jQuery(".yotpo.bottomLine").remove();
+// jQuery(".yotpo-main-widget").remove();
+jQuery(".write-first-review-button").val('write a review');
+}
+}
+}, true);
+window.search = window.search || function (field, value) {
+UrlParams.set({[field]: value});
+};</script><script src="/js/jquery.selectric.js"></script><link rel="stylesheet" href="/css/selecrtic.css"><script>
+const $body = $('body');
+$(document).ready(function () {
+if ($('.select-attribute-metal')) {
+$('.select-attribute-metal').selectric({
+optionsItemBuilder: function (itemData, element, index) {
+return `<span class="attribute-img"></span>` + itemData.text
+},
+labelBuilder: function (currItem) {
+return currItem.text
+},
+disableOnMobile: false,
+nativeOnMobile: false,
+disableOnTablet: false,
+nativeOnTablet: false
+});
+}
+// <img src="{{ mainImage ? mainImage : '/images/jewelry/default.png' }}">
+if ($('.select-attribute-shape')) {
+$('.select-attribute-shape').selectric({
+optionsItemBuilder: function (itemData, element, index) {
+if (index == 0) {
+return `<div style="display: flex; justify-content: flex-end; align-items: center;" class="attribute-img u-tc"><span>${
+itemData.text
+}&ensp;</span></div>`
+} else {
+return `<div style="display: flex; justify-content: space-between; align-items: center;" class="attribute-img u-tc"><img src="/content/diagram_loose_diamonds/Cut_${
+itemData.text
+}.svg" alt="${
+itemData.value
+}"><span>${
+itemData.text
+}&ensp;</span></div>`
+}
+},
+labelBuilder: function (currItem) {
+if (currItem.value == '') {
+return 'View with:'
+} else {
+return currItem.value
+}
+},
+disableOnMobile: false,
+nativeOnMobile: false,
+disableOnTablet: false,
+nativeOnTablet: false
+});
+}
+if ($('.select-attribute')) {
+$('.select-attribute').selectric({disableOnMobile: false, nativeOnMobile: false, disableOnTablet: false, nativeOnTablet: false});
+}
+});</script>

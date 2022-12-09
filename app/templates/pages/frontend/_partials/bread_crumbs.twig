@@ -1,0 +1,45 @@
+<!-- BREAD CRUMBS -->
+<div class="o-col-lg-12 c-bread-crumbs-block">
+    <div class="content u-tc">
+        {% if isBuilder %}
+            {%  include "pages/frontend/composite/bread_crumbs/index.twig" %}
+        {% else %}
+            <ul class="c-bread-crumbs">
+                <li><a href="/">Home</a></li>
+                {% if isSearchSection %}
+                <li>Search</li>
+                {% elseif isJewelryRingsSection %}
+                    {% if filter.category %}
+                        <li><a href="/jewelry/all">Jewelry</a></li>
+                        {% for category in categories %}{% if category.url == filter.category %}
+                            {% if filter.subcategory %}
+                                <li><a href="/jewelry/{{ category.url }}">{{ category.title }}</a></li>
+                                {% for subcategory in subcategories %}{% if subcategory.url == filter.subcategory %}
+                                    {% if filter.subsubcategory %}
+                                        <li><a href="?subcategory={{ subcategory.url }}">{{ subcategory.title }}</a></li>
+                                        {% for subsubcategory in subsubcategories %}{% if subsubcategory.url == filter.subsubcategory %}
+                                            <li>{{ subsubcategory.title }}</li>
+                                        {% endif %}{% endfor %}
+                                    {% else %}
+                                        <li>{{ subcategory.title }}</li>
+                                    {% endif %}
+                                {% endif %}{% endfor %}
+                            {% else %}
+                                <li>{{ category.title }}</li>
+                            {% endif %}
+                        {% endif %}{% endfor %}
+                    {% elseif jewelrytype %}
+                        <li>{{ jewelrytype.title }}</li>
+                    {% else %}
+                        <li>Jewelry</li>
+                    {% endif %}
+                {% elseif isDiamondsSection %}
+                <li>Diamonds</li>
+                {% else %}
+                <li>Engagement Rings</li>
+                {% endif %}
+            </ul>
+        {% endif %}
+    </div>
+</div>
+<!-- /BREAD CRUMBS -->

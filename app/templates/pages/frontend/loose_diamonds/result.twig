@@ -1,0 +1,138 @@
+<li class="t-search-result-block t-search-block diamond-item">
+    <a href="{{ diamond.permalink }}">
+        <div class="t-search-result-image-block">
+            <div id="image-{{ diamond._id }}" class="diamond-box">
+                {% if '.j' in diamond.imageExternal %}
+                    <img src="{{ diamond.imageExternal }}" alt="loose_diamonds" style="width: 100%;">
+                {% elseif '.J' in diamond.imageExternal %}
+                    <img src="{{ diamond.imageExternal }}" alt="loose_diamonds" style="width: 100%;">
+                {% elseif 'http' in diamond.imageExternal %}
+                    {#{{ diamond.shape.image | raw }}#}
+                    <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" alt="loose_diamonds" />
+                {% else %}  
+                    <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" alt="loose_diamonds" />
+                {% endif %}
+            </div>
+        </div>
+    </a>
+    <!-- <div class="t-show-image-block"></div> -->
+    <div class="t-search-result-description-block">
+        <div class="t-product-hidden-block hide-mobile">
+            <div class="result-images-slider">
+                <a href="{{ diamond.permalink }}">
+                    {#<div id="sl-image-{{ diamond._id }}" style="height: 100%;">
+                    {% if diamond.imageExternal %}
+                        <img src="{{ diamond.imageExternal }}" alt="loose_diamonds"
+                        {% if diamond.shape and diamond.shape.image %}
+                            onload="showSliderImg('{{ diamond._id }}');"
+                            onerror="showSliderSvg('{{ diamond._id }}');"
+                            style="display: none;"
+                        {% endif %}
+                        />
+                        {% if diamond.shape and diamond.shape.image %}
+                            <div id="sl-svg-{{ diamond._id }}">
+                                {{ diamond.shape.image | raw }}
+                            </div>
+                        {% endif %}
+                    {% elseif diamond.shape and diamond.shape.image %}
+                        <div id="sl-svg-{{ diamond._id }}">
+                            {{ diamond.shape.image | raw }}
+                        </div>
+                    {% else %}
+                        <img src="/images/jewelry/default.png" alt="loose_diamonds">
+                    {% endif %}
+                    </div>#}
+                    <div id="sl-image-{{ diamond._id }}" style="height: 100%;">
+                        {% if '.j' in diamond.imageExternal %}
+                            <img src="{{ diamond.imageExternal }}">
+                        {% elseif '.J' in diamond.imageExternal %}
+                            <img src="{{ diamond.imageExternal }}">
+                        {% elseif 'http' in diamond.imageExternal %}
+                            {#{{ diamond.shape.image | raw }}#}
+                            <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" />
+                        {% else %}  
+                            <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" />
+                        {% endif %}
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="holder-mob-imgs desctop-hide">
+            <div class="result-images-slider">
+                <a href="{{ diamond.permalink }}">
+                    {% if '.j' in diamond.imageExternal %}
+                        <img src="{{ diamond.imageExternal }}" alt="loose_diamonds">
+                    {% elseif '.J' in diamond.imageExternal %}
+                        <img src="{{ diamond.imageExternal }}" alt="loose_diamonds">
+                    {% elseif 'http' in diamond.imageExternal %}
+                        {#{{ diamond.shape.image | raw }}#}
+                        <div style="height: 155px;">
+                            <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" alt="loose_diamonds" />
+                        </div>
+                    {% else %}  
+                        <div style="height: 155px;">
+                            <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" alt="loose_diamonds" />
+                        </div>
+                    {% endif %}
+                </a>
+            </div>
+        </div>
+        <a href="{{ diamond.permalink }}">
+            <div class="t-search-result-block-data">
+                <span class="t-search-result-short-desc u-text-non-upper u-f16">Carat {{ diamond.weight }}</span>
+                <span class="t-search-result-short-desc u-text-non-upper u-f16">{{ diamond.shape.code }}</span>
+                <div class="t-search-result-short-desc-text-block">
+                    {% if diamond.color %}
+                        <span class="u-text-non-upper u-f16">Color {{ diamond.color.code }}<span class="comma">,</span></span>
+                    {% endif %}
+                    {% if diamond.clarity %}
+                        <span class="u-text-non-upper u-f16">Clarity {{ diamond.clarity.code }}<span class="comma">,</span></span>
+                    {% endif %}
+                    {% if diamond.cut %}
+                        <span class="u-text-non-upper u-f16">Cut {{ diamond.cut.code }}<span class="comma">,</span></span>
+                    {% endif %}
+                    {% if diamond.lab %}
+                        <span class="u-text-non-upper u-f16">Lab {{ diamond.lab }}</span>
+                    {% endif %}
+                </div>
+                {#<span class="t-search-result-price">Price: {{ diamond.priceExternal | price }}</span>#}
+                {% if diamond.isEnabled and diamond.vendorEnabled %}
+                    <span class="t-search-result-price">Price: {{ diamond.price | price}}</span>
+                {% endif %}
+            </div>
+        </a>
+        <div class="t-search-result-block-data-icons">
+            <button
+                id="c{{ diamond._id }}"
+                class="t-table-view-icon t-table-view-icon-compare{{ diamond.isCompare ? ' active' : '' }}"
+            ></button>
+            <button
+                id="w{{ diamond._id }}"
+                class="t-table-view-icon t-table-view-icon-wishlist{{ diamond.isFavorite ? ' active' : '' }}"
+            ></button>
+        </div>
+    </div>
+</li>
+<script>
+  $('#c{{ diamond._id }}').click(function() {
+    const $this = $(this);
+    const $icon = $('.results-btn-comparison');
+    const method = $this.hasClass('active') ? 'delete' : 'add';
+    (new Compares())[method]('diamonds', '{{ diamond._id }}', function(){
+      $this[method === 'add' ? 'addClass' : 'removeClass']('active');
+      const count = +$icon.attr('data-count') + (method === 'add' ? 1 : -1);
+      $icon.attr('data-count', count).text(`comparison${count ? ` ${count}` : ''}`);
+    });
+  });
+
+  $('#w{{ diamond._id }}').click(function() {
+    const $this = $(this);
+    const $icon = $('.t-top-icon-wishlist, .t-top-icon-mob-wishlist');
+    const method = $this.hasClass('active') ? 'delete' : 'add';
+    const FavoriteModel = new Favorites({{ user ? 'true' : 'false' }});
+    FavoriteModel[method]('diamonds', { _id: '{{ diamond._id }}' }, function(){
+      $this[method === 'add' ? 'addClass' : 'removeClass']('active');
+      $icon.attr('data-count', +($icon.attr('data-count') || 0) + (method === 'add' ? 1 : -1));
+    });
+  });
+</script>

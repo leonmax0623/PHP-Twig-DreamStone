@@ -1,0 +1,19 @@
+[{
+    "code": "0000001",
+    "type": "fixed",
+    "value": 100,
+    "count": 1
+  },
+  {
+    "code": "0000002",
+    "type": "fixed",
+    "value": 10,
+    "count": 10000
+  },
+  {
+    "code": "0000003",
+    "type": "percent",
+    "value": 2,
+    "count": 5
+  }
+]

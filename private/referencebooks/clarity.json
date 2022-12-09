@@ -1,0 +1,47 @@
+[
+  {
+    "position": 1,
+    "code": "I1",
+    "desc": "(I1) Some inclusions are detectable to the naked eye, however, this diamond is perfect if you're on a budget and want to get a larger diamond. Once set in jewelry, the inclusions become less obvious. We can always review it for you and help you make a decision, just let us know."
+  },
+  {
+    "position": 2,
+    "code": "SI2",
+    "desc": "(SI2) Some inclusions are detectable under 10x magnification, even to the untrained eye. However, when the diamond is set in jewelry, these inclusions are not usually visible to the naked eye. The SI2 graded diamonds are less expensive then higher clarity graded and therefore offer exceptional value for those that want to stay within budget and get a larger diamond. If you're unsure and want our opinion, just let us know and one of our gemologists will review it for you."
+  },
+  {
+    "position": 3,
+    "code": "SI1",
+    "desc": "(SI1) This diamond contains few inclusions detectable using 10x magnification. However, when the diamond is set in jewelry, these inclusions are not usually visible to the naked eye. The SI1 graded diamonds are less expensive then higher clarity graded and therefore offer exceptional value for those that want to stay within budget and get a larger diamond. If you're unsure and want our opinion, just let us know and one of our gemologists will review it for you."
+  },
+  {
+    "position": 4,
+    "code": "VS2",
+    "desc": "(VS2) Most people find this to be the sweet spot. This diamond contains very, few inclusions that are difficult for the untrained eye to see under 10x magnification. VS2 diamonds have no visible blemishes and are less expensive than higher clarity grades, therefore offering exceptional value while not compromising on quality."
+  },
+  {
+    "position": 5,
+    "code": "VS1",
+    "desc": "(VS1) This diamond contains very, few inclusions that are difficult for the untrained eye to see under 10x magnification. VS1 diamonds have no visible blemishes and are less expensive than higher clarity grades, therefore offering exceptional value while not compromising on quality."
+  },
+  {
+    "position": 6,
+    "code": "VVS2",
+    "desc": "(VVS2) This diamond has very, very small inclusions. The minute inclusions are difficult for even a trained grader to see under 30x magnification. VVS2 graded diamonds are very rare."
+  },
+  {
+    "position": 7,
+    "code": "VVS1",
+    "desc": "(VVS1) This diamond has very, very small inclusions. The minute inclusions are difficult for even a trained grader to see under 30x magnification. VVS1 graded diamonds are very rare."
+  },
+  {
+    "position": 8,
+    "code": "IF",
+    "desc": "(IF) This diamond contains no internal inclusions when examined by a skilled grader even under high microscopic magnification. The only difference between this diamond and a flawless diamond are extremely minor markings or blemishes on the surface when viewed under 30X magnification. IF is considered top-quality and extremely rare."
+  },
+  {
+    "position": 9,
+    "code": "FL",
+    "desc": "(FL) This diamond contains no internal or external inclusions when examined by a skilled grader even under high microscopic magnification. FL is the highest and rarest clarity grade."
+  }
+]

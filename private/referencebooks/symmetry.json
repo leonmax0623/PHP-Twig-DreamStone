@@ -1,0 +1,23 @@
+[
+    {
+        "code": "Good",
+        "values": [
+            "G", "GD", "GOOD", "Good"
+        ],
+        "desc": "G"
+    },
+    {
+        "code": "Very Good",
+        "values": [
+            "VERY GOOD", "Very Good", "V", "VG", "V.G", "V. Good"
+        ],
+        "desc": "VG"
+    },
+    {
+        "code": "Excellent",
+        "values": [
+            "X", "EX", "Excellent"
+        ],
+        "desc": "EX"
+    }
+]

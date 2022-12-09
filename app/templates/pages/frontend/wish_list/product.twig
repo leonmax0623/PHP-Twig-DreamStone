@@ -1,0 +1,90 @@
+{% set params = [] %}
+{% for key, value in product.withAttributes %}
+    {% set params = params|merge([key ~ '=' ~ value]) %}
+{% endfor %}
+
+{% set permalink = path_for('jewelry-Details', {'filter': product.category.url, 'product': product.url}) %}
+{% if params|length %}
+    {% set permalink = permalink ~ '?' ~ params|join('&') %}
+{% endif %}
+
+{% set mainImage = '' %}
+{% set break = false %}
+{% for image in product.images if not break %}
+    {% if image.type == 'img' %}
+        {% set mainImage = '/img.php?src=' ~ image.value|replace({ ('/content/'): '' }) ~ '&w=310' %}
+        {% set break = true %}
+    {% endif %}
+{% endfor %}
+
+<li class="t-search-result-block t-search-block">
+    <div class="t-search-result-image-block">
+        <a href={{ permalink }}>
+            <img src="{{ mainImage ? mainImage : '/images/jewelry/default.png' }}" alt="jewelry">
+        </a>
+    </div>
+    <div class="t-show-image-block"></div>
+    <div class="t-search-result-description-block">
+        <div class="t-product-hidden-block">
+            <div class="result-images-slider">
+                {% if mainImage %}
+                    {% for image in product.images if image.type == 'img' %}
+                        <div
+                            onmouseenter="showImageBlock(this, '/img.php?src={{ image.value |replace({ ('/content/'): '' })}}&w=310&sharpen&q=100')"
+                            onmouseleave="hideImageBlock(this)"
+                        >
+                            <a href={{ product.permalink }}><img src='/img.php?src={{ image.value |replace({ ('/content/'): '' })}}&w=310&sharpen&q=100' alt="jewelry" ></a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <img src="/images/jewelry/default.png" alt="jewelry">
+                {% endif %}
+            </div>
+        </div>
+        <div class="t-search-result-block-data">
+            <div>
+                <a href={{ permalink }}>
+                    <!-- <img src="/images/jewelry/default.png" alt="jewelry"> -->
+                    <span class="t-search-result-short-desc">{{ product.title }}</span>
+                    {% for key, value in product.withAttributes %}
+                        <span class="t-search-result-short-desc">{{ key }}: {{ value }}</span>
+                    {% endfor %}
+                    <span class="t-search-result-short-desc">{{ product.metal.code }}</span>
+                    <span class="t-search-result-short-desc">{{ product.category.title }}</span>
+                    <span class="t-search-result-price">Price: {%
+                        if product.retail_price %}<s>{{ product.retail_price | price }}</s> {% endif
+                    %}{{ product.price | price }}</span>
+                </a>
+            </div>
+            <div class="wish-list-btn">
+                <button id="del_{{ index }}_{{ product._id }}" class="btn btn_light active">Remove</button>
+                <button id="add_{{ index }}_{{ product._id }}">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</li>
+<script>
+$('#add_{{ index }}_{{ product._id }}').click(function(){
+  const withAttributes = {
+    {% for key, value in product.withAttributes %}"{{ key }}": "{{ value }}",{% endfor %}
+  };
+  $.post('/cart', {
+    product_id: '{{ product._id }}',
+    group: 'products',
+    withAttributes,
+  }, function(){ location.reload(); });
+});
+$('#del_{{ index }}_{{ product._id }}').click(function() {
+  const withAttributes = {
+      {% for key, value in product.withAttributes %}"{{ key }}": "{{ value }}",{% endfor %}
+  };
+  const $this = $(this);
+  const FavoriteModel = (new Favorites({{ user ? 'true' : 'false' }}));
+  FavoriteModel.delete('products', { _id: '{{ product._id }}', withAttributes }, function(){
+    $this.parents('li.t-search-result-block').remove();
+
+    const $icon = $('.t-top-icon-wishlist, .t-top-icon-mob-wishlist');
+    $icon.attr('data-count', +($icon.attr('data-count') || 0) - 1);
+  });
+});
+</script>

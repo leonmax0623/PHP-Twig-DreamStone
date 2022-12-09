@@ -1,0 +1,25 @@
+<a href="/loose-diamonds/search?builder=1">
+    <span class="c-step-icon t-step-diamond"></span>
+    <p class="t-step-text" style="text-align:left;width:95px;white-space:normal;line-height:1.4;padding-top:5px;">
+        <span>Choose </span>
+        <span>a DIAMOND</span>
+    </p>
+</a>
+{% if composite.diamond %}
+    <!-- <span class="s-sm-invisible step-setting-left">
+        <img src="/images/jewelry/default.png" width="100%">
+    </span> -->
+    <span class="s-sm-invisible step-setting-right ">
+        <div class="check" style="display: block !important;"></div>
+        <span style="display:block;">{{ composite.diamond.price | price }}</span>
+        <a
+            href="{{ composite.diamond.permalink }}"
+            style="padding:5px;font-size:14px;line-height:1.4;"
+        >view</a>
+        <a
+            href="/loose-diamonds/search?builder=1"
+            style="padding:5px;font-size:14px;line-height:1.4;"
+            onclick="(new Composite()).delete('diamonds');"
+        >remove</a>
+    </span>
+{% endif %}

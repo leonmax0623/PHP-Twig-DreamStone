@@ -1,0 +1,26 @@
+<div class="t-resalt-table" style="display: none;">
+    <div class="t-resalt-table-head">
+        <ul>
+            <li>Actual Photo</li>
+            <li>Shape</li>
+            <li>Carat</li>
+            <li>Color</li>
+            <li>Price</li>
+            <li>Compare</li>
+            <li>Wishlist</li>
+            <li>Details</li>
+            <li></li>
+        </ul>
+    </div>
+    <div class="t-resalt-table-body">
+        {%  include "pages/frontend/gemstones/result_inline.twig" %}
+        {%  include "pages/frontend/gemstones/result_inline.twig" %}
+        {%  include "pages/frontend/gemstones/result_inline.twig" %}
+    </div>
+</div>
+<script src="/js/jquery.cbpContentSlider.min.js"></script>
+<script>
+    $(function() {
+        $( '#product_slider' ).cbpContentSlider();
+    });
+</script>

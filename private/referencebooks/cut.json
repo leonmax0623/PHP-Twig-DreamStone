@@ -1,0 +1,28 @@
+[
+    {
+        "code": "Good",
+        "values": [
+            "G", "GD", "Good"
+        ],
+        "desc": "(G) This diamond does a good job in reflecting much of the light that enters as determined by GIA. A Good Cut is the right choice for those that want to balance quality, size and budget while still keeping within acceptable industry cut proportions."
+    },
+    {
+        "code": "Very good",
+        "values": [
+            "VG", "Very Good"
+        ],
+        "desc": "(VG) This diamond effectively reflects most of the light that enters. This cut grade shares many of the Excellent cut grade proportions with only minor differences. A Very Good Cut diamond is more affordable than Excellent cut diamonds and does not compromise on brilliance. Considered a high-quality diamond cut."
+    },
+    {
+        "code": "Excellent",
+        "values": [
+            "I", "ID", "Ideal",
+            "EX", "EXC", "Excellent"
+        ],
+        "desc": "(Excellent) This diamond is cut to the highest standards determined by GIA. Reflecting virtually all the light that enters, this diamond was cut to maximize brilliance and sparkle. Excellent cuts are exceptionally fine and rare and have ideal proportions and finish characteristics. "
+    },
+    {
+        "code": "DreamStone Ideal",
+        "desc": "(DreamStone Ideal) Unlike other retailers who brand an \"ideal\" grade to their cut lineup without much transparency, we take a diamond's table & depth percentages, girdle, and crown angle and if it meets our required guidelines, the diamond qualifies as an DreamStone Ideal Cut. This means the diamond is cut to more precise proportions than the finest graded cuts currently available. As our most exclusive cut, this diamond reflects maximum brilliance and fire with an equally highest quality grade of polish and symmetry for ultimate sparkle and life. Truly our finest diamond cut. Learn more about the guidelines we use for the DreamStone Ideal Cut."
+    }
+]

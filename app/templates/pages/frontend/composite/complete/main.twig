@@ -1,0 +1,80 @@
+{% include "pages/frontend/_partials/affirm.twig" %}
+<div class="content u-relative-content">
+    <!-- BREAD CRUMBS -->
+    <div>{% include "pages/frontend/_partials/bread_crumbs.twig" %}</div>
+    <div class="u-clear"></div>
+    <!-- /BREAD CRUMBS -->
+    <div class="o-col-lg-6 o-col-sm-12 o-row">
+        {% set product = composite.product %}
+        {% set diamond = composite.diamond %}
+        {% include "pages/frontend/jewelry/details/main_slider.twig" %}
+    </div>
+    <div class="o-col-lg-6 o-col-sm-12 u-color-dark-gray mt-100 d-flex justify-content-center">
+        <p class="u-f18">
+            <div>{{ product.title }}</div>
+            {% for key, value in product.withAttributes %}
+                <div>{{ key ~ ': ' ~ value }}</div>
+            {% endfor %}
+            <div><p class="u-color-light-gray">SKU: {{ product.sku }}</p></div>
+            <div>{{ product.price | price }}</div>
+        </p>
+        <p class="u-f18">
+            <div>{{ diamond.title }}</div>
+            <div><p class="u-color-light-gray">SKU: {{ diamond.certificateNumber }}/{{ diamond.stockNumber }}</p></div>
+            <div>{{ diamond.price | price }}</div>
+        </p>
+        <div class="o-col-lg-12 o-row">
+            <p class="u-f18 u-color-blue u-text-upper u-text-none-underline u-mrg-0">FREE SHIPPING & 30 DAY RETURNS</p>
+            <p class="u-f18 u-color-light-gray">Order today, ships by
+                {% if user == false %}
+                    {% if product.shippingDetails.days == 0 %}
+                        <span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+                    {% else %}
+                        <span>{{ product.shippingDetails.shipsBy|date("l, F jS") }}</span>
+                    {% endif %}
+                {% else %}
+                    {% if product.shippingDetails.days == 0 %}
+                        {% if not user.city %}
+                            <span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+                            {#<span>{{ product.shippingDetails.shipsBy|date("l, F jS") }}</span>#}
+                        {% elseif user.city == 'New York' %}
+                            <span>{{ product.shippingDetails.shipsBy|date_modify("+5 day")|date("l, F jS") }}</span>
+                        {% elseif user.country == 'US' %} 
+                            <span>{{ product.shippingDetails.shipsBy|date_modify("+7 day")|date("l, F jS") }}</span>
+                        {% else %}
+                            <span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+                        {% endif %}
+                    {% else %}
+                        {{ product.shippingDetails.shipsBy|date("l, F jS") }}
+                    {% endif %}
+                 {% endif %}
+            </p>
+        </div>
+
+        <div class="o-col-lg-6 o-row">
+            <span class="c-btn c-light-btn product-price">Price: {{ (product.price + diamond.price) | price }}</span>
+        </div>
+        <div class="o-col-lg-6 o-row">{% include "pages/frontend/composite/complete/main_cart.twig" %}</div>
+        <div class="u-clear"></div>
+        <div class="o-col-lg-6 o-row u-tl print_invisible">
+            <ul class="t-product-action">
+                <li>{% include "pages/frontend/composite/complete/main_favorite.twig" %}</li>
+                <li><button class="t-product-action-icon t-product-action-print" onclick="window.print()"></button></li>
+            </ul>
+        </div>
+        <div class="u-clear"></div>
+        <div class="o-col-lg-12 o-row">
+            <div class="o-col-lg-6 o-row">
+                <p
+                class="affirm-as-low-as"
+                data-learnmore-show="true"
+                data-page-type="product"
+                data-amount="{{ 100 * (product.price + diamond.price) }}"
+            ></p>
+            </div>
+        </div>
+    </div>
+    <div class="u-clear"></div>
+</div>
+<script>
+</script>

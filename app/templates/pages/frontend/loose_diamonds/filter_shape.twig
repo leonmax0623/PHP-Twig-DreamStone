@@ -1,0 +1,129 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative hideblock">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            <div>
+                <p>Round</p>
+                <img src="/images/shape/round.jpg" alt="round">
+            </div>
+            <div>
+                <p>Princess</p>
+                <img src="/images/shape/princess.jpg" alt="princess">
+            </div>
+            <div>
+                <p>Emerald</p>
+                <img src="/images/shape/emerald.jpg" alt="emerald">
+            </div>
+            <div>
+                <p>Asscher</p>
+                <img src="/images/shape/asscher.jpg" alt="asscher">
+            </div>
+            <div>
+                <p>Marquise</p>
+                <img src="/images/shape/marquise.jpg" alt="marquise">
+            </div>
+            <div>
+                <p>Oval</p>
+                <img src="/images/shape/oval.jpg" alt="oval">
+            </div>
+            <div>
+                <p>Radiant</p>
+                <img src="/images/shape/radiant.jpg" alt="radiant">
+            </div>
+            <div>
+                <p>Pear</p>
+                <img src="/images/shape/pear.jpg" alt="pear">
+            </div>
+            <div>
+                <p>Heart</p>
+                <img src="/images/shape/heart.jpg" alt="heart">
+            </div>
+            <div>
+                <p>Cushion</p>
+                <img src="/images/shape/cushion.jpg" alt="cushion">
+            </div>
+            <a href="/education/diamond-education/diamond-shapes">learn more...</a>
+        </div>
+    </div>
+    
+    <p class="t-filter-label shape-mb open mr-10" onclick="toggleBlock(this, 'shapeFilter');">Shape</p>
+    {% if isBuilder %}
+        <span style="font-size: 18px; color: #9d9c9c; text-transform: initial;">Can be set with</span>
+    {% endif %}
+    <div class="u-clear"></div>
+    <ul id="shapeFilter" class="t-filter-list t-filter-shape_list show">
+        {% for shape in shapes %}
+            <li
+                id="{{ shape.code }}"
+                class="{{ shape.code in filter.shape_id ? 'active' : '' }}"
+                onclick="searchShape('{{ shape.code }}')"
+            >
+                <div class="flex-center">
+                    <a href="#" title="{{ shape.code }}" onclick="return false;">
+                        <img src="/content/diagram_loose_diamonds/Cut_{{shape.code}}.svg" alt="diamond shape">
+                    </a>
+                    <span>{{ shape.code }}</span>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    $(document).ready(function(){
+        var divShape = document.querySelector('.hideblock');
+        divShape && divShape.classList.remove('hideblock')
+    })
+
+    function searchShape(value) {
+        var allShapes = 'All shapes';
+        var param = UrlParams.get().shape_id;
+        $('#' + value).toggleClass('active');
+        if (!param) {
+            UrlParams.set({ shape_id: value }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        } else if (value === allShapes) {
+            UrlParams.set({ shape_id: param === value ? '' : value }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        } else {
+            var values = param.split(',');
+            ~values.indexOf(value) ? values.splice(values.indexOf(value), 1) : values.push(value);
+            ~values.indexOf(allShapes) && values.splice(values.indexOf(allShapes), 1);
+            UrlParams.set({ shape_id: values.join(',') }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        }
+    }
+</script>

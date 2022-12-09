@@ -1,0 +1,126 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative hideblock">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            <p>The "carat" refers to the weight of the diamond. The bigger the carat, the more money the diamond. There is no "good" or "bad" carat, it strictly has to do with budget. Some trade off quality to get a bigger rock, while others want the finest diamond and settle for a smaller carat weight.</p>
+            <a href="/education/diamond-education/diamond-carat">learn more...</a>
+        </div>        
+    </div>
+    
+    <p class="t-filter-label open"  onclick="toggleBlock(this, 'caratBlock');">Carat</p>
+    <div class="u-clear"></div>
+    <div id="caratBlock" class="t-carat-block show">
+        <div class="u-clear-20"></div>
+        <div id="steps-slider-carat"></div>
+          <div class="steps-slider-input">
+            <input type="text" id="input-with-keypress-2">
+            <input type="text" id="input-with-keypress-3">
+          </div>
+    </div>
+</div>
+
+<!-- nouislider -->
+<script>
+    $(document).ready(function(){
+        var divCarat = document.querySelector('.hideblock');
+        divCarat && divCarat.classList.remove('hideblock')
+    })
+
+    const handleChangeCarat = function(handle, value){
+        UrlParams.set({ [handle ? 'carat_max' : 'carat_min']:  value}, false);
+        const viewMode = UrlParams.get().v || 'g';
+        const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+        loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+            updateLinks();
+            refreshResultCounter(total);
+            if(total == 0) {
+                $('.results-message').html("<b>Please broaden your selection to view more diamond options</b>");
+            }
+            if(total > 0) {
+                $('.results-message').html("");
+            }
+        });
+    };
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const stepsSlider = document.getElementById('steps-slider-carat');
+    const input2 = document.getElementById('input-with-keypress-2');
+    const input3 = document.getElementById('input-with-keypress-3');
+    const inputs = [input2, input3];
+
+    const getVars = UrlParams.get();
+    const min = parseFloat({{ carat_min }});
+    const max = parseFloat({{ carat_max }});
+    const currentMin = getVars.carat_min && +getVars.carat_min > min ? +getVars.carat_min : min;
+    const currentMax = getVars.carat_max && +getVars.carat_max < max ? +getVars.carat_max : max;
+
+    noUiSlider.create(stepsSlider, {
+        start: [currentMin, currentMax],
+        connect: true,
+        range: {
+            'min': [min],
+            '20%': [1, 0.01],
+            '50%': [1.5, 0.05],
+            '65%': [3, 0.1],
+            '75%': [5, 0.5],
+            '85%': [10, 1],
+            'max': max
+        }
+    });
+
+    stepsSlider.noUiSlider.on('update', function (values, handle) {
+        inputs[handle].value = values[handle];
+    });
+
+    stepsSlider.noUiSlider.on('change', function (values, handle) {
+        inputs[handle].value = values[handle];
+        handleChangeCarat(handle, inputs[handle].value);
+    });
+
+    inputs.forEach(function (input, handle) {
+      input.addEventListener('change', function () {
+          stepsSlider.noUiSlider.setHandle(handle, this.value);
+      });
+
+      input.addEventListener('blur', function(e) {
+        let values = stepsSlider.noUiSlider.get();
+        let value = Number(values[handle]);
+
+        stepsSlider.noUiSlider.setHandle(handle, this.value);
+        handleChangeCarat(handle, this.value);
+      })
+
+      input.addEventListener('keydown', function (e) {
+        let values = stepsSlider.noUiSlider.get();
+        let value = Number(values[handle]);
+        let steps = stepsSlider.noUiSlider.steps();
+        let step = steps[handle];
+        let position;
+          switch (e.which) {
+              case 13:
+                  stepsSlider.noUiSlider.setHandle(handle, this.value);
+                  handleChangeCarat(handle, this.value);
+                  break;
+              case 38:
+                  position = step[1];
+                  if (position === false) {
+                      position = 1;
+                  }
+                  if (position !== null) {
+                      stepsSlider.noUiSlider.setHandle(handle, value + position);
+                  }
+                  break;
+              case 40:
+                  position = step[0];
+                  if (position === false) {
+                      position = 1;
+                  }
+                  if (position !== null) {
+                      stepsSlider.noUiSlider.setHandle(handle, value - position);
+                  }
+                  break;
+            }
+        });
+    });
+    });
+</script>

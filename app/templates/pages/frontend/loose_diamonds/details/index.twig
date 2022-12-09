@@ -1,0 +1,229 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+{{ product.title }}, {{ product.color.code }} Color, {{ product.clarity.code }} Clarity, {{ product.cut.code }} Cut,
+{{ product.lab }} Diamond Certification - ${{ product.price }} - #{{ product.certificateNumber }} DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+{{ product.title }}, {{ product.color.code }} Color Diamond, {{ product.clarity.code }} Clarity Diamond,
+{{ product.cut.code }} Cut Diamond, {{ product.lab }} Diamond Certification #{{ product.certificateNumber }},
+${{ product.price }} ID:{{ product._id }}
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+{{ product.title }}, {{ product.color.code }} Color Diamond, {{ product.clarity.code }} Clarity Diamond,
+{{ product.cut.code }} Cut Diamond, {{ product.lab }} Diamond Certification #{{ product.certificateNumber }},
+${{ product.price }} ID:{{ product._id }}
+{%- endblock -%}
+
+{%- block sharing_metas -%}
+<link rel="canonical" href="{{ product.permalink }}" />
+
+<meta property="article:published_time" content="{{ product.updated }}" />
+<meta property="article:modified_time" content="{{ product.updated }}" />
+
+<meta property="og:url" content="{{ product.permalink }}" />
+<meta property="og:site_name" content="Dream Stone">
+<meta property="og:image:width" content="968">
+<meta property="og:image:height" content="504">
+<meta property="og:image"
+    content="{% if product.imageExternal
+        and '.j' in product.imageExternal
+        or '.J' in product.imageExternal %}{{ product.imageExternal }}{% else %}{{ app.request.getSchemeAndHttpHost() }}/images/loose_diamonds/nm_{{product.shape.code}}.png{% endif %}">
+<meta itemprop="image"
+    content="{% if product.imageExternal
+        and '.j' in product.imageExternal
+        or '.J' in product.imageExternal %}{{ product.imageExternal }}{% else %}{{ app.request.getSchemeAndHttpHost() }}/images/loose_diamonds/nm_{{product.shape.code}}.png{% endif %}">
+<meta property="og:image:secure_url"
+    content="{% if product.imageExternal
+    and '.j' in product.imageExternal
+    or '.J' in product.imageExternal %}{{ product.imageExternal }}{% else %}{{ app.request.getSchemeAndHttpHost() }}/images/loose_diamonds/nm_{{product.shape.code}}.png{% endif %}" />
+<meta property="og:title" content="{{ product.title }}, {{ product.color.code }} Color, {{ product.clarity.code }} Clarity, {{ product.cut.code }} Cut,
+{{ product.lab }} Diamond Certification - ${{ product.price }} - #{{ product.certificateNumber }} DreamStone" />
+<meta property="og:description" content="{{ product.title }}, {{ product.color.code }} Color Diamond, {{ product.clarity.code }} Clarity Diamond,
+{{ product.cut.code }} Cut Diamond, {{ product.lab }} Diamond Certification #{{ product.certificateNumber }},
+${{ product.price }} ID:{{ product._id }}" />
+<meta property="og:type" content="article" />
+<meta property="og:updated_time" content="{{ product.updated }}" />
+
+<meta name="twitter:url" content="{{ product.permalink }}">
+<meta name="twitter:title" content="{{ product.title }}, {{ product.color.code }} Color, {{ product.clarity.code }} Clarity, {{ product.cut.code }} Cut,
+{{ product.lab }} Diamond Certification - ${{ product.price }} - #{{ product.certificateNumber }} DreamStone">
+<meta name="twitter:description" content="{{ product.title }}, {{ product.color.code }} Color Diamond, {{ product.clarity.code }} Clarity Diamond,
+{{ product.cut.code }} Cut Diamond, {{ product.lab }} Diamond Certification #{{ product.certificateNumber }},
+${{ product.price }} ID:{{ product._id }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image"
+    content="{% if product.imageExternal
+    and '.j' in product.imageExternal
+    or '.J' in product.imageExternal %}{{ product.imageExternal }}{% else %}{{ app.request.getSchemeAndHttpHost() }}/images/loose_diamonds/nm_{{product.shape.code}}.png{% endif %}" />
+
+<meta name="dcterms.title" content="{{ product.title }}, {{ product.color.code }} Color, {{ product.clarity.code }} Clarity, {{ product.cut.code }} Cut,
+{{ product.lab }} Diamond Certification - ${{ product.price }} - #{{ product.certificateNumber }} DreamStone" />
+<meta name="dcterms.creator" content="Dream Stone" />
+<meta name="dcterms.description" content="{{ product.title }}, {{ product.color.code }} Color Diamond, {{ product.clarity.code }} Clarity Diamond,
+{{ product.cut.code }} Cut Diamond, {{ product.lab }} Diamond Certification #{{ product.certificateNumber }},
+${{ product.price }} ID:{{ product._id }}" />
+<meta name="dcterms.date" content="{{ product.updated }}" />
+<meta name="dcterms.type" content="Text" />
+<meta name="dcterms.format" content="text/html" />
+<meta name="dcterms.identifier" content="{{ product.permalink }}" />
+
+{# <meta property="fb:app_id" content="{{ meta.fb_app_id }}" /> #}
+
+{%- endblock -%}
+
+{% block content %}
+<script>
+    // window.product = JSON.parse($('<div>').html('{{ productJson }}')[0].textContent);
+    window.product = JSON.parse($('<div>').html("{{ productJson }}".replace(/\u0022/g, "'"))[0].textContent);
+
+    $(document).ready(function () {
+        $('.t-discover-more').click(function () {
+            $('#discover_more_block').toggle('slow');
+            $(this).toggleClass('t-open');
+        });
+    });
+</script>
+<script src="{{ app.request.getSchemeAndHttpHost() }}/js/modernizr.custom.js"></script>
+
+{%  include "pages/frontend/loose_diamonds/details/main.twig" %}
+<div id="discover_more_block" class="t-product-details-block u-bg-light-gray">
+    <div class="content-md">
+        <h6 class="u-f24 u-color-dark-gray u-tc">Product Details</h6>
+        <div class="u-clear"></div>
+        <div class="o-col-lg-5 o-col-md-6 o-col-sm-12">
+            <label>Diamond Information</label>
+            <table class="c-details-table">
+                <tr>
+                    <td>Shape</td>
+                    <td>{{ product.shape.code }}</td>
+                </tr>
+                <tr>
+                    <td>Carats</td>
+                    <td>{{ product.weight }} carats</td>
+                </tr>
+                <tr>
+                    <td>Cut</td>
+                    <td>{{ product.cut.code }}</td>
+                </tr>
+                {% if product.color %}
+                <tr>
+                    <td>Color</td>
+                    <td>{{ product.color.code }}</td>
+                </tr>
+                {% endif %}
+                {% if product.clarity %}
+                <tr>
+                    <td>Clarity</td>
+                    <td>{{ product.clarity.code }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td>Stock Number</td>
+                    <td>{{ product.stockNumber }}</td>
+                </tr>
+            </table>
+            <label>Shipping Information</label>
+            <table class="c-details-table">
+                <tr>
+                    <td>Order By</td>
+                    <td>3PM EST Today</td>
+                </tr>
+                <tr>
+                    <td>Ships By</td>
+                    <td>
+                        {% if user == false %}
+                        {{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}
+                        {% else %}
+                        {% if not user.city %}
+                        {{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}
+                        {% elseif user.city == 'New York' %}
+                        {{ product.shippingDetails.shipsBy|date_modify("+5 day")|date("l, F jS") }}
+                        {% elseif user.country == 'US' %}
+                        {{ product.shippingDetails.shipsBy|date_modify("+7 day")|date("l, F jS") }}
+                        {% else %}
+                        {{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}
+                        {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="o-col-lg-5 o-col-md-6 o-col-sm-12 u-fr">
+            <label>Additional Diamond Information</label>
+            <table class="c-details-table">
+                <tr>
+                    <td>Depth %</td>
+                    <td>{{ product.depth }}%</td>
+                </tr>
+                <tr>
+                    <td>Table %</td>
+                    <td>{{ product.table }}%</td>
+                </tr>
+                {% if product.symmetry %}
+                <tr>
+                    <td>Symmetry</td>
+                    <td>{{ product.symmetry.code }}</td>
+                </tr>
+                {% endif %}
+                {% if product.polish %}
+                <tr>
+                    <td>Polish</td>
+                    <td>{{ product.polish.code }}</td>
+                </tr>
+                {% endif %}
+                {% if product.culet %}
+                <tr>
+                    <td>Culet</td>
+                    <td>{{ product.culet.code }}</td>
+                </tr>
+                {% endif %}
+                {% if product.flourence %}
+                <tr>
+                    <td>Fluorescence</td>
+                    <td>{{ product.flourence.code }}</td>
+                </tr>
+                {% endif %}
+                {% if product.measurements %}
+                <tr>
+                    <td>Measurement</td>
+                    <td>{{ product.measurements }}</td>
+                </tr>
+                {% endif %}
+                {% if product.ratio %}
+                <tr>
+                    <td>Ratio</td>
+                    <td>{{ product.ratio }}</td>
+                </tr>
+                {% endif %}
+                {% if showCerts %}
+                <tr>
+                    <td>Report Number</td>
+                    <td>{{ product.certificateNumber }}</td>
+                </tr>
+                {% endif %}
+                {% if product.dna %}
+                <tr>
+                    <td><a href="{{ product.dna }}" target="_blank">DNA</a></td>
+                    <td></td>
+                </tr>
+                {% endif %}
+            </table>
+        </div>
+    </div>
+    <div class="u-clear"></div>
+</div>
+<div class="u-clear-30"></div>
+<!-- /DIAMOND DETAIOLS -->
+{% if product.weight %}{% include "pages/frontend/loose_diamonds/details/size.twig" %}{% endif %}
+{% if product.cut %}{% include "pages/frontend/loose_diamonds/details/cut.twig" %}{% endif %}
+{% if product.color %}{% include "pages/frontend/loose_diamonds/details/color.twig" %}{% endif %}
+{% if product.clarity %}{% include "pages/frontend/loose_diamonds/details/clarity.twig" %}{% endif %}
+{% include "pages/frontend/loose_diamonds/details/shipping.twig" %}
+{% include "pages/frontend/loose_diamonds/details/financing.twig" %}
+{% include "pages/frontend/loose_diamonds/details/viewed.twig" %}
+{% if similar %}{% include "pages/frontend/loose_diamonds/details/similar.twig" %}{% endif %}
+
+{% endblock %}

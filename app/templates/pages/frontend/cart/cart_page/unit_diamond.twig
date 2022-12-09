@@ -1,0 +1,58 @@
+{% set title = 'Brilliant Diamond' %} {#0.4 CARAT - ROUND BRILLIANT DIAMOND#}
+{% set sku = product.certificateNumber ~ '/' ~ product.stockNumber %}
+{% if product.shape %}
+    {% set title = product.shape.code ~ ' ' ~ title %}
+{% endif %}
+{% if product.weight %}
+    {% set title = product.weight ~ ' Carat - ' ~ title %}
+{% endif %}
+
+<ul class="t-table-list unit-cart-list">
+    <li>
+        <div class="cart-image-block">
+            {% if '.j' in product.imageExternal %}
+                <img src="{{ product.imageExternal }}" alt="Brilliant Diamond" />
+            {% elseif '.J' in product.imageExternal %}  
+                <img src="{{ product.imageExternal }}" alt="Brilliant Diamond" />
+            {% elseif 'http' in product.imageExternal %}
+                <img src="/images/loose_diamonds/nm_{{ product.shape.code }}.png" border="0" alt="Brilliant Diamond">
+            {% elseif product.imageExternal %}
+                <img src="{{ product.imageExternal }}" alt="Brilliant Diamond" />
+            {% else %}
+                <img src="/images/loose_diamonds/nm_{{ product.shape.code }}.png" border="0" alt="Brilliant Diamond">
+            {% endif %}
+        </div>
+    </li>
+    <li>
+        <div class="cart-list-block-title">
+           <a href="{{ path_for('looseDiamonds-Details', {'diamond': product.certificateNumber ~ '_' ~ product.stockNumber}) }}">
+             <span>{{ title }}</span>
+            </a>
+        </div>
+        <div class="cart-list-block-sku">
+            <div class="cart-name-value"><div class="name">SKU: </div><div class="value">{{product.certificateNumber}}/{{product.stockNumber}}</div></div>
+                {% for key, value in product.withAttributes %}<div class="cart-name-value">
+                                                                <div class="name">{{ key }}: </div>
+                                                                <div class="value">{{ value }}</div>
+                                                               </div>{% endfor %}
+        </div>
+        <div class="cart-list-block-price">
+            <b class="u-color-blue">{{ product.priceInternal | price }}</b>
+        </div>
+        <div class="cart-list-block-del">
+            <span><button id="del_diamond{{ index }}" class="t-table-view-icon t-table-delete-icon"></button></span>
+        </div>
+    </li>
+</ul>
+<script>
+$(document).ready(function(){
+  $('#del_diamond{{ index }}').click(function(){
+    $.ajax({
+      type: 'DELETE',
+      url: '/cart',
+      data: { product_id: '{{ product._id }}', group: 'diamonds' },
+      success: function(){ location.reload(); }
+    });
+  });
+});
+</script>

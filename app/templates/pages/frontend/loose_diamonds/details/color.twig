@@ -1,0 +1,70 @@
+{% set colors = ['Z-N', 'M-K', 'J', 'I', 'H', 'G', 'F', 'E', 'D'] %}
+{% set colorValues = {
+    'M' : 'M-K',
+    'L' : 'M-K',
+    'K' : 'M-K',
+    'J' : 'J',
+    'I' : 'I',
+    'H' : 'H',
+    'G' : 'G',
+    'F' : 'F',
+    'E' : 'E',
+    'D' : 'D'
+ } %}
+
+<div class="diamond-color-block">
+    <h6 id="diamond-color-learn" class="t-learn-more u-f24 u-color-black u-tc">
+        Color <span class="u-color-blue">{{ product.color.code }}</span>
+    </h6>
+    <div id="diamond-color-info" class="content-md s-sm-invisible u-tc">
+        <div class="u-clear-20"></div>
+        <p class="u-tl">Color refers to the natural body color of a diamond. The color grade, a measure of a stone's colorlessness determines how much tint of yellow it has. The color scale ranges from absolutely colorless (D color) to light yellow (L color). In general, the less color a diamond has the more money it is, all other factors being equal.</p>
+        <div class="u-clear"></div>
+        <div class="t-diamond-color-scale">
+            <!-- if list "t-cut-scale" has active ZN/MK/J/I you should add here class "u-fr" -->
+            {% for color in colors %}
+                {% if colorValues[product.color.code] == color %}
+                    <div class="o-col-lg-6 u-tc {% if colorValues[product.color.code] in ['M-K', 'M', 'L', 'K', 'J', 'I'] %} u-fr{% endif %}">
+                        <img src="../../images/diamond_color_big_{{color}}.png" alt="diamond_color">
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% if product.color.desc %}
+                <!-- according to "t-color-scale" list's active element you should add appropriate class to div below -->
+                {% if product.color.code == 'K' or product.color.code == 'L' %}
+                    <div class="c-tooltip c-tooltip-top t-color-mk">
+                        <p>{{ product.color.desc }}</p>
+                    </div>
+                {% else %}
+                    <div class="c-tooltip c-tooltip-top t-color-{{ product.color.code|lower }}">
+                        <p>{{ product.color.desc }}</p>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="u-clear"></div>
+        <ul class="t-scale t-color-scale">
+            {% for color in colors %}
+                <li>
+                    <span {% if colorValues[product.color.code] == color %} class="active"{% endif %}>{{ color }}</span>
+                    <div class="holder-color"><img class="t-color-scale-image" src="../../images/diamond_color_{{color}}.png" alt="diamond_color"></div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="u-clear"></div>
+        <div class="color-scale-block"></div>
+        <!-- <img class="t-color-scale-image" src="../../images/diamond_color_scale-line.png" alt="diamond_color"> -->
+        <div class="u-clear-10"></div>
+        <a href="/education/diamond-education/4cs/color" class="c-learn-more">Learn more </a>
+        <div class="u-clear"></div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#diamond-color-learn").on("click", function(e) {
+            $('#diamond-color-info').toggle("slow");
+            $(this).toggleClass('t-open');
+        });
+    });
+</script>

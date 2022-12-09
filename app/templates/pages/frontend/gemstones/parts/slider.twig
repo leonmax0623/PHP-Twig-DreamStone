@@ -1,0 +1,67 @@
+<div class="content">
+    <div class="u-clear-20"></div>
+    <h6 class="u-color-dark-gray u-tc u-f28">Gemstone</h6>
+    <div class="clear"></div>
+    <!-- main product slider -->
+    <div id="slider" class="cut-diamond-slider">
+        <nav id="gemst_color">
+            {% for gemstonecolor in gemstonecolors %}
+                <a class="tablinks" href="javascript:void(0)" onclick="openCut(event, 'color-{{gemstonecolor.code | lower}}')"><div><img src="images/gemstone/{{gemstonecolor.code | lower}}.png"><span>{{ gemstonecolor.title }}</span></div></a>
+            {% endfor %}
+        </nav>
+        <!-- main slides -->
+        <ul id="gemstone_color_desc" class="c-product-slider">
+            {% for gemstonecolor in gemstonecolors %}
+                <li id="color-{{gemstonecolor.code | lower}}" class="tabcontent">
+                    <div class="c-slide-img">
+                        <img src="/images/gemstone/{{ gemstonecolor.code | lower }}.png" alt="gemstonecolor" >
+                    </div>
+                    <div class="c-slide-content">
+                        <h6>{{ gemstonecolor.title }}</h6>
+                        <p>{{ gemstonecolor.desc }}</p>
+                    </div>
+                    <div class="u-clear"></div>
+                    <a href="#" class="c-learn-more">Search gemstone</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <!-- preview slides -->
+    </div>
+    <div class="u-clear-10"></div>
+    <div id="gemstone_shapes" class="o-col-lg-12 o-row t-propositions-carousel">
+        {% for gemstoneshape in gemstoneshapes %}
+            <a href="#" title="{{ gemstoneshape.code }}">
+                <div class="u-tc t-similar-items">
+                    <div class="t-ring-icon-block_gemstone">
+                        {{gemstoneshape.image | raw }}
+                    </div>
+                    <p class="u-f20 u-color-dark-gray u-text-upper">{{ gemstoneshape.code }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+    <div class="u-clear"></div>
+    <!-- main product slider -->
+</div>
+
+<script>
+  function openCut(evt, cutName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cutName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
+</script>

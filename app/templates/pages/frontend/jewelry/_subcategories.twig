@@ -1,0 +1,13 @@
+<div style="opacity: 0; display: none;" class="t_jewelry_list_block"  id="jewelry_type" >
+    {% for category in subcategories %}
+        <div class="t_jewelry_slider_block">
+            <div class="t_jewelry_img">
+                <img src=/img.php?src={{ category.images[0] |replace({ ('/content/'): '' })}}&w=230 alt="jewelry" />
+            </div>
+            <h5>{{ category.title }}</h5>
+            <p>{{ category.description }}</p>
+            <a class="t_jewelry_read_more" href="{{ path_for('jewelry-Search', {'filter': category.url}) }}" >Read more</a>
+        </div>
+    {% endfor %}
+</div>
+<div class="u-clear"></div>

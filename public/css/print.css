@@ -1,0 +1,89 @@
+@media print {
+    /* header, */
+    /* .c-header_main, */
+    .t-header-fix,
+    .c-search-form,
+    .c-top-icon,
+    .c-top,
+    .t-login,
+    .t-work-hour-icon,
+    .c-main-nav,
+    .t-icons-list,
+    .c-bread-crumbs-block,
+    .t-discover-more,
+    .t-shipping-img,
+    .recently_viewed_block,
+    .t-similar-block,
+    .t-product-action,
+    .c-dark-btn,
+    .t-examitation-img,
+    .c-learn-more,
+    footer,
+    .affirm-as-low-as,
+    .cbp-contentslider nav,
+    .t-return-to-search,
+    .t-flexible-block,
+    .diamond-size-block,
+    .diamond-cut-block,
+    .diamond-color-block,
+    .diamond-clarity-block,
+    .book-an-appointment,
+    .t-shipping-details-block,
+    .t-comments,
+    .add-to-cart,
+    .t-thumbnail-composite,
+
+    .c-filter-block,
+    .t-filter-btn-block,
+    #clear-filters,
+    .t-results-btn-view,
+    .results-btn-viewed,
+    .results-btn-comparison,
+    .s-md-invisible,
+    .select-block,
+    .t-resalt-table-head,
+    /* .t-resalt-table-body, */
+    .holder-btn-list,
+    .diamond-slider-holder,
+    .jewelry-slider-holder,
+    .jewelry-slider-nav,
+    .print_invisible,
+    .t-totop-btn,
+
+    .intercom-launcher
+    {display: none !important;}
+    .c-header_main{height: 60px; padding-bottom:30px;}
+    .logo,
+    /* .t-table-view-details-block, */
+    /* .t-product-details-block{display: block!important;} */
+    /* .t-shipping-data{width: 100%!important;} */
+    .t-product-details-block{padding: 5px 20px;}
+    .cbp-contentslider{margin: 0;height: 350px; padding-top: 50px;}
+    .detail-diamond-info {padding-top: 50px;}
+    .diamonds-list-item {width: 100%;}
+    .diamond-list{border: none;}
+    .holder-diamonds-list{border-top: 1px solid #dadada;}
+    .mt-100{margin-top: 100px;}
+    body {
+        height: auto;
+    }
+    .cbp-contentslider, .detail-diamond-info{
+        /* padding-bottom: 20px; */
+    }
+    .cbp-contentslider, .detail-diamond-info{
+        padding-top: 30px;
+    }
+    .c-header_main-fix {
+        position: static;
+    }
+
+    /* #flexible_options.owl-carousel {padding: 10px 20px;} */
+    /* .u-clear-30{height: 10px;} */
+    /* .c-header_main-fix {position: absolute;} */
+    /* .c-header_main{position: absolute;top:0;left: 0;} */
+    /*
+    .t-shipping-details-block h6{text-align: center;}
+    */
+    /* .yotpo{display: none!important;} */
+    /* .u-color-dark-gray .u-text-upper.u-f20{margin-top: 10px;} */
+}

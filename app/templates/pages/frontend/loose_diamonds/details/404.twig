@@ -1,0 +1,39 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Loose Diamonds | Ideal Cut Diamonds | Certified Diamonds | Diamond Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Shop diamond engagement rings, diamond stud earrings, diamond pendants, GIA diamonds online at dreamstone.com. DreamStone's comprehensive interactive education center will guide you through everything you need to know about diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Loose Diamonds, Ideal Cut Diamonds, Certified Diamonds, Princess Cut Diamond, Round Diamond, Diamond Engagement Rings, Diamond Stud Earrings, Solitaire Diamond Pendant, diamond education, designer engagement rings, unique engagement rings.
+{%- endblock -%}
+
+{% block content %}
+     <script>
+    $(document).ready(function(){
+        $(".t-discover-more").on( "click", function(e) {
+            $('#discover_more_block').toggle("slow");
+            $(this).toggleClass('t-open');
+        });
+    });
+    </script>
+    <script src="{{ app.request.getSchemeAndHttpHost() }}/js/modernizr.custom.js"></script>
+    <div style="min-height: 300px; font-size: 48px; display: flex; align-items: center; justify-content: center">{{ text }}</div>
+    {% if diamond %}
+    <div class="diamond-undefined">
+        <div><p>Diamond shape: {{ diamond.shape.code }}</p></div>
+        <div><p>Diamond color: {{ diamond.color.code }}</p></div>
+        <div><p>Diamond clarity: {{ diamond.clarity.code }}</p></div>
+        <div><p>Carat: {{ diamond.weight }}</p></div>
+        <div><button><a href="/loose-diamonds/search?shape_id={{ diamond.shape.code
+        }}&carat_min={{ diamond.weight - 0.2 }}&carat_max={{ diamond.weight + 0.2
+        }}&color_id={{ colors | url_encode
+        }}&clarity_id={{ clarities | url_encode
+        }}&v=g">Find similar diamonds</a></button></div>
+    </div>
+    {% endif %}
+{% endblock %}

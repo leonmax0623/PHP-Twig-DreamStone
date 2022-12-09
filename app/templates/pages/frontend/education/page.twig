@@ -1,0 +1,71 @@
+{% set content = '' %}
+{% set title = '' %}
+{% set description = '' %}
+{% set keywords = '' %}
+
+{% for item in education %}
+    {% if item.url == filter.first %}
+        {% set content = item.content %}
+        {% set title = item.title %}
+        {% set description = item.description %}
+        {% set keywords = item.keywords %}
+
+        {% if filter.second %}
+            {% for child in item.children %}
+                {% if child.url == filter.second %}
+                    {% set content = child.content %}
+
+                    {% if filter.third %}
+                        {% for grandchild in child.children %}
+                            {% if grandchild.url == filter.third %}
+                                {% set content = grandchild.content %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+    {% endif %}
+{% endfor %}
+
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+{% if title %}{{ title }}{% else %}Diamond Education{% endif %}
+{%- endblock -%}
+
+{%- block meta_description -%}
+    {% if description %}{{ description }}{% else %}Diamond Education,diamond guide, diamond education, diamond cut, diamond color, diamond clarity, diamond carat weight, learn about diamonds, diamond buyers guide, diamond buying guide,DreamStone{% endif %}
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    {% if keywords %}{{ keywords }}{% else %}diamond guide, diamond education, diamond cut, diamond color, diamond clarity, diamond carat weight, learn about diamonds, diamond buyers guide, diamond buying guide,DreamStone{% endif %}
+{%- endblock -%}
+
+{% block content %}
+<script>
+  const filter = {
+    'first': '{{ filter.first }}',
+    'second': '{{ filter.second }}',
+    'third': '{{ filter.third }}',
+  };
+</script>
+
+    <!-- EDUCATION  CATEGORY -->
+    <div class="content">
+        {% include "pages/frontend/education/educaton_page_navigation.twig" %}
+        {% include "pages/frontend/education/educaton_navigation_second_level.twig" %}
+    </div>
+    <!-- /EDUCATION  CATEGORY -->
+    <!-- EDUCATION CONTENT -->
+    <div class="content-md education-pages">
+        <div class="o-col-lg-12">
+        {%  include "pages/frontend/education/education_navigation_third_level.twig" %}
+        <div class="u-clear"></div>
+            {{ content | raw }}
+    </div>
+    <div class="u-clear"></div>
+    <!-- /EDUCATION CONTENT -->
+{% endblock %}

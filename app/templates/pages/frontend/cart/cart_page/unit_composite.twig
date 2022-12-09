@@ -1,0 +1,74 @@
+{% set mainImage = '/images/jewelry/default.png' %}
+{% set break = false %}
+{% for image in product.product.images if not break %}
+    {% if image.type == 'img' %}
+        {% set mainImage = '/img.php?src=' ~ image.value|replace({ ('/content/'): '' }) ~ '&w=310' %}
+        {% set break = true %}
+    {% endif %}
+{% endfor %}
+<ul class="t-table-list unit-cart-list">
+    <li>
+        <!-- <div class=""> -->
+          <div class="cart-image-block">
+            <img src="{{ mainImage }}" style="margin-bottom:10px" alt="loose_diamonds">
+          </div>
+            <div class="cart-image-block">
+              <img src='/images/loose_diamonds/nm_{{ product.diamond.shape.code }}.png' id="d{{ product.diamond.certificateNumber }}" alt="loose_diamonds">
+            </div>
+        <!-- </div> -->
+    </li>
+    <li>
+      <div class="cart-list-block-title">
+        <p><a href="{{ product.product.permalink }}">{{ product.product.title }}</a></p>
+            {% for key, value in product.product.withAttributes %}<p>{{ key }}: {{ value }}</p>
+            {% endfor %}
+        <p>{{ product.product.price | price }}</p>
+
+        <p><a href="{{ product.diamond.permalink }}">{{ product.diamond.title }}</a></p>
+        <p>{{ product.diamond.price | price }}</p>
+      </div>
+      <div class="cart-list-block-sku">
+        <div class="cart-name-value">
+          <div class="name">SKU: </div>
+          <div class="value">{{ product.product.sku }}</div>
+        </div>
+        <div class="cart-name-value">
+          <div class="name">SKU: </div>
+          <div class="value">{{product.diamond.certificateNumber}}/{{ product.diamond.stockNumber }}</div>
+        </div>
+      </div>
+      <div class="cart-list-block-price">
+        <b class="u-color-blue">{{ product.price | price }}</b>
+      </div>
+      <div class="cart-list-block-del">
+        <span><button id="del_composite{{ index }}" class="t-table-view-icon t-table-delete-icon"></button></span>
+      </div>
+    </li>
+</ul>
+<script>
+{% if product.diamond.imageExternal %}
+let mainImage = new Image();
+let $el = $('#d{{ product.diamond.certificateNumber }}');
+mainImage.src = '{{ product.diamond.imageExternal }}';
+mainImage.onload = function(){ $el.attr('src', mainImage.src); };
+mainImage.onerror = function(){ $el.attr('src', '/images/loose_diamonds/nm_{{ product.diamond.shape.code }}.png'); };
+{% endif %}
+
+$('#del_composite{{ index }}').click(function(){
+  var withAttributes = {
+    {% for key, value in product.product.withAttributes %}'{{ key }}': '{{ value }}',{% endfor %}
+  };
+  $.ajax({
+    type: 'DELETE',
+    url: '/cart',
+    data: {
+      group: 'composite',
+      composite: {
+        product: { _id: '{{ product.product._id }}', withAttributes: withAttributes },
+        diamond: { _id: '{{ product.diamond._id }}' },
+      },
+    },
+    success: function(){ location.reload(); }
+  });
+});
+</script>

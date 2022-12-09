@@ -1,0 +1,18 @@
+[
+    {
+        "code": "classic",
+        "desc": "Classic wedding rings are the perfect choice for newly engaged couples in the market for traditional, timeless rings."
+    },
+    {
+        "code": "carved",
+        "desc": "Men's carved wedding rings are a popular choice for men who prefer a twist on the classic wedding ring and would like a unique piece."
+    },
+    {
+        "code": "diamond",
+        "desc": "Men's diamond wedding rings are suitable for men who want something less traditional and a bit flashier."
+    },
+    {
+        "code": "alternative",
+        "desc": "Alternative metals include cobaltchrome™, titanium, black titanium and ceramic. Rings made from alternative metals have a contemporary look and feel."
+    }
+]

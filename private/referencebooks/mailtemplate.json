@@ -1,0 +1,102 @@
+[
+  {
+    "type": "user_order_status_changed",
+    "subject": "Your order status has been changed",
+    "body": "\n<br />Hello, %userFirstname%!\n<br />The status of your order (<a href=\"%orderLink%\">#%orderNumber%</a>) has been changed from '%oldStatus%' to the '%newStatus%'.\n"
+  },
+  {
+    "type": "order_created_diamonds",
+    "subject": "diamonds",
+    "body": "\n<br /><b>%shapeCode% Cut Diamond</b>\n<br />Sku: %diamondSku%\n<br />Price: $%diamondPrice%\n<br />Carat: %shapeCarat%\n<br />Lab: %lab%\n<br />Color: %color%\n<br />Clarity: %clarity%"
+  },
+  {
+    "type": "order_created_products",
+    "subject": "products",
+    "body": "\n<br /><b>Category: %productCategoryTitle%</b>\n<br />Title: %productTitle%\n<br />Sku: %productSku%\n<br />Price: $%productPrice%\n<br />Description: %productDesc%\n<br />Attributes: %productwithAttributes%\n<br />"
+  },
+  {
+    "type": "order_created_composites",
+    "subject": "composites",
+    "body": "\n<br />Your Creation:\n<br /><b>Diamond: %shapeCode% Cut Diamond</b>\n<br />Sku: %diamondSku%\n<br />Price: $%diamondPrice%\n<br />Carat: %shapeCarat%\n<br />Lab: %lab%\n<br />Color: %color%\n<br />Clarity: %clarity%\n<br />Product: %productCategoryTitle%\n<br />Title: %productTitle%\n<br />Sku: %productSku%\n<br />Price: $%productPrice%\n<br />Description: %productDesc%\n<br />Attributes: %productwithAttributes%\n<br />"
+  },
+  {
+    "type": "admin_order_created",
+    "subject": "The order has been created",
+    "body": "\n<br />Hello!\n<br />Customer name: %userFirstname% %userLastname%\n<br />Shipping address: %orderAddress%, %orderCity%, %orderState%, %orderZip%, %corderCountry%\n<br />Email: %orderEmail%\n<br />Phone: %orderPhoneNumber%\n<br />The order (<a href=\"%orderLink%\">#%orderNumber%</a>) by %userFirstname% has been created.\n<br />Details: %diamonds%<br />%products%<br />%composites%<br />Coupon: %coupon%\n<br />Bank Discount: %bankDiscount%\n<br />Payment Method: %paymentMethod%\n<br />Total: $%amount%\n<br />Tax: %tax%\n<br />"
+  },
+  {
+    "type": "user_order_created",
+    "subject": "We got your DreamStone order!",
+    "body": "\n<br />Hello %userFirstname%, we love what you chose!\n<br /><br />Here are your order details:\n<br />Customer name: %userFirstname% %userLastname%\n<br />Shipping address: %orderAddress%, %orderCity%, %orderState%, %orderZip%, %corderCountry%\n<br />Email: %orderEmail%\n<br />Phone: %orderPhoneNumber%\n<br /><br />Order: %diamonds%<br />%products%<br /> %composites%<br />Coupon: %coupon%\n<br />Bank Discount: %bankDiscount%\n<br />Payment Method: %paymentMethod%\n<br />Total: $%amount%\n<br />Tax: %tax%\n<br />You can view the status of your order anytime by logging into <a href=\"%orderLink%\">your account</a>.\n<br /><br />When will my item arrive?\n<br /><br />At DreamStone we hand make everything from start to finish right in our own facilities in NYC. This process typically takes 2-3 weeks. If you need it sooner , just let us know and we will try to work with your timeline.\n<br /><br />Should you need any assistance, one of our representatives are can be reached at 800-818-8386 or you can email us anytime at <a href=\"mailto:service@dreamstone.com\">service@dreamstone.com</a>\n<br /><br />Questions? Contact us at 800-818-8386 or you can email us anytime at <a href=\"mailto:service@dreamstone.com\">service@dreamstone.com</a>\n<br />"
+  },
+  {
+    "type": "admin_user_registered",
+    "subject": "New account has been registered",
+    "body": "\n<br />Hello!\n<br />New account has been registered:\n<br />E-mail: %userEmail%;\n<br />First name: %userFirstname%;\n<br />Last name: %userLastname%.\n<br />"
+  },
+  {
+    "type": "user_registered",
+    "subject": "Welcome to DreamStone!",
+    "body": "\n<br />Hello!\n<br />Welcome to DreamStone!\n<br /><br />Hello %userFirstname%, welcome to the DreamStone family.\n<br />You can <a href=\"%uri%\">login</a> to view your saved shopping cart, wishlist or compare items from any device.\n<br /><br />WHY DREAMSTONE?\n<br /><br />Free Shipping\n<br />30 Returns\n<br />Flexible Financing\n<br />Free Insurance Appraisal\n<br />24 Hour Service\n<br />Expert Jewelers & Gemologists\n<br />Custom Work Available\n<br />Competitive Pricing\n<br />Made in NYC\n<br />Lifetime Warranty*\n<br />Lifetime Upgrade*\n<br /><br />Shop:\n<br /><br /><a href=\"%diamondHref%\">Diamonds</a> | <a href=\"%ringsHref%\">Engagement Rings</a>\n<br /><br />Questions? Contact us at 800-818-8386 or you can email us anytime at <a href=\"mailto:service@dreamstone.com\">service@dreamstone.com</a>\n<br /><br /><a href=\"%contactHref%\">Contact Us</a> | <a href=\"%myAccountHref%\">My Account</a> | <a href=\"%policyHref%\">Privacy Policy</a>\n<br /><br />15 West 47 Street, suite 803, NY, NY 10036\n<br />"
+  },
+  {
+    "type": "diamond_book_form",
+    "subject": "Diamond Book Form",
+    "body": "\n<br />We look forward to seeing you! Your appointment request details are below:\n<br />%location%<br />Name: %name%\n<br /><br />Surname: %surname%\n<br /><br />Email: %email%\n<br /><br />Phone: %phoneCode%-%phoneNumber%\n<br /><br />Date: %calendar% at %hour%: %minutes% %twentyFourHours%\n<br /><br />Additional request: %text%\n<br /><br />Booking for: <a href=\"%pageFrom%\">%pageFrom%</a><br /><br />What are the next steps?<br /><br />One of our representatives will contact you to confirm your appointment date and time. We'll also call you to discuss any additional options to make sure we're prepared with the right items so that you're productive in your meeting with us."
+  },
+  {
+    "type": "diamond_match_form",
+    "subject": "Diamond Match Form",
+    "body": "\n<br />We received your price match request below:\n<br />\n<br />Name: %name%\n<br />Email: %email%\n<br />Text: %text%\n<br />Page from: <a href=\"%pageFromMatch%\">%pageFromMatch%</a>\n<br />\n<br />One of our gemologists will review your request and will contact you through email to let you know if we can price match or beat the price in the source you provided above. Please note that price matches are for GIA or IGI certified diamonds only. The diamond must be displayed as in-stock and available for sale at a competitor's website. The diamond must be the exact same diamond with the same certificate number. If the diamond has sold or we are unable to price match, we'll send you alternative options for you to review.\n<br />\n<br />Feel free to reach out to us at anytime at <a href=\"mailto:service@dreamstone.com\">service@dreamstone.com</a> with any additional questions.\n<br />\n<br /><a href=\"https://dreamstone.com\">DreamStone</a> | <a href=\"https://www.dreamstone.com/loose-diamonds/search?v=g&carat_min=1.00&color_id=J%2CI%2CH%2CG%2CF%2CE%2CD&clarity_id=SI1%2CVS2%2CVS1%2CVVS2%2CVVS1%2CIF%2CFL&cut_id=Excellent%2CDreamStone%20Ideal\">Diamond Search</a> | <a href=\"https://www.dreamstone.com/engagement-rings/search?builder=1&metal=White%20Gold%2014\">Engagement Rings</a>"
+  },
+  {
+    "type": "contact-us-form",
+    "subject": "Contact us form",
+    "body": "\n<br />Contact us form!\n<br />Name: %name%\n<br />Email: %email%\n<br />Phone: %phone%\n<br />Text: %text%\n<br />"
+  },
+  {
+    "type": "diamond_share_form",
+    "subject": "Diamond Share Form",
+    "body": "\n<br />Hey, check out what I found on DreamStone.com!\n<br />Recipient Email: %reEmail%\n<br />Name: %name%\n<br />Your Email: %userEmail%\n<br />Text: %text%\n<br />Page from: <a href=\"%pageFromShare%\">%pageFromShare%</a>"
+  },
+  {
+    "type": "diamond_mail_form",
+    "subject": "Diamond Mail Form",
+    "body": "\n<br />Let us know how we can help.\n<br />Name: %name%\n<br />Email: %userEmail%\n<br />Message: %text%\n<br />Page from: <a href=\"%pageFromMail%\">%pageFromMail%</a>"
+  },
+  {
+    "type": "diamond_sku_form",
+    "subject": "Diamond Sku Form",
+    "body": "\n<br />Request certificate\n<br />Name: %name%\n<br />Email: %userEmail%\n<br />Page from: <a href=\"%pageFromSku%\">%pageFromSku%</a>\n<br />Certificate url: <a href=\"%certificateURL%\">Certificate</a>"
+  },
+  {
+    "type": "diamond_request_image_form",
+    "subject": "Diamond Request image Form",
+    "body": "\n<br />Request image\n<br />Email: %userEmail%\n<br />Page from: <a href=\"%pageFrom%\">%pageFrom%</a>\n<br />"
+  },
+  {
+    "type": "diamond_request_image_to_user_form",
+    "subject": "Diamond Request image Form",
+    "body": "\n<br />We'll check if the actual image is available and email you back shortly.<br />"
+  },
+  {
+    "type": "subscription_form",
+    "subject": "DreamStone Email Signup",
+    "body": "\n<br />Hello!\n<br />Welcome to DreamStone!\n<br /><br />Hello %userFirstname%, welcome to the DreamStone family.\n<br />You can <a href=\"%uri%\">login</a> to view your saved shopping cart, wishlist or compare items from any device.\n<br /><br />WHY DREAMSTONE?\n<br /><br />Free Shipping\n<br />30 Returns\n<br />Flexible Financing\n<br />Free Insurance Appraisal\n<br />24 Hour Service\n<br />Expert Jewelers & Gemologists\n<br />Custom Work Available\n<br />Competitive Pricing\n<br />Made in NYC\n<br />Lifetime Warranty*\n<br />Lifetime Upgrade*\n<br /><br />Shop:\n<br /><br /><a href=\"%diamondHref%\">Diamonds</a> | <a href=\"%ringsHref%\">Engagement Rings</a>\n<br /><br />Questions? Contact us at 800-818-8386 or you can email us anytime at <a href=\"mailto:service@dreamstone.com\">service@dreamstone.com</a>\n<br /><br /><a href=\"%contactHref%\">Contact Us</a> | <a href=\"%myAccountHref%\">My Account</a> | <a href=\"%policyHref%\">Privacy Policy</a>\n<br /><br />15 West 47 Street, suite 803, NY, NY 10036\n<br />"
+  },
+  {
+    "type": "customer_form",
+    "subject": "Custom Form",
+    "body": "\n<br />Name: %name%\n<br /><br />Surname: %surname%\n<br /><br />Email: %email%\n<br /><br />Phone: %phoneCode%-%phoneNumber%\n<br /><br />Additional text: %text%\n<br /><br />Preferred Metal: %ring_info%\n<br /><br />Price Range: %price_range%\n<br /><br />Center Stone Shape: %stone_shape%"
+  },
+  {
+    "type": "user_forgot_password",
+    "subject": "Reset your DreamStone password",
+    "body": "\n<br />Hello %userFirstname%, you've requested to reset your DreamStone password for %userEmail%.<br />If you didn't request this you can safely ignore this email.<br /><br /><a href=\"%uri%\">Reset password</a><br /><br />WHY DREAMSTONE?<br /><br />Free Shipping<br />30 Returns<br />Flexible Financing<br />Free Insurance Appraisal<br />24 Hour Service<br />Expert Jewelers & Gemologists<br />Custom Work Available<br />Competitive Pricing<br />Made in NYC<br />Lifetime Warranty*<br />Lifetime Upgrade*<br /><br />Shop:<br /><br /><a href=\"%diamondHref%\">Diamonds</a> | <a href=\"%ringsHref%\">Engagement Rings</a><br /><br />Questions? Contact us at 800-818-8386 or you can email us anytime at <a href=\"mailto:service@dreamstone.com\">service@dreamstone.com</a><br /><br /><a href=\"%contactHref%\">Contact Us</a> | <a href=\"%myAccountHref%\">My Account</a> | <a href=\"%policyHref%\">Privacy Policy</a><br /><br />15 West 47 Street, suite 803, NY, NY 10036<br />\n"
+  },
+  {
+    "type": "user_new_password",
+    "subject": "Your new DreamStone password",
+    "body": "\n<br />Hello %userFirstname%, your DreamStone password has been reset for %userEmail%.<br /><br />This is your new password: %newPassword%<br /><br />(You'll be able to change this password later by clicking on your profile).<br /><br />You can <a href=\"%uri%\">login</a> to view your saved shopping cart, wishlist or compare items from any device.\n<br /><br />WHY DREAMSTONE?<br /><br />Free Shipping<br />30 Returns<br />Flexible Financing<br />Free Insurance Appraisal<br />24 Hour Service<br />Expert Jewelers & Gemologists<br />Custom Work Available<br />Competitive Pricing<br />Made in NYC<br />Lifetime Warranty*<br />Lifetime Upgrade*<br /><br />Shop:<br /><br /><a href=\"%diamondHref%\">Diamonds</a> | <a href=\"%ringsHref%\">Engagement Rings</a><br /><br />Questions? Contact us at 800-818-8386 or you can email us anytime at <a href=\"mailto:service@dreamstone.com\">service@dreamstone.com</a><br /><br /><a href=\"%contactHref%\">Contact Us</a> | <a href=\"%myAccountHref%\">My Account</a> | <a href=\"%policyHref%\">Privacy Policy</a><br /><br />15 West 47 Street, suite 803, NY, NY 10036<br />\n"
+  }
+]

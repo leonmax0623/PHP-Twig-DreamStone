@@ -1,0 +1,12 @@
+<h6 class="u-color-dark-gray u-tc u-f24">Diamond Clarity</h6>
+<div id="fancy-clarity-slider">
+    {% for clarity in clarities %}
+        <div>
+            <a href="{{ path_for('looseDiamonds-Search', {'filter': 'search?clarity_id=' ~ clarity.code ~ '&shape_id=Round'}) }}">
+                <div style="text-align: center;">
+                    <span class="fancy-span">{{ clarity.code }}</span>
+                </div>                
+            </a>
+        </div>
+    {% endfor %}
+</div>

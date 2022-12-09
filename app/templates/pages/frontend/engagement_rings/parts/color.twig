@@ -1,0 +1,12 @@
+<div class="content-md">
+    <ul class="t-filter-list t-slider-list">
+        {% for metal in metals %}
+            <li>
+                <a href="{{ path_for('engagementRings-Search') }}{{ '?metal=' ~ metal.code }}" title="{{ metal.code }}">
+                    {{ metal.image | raw }}
+                </a>
+                {{ metal.code }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

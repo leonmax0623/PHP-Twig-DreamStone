@@ -1,0 +1,25 @@
+{% if similar %}
+<div class="t-similar-block">
+    <div class="u-clear-30"></div>
+    <h6 class="u-f24 u-color-black u-tc">Similar items</h6>
+    <div class="u-clear-10"></div>
+    <div id="similar_items" class="o-col-lg-12 o-row t-propositions-carousel">
+        {% for item in similar %}
+            {% set mainImage = '/images/jewelry/default.png' %}
+            {% set break = false %}
+            {% for image in item.images if not break %}
+                {% if image.type == 'img' %}
+                    {% set mainImage = '/img.php?src=' ~ image.value|replace({ ('/content/'): '' }) ~ '&w=640&q=100' %}
+                    {% set break = true %}
+                {% endif %}
+            {% endfor %}
+            <a href="{{ item.permalink }}" class="u-tc t-similar-items">
+                <div class="t-similar-item-img-block"><img src="{{ mainImage }}"alt="images"></div>
+                <p class="u-f20 u-color-dark-gray u-text-upper">{{ item.title }}</p>
+                <p class="u-f22 u-color-blue">{{ item.price | price }}</p>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+<div class="u-clear"></div>
+{% endif %}

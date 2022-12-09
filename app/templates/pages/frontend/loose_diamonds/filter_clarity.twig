@@ -1,0 +1,151 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative hideblock">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            <p>Most diamonds have inclusions. These are natural microscopic features in a diamond. The clarity grade
+                refers to a stone's relative absence of these clarity characteristics from FL (flawless) to I1
+                (included) scale. Most people find the "sweet spot" to be VS2/SI1 where the diamonds appear "eye clean".
+            </p>
+            <a href="/education/diamond-education/diamond-clarity">learn more...</a>
+        </div>
+    </div>
+
+    <p class="t-filter-label open" onclick="toggleBlock(this, 'clarityBlock');">Clarity</p>
+    <div class="u-clear"></div>
+    <div id="clarityBlock" class="clarity-range t-price-block t-range-scaleble show">
+        <ul class="t-range-data">
+            {% for clarity in clarities %}
+            <li data-value="{{ clarity.code }}">
+                <span>{{ clarity.code }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+        <div id="steps-slider-clarity"></div>
+    </div>
+</div>
+<!-- nouislider -->
+<script>
+    $(document).ready(function () {
+        var divClarity = document.querySelector('.hideblock');
+        divClarity && divClarity.classList.remove('hideblock')
+    })
+
+    function setActiveLabels(labelsSelector, currentValues) {
+        if (currentValues && currentValues.length) {
+            $(labelsSelector).each(function () {
+                if (currentValues.includes($(this).data('value'))) {
+                    $(this).removeClass('inactive');
+                } else {
+                    $(this).addClass('inactive');
+                }
+            });
+        }
+    }
+
+    var clarities = [];
+    $(".clarity-range li").each(function (index, elem) {
+        clarities.push($(this).data('value'));
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const stepSliderClarities = document.getElementById('steps-slider-clarity');
+        const getVars = UrlParams.get();
+        const min = 0;
+        const max = clarities.length;
+
+        var current_clarities = getVars.clarity_id ? getVars.clarity_id.split(",") : null;
+        const currentMin = getVars.clarity_id ? clarities.indexOf(current_clarities[0]) : 0;
+        const currentMax = getVars.clarity_id ? clarities.indexOf(current_clarities[current_clarities.length -
+            1]) + 1 : clarities.length;
+        setActiveLabels('#clarityBlock li', current_clarities);
+        noUiSlider.create(stepSliderClarities, {
+            start: [currentMin, currentMax],
+            snap: true,
+            connect: true,
+            range: {
+                'min': min,
+                '11%': 1,
+                '22%': 2,
+                '33%': 3,
+                '44%': 4,
+                '55%': 5,
+                '66%': 6,
+                '77%': 7,
+                '88%': 8,
+                '99%': 9,
+                'max': max
+            }
+        });
+
+        const onSliderChange = (values, handle) => {
+            let val = stepSliderClarities.noUiSlider.get();
+            if (val[1] - val[0] < 1) {
+                if (handle === 0) {
+                    let left = Number(values[handle]);
+                    stepSliderClarities.noUiSlider.set(left - 1);
+                    handleChangeClarities([left - 1, val[1]], handle);
+                    return false;
+                } else if (handle === 1) {
+                    let right = Number(values[handle]);
+                    stepSliderClarities.noUiSlider.set([val[0], right + 1]);
+                    handleChangeClarities([+val[0], right + 1], handle);
+                    return false;
+                }
+            }
+            values = values.map(function (value) {
+                return Number(value);
+            });
+            handleChangeClarities(values, handle)
+        }
+
+        const handleChangeClarities = function (values, handle) {
+            var clarity_str = "";
+            for (let i = values[0]; i <= values[1] - 1; i++) {
+                clarity_str += clarities[i] + ',';
+            }
+            setActiveLabels('#clarityBlock li', clarity_str.split(','));
+            UrlParams.set({
+                clarity_id: clarity_str.slice(0, -1)
+            }, false);
+            if (min == values[0] && max == values[1]) {
+                const params = UrlParams.get();
+                delete params.clarity_id;
+                UrlParams.delete(false);
+                UrlParams.set(params, false);
+            }
+
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if (total == 0) {
+                    $('.results-message').html(
+                        '<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if (total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        };
+
+        stepSliderClarities.noUiSlider.on('change', onSliderChange);
+
+        $(".clarity-range li").each(function (index, elem) {
+            const clarity = $(this).data('value');
+            $(this).on('click', function (e) {
+                const currentPair = stepSliderClarities.noUiSlider.get();
+                const currentClarity = clarities.indexOf(clarity);
+                if (currentClarity - Number(currentPair[0]) < Number(currentPair[1]) -
+                    currentClarity) {
+                    onSliderChange([currentClarity, Number(currentPair[1])], 0);
+                    stepSliderClarities.noUiSlider.set(currentClarity);
+                } else {
+                    onSliderChange([Number(currentPair[0]), currentClarity + 1], 1);
+                    stepSliderClarities.noUiSlider.set([currentPair[0], currentClarity + 1]);
+                }
+            })
+        });
+
+    });
+</script>

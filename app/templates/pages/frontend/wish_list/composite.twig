@@ -1,0 +1,95 @@
+{% set diamond = product.diamond %}
+{% set permalink = product.permalink %}
+{% set product = product.product %}
+
+{% set mainImage = '' %}
+{% set break = false %}
+{% for image in product.images if not break %}
+    {% if image.type == 'img' %}
+        {% set mainImage = '/img.php?src=' ~ image.value|replace({ ('/content/'): '' }) ~ '&w=310' %}
+        {% set break = true %}
+    {% endif %}
+{% endfor %}
+
+<li class="t-search-result-block t-search-block">
+    <div class="t-search-result-image-block">
+      <img src="{{ mainImage ? mainImage : '/images/jewelry/default.png' }}" alt="jewelry">
+    </div>
+    <div class="t-show-image-block"></div>
+    <div class="t-search-result-description-block">
+      <div class="t-product-hidden-block">
+        <div class="result-images-slider">
+            {% if mainImage %}
+                {% for image in product.images if image.type == 'img' %}
+                    <div
+                        onmouseenter="showImageBlock(this, '/img.php?src={{ image.value |replace({ ('/content/'): '' })}}&w=310&sharpen&q=100')"
+                        onmouseleave="hideImageBlock(this)"
+                    >
+                        <a href={{ product.permalink }}><img src='/img.php?src={{ image.value |replace({ ('/content/'): '' })}}&w=310&sharpen&q=100' alt="jewelry"></a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <img src="/images/jewelry/default.png" alt="jewelry">
+            {% endif %}
+        </div>
+    </div>
+        <div class="t-search-result-block-data">
+            <div>
+                <a href={{ permalink }}>
+                    <span class="t-search-result-short-desc">{{ product.title }}</span>
+                    {% for key, value in product.withAttributes %}
+                        <span class="t-search-result-short-desc">{{ key }}: {{ value }}</span>
+                    {% endfor %}
+                    {% if product.metal.code %}
+                        <span class="t-search-result-short-desc">{{ product.metal.code }}</span>
+                    {% endif %}
+                    <span class="t-search-result-short-desc">{{ product.category.title }}</span>
+
+                    <span class="t-search-result-short-desc">{{ diamond.title }}</span>
+
+                    <span class="t-search-result-price">Price: {{ currency_sign ? currency_sign : '$' }}{{
+                        (currency
+                            ? (product.price + diamond.price) / currency.rate
+                            : (product.price + diamond.price)
+                        ) | number_format(0, '', ',')
+                    }}</span>
+                </a>
+            </div>
+            <div class="wish-list-btn">
+                <button id="del_{{ index }}_composite" class="btn btn_light active">Remove</button>
+                <button id="add_{{ index }}_composite">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</li>
+<script>
+$('#add_{{ index }}_composite').click(function(){
+  const withAttributes = {
+    {% for key, value in product.withAttributes %}"{{ key }}": "{{ value }}",{% endfor %}
+  };
+  $.post('/cart', {
+    group: 'composite',
+    source: 'favorites',
+    product: { _id: '{{ product._id }}', withAttributes },
+    diamond: { _id: '{{ diamond._id }}' },
+  }, function(){
+    window.location.href = '/cart';
+  });
+});
+$('#del_{{ index }}_composite').click(function() {
+  const withAttributes = {
+      {% for key, value in product.withAttributes %}"{{ key }}": "{{ value }}",{% endfor %}
+  };
+  const $this = $(this);
+  const FavoriteModel = (new Favorites({{ user ? 'true' : 'false' }}));
+  FavoriteModel.delete('composites', {
+    product: { _id: '{{ product._id }}', withAttributes },
+    diamond: { _id: '{{ diamond._id }}' },
+  }, function(){
+    $this.parents('li.t-search-result-block').remove();
+
+    const $icon = $('.t-top-icon-wishlist, .t-top-icon-mob-wishlist');
+    $icon.attr('data-count', +($icon.attr('data-count') || 0) - 1);
+  });
+});
+</script>

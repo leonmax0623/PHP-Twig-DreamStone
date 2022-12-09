@@ -1,0 +1,69 @@
+.s-blocked-link{
+    pointer-events: none;
+}
+.cls{
+    stroke:#9d9d9d;
+    fill:none;
+}
+.s-fixed{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+.s-show{
+    display: block!important;
+}
+.s-hide{
+    display: none!important;
+}
+@media screen and (min-width: 1024px) {
+    .s-lg-invisible{
+        display: none!important;
+    }
+    .s-lg-visible{
+        display: block!important;
+    }
+}
+@media screen and (max-width: 1024px) {
+    .s-md-invisible{
+        display: none!important;
+    }
+    .s-md-visible{
+        display: block!important;
+    }
+}
+@media screen and (max-width: 760px) {
+    .s-sm-invisible{
+        display: none;
+    }
+    .s-sm-visible{
+        display: block!important;
+    }
+    .s-sm-fixed{
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+}
+@media screen and (max-width: 640px) {
+    .s-xsm-invisible{
+        display: none!important;
+    }
+    .s-xsm-visible{
+        display: block!important;
+    }
+}
+@media screen and (max-width: 480px) {
+    .s-xxsm-invisible{
+        display: none!important;
+    }
+    .s-xxsm-visible{
+        display: block!important;
+    }
+}
+/*------------svg----------------*/
+

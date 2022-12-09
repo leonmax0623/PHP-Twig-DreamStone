@@ -1,0 +1,18 @@
+<div id="normalTopDimensions" style="position: absolute; visibility: visible; vertical-align: top; font-size: 10px; z-index: 50;">
+    <div style="position:absolute; left: 8px; bottom: 17px; background-color:#FFFFFF;">Length<br>
+        {% if product %}
+            {{ product.length }}mm
+        {% endif %}
+        {% if diamond %}
+            {{ diamond.length }}mm
+        {% endif %}
+    </div>
+    <div style="position:absolute; left:-44px; top: 0; background-color:#FFFFFF;">Width<br>
+        {% if product %}
+            {{ product.width }}mm
+        {% endif %}
+        {% if diamond %}
+            {{ diamond.width }}mm
+        {% endif %}
+    </div>
+</div>

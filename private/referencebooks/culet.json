@@ -1,0 +1,51 @@
+[
+    {
+        "code": "None",
+        "values": [
+            "None", "N", "NON", "NONE", "NO"
+        ],
+        "desc": ""
+    },
+    {
+        "code": "Very Small",
+        "values": [
+            "Very Small", "VS", "VSM", "VERY SMALL", "V"
+        ],
+        "desc": ""
+    },
+    {
+        "code": "Small",
+        "values": [
+            "Small", "S", "SML", "SM", "SMALL"
+        ],
+        "desc": ""
+    },
+    {
+        "code": "Medium",
+        "values": [
+            "Medium", "M", "MED", "ME"
+        ],
+        "desc": ""
+    },
+    {
+        "code": "Large",
+        "values": [
+            "Large", "L", "LG"
+        ],
+        "desc": ""
+    },
+    {
+        "code": "Slightly Large",
+        "values": [
+            "Slightly Large", "SL", "SLG", "Large"
+        ],
+        "desc": ""
+    },
+    {
+        "code": "Very Large",
+        "values": [
+            "Very Large", "VL", "VLG"
+        ],
+        "desc": ""
+    }
+]

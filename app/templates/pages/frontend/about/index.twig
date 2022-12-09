@@ -1,0 +1,44 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    About Us - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    About Us,DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{% block content %}
+<script>
+    function openBlock(block) {
+       if(document.getElementById(block).style.display == "block"){
+           document.getElementById(block).style.display = "none"
+       }else{
+           document.getElementById(block).style.display = "block"
+       };
+    } 
+</script>
+    <!-- SLIDER  -->
+    <div class="content">
+        <div class="u-clear-20"></div>
+        <h6 class="u-color-dark-gray u-tc u-f28">Frequently Asked Questions</h6>
+        <div class="clear"></div>
+        {% for faq in faqs %}
+            <div class="faq_block">
+                <h4>{{faq.category}}</h4>
+                {% for question in faq.questions %}
+                    <a class="faq_link" href="javascript:void(0)" onclick="openBlock('question_{{question._id}}')">{{question.name}}</a>
+                    <div id="question_{{question._id}}" class="faq_text_block">
+                        {{question.text | raw}}
+                    </div>
+                    <div class="u-clear-10"></div>
+                {% endfor %}
+                <div class="u-clear-20"></div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

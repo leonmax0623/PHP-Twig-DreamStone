@@ -1,0 +1,20 @@
+[
+    {
+        "_id": "",
+        "first_name": "Alex",
+        "last_name": "Quadecco",
+        "email": "oleksandr.tyshko@quadecco.com",
+        "password": "111111",
+        "sex": "man",
+        "created": "",
+        "customer_id": "",
+        "company": "Quadecco",
+        "phone": "",
+        "address": "",
+        "address2": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "zip": ""
+    }
+]

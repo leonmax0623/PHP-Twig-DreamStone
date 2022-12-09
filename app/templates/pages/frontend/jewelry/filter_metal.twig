@@ -1,0 +1,54 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative">
+    <p class="t-filter-label" onclick="toggleBlock(this, 'ringMetal');">Metal</p>
+    <div class="u-clear"></div>
+    <ul id="ringMetal" class="t-filter-list">
+        {% for metal in metals %}
+            <li
+                id="{{ metal_ids[metal.code] }}"
+                class="{{ metal.code in filter.metal ? 'active' : '' }}"
+                onclick="searchMetal('{{ metal.code }}')"
+            >
+                <a href="#" title="{{ metal.code }}" onclick="return false;">
+                    {{ metal.image | raw }}
+                </a>
+                {{ metal.code }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function searchMetal(value) {
+        var allMetals = 'All metals';
+        var param = UrlParams.get().metal;
+        if (!param) {
+            UrlParams.set({ metal: value }, false);
+            loadPageData(location.href, '.t-search-results', true, function (finish, total) {
+                updateLinks();
+                $('#search-results-count').html(`Results (${total})`);
+            });
+        } else if (value === allMetals) {
+            UrlParams.set({ metal: param === value ? '' : value }, false);
+            loadPageData(location.href, '.t-search-results', true, function (finish, total) {
+                updateLinks();
+                $('#search-results-count').html(`Results (${total})`);
+            });
+        } else {
+            var values = param.split(',');
+            ~values.indexOf(value) ? values.splice(values.indexOf(value), 1) : values.push(value);
+            ~values.indexOf(allMetals) && values.splice(values.indexOf(allMetals), 1);
+            UrlParams.set({ metal: values.join(',') }, false);
+            loadPageData(location.href, '.t-search-results', true, function (finish, total) {
+                updateLinks();
+                $('#search-results-count').html(`Results (${total})`);
+            });
+        }
+        $('#ringMetal > li').removeClass('active');
+        var metalNames = UrlParams.get().metal;
+        if (metalNames && metalNames.split(',').length) {
+            metalNames.split(',').map((metalName) => {
+                $('#' + metalName.split(' ').join('')).addClass('active');
+            });
+        }
+    }
+</script>

@@ -1,0 +1,95 @@
+[
+    {
+        "code": "about_us",
+        "category": "About Us",
+        "content": "",
+        "questions": [
+            {   
+                "_id": "5d1f4eb8a5b0a50dc01ca165",
+                "name": "Do you have a retail store located in my state?",
+                "text": "DreamStone does not operate retail locations. This allows us to cut overhead costs and focus exclusively on quality and service - providing you with a high quality product at a much better value than your local jewelry store. By the same token, we understand how important it is for our customers to see and feel jewelry - especially a piece of jewelry as personal as an engagement ring. That's why we offer free shipping on all our items, a 30-day money back guarantee, and free ring resizing for 60 days after your purchase. That being said, we have offices in both Maryland and New York City, in the heart of the diamond district."
+            },
+            {
+                "_id": "5d1f4eb8a5b0a50dc02ca165",
+                "name": "Do you have gemologists on staff?",
+                "text": "Do you have gemologists on staff answer"
+            },
+            {
+                "_id": "5d1f4eb8a5b0a50dc03ca165",
+                "name": "Where are the corporate offices on DreamStone?",
+                "text": "Where are the corporate offices on DreamStone answer"
+            }
+        ]
+    },
+    {
+        "code": "insurance-and-long-term-care",
+        "category": "Insurance and Long-Term Care",
+        "content": "",
+        "questions": [
+            {
+                "_id": "5d1f4eb8a5b0a50dc04ca165",
+                "name": "Do you clean or provide care for jewelry sold on your site?",
+                "text": "Do you clean or provide care for jewelry sold on your site"
+            },
+            {
+                "_id": "5d1f4eb8a5b0a50dc05ca165",
+                "name": "What is covered by your lifetime warranty?",
+                "text": "What is covered by your lifetime warranty"
+            },
+            {
+                "_id": "5d1f4eb8a5b0a50dc06ca165",
+                "name": "Do you provide insurance appraisals?",
+                "text": "Do you provide insurance appraisals"
+            },
+            {
+                "_id": "5d1f4eb8a5b0a50dc07ca165",
+                "name": "Do you insure jewelry?",
+                "text": "Do you insure jewelry"
+            }
+        ]
+    },
+    {
+        "code": "orders-and-ring-sizes",
+        "category": "Orders and Ring Sizes",
+        "content": "",
+        "questions": [
+            {
+                "_id": "5d1f4eb8a5b0a50dc08ca165",
+                "name": "Do you have a retail store located in my state?",
+                "text": "DreamStone does not operate retail locations. This allows us to cut overhead costs and focus exclusively on quality and service - providing you with a high quality product at a much better value than your local jewelry store. By the same token, we understand how important it is for our customers to see and feel jewelry - especially a piece of jewelry as personal as an engagement ring. That's why we offer free shipping on all our items, a 30-day money back guarantee, and free ring resizing for 60 days after your purchase. That being said, we have offices in both Maryland and New York City, in the heart of the diamond district."
+            },
+            {
+                "_id": "5d1f4eb8a5b0a50dc09ca165",
+                "name": "Do you have gemologists on staff?",
+                "text": "Do you have gemologists on staff answer"
+            },
+            {
+                "_id": "5d1f4eb8a5b0a50dc10ca165",
+                "name": "Where are the corporate offices on DreamStone?",
+                "text": "Where are the corporate offices on DreamStone answer"
+            }
+        ]
+    },
+    {
+        "code": "our-diamonds-and-jewelry",
+        "category": "Our Diamonds and Jewelry",
+        "content": "",
+        "questions": [
+            {
+                "_id": "5d1f4eb8a5b0a50dc11ca165",
+                "name": "Do you have a retail store located in my state?",
+                "text": "DreamStone does not operate retail locations. This allows us to cut overhead costs and focus exclusively on quality and service - providing you with a high quality product at a much better value than your local jewelry store. By the same token, we understand how important it is for our customers to see and feel jewelry - especially a piece of jewelry as personal as an engagement ring. That's why we offer free shipping on all our items, a 30-day money back guarantee, and free ring resizing for 60 days after your purchase. That being said, we have offices in both Maryland and New York City, in the heart of the diamond district."
+            },
+            {
+                "_id": "5d1f4eb8a5b0a50dc12ca165",
+                "name": "Do you have gemologists on staff?",
+                "text": "Do you have gemologists on staff answer"
+            },
+            {
+                "_id": "5d1f4eb8a5b0a50dc13ca165",
+                "name": "Where are the corporate offices on DreamStone?",
+                "text": "Where are the corporate offices on DreamStone answer"
+            }
+        ]
+    }
+]

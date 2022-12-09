@@ -1,0 +1,123 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    About Us - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    About Us,DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{% set page = 'payment' %}
+{% set years = '' %}
+
+{% block content %}
+    {%  include "pages/frontend/cart/order_page_navigation.twig" %} 
+
+    <div class="content">
+        <h5>Payment details</h5>
+        <div class="u-clear-20"></div>
+        <p class="t-secure-text">SECURE CHECKOUT <i class="t-safe-icon"></i></p>
+        <div class="u-clear"></div>
+        <form method="post" action="/payment?returnUrl=/confirmation">
+            <div class="o-col-sm-12 o-col-md-10 o-col-lg-8 o-row">
+                <div class="o-col-lg-3">
+                    <label>* Card Type</label>
+                </div>
+                <div class="o-col-lg-4">
+                    <select name="card_type">
+                        <option>Visa</option>
+                        <option>Discover</option>
+                        <option>Master +Card</option>
+                        <option>American Express</option>
+                    </select>
+                </div>
+                <div class="o-col-lg-5">
+                    <a href="#" class="t-payment-method u-mrg-0 u-mrg-right-10 t-visa"></a>
+                    <a href="#" class="t-payment-method u-mrg-0 u-mrg-right-10 t-mastercard"></a>
+                    <a href="#" class="t-payment-method u-mrg-0 u-mrg-right-10 t-aexpress"></a>
+                    <a href="#" class="t-payment-method u-mrg-0 u-mrg-right-10 t-discover"></a>
+                </div>
+                <div class="u-clear"></div>
+                <div class="o-col-lg-3">
+                    <label>* Card Number</label>
+                </div>
+                <div class="o-col-lg-8">
+                    <input name="number" id="number" type="text">
+                </div>
+                <div class="o-col-lg-3">
+                    <label>* Expiration Date</label>
+                </div>
+                <div class="o-col-sm-4 o-col-lg-3">
+                    <select name="month">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                    </select>
+                </div>
+                <div class="o-col-sm-4 o-col-lg-3">
+                    <select name="year">
+                        <option>{{ 'now'|date('Y') }}</option>
+                        <option>{{ 'now'|date('Y') + 1 }}</option>
+                        <option>{{ 'now'|date('Y') + 2 }}</option>
+                        <option>{{ 'now'|date('Y') + 3 }}</option>
+                        <option>{{ 'now'|date('Y') + 4 }}</option>
+                        <option>{{ 'now'|date('Y') + 5 }}</option>
+                    </select>
+                </div>
+                <div class="u-clear"></div>
+                <div class="o-col-lg-3">
+                    <label>* CID</label>
+                </div>
+                <div class="o-col-lg-3">
+                    <input name="cid" id="cid" type="password">
+                </div>
+                <div class="u-clear"></div>
+            </div>
+            <div class="o-col-lg-5 o-row">
+                
+            </div>
+            <div class="o-col-lg-1 o-row"></div>
+            <div class="u-clear u-border-hor-light"></div>
+            <div class="o-col-sm-12 o-col-md-5 o-col-lg-4 u-fr">
+                <button class="place-order">Place order</button>
+            </div>
+        </form>
+        <div class="u-clear-20"></div>
+        {%  include "pages/frontend/cart/cards.twig" %} 
+    </div>
+
+<script>
+$(document).ready(function(){
+    $('#number, #cid').keyup(function(){
+            $('input').css('border-color', '#cccccc');
+        });
+    $('form').submit(function(event){
+        if (!$('#number').val())
+            {
+                event.preventDefault();
+                $('#number').css('border-color', 'red');
+            };
+        if (!$('#cid').val())
+            {
+                event.preventDefault();
+                $('#cid').css('border-color', 'red');
+            };
+        $('.place-order').attr('disabled', true);
+    });
+});
+</script>
+{% endblock %}

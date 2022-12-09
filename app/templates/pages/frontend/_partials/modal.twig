@@ -1,0 +1,30 @@
+<div id="login_modal" class="modal">
+    <div class="popup popup_sm">
+        <a href="#" class="close_popup_btn"></a>
+        {%  include "pages/frontend/_partials/login.twig" %}
+        {%  include "pages/frontend/_partials/forgot_password.twig" %}
+        {%  include "pages/frontend/_partials/registration.twig" %}
+    </div>
+</div>
+<script>
+    $('.close_popup_btn').on('click', function () {
+        $(this).parents('.modal').removeClass('s-show');
+        $('.login, .registration, .forgot, .forgotSent').removeClass('s-show');
+        return false;
+    });
+    $('#forgot_btn').on('click', function () {
+        $('#login_modal, .forgot').addClass('s-show');
+        $('.login').removeClass('s-show');
+        return false;
+    });
+    $('#registration_btn').on('click', function () {
+        $('#login_modal, .registration').addClass('s-show');
+        $('.login').removeClass('s-show');
+        return false;
+    });
+    $('#login_btn').on('click', function () {
+        $('#login_modal, .login').addClass('s-show');
+        $('.registration').removeClass('s-show');
+        return false;
+    });
+</script>

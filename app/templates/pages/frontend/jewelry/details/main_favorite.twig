@@ -1,0 +1,14 @@
+<button class="t-product-action-icon t-product-action-wishlist{{ isFavorite ? ' active' : '' }}"></button>
+<script>
+$('.t-product-action-wishlist').click(function() {
+  const $this = $(this);
+  const method = $this.hasClass('active') ? 'DELETE' : 'POST';
+  const FavoriteModel = (new Favorites({{ user ? 'true' : 'false' }}));
+  FavoriteModel[method === 'POST' ? 'add' : 'delete']('products', product, function(){
+    $this[method === 'POST' ? 'addClass' : 'removeClass']('active');
+
+    const $icon = $('.t-top-icon-wishlist, .t-top-icon-mob-wishlist');
+    $icon.attr('data-count', +($icon.attr('data-count') || 0) + (method === 'POST' ? 1 : -1));
+  });
+});
+</script>

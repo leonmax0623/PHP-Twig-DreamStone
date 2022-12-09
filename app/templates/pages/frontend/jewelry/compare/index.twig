@@ -1,0 +1,44 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Loose Diamonds | Ideal Cut Diamonds | Certified Diamonds | Diamond Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Shop diamond engagement rings, diamond stud earrings, diamond pendants, GIA diamonds online at dreamstone.com. DreamStone's comprehensive interactive education center will guide you through everything you need to know about diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Loose Diamonds, Ideal Cut Diamonds, Certified Diamonds, Princess Cut Diamond, Round Diamond, Diamond Engagement Rings, Diamond Stud Earrings, Solitaire Diamond Pendant, diamond education, designer engagement rings, unique engagement rings.
+{%- endblock -%}
+
+{% set params = [] %}
+
+{% block content %}
+    <div class="u-clear"></div>
+    <div class="u-clear-20"></div>
+    <div class="o-col-lg-3 o-row s-md-invisible"></div>
+    <div class="o-col-lg-2 o-col-md-4 o-col-sm-12 o-row">
+        <a href="/engagement-rings/search" id="search-results-count" class="c-btn c-light-btn t-results-btn-view">Engagement Rings</a>
+    </div>
+    <div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+        <a href="/viewed" class="c-btn c-light-btn results-btn-viewed">recently viewed {{ viewedCount }}</a>
+    </div>
+    <div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+        <span
+            data-count="{{ compareCountP }}"
+            class="c-btn c-dark-btn results-btn-comparison-jewelry"
+        >comparison {{ compareCountP ? ' ' ~ compareCountP : '' }}</span>
+    </div>
+    <div class="o-col-lg-12 mb-20">
+        <a
+        id="search-results-return"
+        class="btn-sm t-return-to-search "
+        href="/engagement-rings/search"
+        > &lt; Return to search</a>
+    </div>
+    <div class="u-clear-20"></div>
+    <div class="content">
+        {% include "pages/frontend/jewelry/compare/results_compare.twig" %}
+    </div>
+{% endblock %}

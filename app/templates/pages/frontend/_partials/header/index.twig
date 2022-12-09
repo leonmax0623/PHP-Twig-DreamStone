@@ -1,0 +1,41 @@
+{{ include(template_from_string(templates.header.desktop_top)) }}
+
+<header class="c-header_main">
+	<div class="content">
+		<div class="o-col-lg-3 o-col-sm-4">
+			<a href="#" onclick="showNav('main_nav');" class="c-icon c-top-icon t-top-icon-mob-nav s-lg-invisible  s-md-invisible s-sm-visible u-fl"></a>
+			{# <a href="#" class="c-icon c-top-icon t-top-icon-mob-search s-lg-invisible s-md-invisible s-sm-visible u-fl" onclick="$('#mobile_search_block').toggleClass('show');"></a> #}
+			<a href="#" class="c-icon c-top-icon t-top-icon-mob-search s-lg-invisible s-md-invisible s-sm-visible u-fl" onclick="openSearch(event)"></a>
+		</div>
+		{# <div class="o-col-lg-6 o-col-sm-4 u-tc">
+					<a href="/" class="logo"><img src="/images/head_logo.png" alt="head_logo"></a>
+				</div> #}
+		<div class="o-col-lg-3 o-col-sm-4">
+			<a href="#" onclick="showNav('second_nav');" class="c-icon c-top-icon t-top-icon-mob-right-nav s-lg-invisible  s-md-invisible s-sm-visible u-fr"></a>
+			<a href="/cart" class="c-icon c-top-icon t-top-icon-mob-cart s-lg-invisible s-md-invisible s-sm-visible u-fr"></a>
+			<a href="/cart" class="c-icon c-top-icon t-top-icon-mob-cart s-lg-invisible s-md-invisible s-sm-visible u-fr"></a>
+			<a href="tel:800-818-8386" class="c-icon c-top-icon t-top-icon-mob-phone s-md-invisible s-lg-invisible s-sm-visible u-fr"></a>
+			<form class="c-search-form s-sm-invisible">
+				<input id="search-input" class="c-search-field" type="search">
+				<button class="c-top-search-btn search-btn-disabled" disabled></button>
+			</form>
+		</div>
+		<div class="u-clear"></div>
+	</div>
+	<form class="t-mon-search" id="mobile_search_block">
+		<input type="search" id="input-search" placeholder="search" class="t-mon-search-field">
+		<button class="t-mon-search-btn search-btn-disabled btn" style="margin-bottom: 0;"></button>
+	</form>
+
+	{{ include(template_from_string(templates.header.mobile_mainmenu)) }}
+	{{ include(template_from_string(templates.header.mobile_top)) }}
+	{{ include(template_from_string(templates.header.desktop_mainmenu)) }}
+</header>
+<div class="t-header-fix"></div>
+
+<script>
+	function openSearch(e) {
+$('#mobile_search_block').toggleClass('show');
+$('#input-search').focus();
+}
+</script>

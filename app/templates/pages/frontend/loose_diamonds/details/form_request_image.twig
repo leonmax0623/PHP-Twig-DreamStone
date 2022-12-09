@@ -1,0 +1,119 @@
+<form id="popup-request-image" class="popup-choose-setting" novalidate>
+    <div class="popup-content">
+        <button onclick="closeRequest()" class="btn-popup-close close-request">X</button>
+        <div class="popup-header">
+            <h5>Request image</h5>
+        </div>
+        <div class="personal-info request-info">
+            <div class="mb-20 o-col-lg-12">
+                <h5>Your email <span class="red">*</span></h5>
+                <div class="book-email">
+                    <input type="email" name="user_request_email" id="request_email" placeholder="myname@example.com"
+                        required>
+                </div>
+            </div>
+            <div class="o-col-lg-12">
+                <button type="submit" class="g-recaptcha btn_request_submit"
+                    data-sitekey="6Lc2jQoeAAAAAIzf4K1jjmHP5WqLqky7Fa8_0i8t" data-callback='onRequestImageSubmit'
+                    data-action='requestImage'>Send</button>
+            </div>
+            <div class="out_request" style="color: red;"></div>
+        </div>
+    </div>
+</form>
+
+{# popup Request-image #}
+<script>
+    function showRequestImageForm(certificateNumber, stockNumber) {
+        const requestPopup = $('#popup-request-image');
+        requestPopup.css({
+            display: 'flex'
+        });
+        $('#popup-request-image').attr("data-certificateNumber", certificateNumber);
+        $('#popup-request-image').attr("data-stockNumber", stockNumber);
+        $body.css({
+            "overflow": 'hidden'
+        });
+    }
+
+    function closeRequest() {
+        $('#popup-request-image').hide();
+        $body.css({
+            "overflow": 'auto'
+        });
+    }
+</script>
+
+{# submit Request-image form #}
+<script>
+    function requestImageSubmit(token) {
+        let certificateNumber = $('#popup-request-image').attr("data-certificateNumber");
+        let stockNumber = $('#popup-request-image').attr("data-stockNumber");
+
+        let hasEmptyMail = false;
+        $('.request-info').find('input').each(function () {
+            if ($(this).prop('required')) {
+                hasEmptyMail = hasEmptyMail || !$(this).val();
+            }
+        })
+        let localHref =
+            `https://${document.location.hostname}/loose-diamonds/item/${certificateNumber}_${stockNumber}`;
+        let regexp = /^[\.a-z0-9_\-]+[@][a-z0-9_\-]+([.][a-z0-9_\-]+)+[a-z]{1,4}/i;
+        let rEmail = document.getElementById('request_email').value;
+        let result = regexp.test(rEmail);
+
+        if (hasEmptyMail) {
+            $('.out_request').html('*required fields are not filled');
+            if (!$('#request_email').val()) {
+                $('#request_email').css('background-color', 'wheat');
+            }
+
+            return false
+        } else if (!result) {
+            $('.out_request').html('*enter the correct email');
+            $('#request_email').css('background-color', 'wheat');
+            return false
+        } else {
+            $.post(
+                '/loose-diamonds/request-form', {
+                    user_request_email: rEmail,
+                    pageFrom: localHref,
+                    gToken: token,
+                },
+                function (msg) {
+                    $('#my_message').html(msg);
+                }
+            );
+        }
+
+        $('#popup-request-image').hide();
+        $('.c-header_main').css({
+            "z-index": 1001
+        })
+        $body.css({
+            "overflow": 'auto'
+        });
+        $('.text-request-submit').html(
+            'Thank you! We’ll find out of the vendor has an image and email it to you shortly.');
+        return false;
+    }
+    $('#popup-request-image').submit((ev) => {
+        ev.preventDefault();
+        requestImageSubmit();
+    });
+</script>
+<script>
+    $('input').change(function () {
+        $('.request-info').find('input').each(function () {
+            if ($(this).val()) {
+                $(this).css('background-color', 'white');
+            }
+        })
+    })
+</script>
+<script>
+    function onRequestImageSubmit(token) {
+        // console.log('Request Image form submitted', token);
+        setTimeout(requestImageSubmit, 0, token);
+    }
+</script>

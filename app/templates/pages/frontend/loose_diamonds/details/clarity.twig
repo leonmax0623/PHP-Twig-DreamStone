@@ -1,0 +1,68 @@
+{% set clarities = ['I3', 'I2', 'I1', 'SI2', 'SI1', 'VS2', 'VS1', 'VVS2', 'VVS1', 'IF', 'FL'] %}
+    <h6 id="diamond-clarity-learn" class="t-learn-more u-f24 u-color-black u-tc">
+        Clarity <span class="u-color-blue">{{ product.clarity.code }}</span>
+    </h6>
+<div class="diamond-clarity-block u-bg-light-gray">
+    <div id="diamond-clarity-info" class="content-sm u-tc s-sm-invisible">
+        <div class="u-clear-20"></div>
+        <p class="u-tl">Most diamonds have inclusions. These are natural microscopic features in a diamond. The clarity grade refers to a stone's relative absence of these clarity characteristics from FL (flawless) to I1 (included) scale. Most people find the "sweet spot" to be VS2/SI1 where the diamonds appear "eye clean".</p>
+        <div class="t-diamond-color-scale" style="overflow: hidden;">
+            <!-- if list "t-cut-scale" has active I3/I2/I1/S2/SI1 you should add here class "u-fr" -->
+            {% if product.clarity.code in ['I3', 'I2', 'I1'] %}
+                <div class="o-col-lg-6 u-tc{% if product.clarity.code in ['I3', 'I2', 'I1'] %} u-fr{% endif %}">
+                    <img src="../../images/diamond_clearity.png" alt="diamond_clearity">
+                </div>
+            {% endif %}
+            {% if product.clarity.code in ['SI2', 'SI1'] %}
+                <div class="o-col-lg-6 u-tc{% if product.clarity.code in ['SI2', 'SI1'] %} u-fr{% endif %} t-clarity-si1">
+                    <img src="../../images/diamond_clearity-si2-si1.png" alt="diamond_clearity si2-si1">
+                </div>
+            {% endif %}
+            {% if product.clarity.code in ['VS2', 'VS1'] %}
+                <div class="o-col-lg-6 u-tc t-clarity-vs1">
+                    <img src="../../images/diamond_clearity-vs2-vs1.png" alt="diamond_clearity vs2-vs1">
+                </div>
+            {% endif %}
+            {% if product.clarity.code in ['VVS2'] %}
+                <div class="o-col-lg-6 u-tc{% if product.clarity.code in ['VS2'] %} u-fr{% endif %} t-clarity-vvs2">
+                    <img src="../../images/diamond_clearity-vvs2.png" alt="diamond_clearity vvs2">
+                </div>
+            {% endif %}
+            {% if product.clarity.code in ['VVS1'] %}
+                <div class="o-col-lg-6 u-tc{% if product.clarity.code in ['VS1'] %} u-fr{% endif %} t-clarity-vvs1">
+                    <img src="../../images/diamond_clearity-vvs1.png" alt="diamond_clearity vvs1">
+                </div>
+            {% endif %}
+            {% if product.clarity.code in ['IF', 'FL'] %}
+                <div class="o-col-lg-6 u-tc t-clarity-fl">
+                    <img src="../../images/diamond_clearity-if-fl.png" alt="diamond_clearity if-fl">
+                </div>
+            {% endif %}
+            {% if product.clarity.desc %}
+            <!--   according to "t-color-scale" list's active element you should add appropriate class to div below -->
+            <div class="c-tooltip c-tooltip-top t-clarity-{{ product.clarity.code|lower }}">
+                <p>{{ product.clarity.desc }}</p>
+            </div>
+            {% endif %}
+        </div>
+        <div class="u-clear-10"></div>
+        <ul class="t-scale t-clarity-scale">
+            {% for clarity in clarities %}
+                <li{% if product.clarity.code == clarity %} class="active"{% endif %}><span>{{ clarity }}</span></li>
+            {% endfor %}
+        </ul>
+        <div class="u-clear"></div>
+        <div class="t-clarity-scale-image"></div>
+        <div class="u-clear-10"></div>
+        <a href="/education/diamond-education/4cs/clarity" class="c-learn-more">Learn more </a>
+        <div class="u-clear"></div>
+    </div>
+</div>
+<script>
+    $(document).ready(function() {
+        $("#diamond-clarity-learn").on("click", function(e) {
+            $('#diamond-clarity-info').toggle("slow");
+            $(this).toggleClass('t-open');
+        });
+    });
+</script>

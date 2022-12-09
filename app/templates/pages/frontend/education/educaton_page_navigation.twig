@@ -1,0 +1,13 @@
+<table class="t-education-categorys">
+    <tr>
+        {% for item in education %}
+            <td class="{{ item.url == filter.first ? 'active' : '' }}">
+                <a href="{{ path_for('education-Page', {'filter': item.url }) }}" class="t-education-category">
+                    <img src="{{ app.request.getSchemeAndHttpHost() }}/images/educations/{{ item.url }}.png" onError="this.style.display='none'" alt="education">
+                    {{ item.name }}
+                </a>
+            </td>
+        {% endfor %}
+    </tr>
+</table>
+<div class="u-clear-30"></div>

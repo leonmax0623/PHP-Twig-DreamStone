@@ -1,0 +1,152 @@
+[
+  {
+    "_id": "5d1a07eca5b0a50b5862ff70",
+    "title": "Rings",
+    "url": "rings",
+    "description": "Shop dazzling rings and bands in classic and modern styles.",
+    "level": 0,
+    "has_images": false,
+    "subcategories": 6,
+    "parent_id": null,
+    "template": null,
+    "attributes": [],
+    "images": [
+      "/content/jewelry_diagrams/Rings.svg"
+    ]
+  },
+    {
+      "_id": "5d1a07eca5b0a50b58620001",
+      "title": "Diamond Rings",
+      "url": "rings_diamond-rings",
+      "description": "A finely-crafted diamond ring will say `I love you` every time she looks down at her hand.",
+      "level": 1,
+      "has_images": true,
+      "subcategories": 0,
+      "parent_id": "5d1a07eca5b0a50b5862ff70",
+      "template": null,
+      "attributes": [],
+      "images": [
+        "/content/categories/5d1a07eca5b0a50b58620001/Jewelry_diamondring.jpg"
+      ]
+    },
+    {
+      "_id": "5d1a07eca5b0a50b58620002",
+      "title": "Gemstone Rings",
+      "url": "rings_gemstone-rings",
+      "description": "Lure her into a world of colors with a gemstone ring and put some flavor into your romance.",
+      "level": 1,
+      "has_images": true,
+      "subcategories": 0,
+      "parent_id": "5d1a07eca5b0a50b5862ff70",
+      "template": null,
+      "attributes": [],
+      "images": [
+        "/content/categories/5d1a07eca5b0a50b58620002/Jewelry_gemstonering.jpg"
+      ]
+    },
+  {
+    "_id": "5d1a07eca5b0a50b58620003",
+    "title": "Pearl Rings",
+    "url": "rings_pearl-rings",
+    "description": "The luster of cultured fresh water pearls is a compliment will intrigue any women.",
+    "level": 1,
+    "has_images": true,
+    "subcategories": 0,
+    "parent_id": "5d1a07eca5b0a50b5862ff70",
+    "template": null,
+    "attributes": [],
+    "images": [
+      "/content/categories/5d1a07eca5b0a50b58620003/pearring.jpg"
+    ]
+  },
+  {
+    "_id": "5d1a07eca5b0a50b58620004",
+    "title": "Three-Stone Rings",
+    "url": "rings_three-stone-rings",
+    "description": "Celebrate your past, present, and future with a three-stone ring.",
+    "level": 1,
+    "has_images": true,
+    "subcategories": 0,
+    "parent_id": "5d1a07eca5b0a50b5862ff70",
+    "template": null,
+    "attributes": [],
+    "images": [
+      "/content/categories/5d1a07eca5b0a50b58620004/threestone.jpg"
+    ]
+  },
+  {
+    "_id": "5d1a07eca5b0a50b58620005",
+    "title": "Men's Rings",
+    "url": "rings_mens-rings",
+    "description": "A high-quality classy ring can give a man a smooth and sophisticated look.",
+    "level": 1,
+    "has_images": true,
+    "subcategories": 0,
+    "parent_id": "5d1a07eca5b0a50b5862ff70",
+    "template": null,
+    "attributes": [],
+    "images": [
+      "/content/categories/5d1a07eca5b0a50b58620005/mensrings.jpg"
+    ]
+  },
+  {
+    "_id": "5d1a07eca5b0a50b58620006",
+    "title": "Promise Rings",
+    "url": "rings_promise-rings",
+    "description": "Give a gift of love and assurance with a diamond promise ring.",
+    "level": 1,
+    "has_images": true,
+    "subcategories": 0,
+    "parent_id": "5d1a07eca5b0a50b5862ff70",
+    "template": null,
+    "attributes": [],
+    "images": [
+      "/content/categories/5d1a07eca5b0a50b58620006/promisering.jpg"
+    ]
+  },
+  {
+    "_id": "5d1a0972a5b0a50b5c055ebb",
+    "title": "Earrings",
+    "url": "earrings",
+    "description": "Shop a collection of diamond, pearl and gemstone earrings.",
+    "level": 0,
+    "has_images": false,
+    "subcategories": 0,
+    "parent_id": null,
+    "template": null,
+    "attributes": [],
+    "images": [
+      "/content/jewelry_diagrams/Earrings.svg"
+    ]
+  },
+  {
+    "_id": "5d1a0972a5b0a50b5c055ebc",
+    "title": "Bracelets",
+    "url": "bracelets",
+    "description": "From diamond tennis bracelets to gold and platinum classics.",
+    "level": 0,
+    "has_images": false,
+    "subcategories": 0,
+    "parent_id": null,
+    "template": null,
+    "attributes": [],
+    "images": [
+      "/content/jewelry_diagrams/Bracelet.svg"
+    ]
+  },
+  {
+    "_id": "5d1a0972a5b0a50b5c055ebd",
+    "title": "Pendants",
+    "url": "pendants",
+    "description": "A stunning assortment of finely-crafted pendants & necklaces.",
+    "level": 0,
+    "has_images": false,
+    "subcategories": 0,
+    "parent_id": null,
+    "template": null,
+    "attributes": [],
+    "images": [
+      "/content/jewelry_diagrams/Pendants.svg"
+    ]
+  }
+]

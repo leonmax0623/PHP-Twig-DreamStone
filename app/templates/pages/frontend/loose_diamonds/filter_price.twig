@@ -1,0 +1,152 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative hideblock">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            <p>Set a budget and stick to it. Don't forget to leave some room for the setting.</p>
+        </div>
+    </div>
+    
+    <p class="t-filter-label open"  onclick="toggleBlock(this, 'priceBlock');">Price</p>
+    <div class="u-clear"></div>
+    <div id="priceBlock" class="t-price-block show">
+        <div class="u-clear-20"></div>
+    </div>
+</div>
+
+<!-- nouislider -->
+<script>
+    $(document).ready(function(){
+        var divPrice = document.querySelector('.hideblock');
+        divPrice && divPrice.classList.remove('hideblock')
+    })
+
+  const handleChange = function(handle, value){
+    let newValue = value.replace('{{ currency ? currency.sign : "$" }}', '');
+    newValue = newValue.replace(',', '');
+      
+    UrlParams.set({
+      [handle ? 'price_max' : 'price_min']:  newValue{{ currency ? ' * ' ~ currency.rate : '' }}
+    }, false);
+    const viewMode = UrlParams.get().v || 'g';
+    const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+    loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+        updateLinks();
+        refreshResultCounter(total);
+        if(total == 0) {
+            $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+        }
+        if(total > 0) {
+            $('.results-message').html('');
+        }
+    });
+  };
+
+    var stepsSlider = document.createElement("div");
+    stepsSlider.className = "steps-slider";
+    $('#priceBlock').append(stepsSlider);
+    var stepsSliderInputs = document.createElement("div");
+    stepsSliderInputs.className = "steps-slider-input";
+    $('#priceBlock').append(stepsSliderInputs);
+    var inputWithKeypress0 = document.createElement("input");
+    inputWithKeypress0.id = "input-with-keypress-0";
+    var inputWithKeypress1 = document.createElement("input");
+    inputWithKeypress1.id = "input-with-keypress-1";
+    stepsSliderInputs.append(inputWithKeypress0);
+    stepsSliderInputs.append(inputWithKeypress1);
+
+    const inputs = [inputWithKeypress0, inputWithKeypress1];
+    const getVars = UrlParams.get();
+    {% if currency %}
+    if (getVars.price_min) getVars.price_min = getVars.price_min / {{ currency.rate }};
+    if (getVars.price_max) getVars.price_max = getVars.price_max / {{ currency.rate }};
+    {% endif %}
+    const min = Math.floor({{ currency ? price_min / currency.rate : price_min }});
+    const max = Math.ceil({{ currency ? price_max / currency.rate : price_max }});
+    const currentMin = getVars.price_min && +getVars.price_min > min ? +getVars.price_min : min;
+    const currentMax = getVars.price_max && +getVars.price_max < max ? +getVars.price_max : max;
+
+    $(document).ready(function(){
+        noUiSlider.create(stepsSlider, {
+            start: [currentMin, currentMax],
+            connect: true,
+            range: {
+                'min': [0, 100],
+                '10%': [1000, 200],
+                '50%': [10000, 500],
+                '65%': [20000, 1000],
+                '75%': [40000, 5000],
+                '85%': [100000, 100000],
+                'max': max
+            },
+            format: {
+                to: function (value) {
+                    value = value.toFixed().toString();
+                    let re = /(?=\B(?:\d{3})+(?!\d))/g;
+                    value = value.replace( re, ',' );
+
+                    return '{{ currency ? currency.sign : "$" }}' + value;
+                },
+                from: function (value) {
+                    return Number(value.replace('{{ currency ? currency.sign : "$" }}', ''));
+                }
+            }
+        });  
+        //
+        stepsSlider.noUiSlider.on('update', function (values, handle) {
+            inputs[handle].value = values[handle];
+        });
+        stepsSlider.noUiSlider.on('change', function (values, handle) {  
+            inputs[handle].value = values[handle];
+            handleChange(handle, inputs[handle].value);
+        });
+        inputs.forEach(function (input, handle) {
+        input.addEventListener('change', function () {
+            stepsSlider.noUiSlider.setHandle(handle, this.value);
+        });
+
+            input.addEventListener('blur', function(e) {
+                let values = stepsSlider.noUiSlider.get();
+                let value = Number(values[handle]);
+
+                stepsSlider.noUiSlider.setHandle(handle, this.value);
+                handleChange(handle, this.value);
+            })
+        input.addEventListener('keydown', function (e) {
+            let values = stepsSlider.noUiSlider.get();
+            let value = Number(values[handle]);
+            let steps = stepsSlider.noUiSlider.steps();
+            let step = steps[handle];
+            let position;
+            switch (e.which) {
+                case 13:
+                    stepsSlider.noUiSlider.setHandle(handle, this.value);
+                    handleChange(handle, this.value);
+                    console.log(this.value);
+                    break;   
+                case 38:
+                    position = step[1];
+                    if (position === false) {
+                        position = 1;
+                    }
+                    if (position !== null) {
+                        stepsSlider.noUiSlider.setHandle(handle, value + position);
+                    }
+                    break;
+                case 40:
+                    position = step[0];
+                    if (position === false) {
+                        position = 1;
+                    }
+                    if (position !== null) {
+                        stepsSlider.noUiSlider.setHandle(handle, value - position);
+                    }
+                    break;
+                }
+            });
+        });
+    });
+
+</script>
+
+
+

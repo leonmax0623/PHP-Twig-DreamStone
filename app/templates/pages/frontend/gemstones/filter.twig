@@ -1,0 +1,183 @@
+<script>
+    const filter = {
+        'price_min': '{{ filter.price_min }}',
+        'price_max': '{{ filter.price_max }}',
+        'carat_min': '{{ filter.carat_min }}',
+        'carat_min': '{{ filter.carat_max }}',
+        'gemstoneshape': '{{ filter.gemstoneshape }}',
+        'gemstonecolor': '{{ filter.gemstonecolor }}',
+    };
+
+
+</script>
+
+<!-- Filter -->
+<div class="o-col-lg-12 o-row">
+    <div class="c-filter-block">
+        <div class="o-col-lg-6 o-col-md-12 u-relative">
+            <span class="c-info-label s-sm-invisible">?</span>
+            <p class="t-filter-label" onclick="toggleBlock(this, 'shapeFilter');">Shape</p>
+            <div class="u-clear"></div>
+            <ul id="shapeFilter" class="t-filter-list t-filter-shape_list">
+                {% for gemstoneshape in gemstoneshapes %}
+                <li>
+                    <a href="#">{{ gemstoneshape.image | raw }}</a>
+                    {{gemstoneshape.code}}
+                </li>
+                {% endfor %}
+            </ul>
+            <!-- tooltip shape -->
+            <div class="t-tooltip">
+                <div class="t-tooltip-top">
+                    <h5>Gemstone Shape</h5>
+                    <a href="javascript: void(0);" class="c-close-btn"></a>
+                </div>
+                <div class="t-tooltip-body">
+                    <div class="t-shape-tooltip">
+                        {% for gemstoneshape in gemstoneshapes %}
+                            <div>
+                                <img src="../images/gemstoneshape/{{ gemstoneshape.code | lower }}.jpg" alt="gemstoneshape">
+                                <span>{{ gemstoneshape.code }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="u-clear-20"></div>
+                    <p>Nulla auctor urna nec ipsum pellentesque maximus. In felis sapien, rhoncus non lectus at, facilisis vulputate urna.</p>
+                </div>
+                <!-- /tooltip gemstoneshape -->
+            </div>
+        </div>
+        <div class="o-col-lg-6 o-col-md-12  u-relative">
+            <span class="c-info-label s-sm-invisible">?</span>
+            <p class="t-filter-label"  onclick="toggleBlock(this, 'priceBlock');">Price</p>
+            <div class="u-clear"></div>
+            <div id="priceBlock" class="t-price-block">
+                <div class="u-clear-20"></div>
+                <div class="t-range-block">
+                    <div class="t-range-scale">
+                        <div style="left: 10%; right: 2%;" class="t-range-scale-active"></div>
+                    </div>
+                    <span style="left: 10%;" class="t-range-slider"></span>
+                    <span style="right: 2%;" class="t-range-slider"></span>
+                </div>
+                <input class="t-price-input u-fl" type="text" value="">
+                <input class="t-price-input u-fr" type="text" value="">
+                <div class="u-clear"></div>
+            </div>
+        </div>
+        <div class="u-clear"></div>
+        <div class="o-col-lg-6 o-col-md-12  u-relative">
+            <span class="c-info-label s-sm-invisible">?</span>
+            <p class="t-filter-label"  onclick="toggleBlock(this, 'colorBlock');">Color</p>
+            <div class="u-clear"></div>
+            <ul id="shapeFilter" class="t-filter-list t-filter-shape_list t-filter-gemstone-color-list">
+                {% for gemstonecolor in gemstonecolors %}
+                <li>
+                    <a href="#"><img src="/images/gemstone/{{ gemstonecolor.code | lower }}.png" alt="gemstonecolor"></a>
+                    {{gemstonecolor.title}}
+                </li>
+                {% endfor %}
+            </ul>
+            <!-- tooltip gemstonecolor -->
+            <div class="t-tooltip">
+                <div class="t-tooltip-top">
+                    <h5>Gemstone Color</h5>
+                    <a href="javascript: void(0);" class="c-close-btn"></a>
+                </div>
+                <div class="t-tooltip-body">
+                    <div class="o-col-lg-12 o-row u-tc">
+                        <img src="../images/diamond_color.png" alt="diamond_color">
+                        <div class="u-clear-10"></div>
+                    </div>
+                    <div class="t-price-block t-range-scaleble">
+                        <ul class="t-range-data">
+                            {% for gemstonecolor in gemstonecolors %}
+                                <li><span>{{ gemstonecolor.code | lower }}</span></li>
+                            {% endfor %}
+                        </ul>
+                        <div class="t-range-block">
+                            <div class="t-range-scale">
+                                <div style="left: 0%; right: 0%;" class="t-range-scale-active"></div>
+                            </div>
+                            <span style="left: 10%;" class="t-range-slider"></span>
+                        </div>
+                        <div class="u-clear-20"></div>
+                    </div>
+                    <div class="u-clear-40"></div>
+                    <p>I - J: Near-colorless тАУ A very subtle hint of color is slightly detectable with careful attention, but still considered тАЬnear-colorless.тАЭ These colors can be grouped as fine color grades and offer excellent value. </p>
+                </div>
+            </div>
+            <!-- /tooltip color -->
+        </div>
+        <div class="o-col-lg-6 o-col-md-12  u-relative">
+            <span class="c-info-label s-sm-invisible">?</span>
+            <p class="t-filter-label"  onclick="toggleBlock(this, 'caratBlock');">Carat</p>
+            <div class="u-clear"></div>
+            <div id="caratBlock" class="t-price-block">
+                <div class="u-clear-20"></div>
+                <div class="t-range-block">
+                    <div class="t-range-scale">
+                        <div style="left: 30%; right: 30%;" class="t-range-scale-active"></div>
+                    </div>
+                    <span style="left: 30%;" class="t-range-slider"></span>
+                    <span style="right: 30%;" class="t-range-slider"></span>
+                </div>
+                <input class="t-price-input u-fl" type="text" value="{{ filter.carat_min }}">
+                <input class="t-price-input u-fr" type="text" value="{{ filter.carat_max }}">
+                <div class="u-clear"></div>
+            </div>
+            <!-- tooltip carat -->
+            <div class="t-tooltip">
+                <div class="t-tooltip-top">
+                    <h5>Diamond Size</h5>
+                    <a href="javascript: void(0);" class="c-close-btn"></a>
+                </div>
+                <div class="t-tooltip-body">
+                    <div class="t-diamond-size-range-block">
+                        <img src="../images/diamond_size_coin.png" alt="diamond_size_coin">
+                        <!-- diamond size change class "t-diamond-size-range-N" where N from 025 to 200 step 025 -->
+                        <div class="t-diamond-size-range t-diamond-size-range-025"></div>
+                    </div>
+                    <div class="t-range-block">
+                        <div class="t-range-scale">
+                            <div style="left: 0%; right: 0%;" class="t-range-scale-active"></div>
+                        </div>
+                        <span style="left: 13.5%;" class="t-range-slider">1.25</span>
+                    </div>
+                    <div class="u-clear-40"></div>
+                    <p>A diamond's weight is measured in what is known as a тАЬcarat,тАЭ which equals 200 milligrams, or 1/5 gram тАУ not to be confused with тАЬkarat,тАЭ which refers to the purity of gold.</p>
+                </div>
+                <!-- /tooltip carat -->
+            </div>
+        </div>
+        <div class="u-clear"></div>
+    </div>
+    <div class="o-col-lg-12 o-row">
+        <div class="o-col-lg-2 o-col-md-3 s-sm-invisible"></div>
+        <div class="o-col-lg-8 o-col-md-6 o-col-sm-6 t-filter-btn-block">
+            <a href="#" id="t-filter-close-btn" class="t-filter-close-btn">Close Filters</a>
+        </div>
+        <div class="o-col-lg-2 o-col-md-3 o-col-sm-6 t-filter-btn-block">
+            <a href="#" id="clear-filters" class="u-fr" onclick="resetFilters(); return false;">Clear Filters</a>
+        </div>
+    </div>
+</div>
+<div class="u-clear"></div>
+<!-- /Filter -->
+<div class="u-clear-20"></div>
+<div class="o-col-lg-3 o-row s-md-invisible"></div>
+<div class="o-col-lg-2 o-col-md-4 o-col-sm-12 o-row">
+    <a href="#" class="c-btn c-dark-btn t-results-btn-view">results ({{ products | length }})</a>
+</div>
+<div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+    <a href="/viewed" class="c-btn c-light-btn">recently viewed ({{ viewedCount }})</a>
+</div>
+<div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+    <a href="/compare" class="c-btn c-light-btn">comparison</a>
+</div>
+<div class="u-clear-20"></div>
+<script>
+    function resetFilters() {
+        UrlParams.delete(true);
+    }
+</script>

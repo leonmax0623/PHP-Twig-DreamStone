@@ -1,0 +1,52 @@
+<!-- one result -->
+<li class="t-compare-result-block holder-compare-cart">
+  <div class="compare-cart">
+      <button id="cd{{ diamond._id }}" class="t-compare-result-delete"></button>
+      <a href="{{ diamond.permalink }}">
+          <div class="t-search-result-image-block">
+              <div id="image-{{ diamond._id }}" style="height: 100%;">
+                {% if '.j' in diamond.imageExternal %}
+                    <img src="{{ diamond.imageExternal }}" alt="diamond-images">
+                {% elseif '.J' in diamond.imageExternal %}
+                    <img src="{{ diamond.imageExternal }}" alt="diamond-images">
+                {% elseif 'http' in diamond.imageExternal %}
+                    {#{{ diamond.shape.image | raw }}#}
+                    <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" alt="diamond-images" />
+                {% else %}  
+                    <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" alt="diamond-images" />
+                {% endif %}
+            </div>
+          </div>
+      </a>
+
+        <div class="t-compare-result-description-block">
+        <span class="t-compare-price">{{ diamond.price | price }}</span>
+        <div class="u-clear-10"></div>
+        <table class="t-compare-table">
+            <tr><td>carat</td><td>{{ diamond.weight }}</td></tr>
+            <tr><td>color</td><td>{{ diamond.color.code }}</td></tr>
+            <tr><td>clarity</td><td>{{ diamond.clarity.code }}</td></tr>
+            <tr><td>cut</td><td>{{ diamond.cut.code }}</td></tr>
+            {% if diamond.depth %}<tr><td>depth</td><td>{{ diamond.depth }}</td></tr>{% endif %}
+            {% if diamond.table %}<tr><td>table</td><td>{{ diamond.table }}</td></tr>{% endif %}
+            <tr><td>pol/sym</td><td>{{ diamond.polish.code }}/{{ diamond.symmetry.code }}</td></tr>
+            {% if diamond.flourence %}<tr><td>flour</td><td>{{ diamond.flourence.code }}</td></tr>{% endif %}
+            {% if diamond.girdle %}<tr><td>girdle</td><td>{{ diamond.girdle.code }}</td></tr>{% endif %}
+            {% if diamond.culet %}<tr><td>culet</td><td>{{ diamond.culet.code }}</td></tr>{% endif %}
+            <tr><td>measur</td><td>{{ diamond.measurements }}</td></tr>
+            <tr><td>lab</td><td>{{ diamond.lab }}</td></tr>
+        </table>
+        </div>
+    </div>
+    <script>
+      $('#cd{{ diamond._id }}').click(function() {
+        const $this = $(this);
+        const $icon = $('.results-btn-comparison');
+        (new Compares()).delete('diamonds', '{{ diamond._id }}', function(){
+          const count = +$icon.attr('data-count') - 1;
+          $icon.attr('data-count', count).text(`comparison${count ? ` ${count}` : ''}`);
+          $this.parents('.holder-compare-cart').remove();
+        });
+      });
+  </script>
+</li>

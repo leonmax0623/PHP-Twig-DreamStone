@@ -1,0 +1,111 @@
+<button class="c-btn c-dark-btn choose-diamond-btn" style="padding:0">Choose this diamond</button>
+{% if not composite.product %}
+    <div id="choose-setting" class="popup-choose-setting">
+        <div class="popup-content">
+            <button class="btn-popup-close">X</button>
+            <div class="popup-header">
+                <h2>What would you like to do?</h2>
+            </div>
+            <div class="popup-holder-list">
+                <div class="list" onclick="addToRing()"><p>Add this diamond to a ring</p></div>
+                <div class="list" onclick="addToPendant()"><p>Add this diamond to a pendant</p></div>
+                <div class="list" onclick="addToCart()"><p>Buy this diamond without a setting</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="t_add_to_cart"
+         id="cart-notification"
+         style="display: none;"
+    >
+        <button class="close close_popup_btn"></button>
+        You added new product:
+        <div class="u-clear-10"></div>
+        <div class="t-add-to-cart-img">
+          {% if '.j' in product.imageExternal %}
+            <img src="{{ product.imageExternal }}" alt="loose_diamonds" />
+          {% elseif '.J' in product.imageExternal %}  
+            <img src="{{ product.imageExternal }}" alt="loose_diamonds" />
+          {% elseif 'http' in product.imageExternal %}
+            <img src="/images/loose_diamonds/nm_{{ product.shape.code }}.png" border="0" alt="loose_diamonds">
+          {% elseif product.imageExternal %}
+            <img src="{{ product.imageExternal }}" alt="loose_diamonds" />
+          {% else %}
+            <img src="/images/loose_diamonds/nm_{{ product.shape.code }}.png" border="0" alt="loose_diamonds">
+          {% endif %}
+        </div>
+        <p class="t-add-to-cart-title">{{ product.title }}</p>
+        <p class="t-add-to-cart-price" style="margin-top: 10px">Price: {{ product.price | price }}</p>
+        <div class="u-clear-20"></div>
+        <a class="btn u-tc" href="/cart">Checkout</a>
+    </div>
+{% endif %}
+<script>
+const $popup = $('#choose-setting');
+
+const addToRing = () => {
+  setTimeout(() => (new Composite()).add('diamonds', product._id).redirectTo('products'), 0);
+}
+const addToPendant = () => {
+  setTimeout(() => (new Composite()).add('diamonds', product._id).redirectTo('pendants'), 0);
+}
+
+const addToCart = () => {
+  const $topCart= $('.t-top-icon-cart, .t-top-icon-mob-cart');
+  const $cartNotification = $('#cart-notification');
+
+  gtag('event', 'add_to_cart', {
+      'value': product.price,
+      'items': [{
+        'id': product._id,
+        'google_business_vertical': 'retail',
+      }]
+  });
+
+  // Criteo Basket / Cart Tag
+  window.criteo_q = window.criteo_q || [];
+  var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+  window.criteo_q.push(
+    { event: "setAccount", account: 91590},
+    { event: "setEmail", email: "{{ user.email_hash }}", hash_method: "sha256" },
+    { event: "setSiteType", type: deviceType},
+    { event: "setZipcode", zipcode: "{{ user.zip_code }}" },
+    { event: "addToCart", item: [
+      {id: product._id, price: product.price, quantity: 1 }
+    ]}
+  );
+  // END Criteo Basket / Cart Tag
+    
+  setTimeout(() => {
+    $.ajax({
+      method: 'POST',
+      url: '/cart',
+      data: {
+        product_id: product._id,
+        group: 'diamonds',
+        withAttributes: product.withAttributes,
+      }
+    }).done(function() {
+      $topCart.attr('data-count', +($topCart.attr('data-count') || 0) + 1);
+      $cartNotification.show();
+      $popup.hide();
+    });
+
+    $cartNotification.find('.close').click(function() {
+      $cartNotification.hide();
+    });
+  }, 0);
+};
+
+$('.choose-diamond-btn').click(function() {
+  {% if composite.product %}
+  addToRing();
+  {% elseif composite.pendant %}
+  addToPendant();
+  {% else %}
+  $popup.css({ display: 'flex' });
+  {% endif %}
+});
+$('.btn-popup-close').click(function(){
+  $popup.hide();
+});
+</script>

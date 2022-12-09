@@ -1,0 +1,19 @@
+<a href="{{ item.permalink }}" class="u-tc t-viewed-item-">
+    <div class="recently-card">
+        {% set mainImage = '/images/jewelry/default.png' %}
+        {% set break = false %}
+        {% for image in item.images if not break %}
+            {% if image.type == 'img' %}
+                {% set mainImage = '/img.php?src=' ~ image.value|replace({ ('/content/'): '' }) ~ '&w=640&q=100' %}
+                {% set break = true %}
+            {% endif %}
+        {% endfor %}
+        <div class="recently-visual">
+            <img src="{{ mainImage }}" alt="images">
+        </div>
+        <div class="recently-text">
+            <p class="u-f20 u-color-dark-gray u-text-upper">{{ item.title }}</p>
+            <p class="u-f22 u-color-blue">{{ item.price | price }}</p>
+        </div>
+    </div>
+</a>

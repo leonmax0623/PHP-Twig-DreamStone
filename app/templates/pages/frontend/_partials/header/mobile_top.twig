@@ -1,0 +1,39 @@
+<div class="t-mob-nav-bg" id="second_nav">
+    <div class="t-mob-nav-block t-mob-second-nav-block">
+        <ul>
+            {% if user == false %}
+                <li><a href="javascript: void(0)" class="t-login">login</a></li>
+            {% else %}
+                <li><span style="color: #97a6ce;">{{ user.first_name }}</span></li>
+            {% endif %}
+            <li><a href="#">send email</a></li>
+            <li><a id="my_custom_link">chat</a></li>
+            <li><a href="#">map</a></li>
+            <li {% if isCartSection %}class="active"{% endif %}><a href="/cart">cart</a></li>
+            <li {% if isUserSection %}class="active"{% endif %}><a href="/user/profile">my account</a></li>
+            <li {% if isWishListSection %}class="active"{% endif %}><a href="/wish-list">wish list</a></li>
+            <li {% if isOrdersSection %}class="active"{% endif %}><a href="/my-orders">my orders</a></li>
+            <li>
+                <span>Change currency</span>
+                <div class="u-clear"></div>
+                <div class="u-fl u-mrg-10">
+                    <div class="radiobox-block">
+                        <input type="radio" id="currency_dollar_mob" name="currency_mob"{{ currency.name != 'euro' ? ' checked' : '' }}>
+                        <label class="radiobox-view" for="currency_dollar_mob" onclick="CooseCurrency('t-top-icon-dollar');"></label>
+                    </div>
+                    <label class="radiobox-label u-fl" for="currency_dollar_mob" onclick="CooseCurrency('t-top-icon-dollar');">USD</label>
+                </div>
+                <div class="u-fl u-mrg-10">
+                    <div class="radiobox-block">
+                        <input type="radio" id="currency_euro_mob" name="currency_mob"{{ currency.name == 'euro' ? ' checked' : '' }}>
+                        <label class="radiobox-view" for="currency_euro_mob" onclick="CooseCurrency('t-top-icon-euro');"></label>
+                    </div>
+                    <label class="radiobox-label u-fl" for="currency_euro_mob" onclick="CooseCurrency('t-top-icon-euro');">EURO</label>
+                </div>
+            </li>
+            {% if user %}
+                <li><a href="/user/logout">Logout</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

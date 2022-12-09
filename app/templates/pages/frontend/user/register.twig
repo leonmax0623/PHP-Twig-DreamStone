@@ -1,0 +1,30 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Diamond Engagement Rings | Diamond Rings| Loose Diamonds | Wedding Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    DreamStone - New York's largest retailer of Diamond Engagement Rings, Wedding Rings, Diamond Rings, Loose Diamonds, Diamond Studs Earrings, Diamond Pendants, White Gold Engagement Rings, Platinum Engagement Rings.
+{%- endblock -%}
+
+
+{%- block meta_keywords -%}
+    Engagement Rings, Wedding Rings, Diamond Engagement Rings, Diamond Rings, Loose Diamonds, Design Your Own Engagement Ring, White Gold Engagement Rings, Platinum Engagement Rings
+{%- endblock -%}
+
+{% block content %}
+    <div class="content-sm">
+        <div class="u-clear-20"></div>
+        {% if not isValid %}
+            {% for error in errors %}
+                <div style="color: red">* {{ error.dataPath }}: {{ error.message }}</div>
+                 <div class="u-clear-20"></div>
+            {% endfor %}
+
+            {%  include "pages/frontend/_partials/registration.twig" %}
+        {% else %}
+            {{ post.first_name }} {{ post.last_name }}, you are successfully registered
+        {% endif %}
+    </div>
+{% endblock %}

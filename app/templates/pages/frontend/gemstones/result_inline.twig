@@ -1,0 +1,87 @@
+<ul class="t-table-list">
+	<li><img src="../images/diamond-table.png"></li>
+	<li>
+		<span>Round</span>
+	</li>
+	<li>
+		<span>0.7</span>
+	</li>
+	<li>
+		<span>Red</span>
+	</li>
+	<li>
+		<span>$1.050</span>
+	</li>
+	<li>
+		<span>
+			<a href="javascript:void(0);" onclick="$(this).toggleClass('active');" class="t-table-view-icon t-table-view-icon-compare"></a>
+		</span>
+	</li>
+	<li>
+		<span>
+			<a href="javascript:void(0);" onclick="$(this).toggleClass('active');" class="t-table-view-icon t-table-view-icon-wishlist"></a>
+		</span>
+	</li>
+	<li>
+		<span>
+			<a href="javascript:void(0);" class="t-table-view-icon t-table-view-icon-details"></a>
+		</span>
+	</li>
+	<li>
+		<span>
+			<a class="btn" href={{ path_for('looseDiamonds-Search', {'filter': 'fancycolor-' ~ 'green/87984'} ) }}>Details</a>
+		</span>
+	</li>
+</ul>
+<div class="t-table-view-details-block" style="display: none;">
+	<div class="u-clear-20"></div>
+	<div class="o-col-lg-5 o-col-sm-12">
+		<img src="../images/productpage/slider/slide_1.jpg" alt="images">
+	</div>
+	<div class="o-col-lg-7 o-col-sm-12 u-color-dark-gray">
+		<p class="u-text-upper u-f20">0.30 Carat - Round Brilliant Diamond</p>
+		<p class="u-f18">K Color, SI1 Clarity, Fair Cut,
+			<br>
+			Round Diamond accompanied by a grading report from GIA<br>
+			SKU : DS0070489982</p>
+		<div class="o-col-lg-12 o-row">
+			<p class="u-f18 u-color-blue u-text-upper u-text-none-underline u-mrg-0">FREE SHIPPING & 30 DAY RETURNS</p>
+			<p class="u-f18 u-color-light-gray">Order today, ships by
+				<span>{{ product.shippingDetails.shipsBy|date("l, F jS") }}</span>
+			</p>
+			<p></p>
+		</div>
+		<div class="u-clear-30"></div>
+		<div class="o-col-lg-6 o-row">
+			<a href="#" class="c-btn c-light-btn product-price">Price: $400.00</a>
+		</div>
+		<div class="o-col-lg-6 o-row">
+			<a href="#" class="c-btn c-dark-btn">Add to cart</a>
+		</div>
+		<div class="u-clear"></div>
+		<div class="o-col-lg-6 o-row u-tl">
+			<ul class="t-product-action">
+				<li>
+					<a href="#" class="t-product-action-icon t-product-action-wishlist"></a>
+				</li>
+				<li>
+					<a href="#" class="t-product-action-icon t-product-action-search"></a>
+				</li>
+				<li>
+					<a href="#" class="t-product-action-icon t-product-action-send"></a>
+				</li>
+				<li>
+					<a href="#" class="t-product-action-icon t-product-action-print"></a>
+				</li>
+			</ul>
+		</div>
+		<div class="u-clear-10"></div>
+		{# <div
+					class="o-col-lg-11 o-col-md-10 o-row u-tl"><p>Our in-house gemologist at DreamStone inspect every diamond before it reaches you and we ship the diamond with the grading report and an insurance appraisal.</p>
+				</div>
+				<div class="o-col-lg-1 o-col-md-2 o-row u-tr">
+					<img class="t-examitation-img" src="../images/examination.png" alt="examitation">
+				</div> #}
+		<div class="u-clear"></div>
+	</div>
+</div>

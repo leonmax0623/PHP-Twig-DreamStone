@@ -1,0 +1,73 @@
+<ul class="t-search-results">
+    {% for product in products %}
+        {%  include "pages/frontend/jewelry/result.twig" %}
+    {% endfor %}
+</ul>
+<script>
+    function updateLinks(total = null) {
+        $('li.t-search-result-block a').click(function(e) {
+            let href = $(this).attr('href').split('?');
+            $(this).attr('href', href[0] + location.search);
+        });
+    }
+</script>
+
+<!-- slick -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+{# <link rel="stylesheet" type="text/css" href="/js/slick.min.js"/> #}
+
+<script>
+$(document).ready(function () {
+  var win = $(window);
+  var footerHeight = $("footer").height();
+  window.limit = +"{{ filter.limit }}" || 10;
+  window.offset = +window.limit;
+  var type = "{{ filter.jewelrytype }}";
+  window.finish = false;
+  window.lastOffset = 0;
+  win.scroll(function () {
+    if (window.lastOffset == window.offset) return;
+    scroll =
+      $(document).height() - win.height() - (win.scrollTop() + footerHeight + win.height() / 2);
+    if (scroll < 1 && !window.finish) {
+      window.lastOffset = window.offset;
+      const params = {
+        url: `${location.pathname}?${
+          location.search.length ? location.search.substring(1) + "&" : ""
+        }json&limit=${window.limit}&offset=${window.offset}`,
+        dataType: "json",
+        success: function (loadedData) {
+          if (!loadedData.finish && loadedData.items) {
+            window.offset = +window.offset + window.limit;
+            $(".t-search-results").append(loadedData.items.join("\n"));
+            $(".result-jewelry-slider")
+              .not(".slick-slider")
+              .slick({
+                infinite: true,
+                speed: 300,
+                slidesToShow: 4,
+                adaptiveHeight: true,
+                responsive: [
+                  {
+                    breakpoint: 600,
+                    settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1,
+                    },
+                  },
+                ],
+              });
+            return true;
+          }
+          window.finish = true;
+        },
+      };
+      $.ajax(params);
+    }
+  });
+});
+
+</script>

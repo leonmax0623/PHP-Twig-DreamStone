@@ -1,0 +1,568 @@
+[
+  {
+    "name": "wrapper",
+    "items": [
+      {
+        "_id": "",
+        "name": "header",
+        "file": "pages/frontend/_partials/header/index.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "footer",
+        "file": "pages/frontend/_partials/footer/index.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "home",
+        "file": "pages/frontend/home/parts/index.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "diamonds",
+        "file": "pages/frontend/loose_diamonds/parts/index.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "rings",
+        "file": "pages/frontend/engagement_rings/parts/index.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "wedding",
+        "file": "pages/frontend/wedding_rings/parts/index.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "jewelry",
+        "file": "pages/frontend/jewelry/parts/index.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "gemstones",
+        "file": "pages/frontend/gemstones/parts/index.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  },
+  {
+    "name": "header",
+    "items": [
+      {
+        "_id": "",
+        "name": "desktop_top",
+        "file": "pages/frontend/_partials/header/desktop_top.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "mobile_top",
+        "file": "pages/frontend/_partials/header/mobile_top.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "desktop_mainmenu",
+        "file": "pages/frontend/_partials/header/desktop_mainmenu.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "mobile_mainmenu",
+        "file": "pages/frontend/_partials/header/mobile_mainmenu.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  },
+  {
+    "name": "desktop_mainmenu",
+    "items": [
+      {
+        "_id": "",
+        "name": "about",
+        "file": "pages/frontend/_partials/mainmenu/web/about.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "diamonds",
+        "file": "pages/frontend/_partials/mainmenu/web/diamonds.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "education",
+        "file": "pages/frontend/_partials/mainmenu/web/education.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "engagement_rings",
+        "file": "pages/frontend/_partials/mainmenu/web/engagement_rings.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "gemstone",
+        "file": "pages/frontend/_partials/mainmenu/web/gemstone.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "jewelry",
+        "file": "pages/frontend/_partials/mainmenu/web/jewelry.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "wedding",
+        "file": "pages/frontend/_partials/mainmenu/web/wedding.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  },
+  {
+    "name": "mobile_mainmenu",
+    "items": [
+      {
+        "_id": "",
+        "name": "about",
+        "file": "pages/frontend/_partials/mainmenu/mobile/about.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "diamonds",
+        "file": "pages/frontend/_partials/mainmenu/mobile/diamonds.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "education",
+        "file": "pages/frontend/_partials/mainmenu/mobile/education.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "engagement_rings",
+        "file": "pages/frontend/_partials/mainmenu/mobile/engagement_rings.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "gemstone",
+        "file": "pages/frontend/_partials/mainmenu/mobile/gemstone.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "jewelry",
+        "file": "pages/frontend/_partials/mainmenu/mobile/jewelry.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "wedding",
+        "file": "pages/frontend/_partials/mainmenu/mobile/wedding.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  },
+  {
+    "name": "footer",
+    "items": [
+      {
+        "_id": "",
+        "name": "featured",
+        "file": "pages/frontend/_partials/footer/featured.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "links",
+        "file": "pages/frontend/_partials/footer/links.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "follow",
+        "file": "pages/frontend/_partials/footer/follow.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "payment",
+        "file": "pages/frontend/_partials/footer/payment.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "copyright",
+        "file": "pages/frontend/_partials/footer/copyright.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  },
+  {
+    "name": "home",
+    "items": [
+      {
+        "_id": "",
+        "name": "banner1",
+        "file": "pages/frontend/home/parts/banner1.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner_viewed",
+        "file": "pages/frontend/home/parts/banner_viewed.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner2",
+        "file": "pages/frontend/home/parts/banner2.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "conflict_free_diamonds",
+        "file": "pages/frontend/home/parts/conflict_free_diamonds.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner3",
+        "file": "pages/frontend/home/parts/banner3.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "gemstones",
+        "file": "pages/frontend/home/parts/gemstones.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "top_trending",
+        "file": "pages/frontend/home/parts/top_trending.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner4",
+        "file": "pages/frontend/home/parts/banner4.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner5",
+        "file": "pages/frontend/home/parts/banner5.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "bottom_slider",
+        "file": "pages/frontend/home/parts/bottom_slider.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  },
+  {
+    "name": "diamonds",
+    "items": [
+      {
+        "_id": "",
+        "name": "banner1",
+        "file": "pages/frontend/loose_diamonds/parts/banner1.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "explore",
+        "file": "pages/frontend/loose_diamonds/parts/explore.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "color",
+        "file": "pages/frontend/loose_diamonds/parts/color.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "clarity",
+        "file": "pages/frontend/loose_diamonds/parts/clarity.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner2",
+        "file": "pages/frontend/loose_diamonds/parts/banner2.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner3",
+        "file": "pages/frontend/loose_diamonds/parts/banner3.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner4",
+        "file": "pages/frontend/loose_diamonds/parts/banner4.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner5",
+        "file": "pages/frontend/loose_diamonds/parts/banner5.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  },
+  {
+    "name": "rings",
+    "items": [
+      {
+        "_id": "",
+        "name": "banner1",
+        "file": "pages/frontend/engagement_rings/parts/banner1.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "style",
+        "file": "pages/frontend/engagement_rings/parts/style.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "color",
+        "file": "pages/frontend/engagement_rings/parts/color.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner2",
+        "file": "pages/frontend/engagement_rings/parts/banner2.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner3",
+        "file": "pages/frontend/engagement_rings/parts/banner3.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner4",
+        "file": "pages/frontend/engagement_rings/parts/banner4.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner5",
+        "file": "pages/frontend/engagement_rings/parts/banner5.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  },
+  {
+    "name": "wedding",
+    "items": [
+      {
+        "_id": "",
+        "name": "women",
+        "file": "pages/frontend/wedding_rings/parts/women.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "men",
+        "file": "pages/frontend/wedding_rings/parts/men.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner1",
+        "file": "pages/frontend/wedding_rings/parts/banner1.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner2",
+        "file": "pages/frontend/wedding_rings/parts/banner2.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner3",
+        "file": "pages/frontend/wedding_rings/parts/banner3.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner4",
+        "file": "pages/frontend/wedding_rings/parts/banner4.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  },
+  {
+    "name": "gemstones",
+    "items": [
+      {
+        "_id": "",
+        "name": "slider",
+        "file": "pages/frontend/gemstones/parts/slider.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "color",
+        "file": "pages/frontend/gemstones/parts/color.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner1",
+        "file": "pages/frontend/gemstones/parts/banner1.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner2",
+        "file": "pages/frontend/gemstones/parts/banner2.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner3",
+        "file": "pages/frontend/gemstones/parts/banner3.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner4",
+        "file": "pages/frontend/gemstones/parts/banner4.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  },
+  {
+    "name": "jewelry",
+    "items": [
+      {
+        "_id": "",
+        "name": "banner1",
+        "file": "pages/frontend/jewelry/parts/banner1.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner2",
+        "file": "pages/frontend/jewelry/parts/banner2.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner3",
+        "file": "pages/frontend/jewelry/parts/banner3.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner4",
+        "file": "pages/frontend/jewelry/parts/banner4.twig",
+        "content": "",
+        "images": []
+      },
+      {
+        "_id": "",
+        "name": "banner5",
+        "file": "pages/frontend/jewelry/parts/banner5.twig",
+        "content": "",
+        "images": []
+      }
+    ]
+  }
+]

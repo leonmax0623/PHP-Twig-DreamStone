@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "steam-form-290301",
+  "private_key_id": "96f7f8a35345a7c2d543d91cf96e51d9718abbaf",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCYSlz/nZgCDik7\nj7dMEHDmf0qs9BiOcqCGQ7O/TWzkiKMQp3l0SUYLqVSZTaBhPU8VhNxKSBI9KUly\nHjMb4YdTZQdwAFNbprMh/jes2PknyE9bJzZHOULeyHkbdNJ4R1HcmMRz63X6MgGi\nGjon+D5Aqs1Ftk2SA6nHAr2ac79P81Ri/BNPrTPcqFFj990iKO/gyyHShkFwCDED\nsSmayKh2D3eLZMSTzhMlhNsCvZVngH5Hq31wRD+riucSHtOzud3fbjvCC5vHV/5p\nc5di/jktGKrUuCEz7Ipt1zIlZy1VshuaNc7iBC5wB0heuOQQkdsN/EY73KfeOznX\nXCJrIWTDAgMBAAECggEAHs2r0ehGfuPuYyXGpZQNwhGtQR5+eRGmdoHrMZ6vj+oz\nUYMOhf7sNB+kBP42mnSUMn4VMNEzHzvipzqEi/cqMCwXPQhT1A373bxV9phMjUdv\nBbkAuZdTd0yFcpBGoh2K6VvdILVXv6utuOQlL0B/FwV1T8x4FDi5do+PWlZfNARr\n5JeYCODjjgqrj7D31w43KQr3Mrh30sBkBUuu4zxvparKYeGELni52eQULE1872Ao\nweuIQ4sd+LddWbNh9Jnm4wSRkdtaHSB5nUHSJC6S4XZi6n1aGh5lpwpqwXrx5ble\nsmfJ8RF0s5Yw7lFMbH9aMnL4C8CDrDy6YqxCfu4BQQKBgQDQ2wKxqDOx6dECKDE+\nZWA24inrn9dJK6BQHGp0zXtRsqXH1SH+w2ZEnBzb2bu9Qfv5CHOugYsBah0ecdT7\nlJAxtp0UFK3exLXdCNS0/id7r3XaOL5ky+DLuy2F+1cby+Xo4EVQYIBuRB32YgY1\ndfXH71LL9/VALTXJN2qT24iB7QKBgQC6qqsd+c2fUtFA0dvLinS2EtPhu7paduv/\nEyinOihb0jKHwwI7E6vHYR9rw3igvjdFF0ZxevDVH8zWC/VDprxgXIGnyO0ItED6\nBlQer5njCFlYPWszsAgKmt55uSuod9AhMgMar1WZczuUVVXudBE1Ooaq9MqGf7qw\nwJGD1s9rbwKBgHvl0J1PqQscJ+9dpIjdXsxwMmojMnWnubyMfuK3mzaGAi6f00Ds\n7dg5vCz355WIdU/woZ+eHbZDGu8anDx6j2fOazSkZ9jFXRW4zWZpd0a6efFwxBHL\nmJmDeqgGyFAnD0as9LGP7eB77EJjOEeyqJFo+fciK41cxJGPnFwGWd6pAoGAAcQT\nklkGpPc3m5FgrvBEYmSTNJN+E9UELomT3OEj+Jpod/hUURLCkURN88sJnRuvkivC\nMtii5qFCYtQCIf210oONhnTUKTzrUHI24YNvxUIS9k6+cOK9cLw+VpB15UYc5fN/\nLAV0ndsFOUYFZhgbAZHoLD3cnKEgtwNbXQ/vLmkCgYBEWv4kcwUkcALO2KmPMG0F\nSN2qSiuNYFY/phfRglAjBL4+VGdqaMXIQJBkij5OSeojZAE5zHoAURBQVjnYz8q3\ne/lcMUR0rZ7OFFloeDJltQ6v49VdxWi5pAs5TvgUpG185rwu9LFsxaZv61z4EFuy\nmZ/OV6cW1xeL1snJfc5yRA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "recaptcha-enterprise-api@steam-form-290301.iam.gserviceaccount.com",
+  "client_id": "108648312494736192313",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/recaptcha-enterprise-api%40steam-form-290301.iam.gserviceaccount.com"
+}

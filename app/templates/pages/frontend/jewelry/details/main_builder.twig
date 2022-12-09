@@ -1,0 +1,41 @@
+<button class="c-btn c-dark-btn choose-setting-btn" style="padding:0">Choose this setting</button>
+<script>
+  $('.choose-setting-btn').click(function () {
+    var errors = [];
+    product.attributes.forEach(({
+      name,
+      isRequired
+    }) => {
+      if (isRequired && !product.withAttributes[name])
+        errors.push(name);
+    });
+    if (errors.length) {
+      alert('Please select ' + errors.join(', '));
+      return false;
+    }
+
+    gtag('event', 'add_to_cart', {
+      'value': product.price,
+      'items': [{
+        'id': product._id,
+        'google_business_vertical': 'retail',
+      }]
+    });
+
+    // Criteo Basket / Cart Tag
+    window.criteo_q = window.criteo_q || [];
+    var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+    window.criteo_q.push(
+      { event: "setAccount", account: 91590},
+      { event: "setEmail", email: "{{ user.email_hash }}", hash_method: "sha256" },
+      { event: "setSiteType", type: deviceType},
+      { event: "setZipcode", zipcode: "{{ user.zip_code }}" },
+      { event: "addToCart", item: [
+        {id: product._id, price: product.price, quantity: 1 }
+      ]}
+    );
+    // END Criteo Basket / Cart Tag
+
+    setTimeout(() => (new Composite()).add('products', product._id, product.withAttributes).redirectTo('diamonds'), 0);
+  });
+</script>

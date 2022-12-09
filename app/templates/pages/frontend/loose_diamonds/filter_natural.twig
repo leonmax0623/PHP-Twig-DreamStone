@@ -1,0 +1,57 @@
+<div class="o-col-lg-12 o-col-sm-12 u-relative mb-15"
+  style="display: flex; align-items: center; justify-content: center;">
+  <div>
+    <div class="holder-info">
+      <a class="c-info-label s-sm-invisible">?</a>
+      <div class="info-desc">
+        <p>Natural diamonds are mined from the earth and come with conflict-free guarantees. Most people buy a natural
+          diamond for an engagement ring. Lab diamonds are grown in laboratories. They are chemically the same as
+          natural diamonds, but machines can tell them apart. Lab diamonds are a good option for those looking for a
+          larger diamond within budget, but don't expect much in resale value. Prices for lab diamonds are trending down
+          as more growers come onto the market.</p>
+      </div>
+    </div>
+
+    <p class="t-filter-headres">Diamond Type</p>
+    <div class="u-clear"></div>
+    {# <p class="t-filter-label natural-lab" onclick="toggleBlock(this, 'labFilter');">Diamond Type</p> #}
+    <div id="labFilter" class="t-lab-block">
+      <a data-value=""
+        class="filter-natural btn-natural c-btn c-{{ filter.natural in ['all', 'lab'] ? 'light' : 'dark' }}-btn">
+        <span class="icon-natural u-mrg-right-10"></span>
+        <span>Natural</span>
+      </a>
+      <a data-value="lab" class="filter-natural c-btn c-{{ filter.natural == 'lab' ? 'dark' : 'light' }}-btn">
+        <span class="icon-lab u-mrg-right-10"></span>
+        <span>Lab</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    $('.filter-natural').click(function () {
+      const $el = $(this);
+      const value = $el.data('value');
+      const isActive = $el.hasClass('c-dark-btn');
+      UrlParams.set({
+        natural: isActive ? 'all' : (value === 'lab' ? 'lab' : '')
+      }, false);
+      if (isActive) {
+        $el.removeClass('c-dark-btn').addClass('c-light-btn');
+      } else {
+        $el.removeClass('c-light-btn').addClass('c-dark-btn')
+          .siblings('a').removeClass('c-dark-btn').addClass('c-light-btn');
+      }
+      const itemsWrapper = UrlParams.get().v === 't' ? '.t-resalt-table-body' : '.t-search-results';
+      loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+        updateLinks();
+        refreshResultCounter(total);
+        if (total == 0) $('.results-message').html(
+          '<b>Please broaden your selection to view more diamond options</b>');
+        if (total > 0) $('.results-message').html('');
+      });
+    });
+  });
+</script>

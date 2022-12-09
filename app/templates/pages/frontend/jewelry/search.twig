@@ -1,0 +1,42 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Loose Diamonds | Ideal Cut Diamonds | Certified Diamonds | Diamond Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Shop diamond engagement rings, diamond stud earrings, diamond pendants, GIA diamonds online at dreamstone.com. DreamStone's comprehensive interactive education center will guide you through everything you need to know about diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Loose Diamonds, Ideal Cut Diamonds, Certified Diamonds, Princess Cut Diamond, Round Diamond, Diamond Engagement Rings, Diamond Stud Earrings, Solitaire Diamond Pendant, diamond education, designer engagement rings, unique engagement rings.
+{%- endblock -%}
+
+{% block content %}
+
+    {%  include "pages/frontend/_partials/bread_crumbs.twig" %}
+    <div class="u-clear"></div>
+
+    <div class="content">
+        {%  include "pages/frontend/jewelry/filter.twig" %}
+        {%  include "pages/frontend/jewelry/results_filter.twig" %}
+    </div>
+    <script>
+      window.search = window.search || function(field, value, reload = false) {
+        if (field === 'category') {
+          UrlParams.set({ subcategory: '', subsubcategory: '' }, false);
+          location.pathname = '/jewelry/' + value; // NOTE: all filters saved in url
+        } else {
+          if (field === 'subcategory') UrlParams.set({ subsubcategory: '' }, false);
+          UrlParams.set({ [field]: UrlParams.get()[field] === value ? '' : value }, reload);
+          if (!reload) loadPageData(location.href, '.t-search-results', true, function (finish, total) {
+                updateLinks();
+                $('#search-results-count').html(`Results (${total})`);
+            });
+        }
+      };
+    </script>
+    <script src="/js/jquery-ui.js"></script>
+    <script src="/js/jquery.ui.touch-punch.min.js"></script>
+
+{% endblock %}

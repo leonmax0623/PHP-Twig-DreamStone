@@ -1,0 +1,17 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Wedding Rings| Wedding Bands | Anniversary Rings | Men's Wedding Bands - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Browse our wedding rings, anniversary rings, three-stone engagement rings, eternity rings, eternity bands, men's wedding bands, wedding ring sets and diamond rings online. All available in 14K, 18K, white gold, yellow gold, or platinum.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Wedding rings,wedding bands,anniversary rings,anniversary bands,diamond bands,18k gold rings,platinum rings,18k gold bands,platinum bands,three-stone rings,diamond eternity bands.
+{%- endblock -%}
+
+{% block content %}
+    {{ include(template_from_string(templates.wrapper.wedding)) }}
+{% endblock %}

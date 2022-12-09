@@ -1,0 +1,110 @@
+<div class="t-total-table">
+    {% if user %}
+        {% if step != 5 %}
+            <div class="o-col-sm-12 o-col-md-12 o-col-lg-12">
+                <h4 class="u-tc"><b>Order Summary</b></h4>
+            </div>
+            <div class="u-clear-20"></div>
+            <div class="o-col-sm-12 o-col-md-6 o-col-lg-4">
+                {% if shipsDate %}
+                    <p>Order By: <span>{{ orderDate | date('gA') }} EST Today</span></p>
+                    <p>Ships By: <span>{{ shipsDate | date('l, F j, Y') }}</span></p>
+                {% endif %}
+                {% if step == 3 or step == 4 %}
+                    <p>Payment Method: <span>{{ paymentMethod }}</span></p>
+                {% endif %}
+            </div>
+            <div class="o-col-sm-12 o-col-md-6 o-col-lg-8">
+                <table class="t-order-details">
+                    <tbody>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{ product.title }}</td>
+                                <td rowspan="2" style="vertical-align: bottom;" >{{ product.price | price }} x {{ product.qty }}</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div>sku: {{ product.sku }}</div>
+                                    {% for key, value in product.withAttributes %}<div>{{ key }}: {{ value }}</div>{% endfor %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% for product in diamonds %}
+                            {% set sku = product.certificateNumber ~ '/' ~ product.stockNumber %}
+                            {% set title = 'Brilliant Diamond' %} {#0.4 CARAT - ROUND BRILLIANT DIAMOND#}
+                            {% if product.shape %}
+                                {% set title = product.shape.code ~ ' ' ~ title %}
+                            {% endif %}
+                            {% if product.weight %}
+                                {% set title = product.weight ~ ' Carat - ' ~ title %}
+                            {% endif %}
+
+                            <tr>
+                                <td>{{ title }}</td>
+                                <td rowspan="2" style="vertical-align: bottom;" >{{ product.priceInternal | price }}</td>
+                            </tr>
+                            <tr>
+                                <td><div>sku: {{ sku }}</div></td>
+                            </tr>
+                        {% endfor %}
+                        {% for product in composite %}
+                            {% set sku = product.diamond.certificateNumber ~ '/' ~ product.diamond.stockNumber %}
+                            {% set title = 'Brilliant Diamond' %} {#0.4 CARAT - ROUND BRILLIANT DIAMOND#}
+                            {% if product.diamond.shape %}
+                                {% set title = product.diamond.shape.code ~ ' ' ~ title %}
+                            {% endif %}
+                            {% if product.weight %}
+                                {% set title = product.diamond.weight ~ ' Carat - ' ~ title %}
+                            {% endif %}
+
+                            <tr>
+                                <td>
+                                    {{ product.product.title }}
+                                    {% for key, value in product.product.withAttributes %}<div>{{ key }}: {{ value }}</div>{% endfor %}
+                                    - sku: {{ product.product.sku }}
+                                </td>
+                                <td rowspan="2" style="vertical-align: bottom;" >{{ (product.product.price + product.diamond.priceInternal) | price }}</td>
+                            </tr>
+                            <tr><td>{{ title }} - sku: {{ sku }}</td></tr>
+                        {% endfor %}
+                        <tr style="border-bottom: 1px solid #333333!important;"><td></td><td></td></tr>
+                        <tr>
+                            <td>Sub Total:</td>
+                            <td>{{ subtotal | price }}</td>
+                        </tr>
+                        <tr> 
+                            <td>Free Shipping:</td>
+                            <td>{{ shipping | price }}</td>
+                        </tr>
+                        <tr>
+                            <td>Sales Tax:</td>
+                            <td>{{ tax | price }}</td>
+                        </tr>
+                        {% if coupon %}
+                        <tr>
+                            <td>Promo Code:</td>
+                            <td>{{ coupon }}</td>
+                        </tr>
+                        <tr>
+                            <td>Discount:</td>
+                            <td>-{{ discount | price }}</td>
+                        </tr>
+                        {% endif %}
+                        {% if bankDiscount != 0 %}
+                        <tr>
+                            <td>Bank Discount:</td>
+                            <td>-{{ bankDiscount }}%</td>
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <td style="padding: 10px 10px 20px;" class="u-color-blue u-text-upper">Total:</td>
+                            <td class="u-color-blue">{{ total | price }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="u-clear-20"></div>
+        {% endif %}
+    {% endif %}
+</div>
+<div class="u-clear"></div>

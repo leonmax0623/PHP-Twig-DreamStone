@@ -1,0 +1,33 @@
+<button class="c-btn c-dark-btn add-to-cart" style="padding:0">Add to cart</button>
+<script>
+  $(document).ready(function () {
+    $('.add-to-cart').click(function () {
+      $.post('/cart', {
+        group: 'composite',
+        source: 'builder',
+      }, function () {
+        gtag('event', 'add_to_cart', {
+          'value': '{{ product.price + diamond.price }}',
+          'items': [{
+            'id': '{{ product.sku }} {{ diamond.certificateNumber }}/{{ diamond.stockNumber }}',
+            'google_business_vertical': 'retail',
+          }]
+        });
+        // Criteo Basket / Cart Tag
+        window.criteo_q = window.criteo_q || [];
+        var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+        window.criteo_q.push(
+          { event: "setAccount", account: 91590},
+          { event: "setEmail", email: "{{ user.email_hash }}", hash_method: "sha256" },
+          { event: "setSiteType", type: deviceType},
+          { event: "setZipcode", zipcode: "{{ user.zip_code }}" },
+          { event: "addToCart", item: [
+            {id: '{{ product.sku }} {{ diamond.certificateNumber }}/{{ diamond.stockNumber }}', price: '{{ product.price + diamond.price }}', quantity: 1 }
+          ]}
+        );
+        // END Criteo Basket / Cart Tag
+        window.location.href = '/cart';
+      });
+    });
+  });
+</script>

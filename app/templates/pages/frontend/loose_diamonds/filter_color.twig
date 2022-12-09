@@ -1,0 +1,159 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative hideblock">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            <p>Color refers to the natural body color of a diamond. The color grade, a measure of a stone's
+                colorlessness determines how much tint of yellow it has. The color scale ranges from absolutely
+                colorless (D color) to light yellow (L color). In general, the less color a diamond has the more money
+                it is, all other factors being equal. Most people find the sweet spot to be in the H and I color range,
+                where no obvious color is visible. </p>
+            <a href="/education/diamond-education/diamond-color">learn more...</a>
+        </div>
+    </div>
+
+    <p class="t-filter-label open" onclick="toggleBlock(this, 'colorBlock');">Color</p>
+    <div class="u-clear"></div>
+    <div id="colorBlock" class="color-range t-price-block t-range-scaleble show">
+        <ul class="t-range-data">
+            {% for color in colors %}
+            {# <li><span>{{ color.code | lower }}</span></li> #}
+            <li data-value="{{ color.code }}" {# onclick="setValueFromLabel(event, '{{ color.code }}');" #}>
+                <span>{{ color.code }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<!-- nouislider -->
+<script>
+    function setActiveLabels(labelsSelector, currentValues) {
+        if (currentValues && currentValues.length) {
+            $(labelsSelector).each(function () {
+                if (currentValues.includes($(this).data('value'))) {
+                    $(this).removeClass('inactive');
+                } else {
+                    $(this).addClass('inactive');
+                }
+            });
+        }
+    }
+
+    var colors = [];
+    $(".color-range li").each(function (index, elem) {
+        colors.push($(this).data('value'));
+    });
+
+    $(document).ready(function () {
+        var divColor = document.querySelector('.hideblock');
+        divColor && divColor.classList.remove('hideblock')
+    })
+
+    var stepSliderColor = document.createElement("div");
+    stepSliderColor.className = "steps-slider-color";
+
+    $('#colorBlock').append(stepSliderColor);
+
+    $(document).ready(function () {
+        const getVars = UrlParams.get();
+        const min = 0;
+        const max = colors.length;
+
+        var current_colors = getVars.color_id ? getVars.color_id.split(",") : null;
+        const currentMin = getVars.color_id ? colors.indexOf(current_colors[0]) : 0;
+        const currentMax = getVars.color_id ? colors.indexOf(current_colors[current_colors.length - 1]) + 1 :
+            colors.length;
+        setActiveLabels('#colorBlock li', current_colors);
+        noUiSlider.create(stepSliderColor, {
+            start: [currentMin, currentMax],
+            snap: true,
+            connect: true,
+            range: {
+                'min': min,
+                '11%': 1,
+                '22%': 2,
+                '33%': 3,
+                '44%': 4,
+                '55%': 5,
+                '66%': 6,
+                '77%': 7,
+                '88%': 8,
+                '99%': 9,
+                'max': max
+            }
+        });
+
+        const onSliderChange = (values, handle) => {
+            let val = stepSliderColor.noUiSlider.get();
+            if (val[1] - val[0] < 1) {
+                if (handle === 0) {
+                    let left = Number(values[handle]);
+                    stepSliderColor.noUiSlider.set(left - 1);
+                    handleChangeColor([left - 1, val[1]], handle);
+                    return false;
+                } else if (handle === 1) {
+                    let right = Number(values[handle]);
+                    stepSliderColor.noUiSlider.set([val[0], right + 1]);
+                    handleChangeColor([+val[0], right + 1], handle);
+                    return false;
+                }
+            }
+            values = values.map(function (value) {
+                return Number(value);
+            });
+            handleChangeColor(values, handle);
+        };
+
+        const handleChangeColor = function (values, handle) {
+            var color_str = "";
+            for (let i = values[0]; i <= values[1] - 1; i++) {
+                color_str += colors[i] + ',';
+            }
+            setActiveLabels('#colorBlock li', color_str.split(','));
+            UrlParams.set({
+                color_id: color_str.slice(0, -1)
+            }, false);
+            if (min == values[0] && max == values[1]) {
+                const params = UrlParams.get();
+                delete params.color_id;
+                UrlParams.delete(false);
+                UrlParams.set(params, false);
+            }
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if (total == 0) {
+                    $('.results-message').html(
+                        '<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if (total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        };
+
+        stepSliderColor.noUiSlider.on('change', onSliderChange);
+
+        $(".color-range li").each(function (index, elem) {
+            const color = $(this).data('value');
+            $(this).on('click', function (e) {
+                const currentPair = stepSliderColor.noUiSlider.get();
+                const currentColor = colors.indexOf(color);
+                if (currentColor - Number(currentPair[0]) < Number(currentPair[1]) -
+                    currentColor) {
+                    onSliderChange([currentColor, Number(currentPair[1])], 0);
+                    stepSliderColor.noUiSlider.set(currentColor);
+                } else {
+                    onSliderChange([Number(currentPair[0]), currentColor + 1], 1);
+                    stepSliderColor.noUiSlider.set([currentPair[0], currentColor + 1]);
+                }
+            })
+        });
+
+    });
+    // document.addEventListener("DOMContentLoaded", () => {
+    // const stepSliderColor = document.getElementById('steps-slider-color');
+
+    // })
+</script>

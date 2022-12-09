@@ -1,0 +1,39 @@
+[
+  {
+    "code": "Very Strong",
+    "values": [
+      "Very Strong", "VS", "VST", "FL4"
+    ],
+    "desc": "VST"
+  },
+  {
+    "code": "Strong",
+    "values": [
+      "Strong", "S", "STG", "ST", "FL3"
+    ],
+    "desc": "STG"
+  },
+  {
+    "code": "Medium",
+    "values": [
+      "Medium", "M", "MED", "FL2"
+    ],
+    "desc": "MED"
+  },
+  {
+    "code": "Faint",
+    "values": [
+      "Faint", "F", "FNT", "Negligible", "FA", "FL1",
+      "SL", "Slight", "SLI",
+      "Very Slight", "VSL", "VSLG", "VSLT"
+    ],
+    "desc": "FB"
+  },
+  {
+    "code": "None",
+    "values": [
+      "None", "NON", "N", "No", "NIL", "FL0"
+    ],
+    "desc": "N"
+  }
+]

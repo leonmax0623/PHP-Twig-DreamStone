@@ -1,0 +1,83 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            The polish grade of a diamond describes the overall condition or smoothness of the diamond's surface. The polish of a diamond, while not as important as the symmetry, a poor polish grade may cause the facets to appear dulled or blurred. Look for "Very good" and "Excellent" polish.
+        </div>
+    </div>
+    
+    <p class="t-filter-label open" onclick="toggleBlock(this, 'polishFilter');">Polish</p>
+    <div class="u-clear"></div>
+    <ul id="polishFilter" class="t-filter-list t-filter-polish_list show">
+        {% for polish in polishes %}
+            <li
+                id="p_{{ polish.code|split(' ')|join('') }}"
+                class="{{ polish.code in filter.polish_id ? 'active' : '' }}"
+                onclick="searchPolish('{{ polish.code }}')"
+            >
+                <a href="#" class="c-btn c-btn-sm c-light-btn" onclick="return false;">
+                    <p>{{ polish.code }}</p></a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function searchPolish(value) {
+        var allPolishes = 'All polishes';
+        var param = UrlParams.get().polish_id;
+        if (!param) {
+            UrlParams.set({ polish_id: value }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        } else if (value === allPolishes) {
+            UrlParams.set({ polish_id: param === value ? '' : value }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        } else {
+            var values = param.split(',');
+            ~values.indexOf(value) ? values.splice(values.indexOf(value), 1) : values.push(value);
+            ~values.indexOf(allPolishes) && values.splice(values.indexOf(allPolishes), 1);
+            UrlParams.set({ polish_id: values.join(',') }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        }
+        $('#polishFilter > li').removeClass('active');
+        var polishNames = UrlParams.get().polish_id;
+        if (polishNames && polishNames.split(',').length) {
+            polishNames.split(',').map((polishName) => {
+                $('#p_' + polishName.split(' ').join('')).addClass('active');
+            });
+        }
+    }
+</script>

@@ -1,0 +1,869 @@
+[
+    {
+        "type": "rapaport",
+        "code": "rapaport",
+        "name": "Rapaport",
+        "isEnabled": true,
+        "isNatural": true,
+        "showCerts": true,
+        "showImages": true,
+        "isLocal": false,
+        "folder": "",
+        "fields": [
+            {
+                "id": "shape_id",
+                "name": "Shape",
+                "value": ""
+            },
+            {
+                "id": "color_id",
+                "name": "Color",
+                "value": ""
+            },
+            {
+                "id": "clarity_id",
+                "name": "Clarity",
+                "value": ""
+            },
+            {
+                "id": "cut_id",
+                "name": "Cut",
+                "value": ""
+            },
+            {
+                "id": "polish_id",
+                "name": "Polish",
+                "value": ""
+            },
+            {
+                "id": "symmetry_id",
+                "name": "Symmetry",
+                "value": ""
+            },
+            {
+                "id": "flourence_id",
+                "name": "Fluorescence Intensity",
+                "value": ""
+            },
+            {
+                "id": "girdle_id",
+                "name": "Girdle",
+                "value": ""
+            },
+            {
+                "id": "culet_id",
+                "name": "Culet Size",
+                "value": ""
+            },
+            {
+                "id": "seller",
+                "name": "Seller Name",
+                "value": ""
+            },
+            {
+                "id": "weight",
+                "name": "Weight",
+                "value": ""
+            },
+            {
+                "id": "measurements",
+                "name": "Measurements",
+                "value": ""
+            },
+            {
+                "id": "ratio",
+                "name": "Ratio",
+                "value": ""
+            },
+            {
+                "id": "lab",
+                "name": "Lab",
+                "value": ""
+            },
+            {
+                "id": "stockNumber",
+                "name": "Stock Number",
+                "value": ""
+            },
+            {
+                "id": "table",
+                "name": "Table Percent",
+                "value": ""
+            },
+            {
+                "id": "depth",
+                "name": "Depth Percent",
+                "value": ""
+            },
+            {
+                "id": "certificateNumber",
+                "name": "Certificate Number",
+                "value": ""
+            },
+            {
+                "id": "certificateURL",
+                "name": "Certificate URL",
+                "value": ""
+            },
+            {
+                "id": "priceExternal",
+                "name": "Total Price",
+                "value": ""
+            },
+            {
+                "id": "imageExternal",
+                "name": "Image URL",
+                "value": ""
+            },
+            {
+                "id": "videoExternal",
+                "name": "Video URL",
+                "value": "",
+                "comment": "absent"
+            },
+            {
+                "id": "country",
+                "name": "Country",
+                "value": ""
+            },
+            {
+                "id": "state",
+                "name": "State",
+                "value": ""
+            },
+            {
+                "id": "city",
+                "name": "City",
+                "value": ""
+            },
+            {
+                "id": "fancycolor_id",
+                "name": "FancyColor",
+                "value": ""
+            }
+        ]
+    },
+    {
+        "type": "idex",
+        "code": "idex",
+        "name": "Idex",
+        "isEnabled": true,
+        "isNatural": true,
+        "showCerts": true,
+        "showImages": true,
+        "isLocal": false,
+        "folder": "",
+        "fields": [
+            {
+                "id": "shape_id",
+                "name": "Shape",
+                "value": "Cut"
+            },
+            {
+                "id": "color_id",
+                "name": "Color",
+                "value": ""
+            },
+            {
+                "id": "clarity_id",
+                "name": "Clarity",
+                "value": ""
+            },
+            {
+                "id": "cut_id",
+                "name": "Cut",
+                "value": "Make (Cut Grade)"
+            },
+            {
+                "id": "polish_id",
+                "name": "Polish",
+                "value": ""
+            },
+            {
+                "id": "symmetry_id",
+                "name": "Symmetry",
+                "value": ""
+            },
+            {
+                "id": "flourence_id",
+                "name": "Fluorescence Intensity",
+                "value": ""
+            },
+            {
+                "id": "girdle_id",
+                "name": "Girdle",
+                "value": "Girdle From / To"
+            },
+            {
+                "id": "culet_id",
+                "name": "Culet Size",
+                "value": ""
+            },
+            {
+                "id": "seller",
+                "name": "Seller Name",
+                "value": "Supplier"
+            },
+            {
+                "id": "weight",
+                "name": "Weight",
+                "value": "Carat"
+            },
+            {
+                "id": "measurements",
+                "name": "Measurements",
+                "value": ""
+            },
+            {
+                "id": "ratio",
+                "name": "Ratio",
+                "value": ""
+            },
+            {
+                "id": "lab",
+                "name": "Lab",
+                "value": "Grading Lab"
+            },
+            {
+                "id": "stockNumber",
+                "name": "Stock Number",
+                "value": "Supplier Stock Reference"
+            },
+            {
+                "id": "table",
+                "name": "Table Percent",
+                "value": "Table Width"
+            },
+            {
+                "id": "depth",
+                "name": "Depth Percent",
+                "value": "Total Depth"
+            },
+            {
+                "id": "certificateNumber",
+                "name": "Certificate Number",
+                "value": ""
+            },
+            {
+                "id": "certificateURL",
+                "name": "Certificate URL",
+                "value": "Certificate Path"
+            },
+            {
+                "id": "priceExternal",
+                "name": "Total Price",
+                "value": ""
+            },
+            {
+                "id": "imageExternal",
+                "name": "Image URL",
+                "value": "Image Path"
+            },
+            {
+                "id": "videoExternal",
+                "name": "Video URL",
+                "value": ""
+            },
+            {
+                "id": "country",
+                "name": "Country",
+                "value": ""
+            },
+            {
+                "id": "state",
+                "name": "State",
+                "value": "",
+                "comment": "skipped because of mixed with city"
+            },
+            {
+                "id": "city",
+                "name": "City",
+                "value": "State / Region"
+            },
+            {
+                "id": "fancycolor_id",
+                "name": "FancyColor",
+                "value": "Natural Fancy Color"
+            }
+        ]
+    },
+    {
+        "type": "independent",
+        "code": "vendor1",
+        "name": "Vendor1",
+        "isEnabled": true,
+        "isNatural": true,
+        "showCerts": true,
+        "showImages": true,
+        "isLocal": false,
+        "folder": "vendor1",
+        "fields": [
+            {
+                "id": "shape_id",
+                "name": "Shape",
+                "value": ""
+            },
+            {
+                "id": "color_id",
+                "name": "Color",
+                "value": ""
+            },
+            {
+                "id": "clarity_id",
+                "name": "Clarity",
+                "value": ""
+            },
+            {
+                "id": "cut_id",
+                "name": "Cut",
+                "value": ""
+            },
+            {
+                "id": "polish_id",
+                "name": "Polish",
+                "value": "Pol."
+            },
+            {
+                "id": "symmetry_id",
+                "name": "Symmetry",
+                "value": "Sym."
+            },
+            {
+                "id": "flourence_id",
+                "name": "Fluorescence Intensity",
+                "value": "Fluor."
+            },
+            {
+                "id": "girdle_id",
+                "name": "Girdle",
+                "value": ""
+            },
+            {
+                "id": "culet_id",
+                "name": "Culet Size",
+                "value": ""
+            },
+            {
+                "id": "seller",
+                "name": "Seller Name",
+                "value": ""
+            },
+            {
+                "id": "weight",
+                "name": "Weight",
+                "value": "Carat"
+            },
+            {
+                "id": "measurements",
+                "name": "Measurements",
+                "value": "Measurement"
+            },
+            {
+                "id": "ratio",
+                "name": "Ratio",
+                "value": ""
+            },
+            {
+                "id": "lab",
+                "name": "Lab",
+                "value": ""
+            },
+            {
+                "id": "stockNumber",
+                "name": "Stock Number",
+                "value": "Lot #"
+            },
+            {
+                "id": "table",
+                "name": "Table Percent",
+                "value": "Table %"
+            },
+            {
+                "id": "depth",
+                "name": "Depth Percent",
+                "value": "Depth %"
+            },
+            {
+                "id": "certificateNumber",
+                "name": "Certificate Number",
+                "value": "Certificate #"
+            },
+            {
+                "id": "certificateURL",
+                "name": "Certificate URL",
+                "value": "Cert"
+            },
+            {
+                "id": "priceExternal",
+                "name": "Total Price",
+                "value": ""
+            },
+            {
+                "id": "imageExternal",
+                "name": "Image URL",
+                "value": "",
+                "comment": "absent"
+            },
+            {
+                "id": "videoExternal",
+                "name": "Video URL",
+                "value": "Video"
+            },
+            {
+                "id": "country",
+                "name": "Country",
+                "value": "",
+                "comment": "absent"
+            },
+            {
+                "id": "state",
+                "name": "State",
+                "value": "",
+                "comment": "absent"
+            },
+            {
+                "id": "city",
+                "name": "City",
+                "value": "",
+                "comment": "absent"
+            },
+            {
+                "id": "fancycolor_id",
+                "name": "FancyColor",
+                "value": ""
+            }
+        ]
+    },
+    {
+        "type": "independent",
+        "code": "vendor5",
+        "name": "Vendor5",
+        "isEnabled": true,
+        "isNatural": true,
+        "showCerts": true,
+        "showImages": true,
+        "isLocal": false,
+        "folder": "vendor5",
+        "fields": [
+            {
+                "id": "shape_id",
+                "name": "Shape",
+                "value": "SHAPE"
+            },
+            {
+                "id": "color_id",
+                "name": "Color",
+                "value": "COL"
+            },
+            {
+                "id": "clarity_id",
+                "name": "Clarity",
+                "value": "CLR"
+            },
+            {
+                "id": "cut_id",
+                "name": "Cut",
+                "value": "CUT"
+            },
+            {
+                "id": "polish_id",
+                "name": "Polish",
+                "value": "POL"
+            },
+            {
+                "id": "symmetry_id",
+                "name": "Symmetry",
+                "value": "SYM"
+            },
+            {
+                "id": "flourence_id",
+                "name": "Fluorescence Intensity",
+                "value": "FLOURESENCE"
+            },
+            {
+                "id": "girdle_id",
+                "name": "Girdle",
+                "value": "GIRDLE"
+            },
+            {
+                "id": "culet_id",
+                "name": "Culet Size",
+                "value": ""
+            },
+            {
+                "id": "seller",
+                "name": "Seller Name",
+                "value": ""
+            },
+            {
+                "id": "weight",
+                "name": "Weight",
+                "value": "CRTWT"
+            },
+            {
+                "id": "measurements",
+                "name": "Measurements",
+                "value": "MEASUREMENT"
+            },
+            {
+                "id": "ratio",
+                "name": "Ratio",
+                "value": "RATIO"
+            },
+            {
+                "id": "lab",
+                "name": "Lab",
+                "value": "LAB"
+            },
+            {
+                "id": "stockNumber",
+                "name": "Stock Number",
+                "value": ""
+            },
+            {
+                "id": "table",
+                "name": "Table Percent",
+                "value": "TBL"
+            },
+            {
+                "id": "depth",
+                "name": "Depth Percent",
+                "value": "DP"
+            },
+            {
+                "id": "certificateNumber",
+                "name": "Certificate Number",
+                "value": "CERT_NO"
+            },
+            {
+                "id": "certificateURL",
+                "name": "Certificate URL",
+                "value": "CERTIFICATE"
+            },
+            {
+                "id": "priceExternal",
+                "name": "Total Price",
+                "value": "AMOUNT"
+            },
+            {
+                "id": "imageExternal",
+                "name": "Image URL",
+                "value": "IMAGE"
+            },
+            {
+                "id": "videoExternal",
+                "name": "Video URL",
+                "value": "VIDEO",
+                "comment": "two columns"
+            },
+            {
+                "id": "country",
+                "name": "Country",
+                "value": "",
+                "comment": "absent"
+            },
+            {
+                "id": "state",
+                "name": "State",
+                "value": "",
+                "comment": "absent"
+            },
+            {
+                "id": "city",
+                "name": "City",
+                "value": "LOCATION"
+            },
+            {
+                "id": "fancycolor_id",
+                "name": "FancyColor",
+                "value": ""
+            }
+        ]
+    },
+    {
+        "type": "independent",
+        "code": "belgiumny",
+        "name": "Belgiumny",
+        "isEnabled": true,
+        "isNatural": true,
+        "showCerts": true,
+        "showImages": true,
+        "isLocal": false,
+        "folder": "belgiumny",
+        "fields": [
+            {
+                "id": "shape_id",
+                "name": "Shape",
+                "value": "Shape"
+            },
+            {
+                "id": "color_id",
+                "name": "Color",
+                "value": "Color"
+            },
+            {
+                "id": "clarity_id",
+                "name": "Clarity",
+                "value": "Clarity"
+            },
+            {
+                "id": "cut_id",
+                "name": "Cut",
+                "value": "Cut_Grade"
+            },
+            {
+                "id": "polish_id",
+                "name": "Polish",
+                "value": "Polish"
+            },
+            {
+                "id": "symmetry_id",
+                "name": "Symmetry",
+                "value": "Symmetry"
+            },
+            {
+                "id": "flourence_id",
+                "name": "Fluorescence Intensity",
+                "value": "Fluorescence_Intensity"
+            },
+            {
+                "id": "girdle_id",
+                "name": "Girdle",
+                "value": "Girdle_Min"
+            },
+            {
+                "id": "culet_id",
+                "name": "Culet Size",
+                "value": "Culet_Size"
+            },
+            {
+                "id": "seller",
+                "name": "Seller Name",
+                "value": ""
+            },
+            {
+                "id": "weight",
+                "name": "Weight",
+                "value": "Weight"
+            },
+            {
+                "id": "measurements",
+                "name": "Measurements",
+                "value": "Measurements"
+            },
+            {
+                "id": "ratio",
+                "name": "Ratio",
+                "value": ""
+            },
+            {
+                "id": "lab",
+                "name": "Lab",
+                "value": "Lab"
+            },
+            {
+                "id": "stockNumber",
+                "name": "Stock Number",
+                "value": "Stock_No"
+            },
+            {
+                "id": "table",
+                "name": "Table Percent",
+                "value": "TABLE_PER"
+            },
+            {
+                "id": "depth",
+                "name": "Depth Percent",
+                "value": "DEPTH_PER"
+            },
+            {
+                "id": "certificateNumber",
+                "name": "Certificate Number",
+                "value": "Certificate"
+            },
+            {
+                "id": "certificateURL",
+                "name": "Certificate URL",
+                "value": "CertificateLink"
+            },
+            {
+                "id": "priceExternal",
+                "name": "Total Price",
+                "value": "Memo_Price"
+            },
+            {
+                "id": "imageExternal",
+                "name": "Image URL",
+                "value": "ImageLink"
+            },
+            {
+                "id": "videoExternal",
+                "name": "Video URL",
+                "value": "VideoLink"
+            },
+            {
+                "id": "country",
+                "name": "Country",
+                "value": "Country"
+            },
+            {
+                "id": "state",
+                "name": "State",
+                "value": "State"
+            },
+            {
+                "id": "city",
+                "name": "City",
+                "value": "City"
+            },
+            {
+                "id": "fancycolor_id",
+                "name": "FancyColor",
+                "value": "FancyColor"
+            }
+        ]
+    },
+    {
+        "type": "independent",
+        "code": "diamondfoundry",
+        "name": "DiamondFoundry",
+        "isEnabled": true,
+        "isNatural": true,
+        "showCerts": true,
+        "showImages": true,
+        "isLocal": false,
+        "folder": "diamondfoundry",
+        "fields": [
+            {
+                "id": "shape_id",
+                "name": "Shape",
+                "value": "shape"
+            },
+            {
+                "id": "color_id",
+                "name": "Color",
+                "value": "color"
+            },
+            {
+                "id": "clarity_id",
+                "name": "Clarity",
+                "value": "clarity"
+            },
+            {
+                "id": "cut_id",
+                "name": "Cut",
+                "value": "cut_grade"
+            },
+            {
+                "id": "polish_id",
+                "name": "Polish",
+                "value": "polish"
+            },
+            {
+                "id": "symmetry_id",
+                "name": "Symmetry",
+                "value": "symmetry"
+            },
+            {
+                "id": "flourence_id",
+                "name": "Fluorescence Intensity",
+                "value": "fluorescence"
+            },
+            {
+                "id": "girdle_id",
+                "name": "Girdle",
+                "value": "girdle"
+            },
+            {
+                "id": "culet_id",
+                "name": "Culet Size",
+                "value": ""
+            },
+            {
+                "id": "seller",
+                "name": "Seller Name",
+                "value": ""
+            },
+            {
+                "id": "weight",
+                "name": "Weight",
+                "value": "carat"
+            },
+            {
+                "id": "measurements",
+                "name": "Measurements",
+                "value": ""
+            },
+            {
+                "id": "ratio",
+                "name": "Ratio",
+                "value": ""
+            },
+            {
+                "id": "lab",
+                "name": "Lab",
+                "value": "graded_by"
+            },
+            {
+                "id": "stockNumber",
+                "name": "Stock Number",
+                "value": "netsuite_id"
+            },
+            {
+                "id": "table",
+                "name": "Table Percent",
+                "value": "table_size"
+            },
+            {
+                "id": "depth",
+                "name": "Depth Percent",
+                "value": "depth_pct"
+            },
+            {
+                "id": "certificateNumber",
+                "name": "Certificate Number",
+                "value": "lot_id"
+            },
+            {
+                "id": "certificateURL",
+                "name": "Certificate URL",
+                "value": "cert_url"
+            },
+            {
+                "id": "priceExternal",
+                "name": "Total Price",
+                "value": "unit_price_msrp_usd"
+            },
+            {
+                "id": "imageExternal",
+                "name": "Image URL",
+                "value": ""
+            },
+            {
+                "id": "videoExternal",
+                "name": "Video URL",
+                "value": ""
+            },
+            {
+                "id": "country",
+                "name": "Country",
+                "value": ""
+            },
+            {
+                "id": "state",
+                "name": "State",
+                "value": ""
+            },
+            {
+                "id": "city",
+                "name": "City",
+                "value": "ns_location"
+            },
+            {
+                "id": "fancycolor_id",
+                "name": "FancyColor",
+                "value": ""
+            }
+        ]
+    }
+]

@@ -1,0 +1,80 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Diamond Engagement Rings | Diamond Rings| Loose Diamonds | Wedding Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    DreamStone - New York's largest retailer of Diamond Engagement Rings, Wedding Rings, Diamond Rings, Loose Diamonds, Diamond Studs Earrings, Diamond Pendants, White Gold Engagement Rings, Platinum Engagement Rings.
+{%- endblock -%}
+
+
+{%- block meta_keywords -%}
+    Engagement Rings, Wedding Rings, Diamond Engagement Rings, Diamond Rings, Loose Diamonds, Design Your Own Engagement Ring, White Gold Engagement Rings, Platinum Engagement Rings
+{%- endblock -%}
+
+{% block content %}
+    {% set count = products|length + diamonds|length %}
+    <div class="content">
+        <div class="u-clear-30"></div>
+        <h6 class="u-f24 u-color-black u-tc">Viewed {{ count }} item{{ count == 1 ? '' : 's' }}</h6>
+        <div class="o-results-block">
+            <div class="t-wishlist_block">
+                <div class="u-fl o-col-lg-3 o-col-sm-12 o-row mb-20 u-tc">
+                    <a
+                      id="return-to-original-search"
+                      class="btn-sm t-return-to-search"
+                      href=""
+                    > &lt; Return to search</a>
+                </div>
+                <div class="u-clear"></div>
+                <div class="o-col-lg-12 o-row">
+                    <ul class="t-search-results">
+                        {% for product in products %}
+                            {%  include "pages/frontend/jewelry/result.twig" %}
+                        {% endfor %}
+                        {% for diamond in diamonds %}
+                            {#{%  include "pages/frontend/loose_diamonds/result.twig" %}#}
+                            {%  include "pages/frontend/loose_diamonds/result_viewed.twig" %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="u-clear"></div>
+            </div>
+        </div>
+    </div>
+
+<!-- slick -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+{# <link rel="stylesheet" type="text/css" href="/js/slick.min.js"/> #}
+<script>
+    $('.result-jewelry-slider').slick({
+        infinite: true,
+        speed: 300,
+        slidesToShow: 4,
+        adaptiveHeight: true,
+        responsive: [
+            {
+            breakpoint: 600,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+            },
+        ]
+    });
+</script>
+{# back user to the original search #}
+<script>
+    $(document).ready(function($) {
+        let diamondCount = localStorage.getItem('diamondCount');
+        let diamondUrl = localStorage.getItem('diamondUrl');
+
+        $('#return-to-original-search').attr('href', diamondUrl);
+    });
+</script>
+{% endblock %}
+

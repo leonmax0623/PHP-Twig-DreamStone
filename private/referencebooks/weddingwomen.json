@@ -1,0 +1,22 @@
+[
+    {
+        "code": "classic",
+        "desc": "Classic wedding rings are the perfect choice for newly engaged couples in the market for traditional, timeless rings."
+    },
+    {
+        "code": "eternity",
+        "desc": "Women's eternity rings are the perfect gift for anniversaries and special occasions. Encrusted in diamonds, they "
+    },
+    {
+        "code": "anniversary",
+        "desc": "Women's anniversary rings come in a range of styles, widths and metal types. Most women try to match their "
+    },
+    {
+        "code": "diamond",
+        "desc": "Women's diamond wedding rings are perfect for women who prefer bright, sparkly jewelry."
+    },
+    {
+        "code": "stackable",
+        "desc": "Women's Stackable wedding rings are a popular choice for women who prefer a twist on the classic wedding ring."
+    }
+]

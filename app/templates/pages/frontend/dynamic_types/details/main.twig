@@ -1,0 +1,199 @@
+{% include "pages/frontend/_partials/affirm.twig" %}
+<div
+	class="content u-relative-content">
+	<!-- BREAD CRUMBS -->
+	<div>
+		{% include "pages/frontend/_partials/bread_crumbs.twig" %}
+	</div>
+	<div class="u-clear"></div>
+	<div class="u-tc o-col-lg-3 o-col-sm-12 o-row">
+		<a class="btn-sm t-return-to-search" href="{{ path_for('dynamic-' ~ product.type ~ '-Search') }}">&lt; Return to search</a>
+	</div>
+	<div class="u-clear"></div>
+	<!-- /BREAD CRUMBS -->
+	<div class="o-col-lg-6 o-col-sm-12 u-color-dark-gray mt-100">
+		{%  include "pages/frontend/dynamic_types/details/main_slider.twig" %}
+	</div>
+	<div class="o-col-lg-6 o-col-sm-12 u-color-dark-gray mt-100">
+		<p class="u-f20">{{ product.title }}</p>
+		{# <p class="u-f18 u-color-light-gray">SKU:
+													{{ product.sku }}</p> #}
+		{% if product.attributes %}
+			{% for attribute in product.attributes %}
+				{% include "pages/frontend/dynamic_types/details/main_attribute.twig" %}
+			{% endfor %}
+		{% endif %}
+		{% set currentPath = current_path(app.request.attributes.get('_route')) %}
+		{% set currentDomain = base_url() %}
+		<div class="yotpo bottomLine" data-product-id={{product._id}} data-url={{currentDomain ~ currentPath}}></div>
+		<div class="u-clear-20"></div>
+		<div class="o-col-lg-12 o-row">
+			<p class="u-f18 u-color-blue u-text-upper u-text-none-underline u-mrg-0">FREE SHIPPING & 30 DAY RETURNS</p>
+			<p class="u-f18 u-color-light-gray">Order today, ships by
+				{% if user == false %}
+					<span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+				{% else %}
+					{% if not user.city %}
+						{#<span>{{ product.shippingDetails.shipsBy|date("l, F jS") }}</span>#}
+						<span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+					{% elseif user.city == 'New York' %}
+						<span>{{ product.shippingDetails.shipsBy|date_modify("+5 day")|date("l, F jS") }}</span>
+					{% elseif user.country == 'US' %}
+						<span>{{ product.shippingDetails.shipsBy|date_modify("+7 day")|date("l, F jS") }}</span>
+					{% else %}
+						<span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+					{% endif %}
+				{% endif %}
+			</p>
+		</div>
+		<div class="u-clear-20"></div>
+		<div class="o-col-sm-12 o-col-md-8 o-col-lg-6 o-row">
+			<span class="c-btn c-light-btn product-price">
+				{% if product.retail_price %}
+					<s>{{ product.retail_price | price }}</s>
+				{% endif %}
+				{{ product.price | price }}
+			</span>
+		</div>
+		{% if isBuilder %}
+			<div class="o-col-sm-12 o-col-md-8 o-col-lg-6 o-row">
+				{% include "pages/frontend/dynamic_types/details/main_builder.twig" %}
+			</div>
+		{% endif %}
+		{% if not isBuilder or not composite.diamond %}
+			<div class="o-col-sm-12 o-col-md-8 o-col-lg-6 o-row">
+				{% include "pages/frontend/dynamic_types/details/main_cart.twig" %}
+			</div>
+		{% endif %}
+		<div class="u-clear"></div>
+		<div class="o-col-lg-6 o-row u-tl print_invisible">
+			<ul class="t-product-action">
+				<li>{% include "pages/frontend/dynamic_types/details/main_favorite.twig" %}</li>
+				<li class="desctop-hide">
+					<button id="product-share-btn" class="t-product-action-icon t-product-action-send" onclick="sharePage()"></button>
+				</li>
+				<li class="hide-mobile">
+					<button onclick="showSharePopup()" id="product-share-btn-desctop" class="t-product-action-icon t-product-action-send"></button>
+				</li>
+				<li>
+					{# <button class="t-product-action-icon t-product-action-print" onclick="window.print()"></button> #}
+				</li>
+			</ul>
+			{% include "pages/frontend/loose_diamonds/details/form_share.twig" %}
+		</div>
+		<div class="u-clear"></div>
+		<div class="o-col-lg-6 o-row print_invisible">
+			<ul class="t-product-action">
+				<li>
+					<a href="tel:800-818-8386" title="800-818-8386" class="t-product-action-icon t-product-action-phone"></a>
+				</li>
+				<li>
+					<a id="product-mail-btn" onclick="showPopupMail()" class="t-product-action-icon t-product-action-mail"></a>
+				</li>
+				{% include "pages/frontend/loose_diamonds/details/form_mail.twig" %}
+				<li>
+					<a id="my_custom_link" href="mailto:HELP@YOUR-APP.COM" class="t-product-action-icon t-product-action-chat"></a>
+				</li>
+			</ul>
+		</div>
+		<div class="o-col-lg-12 o-row print_invisible">
+			<p class="text-mail-submit" style="color: green;"></p>
+		</div>
+		<div class="u-clear-10"></div>
+		<div class="o-col-lg-12 o-row">
+			<div class="o-col-lg-6 o-row">
+				<p class="affirm-as-low-as" data-learnmore-show="true" data-page-type="product" data-amount="{{ 100 * product.price }}"></p>
+			</div>
+		</div>
+		{% if product.is_diamond %}
+			{# <div
+							class="o-col-lg-11 o-col-md-10 o-row u-tl"><p>Our in-house gemologist at DreamStone inspect every diamond before it reaches you and we ship the diamond with the grading report and an insurance appraisal.</p>
+						</div>
+						<div class="o-col-lg-1 o-col-md-2 o-row u-tr">
+							<img class="t-examitation-img" src="../../images/examination.png" alt="examitation">
+						</div> #}
+			<div class="u-clear"></div>
+		{% endif %}
+	</div>
+	<div class="u-clear"></div>
+	{% if product.information or product.description %}
+		<a href="javascript: void(0);" class="t-discover-more">
+			<span>Discover more</span>
+		</a>
+	{% endif %}
+</div>
+{% if product.information or product.description %}
+	{% include "pages/frontend/dynamic_types/details/main_more.twig" %}
+{% endif %}
+<!-- <div class="u-clear-30"></div> -->
+
+<style>
+	@keyframes nodeInserted {
+		from {
+			outline-color: #fff;
+		}
+		to {
+			outline-color: #000;
+		}
+	}
+	div.yotpo.bottomLine .star-clickable {
+		animation-duration: 0.01s;
+		animation-name: nodeInserted;
+	}
+	.yotpo .primary-color-btn,
+	.yotpo input[type="button"].primary-color-btn,
+	.yotpo .primary-color-btn:hover,
+	.yotpo input[type="button"].primary-color-btn:hover {
+		background: #92a8d1 !important;
+		color: #ffffff;
+		font-size: 16px;
+		text-align: center;
+		height: 46px;
+		text-transform: uppercase;
+		text-decoration: none;
+		line-height: 46px;
+		margin-bottom: 20px;
+		padding: 0;
+	}
+</style>
+<script>
+	function sharePage() {
+let pageUrl = document.location.href;
+const canonicalElement = document.querySelector('link[rel=canonical]');
+if (canonicalElement !== null) {
+pageUrl = canonicalElement.href;
+}
+if (navigator.share) {
+navigator.share({
+title: 'DreamStone' + '          {{ title }}',
+text: '{{ title }}',
+url: pageUrl
+}).then(() => console.log('Successful share')).catch((error) => console.log('Error sharing', error));
+} else {
+console.log('No Navigator Share feature');
+}
+}
+</script>
+<script>
+	document.addEventListener('animationstart', function (event) {
+if (event.animationName == 'nodeInserted') {
+var reviews = jQuery('.total-reviews-search').attr('total-reviews-search');
+if (reviews == '0') {
+jQuery(".yotpo.bottomLine").remove();
+// jQuery(".yotpo-main-widget").remove();
+jQuery(".write-first-review-button").val('write a review');
+}
+}
+}, true);
+
+window.search = window.search || function (field, value) {
+UrlParams.set({[field]: value});
+loadPageData(location.href, '.t-search-results', true, function (finish, total) {
+updateLinks();
+$('#search-results-count').html(`Results (${total})`);
+});
+};
+</script>
+<script>
+	const $body = $('body');
+</script>

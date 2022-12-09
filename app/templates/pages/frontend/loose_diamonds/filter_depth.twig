@@ -1,0 +1,129 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative hideblock">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            <p>The depth percentage refers to the height of a gemstone, measured from the table to the culet, then divided by the width of the gemstone. The depth is an important factor affecting the brilliance and beauty in a diamond. A gemstone with a depth percentage too low (shallow-cut) or too high (deep-cut) will lack fire and sparkle.</p>
+            <img src="/images/depth.jpg" alt="depth">
+        </div>
+    </div>
+    
+    <p class="t-filter-label open" onclick="toggleBlock(this, 'depthBlock');">Depth</p>
+    <div class="u-clear"></div>
+    <div id="depthBlock" class="t-price-block t-depth-block show">
+        <div class="u-clear-20"></div>
+        <div id="steps-slider-depth"></div>
+        <div class="steps-slider-input">
+            <input type="text" id="input-with-keypress-4">
+            <input type="text" id="input-with-keypress-5">
+        </div>
+    </div>
+</div>
+<!-- nouislider -->
+<script>
+    $(document).ready(function(){
+        var divDepth = document.querySelector('.hideblock');
+        divDepth && divDepth.classList.remove('hideblock')
+    })
+
+    const handleChangeDepth = function(handle, value){
+        let newValue = value.replace('%', '');
+
+        UrlParams.set({ [handle ? 'depth_max' : 'depth_min']:  newValue}, false);
+        const viewMode = UrlParams.get().v || 'g';
+        const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);   
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+        });
+    };
+    document.addEventListener("DOMContentLoaded", () => {
+      const stepsSlider = document.getElementById('steps-slider-depth');
+      const input4 = document.getElementById('input-with-keypress-4');
+      const input5 = document.getElementById('input-with-keypress-5');
+      const inputs = [input4, input5];
+      const getVars = UrlParams.get();
+      const min = parseFloat({{ depth_min }});
+    //   min = min.toFixed(1);
+    //   const min = ({{depth_min}}).toFixed(1);
+      const max = parseFloat({{ depth_max }});
+      const currentMin = getVars.depth_min && +getVars.depth_min > min ? +getVars.depth_min : min;
+      const currentMax = getVars.depth_max && +getVars.depth_max < max ? +getVars.depth_max : max;
+      noUiSlider.create(stepsSlider, {
+        start: [currentMin, currentMax],
+        connect: true,
+        range: {
+            'min': [min],
+            'max': max
+        },
+        format: {
+            to: function (value) {
+
+                value = value.toFixed(1).toString();
+                // let re = /(?=\B(?:\d{3})+(?!\d))/g;
+                // value = value.replace( re, ',' );
+
+                return value + '%';
+            },
+            from: function (value) {
+                return Number(value.replace('%', ''));
+            }
+        }
+      });
+      stepsSlider.noUiSlider.on('update', function (values, handle) {
+        inputs[handle].value = values[handle];
+      });
+      stepsSlider.noUiSlider.on('change', function (values, handle) {
+        inputs[handle].value = values[handle];
+        handleChangeDepth(handle, inputs[handle].value);
+      });
+      inputs.forEach(function (input, handle) {
+        input.addEventListener('change', function () {
+            stepsSlider.noUiSlider.setHandle(handle, this.value);
+        });
+        input.addEventListener('blur', function(e) {
+            let values = stepsSlider.noUiSlider.get();
+            let value = Number(values[handle]);
+
+            stepsSlider.noUiSlider.setHandle(handle, this.value);
+            handleChangeDepth(handle, this.value);
+        })
+        input.addEventListener('keydown', function (e) {
+            let values = stepsSlider.noUiSlider.get();
+            let value = Number(values[handle]);
+            let steps = stepsSlider.noUiSlider.steps();
+            let step = steps[handle];
+            let position;
+            switch (e.which) {
+                case 13:
+                    stepsSlider.noUiSlider.setHandle(handle, this.value);
+                    handleChangeDepth(handle, this.value);
+                    break;
+                case 38:
+                    position = step[1];
+                    if (position === false) {
+                        position = 1;
+                    }
+                    if (position !== null) {
+                        stepsSlider.noUiSlider.setHandle(handle, value + position);
+                    }
+                    break;
+                case 40:
+                    position = step[0];
+                    if (position === false) {
+                        position = 1;
+                    }
+                    if (position !== null) {
+                        stepsSlider.noUiSlider.setHandle(handle, value - position);
+                    }
+                    break;
+                }
+            });
+      });
+    })
+</script>

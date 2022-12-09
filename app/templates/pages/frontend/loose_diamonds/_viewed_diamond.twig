@@ -1,0 +1,24 @@
+{% set title = 'Brilliant Diamond' %} {#ROUND BRILLIANT DIAMOND#}
+{% if item.shape %}
+    {% set title = item.shape.code ~ ' ' ~ title %}
+{% endif %}
+<a href="{{ item.permalink }}">
+    <div class="recently-card">
+        <div class="recently-visual">
+            {% if '.j' in item.imageExternal %}
+                <img src="{{ item.imageExternal }}" alt="Brilliant Diamond" />
+            {% elseif '.J' in item.imageExternal %}
+                <img src="{{ item.imageExternal }}" alt="Brilliant Diamond" />
+            {% else %}
+                <img src="/images/loose_diamonds/nm_{{item.shape.code}}.png" alt="Brilliant Diamond">
+            {% endif %}
+        </div>
+        <div class="recently-text">
+            <p class="u-f20 u-color-dark-gray u-text-upper">{{ title }}</p>
+            {% if item.weight %}
+                <p class="u-f20 u-color-dark-gray">{{ item.weight }} carat</p>
+            {% endif %}
+                <p class="u-f22 u-color-blue">{{ item.price | price }}</p>
+        </div>
+    </div>
+</a>

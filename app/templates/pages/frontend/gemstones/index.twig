@@ -1,0 +1,17 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Natural Gemstones - Magnified in 360° HD - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Browse all types of natural gemstones in 360° HD. Rotate every gemstone and see its true color, then design the perfect gemstone jewelry.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    natural gemstones
+{%- endblock -%}
+
+{% block content %}
+    {{ include(template_from_string(templates.wrapper.gemstones)) }}
+{% endblock %}

@@ -1,0 +1,316 @@
+<div
+	class="o-col-lg-6 o-col-md-5 o-col-sm-12 u-pdg-top-20 u-pdg-btm-20" id="holder-img">
+	<!-- MAIN PRODUCT SLIDER -->
+	<div id="di_slider-{{ diamond._id }}" class="cbp-contentslider diamond-product-slider">
+		<ul class="c-product-slider">
+			<p class="simple-text">{{ 
+                diamond.imageExternal or diamond.videoExternal ? 'Real Photo / Video' : 'Sample Photo' }}
+			</p>
+			{% if not diamond.imageExternal %}
+				<p onclick="showRequestImageForm('{{diamond.certificateNumber}}', '{{diamond.stockNumber}}')" class="request-image" style="bottom: 107px;">
+					<a>Request Actual Image</a>
+				</p>
+			{% endif %}
+			{% if diamond.videoExternal %}
+				<li id="slide0-{{ diamond._id }}">
+					<div class="t-main-image" style="display: flex; justify-content: center;">
+						<iframe style="width:100%; height: 100%;" src="{{ diamond.videoExternal }}"></iframe>
+					</div>
+				</li>
+			{% endif %}
+			<li id="slide1-{{ diamond._id }}">
+				<div id="main-image" class="t-main-image">
+					{% if '.j' in diamond.imageExternal %}
+						<div class="t-main-image">
+							<img src="{{ diamond.imageExternal }}"/>
+						</div>
+					{% elseif '.J' in diamond.imageExternal %}
+						<div class="t-main-image">
+							<img src="{{ diamond.imageExternal }}"/>
+						</div>
+					{% elseif 'http' in diamond.imageExternal %}
+						<div class="t-main-image">
+							<iframe style="width:100%; height: 100%;" src="{{ diamond.imageExternal }}"></iframe>
+						</div>
+					{% elseif diamond.imageExternal %}
+						<div class="t-main-image">
+							<img src="{{ diamond.imageExternal }}"/>
+						</div>
+					{% else %}
+						<div class="t-main-image">
+							<img src="/images/loose_diamonds/nm_{{diamond.shape.code}}.png">
+						</div>
+					{% endif %}
+					{#{% if diamond.imageExternal %}
+										                        {% if 'http' in diamond.imageExternal
+										                            and '.j' not in diamond.imageExternal
+										                            and '.J' not in diamond.imageExternal
+										                        %}
+										                            <iframe src="{{ diamond.imageExternal }}" style="width:100%;height:400px"></iframe>
+										                        {% else %}
+										                            <img src="{{ diamond.imageExternal }}" />
+										                        {% endif %}
+										                    {% else %}
+										                        <img src="/images/loose_diamonds/nm_{{ diamond.shape.code }}.png"  alt="images">
+										                    {% endif %}#}
+				</div>
+			</li>
+			<li id="slide2-{{ diamond._id }}">
+				<div id="main-image" class="t-main-image">
+					{% include "pages/frontend/loose_diamonds/shapes_top/shape_" ~ diamond.shape.code|lower ~ ".twig" ignore missing %}
+					<img src="/images/loose_diamonds/{{ diamond.shape.code }}-top-general.jpg" alt="diamond-shape"/>
+				</div>
+			</li>
+			<li id="slide3-{{ diamond._id }}">
+				<div id="main-image" class="t-main-image">
+					{% include "pages/frontend/loose_diamonds/shapes_side/shape_" ~ diamond.shape.code|lower ~ ".twig" ignore missing %}
+					<img src="/images/loose_diamonds/{{ diamond.shape.code }}-side-general.jpg" alt="diamond-shape"/>
+				</div>
+			</li>
+		</ul>
+		<nav>
+			{% if diamond.videoExternal %}
+				<a href="#slide0-{{ diamond._id }}">
+					<div id="diamond-info-photos">
+						<img src="/images/loose_diamonds/g360.png" width="50" alt="g360"/>
+					</div>
+				</a>
+			{% endif %}
+			<a href="#slide1-{{ diamond._id }}">
+				<div id="diamond-info-photos">
+					{% if diamond.imageExternal %}
+						{% if 'http' in diamond.imageExternal
+                            and '.j' not in diamond.imageExternal
+                            and '.J' not in diamond.imageExternal
+                        %}
+							<img src="/images/loose_diamonds/g360.png" width="50" alt="g360"/>
+						{% else %}
+							<img src="{{ diamond.imageExternal }}" alt="diamond"/>
+						{% endif %}
+					{% else %}
+						<img src="/images/loose_diamonds/nm_{{ diamond.shape.code }}.png" alt="diamond-shape">
+					{% endif %}
+				</div>
+			</a>
+			<a href="#slide2-{{ diamond._id }}">
+				<div id="diamond-info-photos">
+					<img src="/images/loose_diamonds/{{diamond.shape.code}}-top-general.jpg" alt="diamond-shape">
+				</div>
+			</a>
+			<a href="#slide3-{{ diamond._id }}">
+				<div id="diamond-info-photos">
+					<img src="/images/loose_diamonds/{{diamond.shape.code}}-side-general.jpg" alt="diamond-shape">
+				</div>
+			</a>
+			{% if diamond.showCerts %}
+				<div class="diamond-info-certificate">
+					{% if diamond.lab == 'GIA' %}
+						{% if 'gia.edu' in diamond.certificateURL %}
+							<a class="gia-certificate" href="{{ diamond.certificateURL }}" target="_blank">
+								<img src="/images/loose_diamonds/gia.png" style="padding:2px;width:50px" alt="diamond-shape"/>
+							</a>
+						{% else %}
+							<a class="gia-certificate" onclick="showCertsGia('{{ diamond._id }}')">
+								<img src="/images/loose_diamonds/gia.png" style="padding:2px;width:50px" alt="diamond-shape"/>
+							</a>
+						{% endif %}
+					{% endif %}
+					{% if diamond.lab == 'IGI' %}
+						<a class="gia-certificate" onclick="showCertsIgi('{{ diamond._id }}')">
+							<img src="/images/loose_diamonds/igi.png" style="padding:2px;width:50px" alt="diamond-shape"/>
+						</a>
+					{% endif %}
+					{% if diamond.lab == 'DFC' %}
+						<a class="gia-certificate" onclick="showCertsGia('{{ diamond._id }}')">
+							<img src="/images/loose_diamonds/dfc.png" style="padding:2px;width:50px" alt="diamond-shape"/>
+						</a>
+					{% endif %}
+				</div>
+			{% else %}
+				<div class="diamond-info-certificate" onclick="showSkuForm('{{ diamond.certificateNumber }}', '{{ diamond.stockNumber }}')">
+					{% if diamond.lab == 'GIA' %}
+						<a class="gia-certificate sku-popup">
+							<img src="/images/loose_diamonds/gia.png" style="padding:2px;width:50px" alt="diamond-shape"/>
+						</a>
+					{% elseif diamond.lab == 'IGI' %}
+						<a class="gia-certificate sku-popup">
+							<img src="/images/loose_diamonds/igi.png" style="padding:2px;width:50px" alt="diamond-shape"/>
+						</a>
+					{% elseif diamond.lab == 'DFC' %}
+						<a class="gia-certificate sku-popup">
+							<img src="/images/loose_diamonds/dfc.png" style="padding:2px;width:50px" alt="diamond-shape"/>
+						</a>
+					{% endif %}
+				</div>
+			{% endif %}
+		</nav>
+	</div>
+	{# <div class="hide-mobile examination u-tc o-col-lg-2">
+			<img class="t-examitation-img" src="../../images/examination.png" style="width: 46px;" alt="images">
+		</div>
+		<div
+			class="hide-mobile o-col-lg-10 print_invisible"><p style="font-size: 15px;">Our in-house gemologist at DreamStone inspect every diamond before it reaches you and we ship the diamond with the grading report and an insurance appraisal</p>
+		</div> #}
+	<div id="certs-{{ diamond._id }}" class="popup-gia">
+		<div class="popup-gia-content">
+			<div class="popup-gia-header">
+				<div class="heading">
+					<h2>{{ diamond.lab == 'GIA' ? 'Gia' : 'IGI' }}
+						certified</h2>
+				</div>
+				<div class="holder-close-print">
+					<button onclick="closeCerts()" class="popup-gia-close">Close</button>
+				</div>
+			</div>
+			<div class="popup-gia-body">
+				<div class="popup-gia-panel"></div>
+				<div class="popup-gia-visual">
+					<div class="gia-visual">
+						{% if diamond.lab == 'GIA' %}
+							{% if 'http:' in diamond.certificateURL %}
+								{% set new_certificateURL = diamond.certificateURL %}
+								{% set replace = 'http' %}
+								{% set replace_with = 'https' %}
+								<iframe src="{{ new_certificateURL|replace({ (replace): replace_with }) }}" style="border: none;"></iframe>
+							{% else %}
+								<iframe src="{{diamond.certificateURL}}" style="border: none;"></iframe>
+							{% endif %}
+						{% endif %}
+						{% if diamond.lab == 'IGI' %}
+							<iframe src="https://www.igi.org/reports/verify-your-report?r={{ diamond.certificateNumber }}" style="border: none;"></iframe>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="o-col-lg-6 o-col-md-7 o-col-sm-12 u-color-dark-gray u-pdg-btm-20 u-pdg-top-20">
+	<p class="u-text-upper u-f20">{{ diamond.weight }}
+		Carat -
+		{{diamond.shape.code}}
+		{% if diamond.cut.code %}
+			Cut
+		{% endif %}
+		Diamond</p>
+	<p class="u-f18">
+		{% if diamond.color.code %}
+			{{ diamond.color.code }}
+			Color,
+		{% endif %}
+		{% if diamond.clarity.code %}
+			{{ diamond.clarity.code }}
+			Clarity,
+		{% endif %}
+		{% if diamond.cut.code %}
+			{{ diamond.cut.code }}
+			Cut
+		{% endif %}
+		<br>
+	</p>
+	<p class="u-f18 u-color-blue u-text-upper u-text-none-underline u-mrg-0">FREE SHIPPING & 30 DAY RETURNS</p>
+	<p class="u-f18 u-color-light-gray">Order loose diamond, ships by
+		{% if user == false %}
+			<span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+		{% else %}
+			{% if not user.city %}
+				<span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+			{% elseif user.city == 'New York' %}
+				<span>{{ product.shippingDetails.shipsBy|date_modify("+5 day")|date("l, F jS") }}</span>
+			{% elseif user.country == 'US' %}
+				<span>{{ product.shippingDetails.shipsBy|date_modify("+7 day")|date("l, F jS") }}</span>
+			{% else %}
+				<span>{{ product.shippingDetails.shipsBy|date_modify("+9 day")|date("l, F jS") }}</span>
+			{% endif %}
+		{% endif %}
+	</p>
+	<div class="o-col-lg-12 o-row">
+		{% if diamond.isEnabled and diamond.vendorEnabled %}
+			<p class="u-color-light-gray u-text-upper">Bank wire:
+				<span class="bank-wire">{{(diamond.price * (1 - 1.5/100)) | price }}</span>
+			</p>
+		{% endif %}
+	</div>
+	<div class="o-col-lg-6 o-row">
+		{% if diamond.isEnabled and diamond.vendorEnabled %}
+			<a class="c-btn c-light-btn cursor-def product-price">Price:
+				{{ diamond.price | price }}</a>
+		{% endif %}
+	</div>
+	{#<div class="o-col-lg-6 o-row"><button class="c-btn c-dark-btn add-to-cart" style="padding:0" onclick="addToCart('{{diamond._id}}')">Add to cart</button></div>#}
+	<div class="o-col-lg-6 o-row">
+		<div>
+			<a href="{{diamond.permalink}}" id="details-btn" class="c-btn c-dark-btn add-to-cart">View details</a>
+		</div>
+	</div>
+	<div class="u-clear"></div>
+	<div class="o-col-lg-12 o-row">
+		<ul class="t-product-action">
+			<li>
+				<button id="id-{{diamond._id}}" data-id="{{diamond._id}}" class="t-product-action-icon t-product-action-wishlist wishlist{{ diamond._id }}{{ diamond.isFavorite ? ' active' : '' }}"></button>
+			</li>
+			<li class="hide-mobile">
+				<button onclick="showSharePopup('{{diamond.certificateNumber}}', '{{diamond.stockNumber}}')" id="product-share-btn-desctop" class="t-product-action-icon t-product-action-send"></button>
+			</li>
+			<li>
+				<button class="t-product-action-icon t-product-action-print" onclick="window.print()"></button>
+			</li>
+		</ul>
+	</div>
+	<div class="o-col-lg-12 o-row">
+		<ul class="t-product-action">
+			<li>
+				<a href="tel:800-818-8386" title="800-818-8386" class="t-product-action-icon t-product-action-phone"></a>
+			</li>
+			<li>
+				<a onclick="showPopupMail('{{diamond.certificateNumber}}', '{{diamond.stockNumber}}')" id="product-mail-btn" class="t-product-action-icon t-product-action-mail"></a>
+			</li>
+			<li>
+				<a id="my_custom_link" href="mailto:HELP@YOUR-APP.COM" class="t-product-action-icon t-product-action-chat"></a>
+			</li>
+		</ul>
+	</div>
+	<div class="o-col-lg-12 o-row">
+		<p class="text-mail-submit" style="color: green;"></p>
+		<p class="text-request-submit" style="color: green;"></p>
+	</div>
+	<div class="o-col-lg-12 o-row">
+		<p class="affirm-as-low-as" data-learnmore-show="true" data-page-type="product" data-amount="{{ 100 * diamond.price }}"></p>
+	</div>
+	<div class="o-col-sm-10 o-col-md-9 o-col-lg-12 o-row">
+		<a onclick="showMatchForm('{{diamond.certificateNumber}}', '{{diamond.stockNumber}}')" class="match-guarantee">
+			<img src="../../images/money.png" alt="images">
+			<p>PRICE MATCH GUARANTEE</p>
+		</a>
+		<p class="u-color-light-gray">See a diamond at a lower price?
+			<span onclick="showMatchForm('{{diamond.certificateNumber}}', '{{diamond.stockNumber}}')" style="text-decoration: underline; cursor: pointer;">Request Price Match</span>
+		</p>
+		<div class="text-match-submit" style="color: green;"></div>
+	</div>
+	<div class="u-clear"></div>
+	{% if diamond.isLocal %}
+		<div class="book-an-appointment">
+			<p>RISK-FREE SHOPPING</p>
+			<a onclick="showBookForm('{{diamond.certificateNumber}}', '{{diamond.stockNumber}}')" class="appointment"><img src="../../images/BOOK_APPOINTMENT.png" alt="images"><p>BOOK AN APPOINTMENT</p>
+			</a>
+			<p class="text-book-submit" style="color: green;"></p>
+			<span>See in-person in our New York or Florida showrooms</span>
+		</div>
+	{% endif %}
+	<div class="o-col-sm-10 o-col-md-9 o-col-lg-12 o-row"></div>
+</div>
+<script>
+	$('#id-  {{ diamond._id }}').click(function () {
+const $this = $(this);
+const method = $this.hasClass('active') ? 'DELETE' : 'POST';
+const FavoriteModel = (new Favorites({{ user ? 'true' : 'false' }}));
+FavoriteModel[method === 'POST' ? 'add' : 'delete']('diamonds', {
+_id: '{{ diamond._id }}'
+}, function () {
+$this[method === 'POST' ? 'addClass' : 'removeClass']('active');
+
+const $icon = $('.t-top-icon-wishlist, .t-top-icon-mob-wishlist');
+$icon.attr('data-count', + ($icon.attr('data-count') || 0) + (method === 'POST' ? 1 : -1));
+});
+});
+</script>

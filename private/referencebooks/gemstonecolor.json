@@ -1,0 +1,27 @@
+[
+    {
+        "code": "Blue",
+        "title": "Blue Sapphire",
+        "desc": "Blue sapphire is a primary color gemstone. Its most common secondary hues are purple, violet, and green."
+    },
+    {
+        "code": "Pink",
+        "title": "Pink Sapphire",
+        "desc": "Pink sapphires are the rarest of sapphire colors and bear many similarities to rubies."
+    },
+    {
+        "code": "Yellow",
+        "title": "Yellow Sapphire",
+        "desc": "Yellow sapphires resemble yellow diamonds and tend to have fewer inclusions than pink or blue sapphires."
+    },
+    {
+        "code": "Red",
+        "title": "Red Rubie",
+        "desc": "Among the most valued gemstones on the market, rubies are durable and range in color from pink to blood-red."
+    },
+    {
+        "code": "Green",
+        "title": "Green Emerald",
+        "desc": "Emeralds are by far the most stunning of the green color gemstones."
+    }
+]

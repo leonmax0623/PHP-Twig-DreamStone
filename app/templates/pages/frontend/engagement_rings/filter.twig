@@ -1,0 +1,197 @@
+<!-- Filter -->
+<div class="o-col-lg-12  o-row">
+    <div class="c-filter-block">
+        <div class="o-col-lg-7 o-col-md-12 u-relative">
+            <a href="/education/engagement-rings/style" class="c-info-label s-sm-invisible">?</a>
+            <p class="t-filter-label" onclick="toggleBlock(this, 'ringStile');">Engagement ring style</p>
+            <div class="u-clear"></div>
+            <ul id="ringStile" class="t-filter-list">
+                {% for ringstyle in ringstyles %}
+                <li
+                    id="{{ ringstyle._id }}"
+                    class="{{ ringstyle.code == filter.ringstyle ? 'active' : '' }}"
+                    onclick="
+                        search('ringstyle', '{{ ringstyle.code }}', false);
+                        window.finish = false;
+                        window.lastOffset = 0;
+                        window.offset = +'{{ filter.limit }}' || 10;
+                        $('#ringStile li#{{ ringstyle._id }}').toggleClass('active');
+                        $('#ringStile li:not(#{{ ringstyle._id }})').removeClass('active');
+                    "
+                >
+                    <a>{{ ringstyle.image | raw }}</a>
+                    {{ ringstyle.code }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% include "pages/frontend/engagement_rings/filter_metal.twig" %}
+        <div class="u-clear"></div>
+        {% include "pages/frontend/engagement_rings/filter_shape.twig" %}
+        <div class="o-col-lg-5 o-col-md-12 u-relative">
+            <a href="/education/engagement-rings/price" class="c-info-label s-sm-invisible">?</a>
+            <p class="t-filter-label" onclick="toggleBlock(this, 'priceBlock');">Price</p>
+            <div class="u-clear"></div>
+            <div id="priceBlock" class="t-price-block">
+              <div class="u-clear-20"></div>
+                  <div id="steps-slider"></div>
+                  <div class="steps-slider-input">
+                    <input type="text" id="input-with-keypress-a">
+                    <input type="text" id="input-with-keypress-b">
+                  </div>
+            </div>
+        </div>
+        <div class="u-clear"></div>
+    </div>
+    <div class="o-col-lg-12 o-row">
+        <div class="o-col-lg-2 o-col-md-3 s-sm-invisible"></div>
+        <div class="o-col-lg-8 o-col-md-6 o-col-sm-6 t-filter-btn-block">
+            <a href="#" id="t-filter-close-btn" class="t-filter-close-btn">Close Filters</a>
+        </div>
+        <div class="o-col-lg-2 o-col-md-3 o-col-sm-6 t-filter-btn-block">
+            <a href="#" id="clear-filters" class="u-fr" onclick="resetFilters(); return false;">Clear Filters</a>
+        </div>
+    </div>
+    <div class="u-clear"></div>
+
+    <div class="o-col-lg-12 flexx jc-c">
+        <div class="o-col-lg-2 o-col-md-4 o-col-sm-12 o-row">
+            <a href="#" id="search-results-count" class="c-btn c-dark-btn t-results-btn-view" onclick="return false;">
+                Results ({{ total }})
+            </a>
+        </div>
+        <div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+            <a href="/viewed" class="c-btn c-light-btn results-btn-viewed">recently viewed ({{ viewedCount }})</a>
+        </div>
+        <div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+            <a
+                href="/compare/engagement-rings"
+                {# id="compareHref" #}
+                data-count="{{ compareCountP }}"
+                class="c-btn c-light-btn results-btn-comparison-jewelry"
+            >comparison {{ compareCountP ? ' ' ~ compareCountP : '' }}</a>
+        </div>
+    </div>
+</div>
+<div class="u-clear"></div>
+
+<!-- nouislider -->
+<script src="/js/nouislider.min.js"></script>
+<link rel="stylesheet" href="/css/nouislider.css">
+<script>
+  const handleChange = function(handle, value){
+    let newValue = value.replace('{{ currency ? currency.sign : "$" }}', '');
+    newValue = newValue.replace(',', '');
+
+    UrlParams.set({
+      [handle ? 'price_max' : 'price_min']:  newValue{{ currency ? ' * ' ~ currency.rate : '' }}
+    }, false);
+    const viewMode = UrlParams.get().v || 'g';
+    const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+    loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+      updateLinks();
+      $('#search-results-count').html(`Results (${total})`);
+    });
+  };
+  document.addEventListener("DOMContentLoaded", () => {
+    const stepsSlider = document.getElementById('steps-slider');
+    const input0 = document.getElementById('input-with-keypress-a');
+    const input1 = document.getElementById('input-with-keypress-b');
+    const inputs = [input0, input1];
+
+    const getVars = UrlParams.get();
+    {% if currency %}
+    if (getVars.price_min) getVars.price_min = getVars.price_min / {{ currency.rate }};
+    if (getVars.price_max) getVars.price_max = getVars.price_max / {{ currency.rate }};
+    {% endif %}
+    const min = Math.floor({{ currency ? price_min / currency.rate : price_min }});
+    const max = Math.ceil({{ currency ? price_max / currency.rate : price_max }});
+    const currentMin = getVars.price_min && +getVars.price_min > min ? +getVars.price_min : min;
+    const currentMax = getVars.price_max && +getVars.price_max < max ? +getVars.price_max : max;
+
+    noUiSlider.create(stepsSlider, {
+        start: [currentMin, currentMax],
+        connect: true,
+        range: {
+            'min': [min, 1],
+            // '50%': [10000, 500],
+            'max': max
+        },
+        format: {
+            to: function (value) {
+                value = value.toFixed().toString();
+                let re = /(?=\B(?:\d{3})+(?!\d))/g;
+                value = value.replace( re, ',' );
+
+                return '{{ currency ? currency.sign : "$" }}' + value;
+            },
+            from: function (value) {
+                return Number(value.replace('{{ currency ? currency.sign : "$" }}', ''));
+            }
+        }
+
+    });
+
+    stepsSlider.noUiSlider.on('update', function (values, handle) {
+        inputs[handle].value = values[handle];
+    });
+
+    stepsSlider.noUiSlider.on('change', function (values, handle) {  
+        inputs[handle].value = values[handle];
+        handleChange(handle, inputs[handle].value);
+    });
+
+    inputs.forEach(function (input, handle) {
+      input.addEventListener('change', function () {
+          stepsSlider.noUiSlider.setHandle(handle, this.value);
+      });
+
+        input.addEventListener('blur', function(e) {
+            let values = stepsSlider.noUiSlider.get();
+            let value = Number(values[handle]);
+
+            stepsSlider.noUiSlider.setHandle(handle, this.value);
+            handleChange(handle, this.value);
+        })
+
+      input.addEventListener('keydown', function (e) {
+          let values = stepsSlider.noUiSlider.get();
+          let value = Number(values[handle]);
+          let steps = stepsSlider.noUiSlider.steps();
+          let step = steps[handle];
+          let position;
+          switch (e.which) {
+              case 13:
+                  stepsSlider.noUiSlider.setHandle(handle, this.value);
+                  handleChange(handle, this.value);
+                  console.log(this.value);
+                  break;   
+              case 38:
+                  position = step[1];
+                  if (position === false) {
+                      position = 1;
+                  }
+                  if (position !== null) {
+                      stepsSlider.noUiSlider.setHandle(handle, value + position);
+                  }
+                  break;
+              case 40:
+                  position = step[0];
+                  if (position === false) {
+                      position = 1;
+                  }
+                  if (position !== null) {
+                      stepsSlider.noUiSlider.setHandle(handle, value - position);
+                  }
+                  break;
+              
+            }
+        });
+    });
+  });
+</script>
+<script>
+    function resetFilters() {
+        UrlParams.delete(true);
+    }
+</script>

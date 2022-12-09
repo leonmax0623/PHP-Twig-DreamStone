@@ -1,0 +1,138 @@
+<form id="popup-mail" class="popup-choose-setting mail-form-popup" novalidate>
+    <div class="popup-content">
+        <button onclick="closeMail()" class="btn-popup-close close-mail">X</button>
+        <div class="popup-header">
+            <h5>Let us know how we can help.</h5>
+        </div>
+        <div class="personal-info mail-info">
+            <div class="mb-20 o-col-sm-12 o-col-lg-4">
+                <h5>Your name <span class="red">*</span></h5>
+                <input type="text" name="user_mail_name" id="mail_name" required>
+            </div>
+            <div class="mb-20 o-col-sm-12 o-col-lg-8">
+                <h5>Your email <span class="red">*</span></h5>
+                <div class="book-email">
+                    <input type="email" name="user_mail_email" id="mail_email" placeholder="myname@example.com"
+                        required>
+                </div>
+            </div>
+        </div>
+        <div class="o-col-lg-12">
+            <h5>Your question</h5>
+            <textarea name="mail_text" id="mail_request" cols="20" rows="4"></textarea>
+        </div>
+        <div class="o-col-lg-12">
+            <button type="submit" class="g-recaptcha btn_mail_submit"
+                data-sitekey="6Lc2jQoeAAAAAIzf4K1jjmHP5WqLqky7Fa8_0i8t" data-callback='onMailSubmit'
+                data-action='mail'>Send</button>
+        </div>
+        <div class="out_mail" style="color: red;"></div>
+    </div>
+</form>
+
+{# popup Mail #}
+<script>
+    function showPopupMail(certificateNumber, stockNumber) {
+        const popupMail = $('.mail-form-popup');
+        popupMail.css({
+            display: 'flex'
+        });
+        if (certificateNumber || stockNumber) {
+            $('#popup-mail').attr("data-certificateNumber", certificateNumber);
+            $('#popup-mail').attr("data-stockNumber", stockNumber);
+        }
+
+        $body.css({
+            "overflow": 'hidden'
+        });
+    }
+
+    function closeMail() {
+        $('#popup-mail').hide();
+        $body.css({
+            "overflow": 'auto'
+        });
+    }
+</script>
+{# submit Mail #}
+<script>
+    function mailSubmit(token) {
+        let localHref = document.location.href;
+        let certificateNumber = $('#popup-mail').attr("data-certificateNumber");
+        let stockNumber = $('#popup-mail').attr("data-stockNumber");
+
+        if (typeof certificateNumber !== 'undefined') {
+            localHref = `${document.location.hostname}/loose-diamonds/item/${certificateNumber}_${stockNumber}`;
+        }
+        let hasEmptyMail = false;
+
+        $('.mail-info').find('input').each(function () {
+            if ($(this).prop('required')) {
+                hasEmptyMail = hasEmptyMail || !$(this).val();
+            }
+        })
+
+        let regexp = /^[\.a-z0-9_\-]+[@][a-z0-9_\-]+([.][a-z0-9_\-]+)+[a-z]{1,4}/i;
+        let mEmail = document.getElementById('mail_email').value;
+        let result = regexp.test(mEmail);
+
+        if (hasEmptyMail) {
+            $('.out_mail').html('*required fields are not filled');
+            if (!$('#mail_name').val()) {
+                $('#mail_name').css('background-color', 'wheat');
+            }
+            if (!$('#mail_email').val()) {
+                $('#mail_email').css('background-color', 'wheat');
+            }
+
+            return false
+        } else if (!result) {
+            $('.out_mail').html('*enter the correct email');
+            $('#mail_email').css('background-color', 'wheat');
+
+            return false
+        } else {
+            $.post(
+                '/loose-diamonds/mail-form',
+
+                {
+                    user_mail_name: $('#mail_name').val(),
+                    user_mail_email: mEmail,
+                    mail_text: $('#mail_request').val(),
+                    pageFromMail: localHref,
+                    gToken: token,
+                },
+
+                function (msg) {
+                    $('#my_message').html(msg);
+                }
+            );
+        }
+
+        $('#popup-mail').hide();
+        $body.css({
+            "overflow": 'auto'
+        });
+        $('.text-mail-submit').html('Got it! We’ll get back to you shortly.');
+        return false;
+    }
+    $('#popup-mail').submit(() => {
+        ev.preventDefault();
+        mailSubmit();
+    });
+</script>
+<script>
+    $('input').change(function () {
+        $('.mail-info').find('input').each(function () {
+            if ($(this).val()) {
+                $(this).css('background-color', 'white');
+            }
+        })
+    })
+</script>
+<script>
+    function onMailSubmit(token) {
+        // console.log('Mail form submitted', token);
+        setTimeout(mailSubmit, 0, token);
+    }
+</script>

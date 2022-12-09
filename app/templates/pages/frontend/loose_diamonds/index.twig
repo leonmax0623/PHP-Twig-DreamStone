@@ -1,0 +1,122 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Loose Diamonds | Ideal Cut Diamonds | Certified Diamonds | Diamond Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Shop diamond engagement rings, diamond stud earrings, diamond pendants, GIA diamonds online at dreamstone.com. DreamStone's comprehensive interactive education center will guide you through everything you need to know about diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Loose Diamonds, Ideal Cut Diamonds, Certified Diamonds, Princess Cut Diamond, Round Diamond, Diamond Engagement Rings, Diamond Stud Earrings, Solitaire Diamond Pendant, diamond education, designer engagement rings, unique engagement rings.
+{%- endblock -%}
+
+{% block content %}
+    {{ include(template_from_string(templates.wrapper.diamonds)) }}
+
+<script>
+  function openCut(evt, cutName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cutName).style.display = "block";
+    evt.currentTarget.className += " active";
+
+    var a = document.getElementById('fancy_color').getElementsByTagName('a'),
+      length = a.length;
+
+    for(var j=0; j< length; j++){
+      a[j].href =  a[j].href.split("&")[0] + '&shape_id='+cutName;
+    }
+  }
+</script>
+
+<!-- slick -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+{# <link rel="stylesheet" type="text/css" href="/js/slick.min.js"/> #}
+
+<script>
+  $('#fancy-color-slider').slick({
+    infinite: true,
+    slidesToShow: 8,
+    slidesToScroll: 8,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 6,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3
+        }
+      }
+    ]
+  });
+
+  $('#fancy-clarity-slider').slick({
+    infinite: true,
+    slidesToShow: 8,
+    slidesToScroll: 8,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 6,
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3
+        }
+      }
+    ]
+  });
+
+  $('#explore-sm-slider').slick({
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+  });
+</script>
+{% endblock %}

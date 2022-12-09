@@ -1,0 +1,68 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Diamond Engagement Rings | Diamond Rings| Loose Diamonds | Wedding Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    DreamStone - New York's largest retailer of Diamond Engagement Rings, Wedding Rings, Diamond Rings, Loose Diamonds, Diamond Studs Earrings, Diamond Pendants, White Gold Engagement Rings, Platinum Engagement Rings.
+{%- endblock -%}
+
+
+{%- block meta_keywords -%}
+    Engagement Rings, Wedding Rings, Diamond Engagement Rings, Diamond Rings, Loose Diamonds, Design Your Own Engagement Ring, White Gold Engagement Rings, Platinum Engagement Rings
+{%- endblock -%}
+
+{% block content %}
+   <div class="content">
+        <div class="u-clear-30"></div>
+        <h6 class="u-f24 u-color-black u-tc">my orders</h6>
+        <table border="0" class="my_orders_table">
+            <thead>
+                <tr>
+                    <th>Order No.</th>
+                    <th class="row_sm_hide">Tax</th>
+                    {# {% if order.totalCorrection.type %}
+                        <th class="row_sm_hide">Correction</th>
+                    {% endif %} #}
+                    <th class="row_sm_hide">Amount</th>
+                    <th>Order Status</th>
+                    <th class="row_sm_hide">Order Date</th>
+                    <th class="row_sm_hide">Est. Ship Date</th>
+                    <th>Tracking number</th>
+                    <th>Shipping status</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td><a href="{{ path_for('myOrder', {'number': order.number}) }}">{{ order.number }}</a></td>
+                    <td class="row_sm_hide">{{ order.amount.tax | price }}</td>
+                    {# {% if order.totalCorrection.type %}
+                        <td class="row_sm_hide">
+                            {% if order.totalCorrection.type == "percent" %}
+                                {{order.totalCorrection.value}}%
+                            {% elseif order.totalCorrection.type == "fixed" %}
+                                ${{order.totalCorrection.value}}
+                            {% endif %}
+                        </td>
+                    {% endif %} #}
+                    <td class="row_sm_hide">{{ order.amount.total | price }}</td>
+                    <td>{{ order.status }}</td>
+                    <td class="row_sm_hide">{{ order.created | date('m/d/Y') }}</td>
+                    <td class="row_sm_hide">{{ order.shipping.date | date('m/d/Y') }}</td>
+                    <td>
+                        {% if order.shipping.tracking.number %}
+                            <a target="_blank" href="https://www.fedex.com/fedextrack/?tracknumbers={{ order.shipping.tracking.number }}">
+                                {{ order.shipping.tracking.number }}
+                            </a>
+                        {% endif %}
+                    </td>
+                    <td>{{ order.shipping.tracking.status }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="u-clear-30"></div>
+    </div>
+{% endblock %}

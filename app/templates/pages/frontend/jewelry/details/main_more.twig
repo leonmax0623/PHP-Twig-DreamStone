@@ -1,0 +1,34 @@
+<div id="discover_more_block" class="t-product-details-block u-bg-light-gray">
+    <div class="content-md">
+        <h6 class="u-f24 u-color-dark-gray u-tc">Product Details</h6>
+        <div class="u-clear"></div>
+        <div class="o-col-lg-6 o-col-md-6 o-col-sm-12 u-fr">
+            <div class="t-product-description">
+                {{ product.description }}
+            </div>
+            <div class="u-clear-20"></div>
+        </div>
+        <div class="o-col-lg-6 o-col-md-6 o-col-sm-12">
+            <table class="c-details-table">
+                {% for info in product.information %}
+                    <tr><td>{{ info.name }}</td><td>{{ info.value }}</td></tr>
+                {% endfor %}
+                {% for key, value in product.withAttributes %}
+                    <tr><td>{{ key }}</td><td>{{ value }}</td></tr>
+                {% endfor %}
+                {% if product.builder_compatible %}
+                    <tr>
+                        <th colspan="2">This Setting can be set with</th>
+                    </tr>
+                    {% for value in product.builder_compatible %}
+                        <tr>
+                            <td>{{ value.weight_min }} to {{ value.weight_max }} carats</td>
+                            <td>{{ value.code }} diamond</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+    </div>
+    <div class="u-clear"></div>
+</div>

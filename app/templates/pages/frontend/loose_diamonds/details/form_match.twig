@@ -1,0 +1,131 @@
+<form id="popup-match" class="popup-match-guarantee" novalidate>
+    <div class="popup-content">
+        <button onclick="closeMatch()" class="btn-popup-close">X</button>
+        <div class="popup-header">
+            <h5>We have an extensive inventory of diamonds that goes far beyond what we display online. If you see the
+                same or similar diamond displayed at a lower price we will strive price match it for you. Simply submit
+                your contact information below along with your source of diamond</h5>
+        </div>
+        <div class="personal-info match-info">
+            <div class="mb-20 o-col-sm-12 o-col-lg-4">
+                <h5>Name <span class="red">*</span></h5>
+                <input type="text" name="user_match_name" id="match_name" required>
+            </div>
+            <div class="mb-20 o-col-sm-12 o-col-lg-8">
+                <h5>Email <span class="red">*</span></h5>
+                <div class="book-email">
+                    <input type="email" name="user_match_email" id="match_email" placeholder="myname@example.com"
+                        required>
+                </div>
+            </div>
+        </div>
+        <div class="o-col-lg-12">
+            <h5>Source of price match (link preferred)</h5>
+            <textarea name="match_text" id="match_request" cols="20" rows="4"></textarea>
+        </div>
+        <div class="o-col-lg-12">
+            <button type="submit" class="g-recaptcha btn_match_submit"
+                data-sitekey="6Lc2jQoeAAAAAIzf4K1jjmHP5WqLqky7Fa8_0i8t" data-callback='onPriceMatchSubmit'
+                data-action='priceMatch'>Send</button>
+        </div>
+        <div class="out_match" style="color: red;"></div>
+    </div>
+</form>
+
+{# popup Match #}
+<script>
+    function showMatchForm(certificateNumber, stockNumber) {
+        const matchPopup = $('#popup-match');
+        matchPopup.css({
+            display: 'flex'
+        });
+        $('#popup-match').attr("data-certificateNumber", certificateNumber);
+        $('#popup-match').attr("data-stockNumber", stockNumber);
+        $body.css({
+            "overflow": 'hidden'
+        });
+    }
+
+    function closeMatch() {
+        $('#popup-match').hide();
+        $body.css({
+            "overflow": 'auto'
+        });
+    }
+</script>
+
+{# submit Match form #}
+<script>
+    function matchSubmit(token) {
+        let certificateNumber = $('#popup-match').attr("data-certificateNumber");
+        let stockNumber = $('#popup-match').attr("data-stockNumber");
+
+        let hasEmptyMatch = false;
+        $('.match-info').find('input').each(function () {
+            if ($(this).prop('required')) {
+                hasEmptyMatch = hasEmptyMatch || !$(this).val();
+            }
+        })
+        let localHref = `${document.location.hostname}/loose-diamonds/item/${certificateNumber}_${stockNumber}`;
+        let regexp = /^[\.a-z0-9_\-]+[@][a-z0-9_\-]+([.][a-z0-9_\-]+)+[a-z]{1,4}/i;
+        let mEmail = document.getElementById('match_email').value;
+        let result = regexp.test(mEmail);
+
+        if (hasEmptyMatch) {
+            $('.out_match').html('*required fields are not filled');
+            if (!$('#match_name').val()) {
+                $('#match_name').css('background-color', 'wheat');
+            }
+            if (!$('#match_email').val()) {
+                $('#match_email').css('background-color', 'wheat');
+            }
+
+            return false
+        } else if (!result) {
+            $('.out_match').html('*enter the correct email');
+            $('#match_email').css('background-color', 'wheat');
+
+            return false
+        } else {
+            $.post(
+                '/loose-diamonds/match-form', {
+                    user_match_name: $('#match_name').val(),
+                    user_match_email: mEmail,
+                    match_text: $('#match_request').val(),
+                    pageFromMatch: localHref,
+                    gToken: token,
+                },
+                function (msg) {
+                    $('#my_message').html(msg);
+                }
+            );
+        }
+
+        $('#popup-match').hide();
+        $body.css({
+            "overflow": 'auto'
+        });
+        $('.text-match-submit').html("We will let you know if we can beat or price match it.");
+        return false;
+    }
+
+    $('#popup-match').submit((ev) => {
+        ev.preventDefault();
+        matchSubmit();
+    });
+</script>
+<script>
+    $('input').change(function () {
+        $('.match-info').find('input').each(function () {
+            if ($(this).val()) {
+                $(this).css('background-color', 'white');
+            }
+        })
+    })
+</script>
+<script>
+    function onPriceMatchSubmit(token) {
+        // console.log('Price Match Guarantee form submitted', token);
+        setTimeout(matchSubmit, 0, token);
+    }
+</script>

@@ -1,0 +1,25 @@
+<td valign="top" colspan="2">
+    {# <div class="o-col-lg-6 o-row">
+        <buttun id="view-cert" class="c-btn c-light-btn btn-sm" style="cursor: pointer;">View Certificate</button>
+    </div> #}
+    <div class="o-col-lg-6 o-row">
+        <buttun id="check-cert" class="c-btn c-dark-btn btn-sm" style="cursor: pointer;">Check Certificate</button>
+    </div>
+</td>
+<div id="cert-dialog" class="modal" style="z-index: 1002;">
+    <div class="popup popup_sm" style="width: 80%; height: 90%;">
+        <a href="#" class="close_popup_btn"></a>
+        <iframe id="cert-frame" width="100%" height="100%" border="0" src="{{ product.certificateURL }}"></iframe>
+    </div>
+</div>
+<script>
+$(function () {
+    var certIframe = $('#cert-frame');
+    var certDialog = $('#cert-dialog');
+    $('#check-cert').on("click", function (e) {
+        e.preventDefault();
+        // certDialog.addClass('s-show');
+        window.open('{{ product.certificateURL }}','_blank');
+    });
+});
+</script>

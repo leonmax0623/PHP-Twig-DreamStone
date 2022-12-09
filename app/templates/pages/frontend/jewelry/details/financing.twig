@@ -1,0 +1,20 @@
+<div class="u-bg-light-gray t-flexible-block">
+    <div class="content">
+        <div class="u-clear-30"></div>
+        <h6 class="u-f24 u-color-black u-tc">WHY DREAMSTONE?</h6>
+        <div class="t-slide-hide">
+            <div id="flexible_options" class="o-col-lg-12 o-row t-propositions-carousel">
+            {% for staticpage in staticpages %}
+                <div class="t-options-slider">
+                    <label class="u-text-upper u-f16 u-color-dark-gray">{{staticpage.title}}</label>
+                    <div class="u-clear-10"></div>
+                    {{staticpage.description}}
+                    <div class="u-clear-10"></div>
+                    <a href="{{ path_for('staticpages-Page', {'filter': staticpage.url}) }}" class="c-learn-more">Learn more </a>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="u-clear"></div>
+    </div>
+</div>

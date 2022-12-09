@@ -1,0 +1,22 @@
+<!-- BANNER VIEWED  -->
+{% if viewed %}
+<div class="recently_viewed_block">
+    {% if viewed.diamonds or viewed.products %}
+        <div class="u-clear-30"></div>
+        <h6 class="u-f24 u-color-black u-tc">Recently viewed</h6>
+    {% endif %}
+    {% if viewed.diamonds or viewed.products %}
+      <div class="u-clear-10"></div>
+      <div id="recently_viewed" class="o-col-lg-12 o-row t-propositions-carousel">
+        {% for item in viewed.diamonds %}
+            {% include "pages/frontend/loose_diamonds/_viewed_diamond.twig" %}
+        {% endfor %}
+        {% for item in viewed.products %}
+            {% include "pages/frontend/jewelry/_viewed_product.twig" %}
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+<div class="u-clear"></div>
+{% endif %}
+<!-- BANNER VIEWED -->

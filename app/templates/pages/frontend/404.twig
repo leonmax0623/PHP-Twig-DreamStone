@@ -1,0 +1,41 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Loose Diamonds | Ideal Cut Diamonds | Certified Diamonds | Diamond Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Shop diamond engagement rings, diamond stud earrings, diamond pendants, GIA diamonds online at dreamstone.com. DreamStone's comprehensive interactive education center will guide you through everything you need to know about diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Loose Diamonds, Ideal Cut Diamonds, Certified Diamonds, Princess Cut Diamond, Round Diamond, Diamond Engagement Rings, Diamond Stud Earrings, Solitaire Diamond Pendant, diamond education, designer engagement rings, unique engagement rings.
+{%- endblock -%}
+
+{% block content %}
+    <div class="holder-error-content">
+            <h1>404</h1>
+            <div class="error-text">
+                <p>Oops! Don`t give up <br> we`ll help you find you way.</p>
+            </div>
+            <button><a class="home-btn" href="/">Home</a></button>
+            <div class="holder-categories">
+                <a href="/engagement-rings/search" class="holder-item">
+                    <img src="/content/shapes/Solitaire_01.svg" alt="engagement">
+                    <p>engagement</p>
+                </a>
+                <a href="/loose-diamonds/search" class="holder-item">
+                    <img src="/images/explore/round.svg" alt="diamonds">
+                    <p>diamonds</p>
+                </a>
+                <a href="/mens-wedding-bands" class="holder-item">
+                    <img src="/images/jwl_menu/Alternative.svg" alt="bands-for-him">
+                    <p>bands for him</p>
+                </a>
+                <a href="/womens-wedding-bands" class="holder-item">
+                    <img src="/content/shapes/Side_Stone_02.svg" alt="bands-for-her">
+                    <p>bands for her</p>
+                </a>
+            </div>
+    </div>
+{% endblock %}

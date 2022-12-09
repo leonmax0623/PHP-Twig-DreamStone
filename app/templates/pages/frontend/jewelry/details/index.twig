@@ -1,0 +1,56 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    {{product.title}} - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    {{ product.title }}, {{ product.description }}
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    {{ product.title }}, {{ product.type }}
+{%- endblock -%}
+
+{%- block head_end -%}
+    {%  include "pages/frontend/jewelry/details/metatags.twig" %}
+{%- endblock -%}
+
+{% block content %}
+<script>
+window.product = JSON.parse($('<div>').html(
+  "{{ productJson }}".replace(/\u0022/g, "'").replace(/\n/g, "<br>")
+)[0].textContent);
+if (window.product.withAttributes.length === 0)
+  window.product.withAttributes = {};
+
+$(document).ready(function(){
+  $('.t-discover-more').click(function(){
+    $('#discover_more_block').toggle('slow');
+    $(this).toggleClass('t-open');
+  });
+});
+</script>
+<script src="{{ app.request.getSchemeAndHttpHost() }}/js/modernizr.custom.js"></script>
+    {%  include "pages/frontend/jewelry/details/main.twig" %}
+    {%  include "pages/frontend/jewelry/details/product_banner.twig" %}
+    {%  include "pages/frontend/jewelry/details/shipping.twig" %}
+    {%  include "pages/frontend/jewelry/details/financing.twig" %}
+    <div class="t-comments">
+        <div class="content-md">
+            {% set currentPath = current_path(app.request.attributes.get('_route')) %}
+            {% set currentDomain = base_url() %}
+            <div class="yotpo yotpo-main-widget"
+                data-product-id={{product._id}}
+                data-price={{product.price}}
+                data-currency="$"
+                data-name={{product.title}}
+                data-url={{currentDomain ~ currentPath}}
+                data-image-url={{currentDomain ~ product.images[0].value}}>
+            </div>
+        </div>
+    </div>
+    {%  include "pages/frontend/jewelry/details/viewed.twig" %}
+    {%  include "pages/frontend/jewelry/details/matching.twig" %}
+    {%  include "pages/frontend/jewelry/details/similar.twig" %}
+{% endblock %}

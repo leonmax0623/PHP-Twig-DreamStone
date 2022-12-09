@@ -1,0 +1,115 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    About Us - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    About Us,DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{% set page = 'payment_method' %}
+
+{% block content %}
+    {%  include "pages/frontend/cart/order_page_navigation.twig" %} 
+
+    <div class="content">
+        <h5>Payment method</h5>
+        <div class="u-clear-20"></div>
+        <form method="post" action="/payment-method?returnUrl=/billing-shipping">
+            <div class="o-col-sm-12 o-col-md-12 o-col-lg-12 o-row">
+                <div class="o-col-md-4 o-col-sm-6 o-row">
+                    <input type="radio" name="payment_method" value="card" id="card">
+                    <label for="card" class="u-color-black">Credit or Debit Cards</label>
+                </div>
+                <div class="o-col-md-8 o-col-sm-6">
+                    <span class="t-payment-method u-mrg-0 u-mrg-right-10 t-visa"></span>
+                    <span class="t-payment-method u-mrg-0 u-mrg-right-10 t-mastercard"></span>
+                    <span class="t-payment-method u-mrg-0 u-mrg-right-10 t-aexpress"></span>
+                    <span class="t-payment-method u-mrg-0 u-mrg-right-10 t-discover"></span>
+                </div>
+                <div class="u-clear"></div>
+                <div id="payment_description_card" class="o-col-md-12 o-row payment_description">
+                    <p class="u-f14">Please review your order summary and enter your credit or debit card information in the next step. All transactions are secured and encrypted</p>
+                </div>
+                <div class="u-clear-20"></div>
+                <div class="o-col-sm-5 o-row">
+                    <input type="radio" name="payment_method" value="transfer" id="transfer">
+                    <label for="transfer" class="u-color-black">Wire transfer</label>
+                </div>
+                <div class="u-clear"></div>
+                <div id="payment_description_transfer" class="o-col-md-12 o-row payment_description">
+                    <p class="u-f14">A bank wire discount of 1.5% is directly applied to your order and a service representative will assist you in initiating your bank transfer. Orders are not placed on hold and are subject to sale until payment has been completed.</p>
+                    <p class="u-f14">Please call customer service toll free at <a href="tel:8008188386">800-818-8386</a> with any questions.</p>
+                </div>
+                <div class="u-clear-20"></div>
+                <div class="o-col-sm-3 o-row">
+                    <input type="radio" name="payment_method" value="affirm" id="affirm">
+                    <label for="affirm" class="u-color-black">Affirm</label>
+                </div>
+                <div class="o-col-sm-2">
+                    <span class="t-payment-method u-mrg-0 u-mrg-right-10 t-affirm"></span>
+                </div>
+                <div class="u-clear"></div>
+                <div id="payment_description_affirm" class="o-col-md-12 o-row payment_description">
+                    <p class="u-f14">We have partnered with Affirm to give you an easy way to make your purchase with no hidden fees. Enjoy low monthly payment financing.</p>
+                </div>
+                <div class="u-clear-20"></div>
+                <div class="o-col-sm-12 o-row">
+                    <input type="radio" name="payment_method" value="phone" id="phone">
+                    <label for="phone" class="u-color-black">Pay By Phone / Split Payments</label>
+                </div>
+                <div class="u-clear"></div>
+                <div id="payment_description_phone" class="o-col-md-12 o-row payment_description">
+                    <p class="u-f14">Use this option if you wish to pay by phone with one or more credit cards. After completing your order a representative will contact you to arrange payment. Orders are not placed on hold and are subject to sale until payment has been completed.</p>
+                    <p class="u-f14">Please call customer service toll free at <a href="tel:8008188386">800-818-8386</a> with any questions.</p>
+                </div>
+                <div class="u-clear-20"></div>
+                <div class="o-col-sm-3 o-row">
+                    <input type="radio" name="payment_method" value="paypal" id="paypal">
+                    <label for="paypal" class="u-color-black">PayPal</label>
+                </div>
+                <div class="o-col-sm-2">
+                    <span class="t-payment-method u-mrg-0 u-mrg-right-10 t-paypal"></span>
+                </div>
+                <div class="u-clear"></div>
+                <div id="payment_description_paypal" class="o-col-md-12 o-row payment_description">
+                    <p class="u-f14">After selecting Paypal you will be directed to log in to your pre-existing paypal account or be directed to create a new account.</p>
+                </div>
+                <div class="u-clear-20 o-row"></div>
+                <span class="u-warning u-f16" id="payment-method-include-recept-warning"></span>
+                <div class="u-clear-20"></div>
+            </div>
+            <div class="u-clear u-border-hor-light"></div>
+            <div class="o-col-sm-12 o-col-md-5 o-col-lg-4 u-fr">
+                <button id="submit">Continue</button>
+            </div>
+        </form>
+        <div class="u-clear-20"></div>
+        {%  include "pages/frontend/cart/cards.twig" %} 
+    </div>
+
+<script>
+$(document).ready(function(){
+    $('#submit').css({'background-color': '#9d9d9d', 'cursor': 'unset'});
+    $('[name=payment_method]').change(function(){
+        var method = 'payment_description_' + this.value;
+        $('.payment_description').removeClass('show');
+        $('#' + method).addClass('show');
+        $('#submit').css({'background-color': '#97a6ce', 'cursor': 'pointer'});
+        console.log(method);
+    });
+    $('form').submit(function(event){
+        if (!$('[name="payment_method"]').is(':checked')) {
+            event.preventDefault();
+            $('#payment-method-include-recept-warning').text('please check one of the method');
+        };
+    });
+});
+
+</script>
+{% endblock %}

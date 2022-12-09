@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Google Tag Manager -->
+		<script>
+			(function (w, d, s, l, i) {
+w[l] = w[l] || [];
+w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+var f = d.getElementsByTagName(s)[0],
+j = d.createElement(s),
+dl = l != 'dataLayer' ? '&l=' + l : '';
+j.async = true;
+j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-KSH7FZL');
+		</script>
+		<!-- End Google Tag Manager -->
+
+		<!-- Global site tag (gtag.js) - Google Ads: 1067624375 -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=AW-1067624375"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+function gtag() {
+dataLayer.push(arguments);
+}
+gtag('js', new Date());
+gtag('config', 'AW-1067624375');
+		</script>
+
+		<!-- Criteo Loader File -->
+		<script type="text/javascript" src="//dynamic.criteo.com/js/ld/ld.js?a=91590" async="true"></script>
+		<!-- END Criteo Loader File -->
+
+		<title>DreamStone
+			{% block head_title %}{% endblock %}
+		</title>
+		<!--meta-->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="minimum-scale=0.5, maximum-scale=1, width=device-width">
+		<meta name="description" content="{% block meta_description %}{% endblock %}">
+		<META name="Keywords" content="{% block meta_keywords %}{% endblock %}"> {% block sharing_metas %}{% endblock %}
+		<!--/meta-->
+
+		<link
+		rel="shortcut icon" href="/images/favicon.png">
+
+		<!--fonts-->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,700,800,600italic,700italic" rel="stylesheet" type="text/css">
+		<!--/fonts-->
+
+		<!--styles-->
+		<link
+		href="/css/style.css" rel="stylesheet" type="text/css"> <!--/styles-->
+
+		<script src="/js/jquery.min.js"></script>
+
+		<!-- CUSTOMER SCRIPTS -->
+		<script src="/js/js.js"></script>
+		<script src="/js/lib/js.cookie.min.js"></script>
+		<script src="/js/favorites.js"></script>
+		<script src="/js/composite.js"></script>
+		<script src="/js/compares.js"></script>
+
+		<!-- PLAGINS -->
+		<!-- 3d images -->
+		<script src="/js/jquery.reel.js"></script>
+
+		<script src="/js/lightbox.min.js"></script>
+		<!-- form validator -->
+		<script src="/js/jquery.validate.min.js"></script>
+
+		<!--  Yotpo -->
+		<script>
+			(function e() {
+var e = document.createElement("script");
+e.type = "text/javascript",
+e.async = true,
+e.src = "//staticw2.yotpo.com/2pkoXjrMxXKlrZ1sMEKhpYa3kdYnX6l1xw9fswlf/widget.js";
+var t = document.getElementsByTagName("script")[0];
+t.parentNode.insertBefore(e, t)
+})();
+		</script>
+		<style>
+			@page {
+				size: auto; /* auto is the initial value */
+				margin: 1em 2em; /* this affects the margin in the printer settings */
+			}
+		</style>
+
+		{% block head_end %}{% endblock %}
+
+		<!-- Google reCAPTCHA -->
+		<script src="https://www.google.com/recaptcha/api.js"></script>
+
+		<!-- Facebook Pixel Code -->
+		<script>
+			!function (f, b, e, v, n, t, s) {
+if (f.fbq) 
+return;
+
+
+
+n = f.fbq = function () {
+n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+};
+if (! f._fbq) 
+f._fbq = n;
+
+
+
+n.push = n;
+n.loaded = !0;
+n.version = '2.0';
+n.queue = [];
+t = b.createElement(e);
+t.async = !0;
+t.src = v;
+s = b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t, s)
+}(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '319598625749958');
+fbq('track', 'PageView');
+		</script>
+		<noscript>
+			<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=319598625749958&ev=PageView&noscript=1"/>
+		</noscript>
+		<!-- End Facebook Pixel Code -->
+	</head>
+	<body>
+		<!-- Google Tag Manager (noscript) -->
+		<noscript>
+			<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSH7FZL" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+		</noscript>
+		<!-- End Google Tag Manager (noscript) -->
+
+		<div class="main">
+			{{ include(template_from_string(templates.wrapper.header)) }}
+
+			{% block content %}{% endblock %}
+
+			{{ include(template_from_string(templates.wrapper.footer)) }}
+
+			{% include "pages/frontend/_partials/modal.twig" %}
+
+			<a href="#c-top" class="t-totop-btn"></a>
+		</div>
+		<!-- owl carousel -->
+		<script src="/js/owl.carousel.min.js"></script>
+		<script>
+			function toggleMobNav(element) {
+if ($('#' + element).is(':visible')) {
+$('#' + element).hide();
+} else {
+$('.c-mob-nav-second-level').hide();
+$('#' + element).show();
+}
+}
+		</script>
+		<script>
+			$('.t-login').on('click', function () {
+$('#login_modal').addClass('s-show');
+$('.login').addClass('s-show');
+});
+$(document).ready(function () {
+$('.t-login').on('click', function () {
+$('#login_modal, .login').addClass('s-show');
+return false;
+});
+
+$.post('/cart/count', {}, function (data) {
+if (data.count) 
+$('.t-top-icon-cart').attr('data-count', data.count);
+
+
+
+});
+$('.t-login').on('click', function () {
+$('#login_modal').addClass('s-show');
+$('.login').addClass('s-show');
+});
+
+$.post('/cart/count', {}, function (data) {
+if (data.count) 
+$('.t-top-icon-mob-cart').attr('data-count', data.count);
+
+
+
+});
+
+// Search action
+$('.c-search-form').submit((event) => {
+event.preventDefault();
+if ($('.c-search-field').val().length >= 100) {
+return false
+} else {
+return window.location.href = '/search?s=' + $('.c-search-field').val();
+}
+});
+
+// Search suggestions
+$('.c-search-field').autocomplete({
+position: {
+my: "right top",
+at: "right bottom"
+},
+minLength: 0,
+source: function (request, response) {
+$('.c-top-search-btn').prop('disabled', false);
+$('.c-top-search-btn').removeClass('search-btn-disabled');
+$.ajax({
+url: "/search/suggestions",
+dataType: "json",
+data: {
+s: request.term
+},
+success: function (suggestions) {
+if (! suggestions.length) {
+$('.c-top-search-btn').prop('disabled', true);
+$('.c-top-search-btn').addClass('search-btn-disabled');
+}
+// delegate back to autocomplete
+response(suggestions);
+}
+});
+},
+focus: function (event, ui) { // prevent value inserted on focus
+$('.c-search-field').val(ui.item.category + ': ' + ui.item.title + ' ' + ui.item.description + ((ui.item.vendorEnabled && ui.item.isEnabled) ? '      {{ currency ? currency.sign : "$" }}' + Math.round(ui.item.price {{ currency ? ' * ' ~ currency.rate : '' }}) : ''));
+return false;
+},
+select: function (event, ui) {
+$('.c-search-field').val(ui.item.category + ': ' + ui.item.title + ' ' + ui.item.description + ((ui.item.vendorEnabled && ui.item.isEnabled) ? '      {{ currency ? currency.sign : "$" }}' + Math.round(ui.item.price {{ currency ? ' * ' ~ currency.rate : '' }}) : ''));
+window.location.href = ui.item.url;
+return false;
+}
+}).autocomplete("instance")._renderItem = function (ul, item) {
+if (item.category == 'Diamond') {
+let img = '/images/jewelry/default.png';
+if (item.image.includes('.jpg') || item.image.includes('.Jpg') || item.image.includes('.png')) {
+img = item.image
+}
+return $('<li class="ui-menu-item">').append(`<div class="ui-menu-item-wrapper search-wrapper"><div class="holder-search-img"><img class="" src="${img}" alt="android-logo-image" /></div>` + '<div>' + item.category + ': ' + item.weight + '<p style="margin-bottom: 0;">SKU: ' + item.sku + '</p>' + item.description + ((item.vendorEnabled && item.isEnabled) ? '<p style="color: green;">' + '      {{ currency ? currency.sign : "$" }}' + Math.round(item.price {{ currency ? ' * ' ~ currency.rate : '' }}) + '</p></div></div>' : '')).appendTo(ul);
+} else {
+if (item.images.length > 0) {
+let image = item.images.find(item => item.type === 'img') || {};
+if (image) {
+return $('<li class="ui-menu-item">').append(`<div class="ui-menu-item-wrapper search-wrapper"><div class="holder-search-img"><img class="" src="${
+image.value
+}" alt="android-logo-image" /></div>` + `<div>${
+item.category
+} : ${
+item.title
+}` + '<p style="color: green;">' + `<span style="color: gray; padding-right: 15px;">${
+item.sku
+}</span>` + ((item.vendorEnabled && item.isEnabled) ? '{{ currency ? currency.sign : "$" }}' + Math.round(item.price {{ currency ? ' * ' ~ currency.rate : '' }}) + '</p></div>' : '')).appendTo(ul);
+} else {
+return $('<li class="ui-menu-item">').append(`<div class="ui-menu-item-wrapper search-wrapper"><div class="holder-search-img"><img class="" src="/images/jewelry/default.png" alt="android-logo-image" /></div>` + `<div>${
+item.category
+} : ${
+item.title
+}` + '<p style="color: green;">' + `<span style="color: gray; padding-right: 15px;">${
+item.sku
+}</span>` + ((item.vendorEnabled && item.isEnabled) ? '{{ currency ? currency.sign : "$" }}' + Math.round(item.price {{ currency ? ' * ' ~ currency.rate : '' }}) + '</p></div>' : '')).appendTo(ul);
+}
+} else {
+return $('<li class="ui-menu-item">').append(`<div class="ui-menu-item-wrapper search-wrapper"><div class="holder-search-img"><img class="" src="/images/jewelry/default.png" alt="android-logo-image" /></div>` + `<div>${
+item.category
+} : ${
+item.title
+}` + '<p style="color: green;">' + `<span style="color: gray; padding-right: 15px;">${
+item.sku
+}</span>` + ((item.vendorEnabled && item.isEnabled) ? '{{ currency ? currency.sign : "$" }}' + Math.round(item.price {{ currency ? ' * ' ~ currency.rate : '' }}) + '</p></div>' : '')).appendTo(ul);
+}
+}
+};
+});
+		</script>
+		<script>
+			$(document).ready(function () { // Search action
+$('.t-mon-search').submit((event) => {
+event.preventDefault();
+return window.location.href = '/search?s=' + $('.t-mon-search-field').val();
+});
+
+// Search suggestions
+$('.t-mon-search-field').autocomplete({ // position: { my : "right top", at: "right bottom" },
+minLength: 0,
+source: function (request, response) {
+$('.t-mon-search-btn').prop('disabled', false);
+$('.t-mon-search-btn').removeClass('search-btn-disabled');
+$.ajax({
+url: "/search/suggestions",
+dataType: "json",
+data: {
+s: request.term
+},
+success: function (suggestions) {
+if (! suggestions.length) {
+$('.t-mon-search-btn').prop('disabled', true);
+$('.t-mon-search-btn').addClass('search-btn-disabled');
+}
+// delegate back to autocomplete
+response(suggestions);
+}
+});
+},
+focus: function (event, ui) { // prevent value inserted on focus
+$('.t-mon-search-field').val(ui.item.category + ': ' + ui.item.title + ' ' + ui.item.description + ((ui.item.vendorEnabled && ui.item.isEnabled) ? '      {{ currency ? currency.sign : "$" }}' + Math.round(ui.item.price {{ currency ? ' * ' ~ currency.rate : '' }}) : ''));
+return false;
+},
+select: function (event, ui) {
+$('.t-mon-search-field').val(ui.item.category + ': ' + ui.item.title + ' ' + ui.item.description + ((ui.item.vendorEnabled && ui.item.isEnabled) ? '      {{ currency ? currency.sign : "$" }}' + Math.round(ui.item.price {{ currency ? ' * ' ~ currency.rate : '' }}) : ''));
+window.location.href = ui.item.url;
+return false;
+}
+}).autocomplete("instance")._renderItem = function (ul, item) {
+return $('<li class="ui-menu-item">').append('<div class="ui-menu-item-wrapper">' + item.category + ': ' + item.title + ' ' + item.description + ((item.vendorEnabled && item.isEnabled) ? '      {{ currency ? currency.sign : "$" }}' + Math.round(item.price {{ currency ? ' * ' ~ currency.rate : '' }}) : '') + '</div>').appendTo(ul);
+};
+});
+		</script>
+		<script src="/js/jquery-ui.js"></script>
+
+		<script>
+			$('#top-trending').owlCarousel({
+navigation: true,
+items: 5,
+itemsDesktop: [
+1199, 4
+],
+itemsDesktopSmall: [
+1024, 3
+],
+margin: 20,
+navigationText: ['', '']
+});
+$('#propositions').owlCarousel({
+navigation: true,
+items: 3,
+itemsDesktop: [
+1300, 2
+],
+itemsDesktopSmall: [
+1024, 1
+],
+itemsTablet: [
+760, 1
+],
+margin: 20,
+navigationText: ['', '']
+});
+$(document).ready(function () {
+$('#similar_items').owlCarousel({
+navigation: true,
+pagination: true,
+items: 6,
+itemsDesktop: [
+1199, 5
+],
+itemsDesktopSmall: [
+1024, 4
+],
+itemsTablet: [
+760, 3
+],
+navigationText: ['', '']
+});
+$('#matching_items').owlCarousel({
+navigation: true,
+pagination: true,
+items: 6,
+itemsDesktop: [
+1199, 5
+],
+itemsDesktopSmall: [
+1024, 4
+],
+itemsTablet: [
+760, 3
+],
+navigationText: ['', '']
+});
+$('#flexible_options').owlCarousel({
+navigation: true,
+pagination: false,
+items: 3,
+itemsDesktop: [
+1199, 3
+],
+itemsDesktopSmall: [
+1024, 3
+],
+itemsTablet: [
+760, 2
+],
+itemsMobile: [
+480, 1
+],
+navigationText: [
+'', ''
+],
+rewindNav: false
+});
+$('#recently_viewed').owlCarousel({
+navigation: true,
+pagination: false,
+items: 3,
+itemsDesktop: [
+1199, 3
+],
+itemsDesktopSmall: [
+1024, 3
+],
+itemsTablet: [
+760, 2
+],
+itemsMobile: [
+480, 1
+],
+navigationText: [
+'', ''
+],
+rewindNav: false,
+margin: 40
+});
+$('#engagement_ring_style').owlCarousel({
+navigation: true,
+pagination: true,
+items: 4,
+itemsDesktop: [
+1199, 4
+],
+itemsDesktopSmall: [
+1024, 4
+],
+itemsTablet: [
+760, 3
+],
+navigationText: ['', '']
+});
+$('#jewelry_type').owlCarousel({
+navigation: true,
+pagination: false,
+margin: 10,
+items: 6,
+itemsDesktop: [
+1199, 4
+],
+itemsDesktopSmall: [
+860, 3
+],
+itemsTablet: [
+680, 2
+],
+itemsMobile: [
+480, 1
+],
+navigationText: ['', '']
+});
+$('#wedding_ring_women').owlCarousel({
+navigation: true,
+pagination: true,
+items: 5,
+itemsDesktop: [
+1199, 5
+],
+itemsDesktopSmall: [
+1024, 5
+],
+itemsTablet: [
+760, 4
+],
+navigationText: ['', '']
+});
+$('#wedding_ring_men').owlCarousel({
+navigation: true,
+pagination: true,
+items: 4,
+itemsDesktop: [
+1199, 4
+],
+itemsDesktopSmall: [
+1024, 4
+],
+itemsTablet: [
+760, 4
+],
+navigationText: ['', '']
+});
+$('#gemstone_shapes').owlCarousel({
+navigation: true,
+pagination: true,
+items: 6,
+itemsDesktop: [
+1199, 6
+],
+itemsDesktopSmall: [
+1024, 6
+],
+itemsTablet: [
+760, 4
+],
+navigationText: ['', '']
+});
+$('#cut').owlCarousel({
+navigation: true,
+pagination: false,
+items: 6,
+itemsDesktop: [
+1300, 6
+],
+itemsDesktopSmall: [
+1024, 6
+],
+itemsTablet: [
+760, 4
+],
+margin: 10,
+navigationText: ['', '']
+});
+$('#fancy_color').owlCarousel({
+navigation: true,
+pagination: false,
+items: 6,
+itemsDesktop: [
+1300, 6
+],
+itemsDesktopSmall: [
+1024, 6
+],
+itemsTablet: [
+760, 4
+],
+margin: 10,
+navigationText: ['', '']
+});
+$('.result-images-slider').owlCarousel({
+navigation: true,
+pagination: false,
+items: 4,
+itemsDesktop: [
+1300, 4
+],
+itemsDesktopSmall: [
+1024, 3
+],
+itemsTablet: [
+760, 1
+],
+navigationText: ['', '']
+});
+$('#gemst_color').owlCarousel({
+navigation: true,
+pagination: false,
+items: 5,
+itemsDesktop: [
+1300, 5
+],
+itemsDesktopSmall: [
+1024, 5
+],
+itemsTablet: [
+760, 3
+],
+margin: 10,
+navigationText: ['', '']
+});
+
+/* need to be added after owl carousel activate  */
+$('#cut .owl-item:first a').addClass('active');
+$('#diamond_shape_desc li:first').css('display', 'block');
+$('#gemst_color .owl-item:first a').addClass('active');
+$('#gemstone_color_desc li:first').css('display', 'block');
+/* /need to be added after owl carousel activate  */
+});
+		</script>
+		<!-- /owl carousel -->
+		<script src="/js/jquery.cbpContentSlider.min.js"></script>
+		<script>
+			$(function () { /*
+            - how to call the plugin:
+            $( selector ).cbpContentSlider( [options] );
+            - options:
+            {
+                // default transition speed (ms)
+                speed : 500,
+                // default transition easing
+                easing : 'ease-in-out',
+                // current item's index
+                current : 0
+            }
+            - destroy:
+            $( selector ).cbpContentSlider( 'destroy' );
+            */
+
+$('#product_slider').cbpContentSlider();
+$('#product_slider_viewed').cbpContentSlider();
+$('#diamond_slider').cbpContentSlider();
+});
+		</script>
+
+		<script>
+			window.intercomSettings = {
+app_id: "olity90j",
+custom_launcher_selector: '#my_custom_link'
+};
+		</script>
+
+		<!-- Criteo Homepage Tag -->
+		<script type="text/javascript">
+			if (window.location.pathname == '/') {
+window.criteo_q = window.criteo_q || [];
+var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+window.criteo_q.push({
+event: "setAccount",
+account: 91590
+}, {
+event: "setEmail",
+email: "{{ user.email_hash }}",
+hash_method: "sha256"
+}, {
+event: "setSiteType",
+type: deviceType
+}, {
+event: "setZipcode",
+zipcode: "{{ user.zip_code }}"
+}, {event: "viewHome"});
+}
+		</script>
+		<!-- END Criteo Homepage Tag -->
+
+		<script>
+			// We pre-filled your app ID in the widget URL: 'https://widget.intercom.io/widget/olity90j'
+(function () {
+var w = window;
+var ic = w.Intercom;
+if (typeof ic === "function") {
+ic('reattach_activator');
+ic('update', w.intercomSettings);
+} else {
+var d = document;
+var i = function () {
+i.c(arguments);
+};
+i.q = [];
+i.c = function (args) {
+i.q.push(args);
+};
+w.Intercom = i;
+var l = function () {
+var s = d.createElement('script');
+s.type = 'text/javascript';
+s.async = true;
+s.src = 'https://widget.intercom.io/widget/olity90j';
+var x = d.getElementsByTagName('script')[0];
+x.parentNode.insertBefore(s, x);
+};
+if (w.attachEvent) {
+w.attachEvent('onload', l);
+} else {
+w.addEventListener('load', l, false);
+}
+}
+})();
+		</script>
+		{% if g_event == 'view_item' %}
+			<script>
+				gtag('event', 'view_item', {
+'value': product.price,
+'items': [
+{
+'id': product._id,
+'google_business_vertical': 'retail'
+}
+]
+});
+
+// Criteo Product Tag -->
+window.criteo_q = window.criteo_q || [];
+var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+window.criteo_q.push({
+event: "setAccount",
+account: 91590
+}, {
+event: "setEmail",
+email: "{{ user.email_hash }}",
+hash_method: "sha256"
+}, {
+event: "setSiteType",
+type: deviceType
+}, {
+event: "setZipcode",
+zipcode: "{{ user.zip_code }}"
+}, {
+event: "viewItem",
+item: product._id
+});
+// END Criteo Product Tag -->
+			</script>
+		{% elseif g_event %}
+			<script>
+				gtag('event', '{{ g_event }}');
+			</script>
+		{% else %}
+			<script>
+				if (window.gtagPageEventType) {
+gtag('event', window.gtagPageEventType);
+} else {
+gtag('event', window.location.pathname == '/' ? 'home' : 'other');
+
+if (window.location.pathname != '/') { // Criteo Visit Tag
+window.criteo_q = window.criteo_q || [];
+var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+window.criteo_q.push({
+event: "setAccount",
+account: 91590
+}, {
+event: "setEmail",
+email: "{{ user.email_hash }}",
+hash_method: "sha256"
+}, {
+event: "setSiteType",
+type: deviceType
+}, {
+event: "setZipcode",
+zipcode: "{{ user.zip_code }}"
+}, {event: "viewPage"});
+// END Criteo Visit Tag
+}
+}
+			</script>
+		{% endif %}
+		<img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1593484730980523&ev=PageView&noscript=1" alt="facebook-script"/>
+	</body>
+</html>

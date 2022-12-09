@@ -1,0 +1,479 @@
+{% set images = [] %}
+{% set iframes = [] %}
+
+{% set imagesCustomer = [] %}
+{% set iframesCustomer = [] %}
+
+{% set count = 0 %}
+{% set videos = false %}
+{% set countVideo = 0 %}
+
+{% for product in product.images %}
+    {% if product.type == 'img' %}
+        {% set images = images|merge([product.value]) %}
+        {% set count = count + 1 %}
+    {% endif %}
+{% endfor %}
+
+{% for video in product.images %}
+    {% if video.type == 'html' %}
+        {% set iframes = iframes|merge([video.frameId]) %}
+    {% endif %}
+{% endfor %}
+
+{% for video in product.customer_images %}
+    {% if video.type == 'html' %}
+        {% set iframesCustomer = iframesCustomer|merge([video.frameId]) %}
+    {% endif %}
+{% endfor %}
+
+    <!-- MAIN PRODUCT SLIDER -->
+        <div class="preloader-wrapper">
+            <div class="preloader">
+                <img src="../../images/loading_lightbox.gif" alt="preloader">
+            </div>
+        </div>
+        <div class="tab-row slide-tabset">
+			<ul class="tabset">
+                <li><a href="#first-1" class="product-tab active">
+                    {% if product.images %}
+                        <img src="{{images[0]}}" alt="jewelry">
+                    {% else %}
+                        <img src="/images/jewelry/default.png" alt="jewelry">                        
+                    {% endif %} 
+                    {% if count %}
+                        <span class="product-count">
+                            {{count}}
+                        </span> 
+                    {% endif %} 
+                    </a>
+                </li>
+                {% if product.images %}
+                    {% for video in product.images %}
+                        {% if video.type == 'html' %}
+                            {% set videos = true %}
+                            {% set countVideo = countVideo + 1 %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if videos %}
+                        <li><a href="#second-1" class="product-tab">
+                            <img src="/images/360-rotate.png">
+                            {% if countVideo %}
+                                <span class="product-count"> 
+                                    {{countVideo}}
+                                </span>    
+                            {% endif %}
+                        </a></li>
+                    {% endif %}
+                {% endif %}
+                {% if product.customer_images %}
+                    <li><a href="#third-1" class="product-tab active">
+                        {% if product.customer_images[0].type == 'img' %}
+                            <img src="{{product.customer_images[0].value}}" alt="jewelry">
+                        {% else %}
+                            <img src="/images/360-rotate.png" alt="jewelry">
+                        {% endif %}
+                        <span class="product-count">
+                            {{product.customer_images|length}}
+                        </span>
+                        </a>
+                    </li>     
+                {% endif %}
+			</ul>
+			<div class="tab-content">
+				<div id="first-1" class="tab active">
+                    <div class="wrapp-slider">
+                        <div class="jewelry-slider">
+                            {% if product.images %}
+                                {% for product in product.images %}
+                                    {% if product.type == 'img' %} 
+                                        <div class="jewelry-slide">
+                                            <div class="t-main-image">
+                                                <img src="{{product.value}}" alt="jewelry">
+                                            </div>
+                                        </div>
+                                    {% endif %} 
+                                {% endfor %}
+                            {% else %}
+                                <div class="jewelry-slide">
+                                    <div class="t-main-image">
+                                        <img src="/images/jewelry/default.png" alt="jewelry">
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="jewelry-slider-nav">
+                            {% for image in product.images %}
+                                {% if image.type == 'img' %}
+                                    <div class="jewelry-slide-nav">
+                                        <div class="item-d-slid">
+                                            <div class="item-img">
+                                                <img src="{{image.value}}" alt="jewelry">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                {% endif %}
+                            {% endfor %}
+                            {% for video in product.videos %}
+                                <div class="jewelry-slide-nav">
+                                    <div class="item-d-slid">
+                                        <div class="item-img">
+                                            <img src="/images/video.png" alt="jewelry">
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!-- composite -->
+                        {% if diamond %}
+                            <div class="t-thumbnail-composite">
+                                <a href="{{ diamond.permalink }}" target="_blank">
+                                    {% if '.j' in diamond.imageExternal %}
+                                        <img src="{{ diamond.imageExternal }}" alt="diamond-image" />
+                                    {% elseif '.J' in diamond.imageExternal %}
+                                        <img src="{{ diamond.imageExternal }}" alt="diamond-image" />
+                                    {% elseif 'http' in diamond.imageExternal %}
+                                        <img src="/images/loose_diamonds/Cut_{{diamond.shape.code}}.svg" alt="diamond-image" />
+                                    {% elseif diamond.imageExternal %}
+                                        <img src="{{ diamond.imageExternal }}" />
+                                    {% else %}
+                                        <img src="/images/loose_diamonds/nm_{{diamond.shape.code}}.png" alt="diamond-image" />
+                                    {% endif %}
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+				</div>
+				<div id="second-1" class="tab">
+					  <div class="wrapp-slider">
+                        <div class="jewelry-video-slider">
+                            {% if product.images or product.videos %}
+                               {% for video in product.images %}
+                                    {% if video.type == 'html' %}
+                                        <div class="jewelry-slide">
+                                            <div class="t-main-image">
+                                                {{ video.value | raw }}
+                                            </div>
+                                        </div> 
+                                    {% endif %}
+                                {% endfor %} 
+                            {% endif %}
+                        </div>
+                        <div class="jewelry-video-slider-nav">
+                        {% for video in product.images %}
+                            {% if video.type == 'html' %}
+                            <div class="jewelry-slide-nav">
+                                <div class="item-d-slid">
+                                    <div class="item-video">
+                                        <img src="/images/video.png" alt="diamond-image" />
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}           
+                        {% endfor %}</div>
+                     </div>
+                </div>
+                <div id="third-1" class="tab active">
+                    <div class="wrapp-slider">
+                            <div class="customer-slider">
+                                {% if product.customer_images %}
+                                    {% for product in product.customer_images %}
+                                        {% if product.type == 'img' %} 
+                                            <div class="jewelry-slide">
+                                                <a href="{{product.value}}" class="t-main-image customer-gallery-popup" style="cursor: pointer;">
+                                                    <img src="{{product.value}}" alt="jewelry">
+                                                    <div class="jewelry-text">
+                                                        <p>{{product.text}}</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        {% else %}
+                                            <div class="jewelry-slide">
+                                                <a href="{{product.urlHttp}}" class="t-main-image holder-iframe customer-gallery-popup">
+                                                    {{ product.value | raw }}
+                                                    <div class="jewelry-text">
+                                                        <p>{{product.text}}</p>
+                                                    </div>
+                                                </a>
+                                            </div> 
+                                        {% endif %}  
+                                    {% endfor %}
+                                {% endif %}
+                            </div>    
+                            <div class="customer-slider-nav">
+                                {% for image in product.customer_images %}
+                                    <div class="customer-slide-nav">
+                                        {% if image.type == 'img' %}
+                                            <div class="item-d-slid">
+                                                <div class="item-img">
+                                                    <img src="{{image.value}}" alt="images" />
+                                                </div>
+                                            </div>
+                                        {% else %}
+                                            <div class="item-d-slid">
+                                                <div class="item-video">
+                                                    <img src="{{image.frameId}}" />
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                    </div>
+                </div>
+                {% if product.shapes is not empty %}
+                <div class="attribute-shape">
+                    <select class="select-attribute-shape" style="display: none;" onchange="search('shape', this.value, false)">
+                        <option value="">-</option>
+                        {% for shape in product.shapes %}
+                            <option value="{{ shape.code }}" {{ shape.code == filter.shape ? ' selected' : '' }}>{{
+                                shape.code
+                            }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                {% endif %}
+            </div>
+		</div>
+    <!-- /MAIN PRODUCT SLIDER -->
+
+<!-- slick -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/slick.css"/>
+<link rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+{# <link rel="stylesheet" type="text/css" href="/js/slick.min.js"/> #}
+
+<script src="/js/slick-lightbox.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/slick-lightbox.css"/>
+
+<script src="/js/magnific-popup.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/magnific-popup.css"/>
+
+<script type="text/javascript" src="/js/jquery-swipe.min.js"></script>
+<script>
+$(document).ready(function() {
+        $('.jewelry-slider').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            responsive: [
+            {
+                breakpoint: 480,
+                settings: {
+                    arrows: true,
+                    prevArrow: '<a id="prev" class="slider-arrow slider-arrow-left"><img src="/images/slider-left.png"></a>',
+                    nextArrow: '<a id="next" class="slider-arrow slider-arrow-right"><img src="/images/slider-right.png"></a>'
+                }
+            },
+            ]
+        }); 
+
+        $('.jewelry-slider-nav').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            infinite: false,
+            asNavFor: '.jewelry-slider',
+            transformEnabled: false,
+            centerMode: false,
+            variableWidth: true,
+            focusOnSelect: false,
+            responsive: [
+            {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
+            },
+            ]
+        });
+
+        $('.jewelry-slider-nav .slick-slide').on('click', function (event) {
+            $('.jewelry-slider').slick('slickGoTo', $(this).data('slickIndex'));
+        });
+
+        $('.jewelry-slider').magnificPopup({
+            type: 'image',
+            delegate: '.jewelry-gallery-popup',
+            // delegate: 'a:not(.slick-cloned)',
+            closeOnContentClick: false,
+            tLoading: 'loading...',
+            mainClass: 'mfp-zoom-in mfp-img-mobile',
+            callbacks: {
+                elementParse: function(item) {
+                    if (item.el[0].classList.contains('video-link')) {
+                        item.type = 'iframe';
+                    } else {
+                        item.type = 'image';
+                    }
+                }
+            },
+            image: {
+                verticalFit: true,
+            },
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                tCounter: '<span class="mfp-counter">%curr% of %total%</span>', // markup of counte
+                preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+            },
+            zoom: {
+                enabled: true,
+                duration: 300
+            },
+            removalDelay: 300, //delay removal by X to allow out-animation
+            callbacks: {
+                open: function() {
+                //overwrite default prev + next function. Add timeout for css3 crossfade animation
+                $.magnificPopup.instance.next = function() {
+                    var self = this;
+                    self.wrap.removeClass('mfp-image-loaded');
+                    setTimeout(function() { $.magnificPopup.proto.next.call(self); }, 120);
+                };
+                $.magnificPopup.instance.prev = function() {
+                    var self = this;
+                    self.wrap.removeClass('mfp-image-loaded');
+                    setTimeout(function() { $.magnificPopup.proto.prev.call(self); }, 120);
+                };
+                var current = $('.jewelry-slider').slick('slickCurrentSlide');
+                    $('.jewelry-slider').magnificPopup('goTo', current);
+                },
+                imageLoadComplete: function() {
+                    var self = this;
+                    setTimeout(function() { self.wrap.addClass('mfp-image-loaded'); }, 16);
+                },
+                beforeClose: function() {
+                    $('.jewelry-slider').slick('slickGoTo', parseInt(this.index));
+                },
+            }
+        });
+
+        (function() {
+            var magnificPopup = $.magnificPopup.instance;
+            $(".jewelry-gallery-popup").click(function(e) {
+                setTimeout(function() {
+                    $(".mfp-container").swipe({
+                    swipeLeft: function(event, direction, distance, duration, fingerCount) {
+                        magnificPopup.next();
+                    },
+                    swipeRight: function(event, direction, distance, duration, fingerCount) {
+                        magnificPopup.prev();
+                    },
+                    });
+                }, 500);
+            });
+
+        }).call(this);
+
+        $('.customer-slider').slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: false,
+            fade: true,
+            accessibility: false,
+            responsive: [
+            {
+                breakpoint: 480,
+                settings: {
+                    arrows: true,
+                    prevArrow: '<a id="prev" class="slider-arrow slider-arrow-left"><img src="/images/slider-left.png"></a>',
+                    nextArrow: '<a id="next" class="slider-arrow slider-arrow-right"><img src="/images/slider-right.png"></a>'
+                }
+            },
+            ]
+        });
+
+        $('.customer-slider-nav').slick({
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            infinite: false,
+            asNavFor: '.customer-slider',
+            transformEnabled: false,
+            centerMode: false,
+            variableWidth: true,
+            focusOnSelect: false
+        });
+
+        let addclass = 'box-shadow';
+        let $cols = $('.item-d-slid').click(function(e) {
+            $cols.removeClass(addclass);
+            $(this).addClass(addclass);
+        });
+
+        $('.customer-slider-nav .slick-slide').on('click', function (event) {
+            $('.customer-slider').slick('slickGoTo', $(this).data('slickIndex'));
+        });
+
+        
+        $('.customer-slider').magnificPopup({
+            type: 'image',
+            delegate: '.customer-gallery-popup',
+            closeOnContentClick: false,
+            tLoading: 'loading...',
+            mainClass: 'mfp-zoom-in mfp-img-mobile',
+            image: {
+                verticalFit: true,
+            },
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                tCounter: '<span class="mfp-counter">%curr% of %total%</span>',
+                preload: [0,1]
+            },
+            zoom: {
+                enabled: true,
+                duration: 300
+            },
+            removalDelay: 300,
+            callbacks: {
+                open: function() {
+                $.magnificPopup.instance.next = function() {
+                    var self = this;
+                    self.wrap.removeClass('mfp-image-loaded');
+                    setTimeout(function() { $.magnificPopup.proto.next.call(self); }, 120);
+                };
+                $.magnificPopup.instance.prev = function() {
+                    var self = this;
+                    self.wrap.removeClass('mfp-image-loaded');
+                    setTimeout(function() { $.magnificPopup.proto.prev.call(self); }, 120);
+                };
+                var current = $('.customer-slider').slick('slickCurrentSlide');
+                $('.customer-slider').magnificPopup('goTo', current);
+                },
+                imageLoadComplete: function() {
+                    var self = this;
+                    setTimeout(function() { self.wrap.addClass('mfp-image-loaded'); }, 16);
+                },
+                beforeClose: function() {
+                    $('.customer-slider').slick('slickGoTo', parseInt(this.index));
+                },
+                elementParse: function(item) {
+                    if (item.el[0].classList.contains('holder-iframe')) {
+                        item.type = 'iframe';
+                        console.log(item)
+                    } else {
+                        item.type = 'image';
+                    }
+                }
+            }
+        });        
+    });
+
+</script>
+<!-- tabs -->
+<link rel="stylesheet" href="/css/tabs.css">
+<script src="/js/jquery.tabs.js"></script>
+
+<!-- preloader -->
+<script>
+    $(document).ready(function($) {
+        var Body = $('body');
+        Body.addClass('preloader-site');
+    });
+    $(window).on('load', function() {
+        $('.preloader-wrapper').fadeOut();
+        $('body').removeClass('preloader-site');
+    });
+</script>

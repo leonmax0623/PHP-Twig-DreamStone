@@ -1,0 +1,75 @@
+{% set params = [] %}
+{% for key, value in product.withAttributes %}
+    {% set params = params|merge([key ~ '=' ~ value]) %}
+{% endfor %}
+<ul class="t-table-list unit-cart-list">
+    <li>
+        {% set mainImage = '/images/jewelry/default.png' %}
+        {% set break = false %}
+        {% for image in product.images if not break %}
+            {% if image.type == 'img' %}
+                {% set mainImage = '/img.php?src=' ~ image.value|replace({ ('/content/'): '' }) ~ '&w=310' %}
+                {% set break = true %}
+            {% endif %}
+        {% endfor %}
+        <!-- <div class=""> -->
+            <div class="cart-image-block">
+              <img src="{{ mainImage }}" alt="jewelry">              
+            </div>
+        <!-- </div> -->
+    </li>
+    <li>
+      <div class="cart-list-block-title">
+          <input id="qty_product{{ index }}" type="number" value="{{ product.qty }}" min="1" max="999">
+          <a href="{% if product.jewelrytype.code == 'jewelry' %}{{
+            path_for('jewelry-Details', {'filter': product.category.url, 'product': product.url})
+          }}{% elseif product.jewelrytype.code == 'engagement-rings' %}{{
+            path_for('engagementRings-Details', {'product': product.url})
+          }}{% else %}{{
+            path_for('dynamic-' ~ product.jewelrytype.code ~ '-Details', {'product': product.url})
+          }}{% endif %}{{
+            params|length ? '?' ~ params|join('&') : ''
+          }}">
+            <span>{{ product.title }}</span>
+          </a>
+      </div>
+      <div class="cart-list-block-sku">
+        <div class="cart-name-value"><div class="name">SKU: </div><div class="value">{{ product.sku }}</div></div>
+        {% for key, value in product.withAttributes %}<div class="cart-name-value">
+                                                          <div class="name">{{ key }}: </div>
+                                                          <div class="value">{{ value }}</div>
+                                                      </div>{% endfor %}
+      </div>
+      <div class="cart-list-block-price">
+        <b class="u-color-blue">{{ product.price | price }}</b>
+      </div>
+      <div class="cart-list-block-del">
+        <span><button id="del_product{{ index }}" class="t-table-view-icon t-table-delete-icon"></button></span>
+      </div>
+    </li>
+</ul>
+<script>
+$(document).ready(function(){
+  var withAttributes = {
+    {% for key, value in product.withAttributes %}'{{ key }}': '{{ value }}',{% endfor %}
+  };
+  $('#qty_product{{ index }}').change(function(){
+    var value = parseInt(this.value);
+    if (value < 1 || 999 < value) return;
+    $.ajax({
+      type: 'PUT',
+      url: '/cart',
+      data: { product_id: '{{ product._id }}', group: 'products', withAttributes: withAttributes, qty: value },
+      success: function(){ location.reload(); }
+    });
+  });
+  $('#del_product{{ index }}').click(function(){
+    $.ajax({
+      type: 'DELETE',
+      url: '/cart',
+      data: { product_id: '{{ product._id }}', group: 'products', withAttributes: withAttributes },
+      success: function(){ location.reload(); }
+    });
+  });
+});
+</script>

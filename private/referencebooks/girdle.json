@@ -1,0 +1,2166 @@
+[
+  {
+    "code": "TN-TN",
+    "values": [
+      "Thin to Thin",
+      "Thin - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-TK",
+    "values": [
+      "Thin to Thick",
+      "Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-M",
+    "values": [
+      "Thin to Medium",
+      "Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-STK",
+    "values": [
+      "Thin to Slightly Thick",
+      "Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-VTK",
+    "values": [
+      "Thin to Very Thick",
+      "Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-TN",
+    "values": [
+      "Thick to Thin",
+      "Thick - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-TK",
+    "values": [
+      "Thick to Thick",
+      "Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-M",
+    "values": [
+      "Thick to Medium",
+      "Thick - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-STK",
+    "values": [
+      "Thick to Slightly Thick",
+      "Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-VTK",
+    "values": [
+      "Thick to Very Thick",
+      "Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-TN",
+    "values": [
+      "Medium to Thin",
+      "Medium - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-M",
+    "values": [
+      "Medium to Medium",
+      "Medium - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-STK",
+    "values": [
+      "Medium to Slightly Thick",
+      "Medium - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-VTK",
+    "values": [
+      "Medium to Very Thick",
+      "Medium -  VeryThick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-TN",
+    "values": [
+      "Slightly Thick to Thin",
+      "Slightly Thick - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-TK",
+    "values": [
+      "Slightly Thick to Thick",
+      "Slightly Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-M",
+    "values": [
+      "Slightly Thick to Medium",
+      "Slightly Thick - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-STK",
+    "values": [
+      "Slightly Thick to Slightly Thick",
+      "Slightly Thick - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-VTK",
+    "values": [
+      "Slightly Thick to Very Thick",
+      "Slightly Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK-TN",
+    "values": [
+      "Very Thick to Thin",
+      "Very Thick - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK-TK",
+    "values": [
+      "Very Thick to Thick",
+      "Very Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK-M",
+    "values": [
+      "Thin to Thick",
+      "Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK-STK",
+    "values": [
+      "Very Thick to Slightly Thick",
+      "Very Thick - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK-VTK",
+    "values": [
+      "Very Thick to Very Thick",
+      "Very Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-TN Fac",
+    "values": [
+      "Thin to Thin Faceted",
+      "Thin - Thin Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-TK Fac",
+    "values": [
+      "Thin to Thick Faceted",
+      "Thin - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-M Fac",
+    "values": [
+      "Thin to Medium Faceted",
+      "Thin - Medium Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-STK Fac",
+    "values": [
+      "Thin to Slightly Thick Faceted",
+      "Thin - Slightly Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-VTK Fac",
+    "values": [
+      "Thin to Very Thick Faceted",
+      "Thin - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-TN Fac",
+    "values": [
+      "Thick to Thin Faceted",
+      "Thick - Thin Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-TK Fac",
+    "values": [
+      "Thick to Thick Faceted",
+      "Thick - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-M Fac",
+    "values": [
+      "Thick to Medium Faceted",
+      "Thick - Medium Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-STK Fac",
+    "values": [
+      "Thick to Slightly Thick Faceted",
+      "Thick - Slightly Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-VTK Fac",
+    "values": [
+      "Thick to Very Thick Faceted",
+      "Thick - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-TN Fac",
+    "values": [
+      "Medium to Thin Faceted",
+      "Medium - Thin Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-M Fac",
+    "values": [
+      "Medium to Medium Faceted",
+      "Medium - Medium Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-STK Fac",
+    "values": [
+      "Medium to Slightly Thick Faceted",
+      "Medium - Slightly Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-VTK Fac",
+    "values": [
+      "Medium to Very Thick Faceted",
+      "Medium - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-TN Fac",
+    "values": [
+      "Slightly Thick to Thin Faceted",
+      "Slightly Thick - Thin Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-TK Fac",
+    "values": [
+      "Slightly Thick to Thick Faceted",
+      "Slightly Thick - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-M Fac",
+    "values": [
+      "Slightly Thick to Medium Faceted",
+      "Slightly Thick - Medium Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK-TK Fac",
+    "values": [
+      "Very Thick to Thick Faceted",
+      "Very Thick - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK-M Fac",
+    "values": [
+      "Very Thick to Medium Faceted",
+      "Very Thick - Medium Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETN-TK",
+    "values": [
+      "Extremely Thin to Thick",
+      "Extremely Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-ETK",
+    "values": [
+      "Slightly Thick to Extremely Thick",
+      "Slightly Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-ETK",
+    "values": [
+      "Thin to Extremely Thick",
+      "Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETK-VTK",
+    "values": [
+      "Extremely Think to Very Thick",
+      "Extremely Think to Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETN-M",
+    "values": [
+      "Extremely Thin to Medium",
+      "Extremely Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Medium",
+    "values": [
+      "Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M",
+    "values": [
+      "Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN",
+    "values": [
+      "THIN"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M FAC",
+    "values": [
+      "Medium Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MED-STK",
+    "values": [
+      "Medium to Slightly Thick",
+      "Medium - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-XTK",
+    "values": [
+      "Extremely Thin to Extremely Thick",
+      "Extremely Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTK-XTK",
+    "values": [
+      "Extremely Thick to Extremely Thick",
+      "Extremely Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-XTN",
+    "values": [
+      "Extremely Thin to Extremely Thin",
+      "Extremely Thin - Extremely Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-SLIGH",
+    "values": [
+      "Thin to Slightly Thin",
+      "Thin - Slightly Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-VERY TK",
+    "values": [
+      "Medium to Very Thick",
+      "Medium - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-M",
+    "values": [
+      "Very Thin to Medium",
+      "Very Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-TK",
+    "values": [
+      "Medium to Thick",
+      "Medium - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-TK",
+    "values": [
+      "Extremely Thin to Thick",
+      "Extremely Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-XTK",
+    "values": [
+      "Very Thin to Extremely Thick",
+      "Very Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-VERY TK",
+    "values": [
+      "Thick to Very Thick",
+      "Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK",
+    "values": [
+      "Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-XTK",
+    "values": [
+      "Thin to Extremely Thick",
+      "Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-VERY",
+    "values": [
+      "Thick to Very Thick",
+      "Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-VERY",
+    "values": [
+      "Medium to Very Thin",
+      "Medium - Very Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-EXTRE",
+    "values": [
+      "Medium to ExtremelyThick",
+      "Medium - ExtremelyThick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-SLIGH",
+    "values": [
+      "Very Thin to Slightly Thin",
+      "Very Thin - Slightly Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-VERY ",
+    "values": [
+      "Very Thin to Very Thin",
+      "Very Thin - Very Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETN-ETK",
+    "values": [
+      "Extremely Thin to Extremely Thick",
+      "Extremely Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETN-STK",
+    "values": [
+      "Extremely Thin to Slightly Thick",
+      "Extremely Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETN-THK",
+    "values": [
+      "Extremely Thin to Thick",
+      "Extremely Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETN-VTK",
+    "values": [
+      "Extremely Thin to Very Thick",
+      "Extremely Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MED",
+    "values": [
+      "Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MED-ETK",
+    "values": [
+      "Medium to Extremely Thick",
+      "Medium - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MED-THK",
+    "values": [
+      "Medium to Thick",
+      "Medium - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MED-VTK",
+    "values": [
+      "Medium to Very Thick",
+      "Medium - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-THK",
+    "values": [
+      "Slightly Thick to Thick",
+      "Slightly Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THK",
+    "values": [
+      "Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THK-ETK",
+    "values": [
+      "Thick to Extremely Thick",
+      "Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THK-VTK",
+    "values": [
+      "Thick to Very Thick",
+      "Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN",
+    "values": [
+      "Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN-ETK",
+    "values": [
+      "Thin to Extremely Thick",
+      "Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN-MED",
+    "values": [
+      "Thin to Medium",
+      "Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN-STK",
+    "values": [
+      "Thin to Slightly Thick",
+      "Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN-THK",
+    "values": [
+      "Thin to Thick",
+      "Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN-VTK",
+    "values": [
+      "Thin to Very Thick",
+      "Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK",
+    "values": [
+      "Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK-ETK",
+    "values": [
+      "Very Thick to Extremely Thick",
+      "Very Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN",
+    "values": [
+      "Very Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-ETK",
+    "values": [
+      "Very Thin to Extremely Thick",
+      "Very Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-MED",
+    "values": [
+      "Very Thin to Medium",
+      "Very Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-STK",
+    "values": [
+      "Very Thin to Slightly Thick",
+      "Very Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-THK",
+    "values": [
+      "Very Thin to Thick",
+      "Very Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-THN",
+    "values": [
+      "Very Thin to Thin",
+      "Very Thin - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-VTK",
+    "values": [
+      "Very Thin to Very Thick",
+      "Very Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "EE",
+    "values": [
+      "Extremely Thick to Extemely Thick",
+      "Extremely Thick to Extemely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETNETK",
+    "values": [
+      "Extremely Thin to Extremely Thick",
+      "Extremely Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETNTK",
+    "values": [
+      "Extremely Thin to Thick",
+      "Extremely Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETNVTK",
+    "values": [
+      "Extremely Thin to Very Thick",
+      "Extremely Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "EX TK FAC",
+    "values": [
+      "Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "METK",
+    "values": [
+      "Medium to Extremely Thick",
+      "Medium - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-ETKF",
+    "values": [
+      "Medium to Extremely Thick Faceted",
+      "Medium - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-EXTREMELY",
+    "values": [
+      "Medium to Extremely Thick",
+      "Medium - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-SL TK FACE",
+    "values": [
+      "Medium to Slightly Thick Faceted",
+      "Medium - Slightly Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-SLIGHTLY T",
+    "values": [
+      "Medium to Slightly Thick",
+      "Medium - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MSTK",
+    "values": [
+      "Medium to Slightly Thick",
+      "Medium - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-STKF",
+    "values": [
+      "Medium to Slightly Thick Faceted",
+      "Medium - Slightly Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-THKF",
+    "values": [
+      "Medium to Thick Faceted",
+      "Medium - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MTK",
+    "values": [
+      "Medium to Thick",
+      "Medium - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-TK FACETED",
+    "values": [
+      "Medium to Thick Faceted",
+      "Medium - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-VERY TK FA",
+    "values": [
+      "Medium to Very Thick Faceted",
+      "Medium - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-VR TK",
+    "values": [
+      "Medium to Very Thick",
+      "Medium - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MVTK",
+    "values": [
+      "Medium to Very Thick",
+      "Medium - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-VTKF",
+    "values": [
+      "Medium To Very Thick Faceted",
+      "Medium - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-XTK",
+    "values": [
+      "Medium to Extremely Thick",
+      "Medium - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "SLIGHTLY TK",
+    "values": [
+      "Slightly Thick",
+      "Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "SLIGHTLY TK-EX TK FACE",
+    "values": [
+      "Slightly Thick to Extremely Thick Faceted",
+      "Slightly Thick - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "SLIGHTLY TK-EXTREMELY",
+    "values": [
+      "Slightly Thick to Extremely Thick",
+      "Slightly Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "SLIGHTLY TK-TK",
+    "values": [
+      "Slightly Thick to Thick",
+      "Slightly Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-EX TK FACE",
+    "values": [
+      "Medium to Extremely Thick Faceted",
+      "Medium - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MEXTK",
+    "values": [
+      "Medium to Extremely Thick",
+      "Medium - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "SLIGHTLY TK-VERY TK",
+    "values": [
+      "Slightly Thick to Very Thick",
+      "Slightly Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "SLIGHTLY TK-VERY TK FA",
+    "values": [
+      "Slightly Thick to Very Thick Faceted",
+      "Slightly Thick - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "SLT TK-TK",
+    "values": [
+      "Slightly Thick to Thick",
+      "Slightly Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ST",
+    "values": [
+      "Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STKETK",
+    "values": [
+      "Slightly Thick to Extremely Thick",
+      "Slightly Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-ETKF",
+    "values": [
+      "Slightly Thick to Extremely Thick Faceted",
+      "Slightly Thick - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-EX TK FACE",
+    "values": [
+      "Slightly Thick to Extremely Thick Faceted",
+      "Slightly Thick - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-THKF",
+    "values": [
+      "Slightly Thick to Thick Faceted",
+      "Slightly Thick - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STKTK",
+    "values": [
+      "Slight Thick to Thick",
+      "Slight Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-TK FACETED",
+    "values": [
+      "Slightly Thick to Thick Faceted",
+      "Slightly Thick - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-VERY TK",
+    "values": [
+      "Slightly Thick to Very Thick",
+      "Slightly Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-VERY TK FA",
+    "values": [
+      "Slightly Thick to Very Thick Faceted",
+      "Slightly Thick - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-VTKF",
+    "values": [
+      "Slightly Thick to Very Thick Faceted",
+      "Slightly Thick - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK-XTK",
+    "values": [
+      "Slightly Thick to Extremely Thick",
+      "Slightly Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK",
+    "values": [
+      "Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TKET",
+    "values": [
+      "Thick to Extremely Thick",
+      "Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TKETK",
+    "values": [
+      "Thick to Extremely Thick",
+      "Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-ETKF",
+    "values": [
+      "Thick to Extremely Thick Faceted",
+      "Thick - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-EX TK FACE",
+    "values": [
+      "Thick to Extremely Thick Faceted",
+      "Thick - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TKEXTK",
+    "values": [
+      "Thick to Extremely Thick",
+      "Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-EXTREMELY",
+    "values": [
+      "Thick to Extremely Thick",
+      "Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-VERY TK FA",
+    "values": [
+      "Thick to Very Thick Faceted",
+      "Thick - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TKVTK",
+    "values": [
+      "Thick to Very Thick",
+      "Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-VTKF",
+    "values": [
+      "Thick to Very Thick Faceted",
+      "Thick - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TK-XTK",
+    "values": [
+      "Thick to Extremely Thick",
+      "Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN FACETED",
+    "values": [
+      "Thin Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TNETK",
+    "values": [
+      "Thin to Extremely Thick",
+      "Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-ETKF",
+    "values": [
+      "Thin to Extremely Thick Faceted",
+      "Thin - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-EX TK FACE",
+    "values": [
+      "Thin to Extremely Thick Faceted",
+      "Thin - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-EXTREMELY",
+    "values": [
+      "Thin to Extremely Thin",
+      "Thin - Extremely Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TNM",
+    "values": [
+      "Thin to Medium",
+      "Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-MEDF",
+    "values": [
+      "Thin to Medium Faceted",
+      "Thin - Medium Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-SL TK FACE",
+    "values": [
+      "Thin to Slightly Thick Faceted",
+      "Thin - Slightly Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-SLIGHTLY T",
+    "values": [
+      "Thin to Slightly Thin",
+      "Thin - Slightly Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-STHK",
+    "values": [
+      "Thin to Slightly Thick",
+      "Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TNSTK",
+    "values": [
+      "Thin to Slightly Thick",
+      "Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-VERY TK",
+    "values": [
+      "Thin to Very Thick",
+      "Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-VERY TK FA",
+    "values": [
+      "Thin to Very Thick Faceted",
+      "Thin - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TNVTK",
+    "values": [
+      "Thin to Very Thick",
+      "Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-XTN",
+    "values": [
+      "Thin to Extremely Thick",
+      "Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VERY TK",
+    "values": [
+      "Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VERY TK-EX TK",
+    "values": [
+      "Very Thick to Extremely Thick",
+      "Very Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VERY TK-EX TK FACE",
+    "values": [
+      "Very Thick to Extremely Thick Faceted",
+      "Very Thick - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VERY TK-EXTREMELY",
+    "values": [
+      "Very Thick to Extremely Thick",
+      "Very Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTKETK",
+    "values": [
+      "Very Thick to Extremely Thick",
+      "Very Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK-ETKF",
+    "values": [
+      "Very Thick to Extremely Thick Faceted",
+      "Very Thick - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTK-XTK",
+    "values": [
+      "Very Thick to Extremely Thick",
+      "Very Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTNETK",
+    "values": [
+      "Very Thin to Extremely Thick",
+      "Very Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-ETKF",
+    "values": [
+      "Very Thick to Extremely Thick Faceted",
+      "Very Thick - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-EXT TK",
+    "values": [
+      "Very Thin to Extremely Thick",
+      "Very Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-EXTREMELY",
+    "values": [
+      "Very Thin to Extremely Thin",
+      "Very Thin - Extremely Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTNM",
+    "values": [
+      "Very Thin to Medium",
+      "Very Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-MEDF",
+    "values": [
+      "Very Thin To Medium Faceted",
+      "Very Thin - Medium Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-SL TK FACE",
+    "values": [
+      "Very Thin to Slightly Thick Faceted",
+      "Very Thin - Slightly Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-SLIGHTLY T",
+    "values": [
+      "Very Thin to Slightly Thin",
+      "Very Thin - Slightly Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTNSTK",
+    "values": [
+      "Very Thin to Slightly Thick",
+      "Very Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-STKF",
+    "values": [
+      "Very Thin to Slightly Thick Faceted",
+      "Very Thin - Slightly Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-VTK",
+    "values": [
+      "Extremely Thin to Very Thick",
+      "Extremely Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-VERY TK",
+    "values": [
+      "Extremely Thin to Very Thick",
+      "Extremely Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-TN",
+    "values": [
+      "Extremely Thin to Thin",
+      "Extremely Thin - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-THNF",
+    "values": [
+      "Extremely Thin to Thin Faceted",
+      "Extremely Thin - Thin Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-STKF",
+    "values": [
+      "Extremely Thin to Slightly Thick Faceted",
+      "Extremely Thin - Slightly Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-STK",
+    "values": [
+      "Extremely Thin to Slightly Thick",
+      "Extremely Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-MEDF",
+    "values": [
+      "Extremely Thin to Medium Faceted",
+      "Extremely Thin - Medium Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-M",
+    "values": [
+      "Extremely Thin to Medium",
+      "Extremely Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN",
+    "values": [
+      "Extremely Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTK-TK",
+    "values": [
+      "Extremely Thick to Thick",
+      "Extremely Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTK",
+    "values": [
+      "Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-VTKF",
+    "values": [
+      "Very Thin to Very Thick Faceted",
+      "Very Thin - Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTNVTK",
+    "values": [
+      "Very Thin to Very Thick",
+      "Very Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-VERY TK",
+    "values": [
+      "Very Thin to Very Thick",
+      "Very Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTNTVT",
+    "values": [
+      "Very Thin to Very Thick",
+      "Very Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-TN",
+    "values": [
+      "Very Thin to Thin",
+      "Very Thin - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-TK",
+    "values": [
+      "Very Thin to Thick",
+      "Very Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTNTK",
+    "values": [
+      "Very Thin to Thick",
+      "Very Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-THNF",
+    "values": [
+      "Very Thin to Thin Faceted",
+      "Very Thin - Thin Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-THKF",
+    "values": [
+      "Very Thin to Thick Faceted",
+      "Very Thin - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "ETN -TK",
+    "values": [
+      "Extremely Thin to Thick",
+      "Extremely Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MED - STK",
+    "values": [
+      "Medium to Slightly Thick",
+      "Medium - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MED - VTK",
+    "values": [
+      "Medium to Very Thick",
+      "Medium - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MED -TK",
+    "values": [
+      "Medium to Thick",
+      "Medium - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MED-TK",
+    "values": [
+      "Medium to Thick",
+      "Medium - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "MED-TN",
+    "values": [
+      "Medium to Thin",
+      "Medium - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK - ETK",
+    "values": [
+      "Slightly Thick to Extremely Thick",
+      "Slightly Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK - VTK",
+    "values": [
+      "Slightly Thick to Very Thick",
+      "Slightly Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK- ETK",
+    "values": [
+      "Slightly Thick to Extremely Thick",
+      "Slightly Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "STK -TK",
+    "values": [
+      "Slightly Thick to Thick",
+      "Slightly Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THK - VTK",
+    "values": [
+      "Thick to Very Thick",
+      "Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN - MED",
+    "values": [
+      "Thin to Medium",
+      "Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN - STK",
+    "values": [
+      "Thin to Slightly Thick",
+      "Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN - VTK",
+    "values": [
+      "Thin to Very Thick",
+      "Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN -TK",
+    "values": [
+      "Thin to Thick",
+      "Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "THN-TK",
+    "values": [
+      "Thin to Thick",
+      "Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "EX TK FACETED",
+    "values": [
+      "Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-EX TK",
+    "values": [
+      "Medium to Extremely Thick",
+      "Medium - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "M-EXT TK",
+    "values": [
+      "Medium to Extremely Thick",
+      "Medium - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "SL TK POLISHED",
+    "values": [
+      "Slightly Thick Polished"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-EX TK",
+    "values": [
+      "Thin to Extremely Thick",
+      "Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-M FACETED",
+    "values": [
+      "Thin to Medium Faceted",
+      "Thin - Medium Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "TN-TK FACETED",
+    "values": [
+      "Thin to Thick Faceted",
+      "Thin - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VERY TK FACETED",
+    "values": [
+      "Very Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-EX TK FACE",
+    "values": [
+      "Very Thin to Extremely Thick Faceted",
+      "Very Thin - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "VTN-TK FACETED",
+    "values": [
+      "Very thin to Thick Faceted",
+      "Very thin - Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "XTN-EX TK FACE",
+    "values": [
+      "Extremely Thin to Extremely Thick Faceted",
+      "Extremely Thin - Extremely Thick Faceted"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Extr. Thick",
+    "values": [
+      "Extra Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Extr. Thin",
+    "values": [
+      "Extra Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Extr. Thin-Extr. Thin",
+    "values": [
+      "Extra Thin - Extra Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Medium-Medium",
+    "values": [
+      "Medium to Medium",
+      "Medium - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Slightly Thick",
+    "values": [
+      "Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Slightly Thick-Slightly Thick",
+    "values": [
+      "Slightly Thick to Slightly Thick",
+      "Slightly Thick - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thick",
+    "values": [
+      "Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thick-Thick",
+    "values": [
+      "Thick to Thick",
+      "Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thin",
+    "values": [
+      "Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thin-Thin",
+    "values": [
+      "Thin to Thin",
+      "Thin - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thick",
+    "values": [
+      "Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thick-Very Thick",
+    "values": [
+      "Very Thick to Very Thick",
+      "Very Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thin",
+    "values": [
+      "Very Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thin-Very Thin",
+    "values": [
+      "Very Thin to Very Thin",
+      "Very Thin - Very Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Extr. Thin-Extr. Thick",
+    "values": [
+      "Extremely Thin to Extremely Thick",
+      "Extremely Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Extr. Thin-Medium",
+    "values": [
+      "Extremely Thin to Medium",
+      "Extremely Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Extr. Thin-Slightly Thick",
+    "values": [
+      "Extremely Thin to Slightly Thick",
+      "Extremely Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Extr. Thin-Thick",
+    "values": [
+      "Extremely Thin to Thick",
+      "Extremely Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Extr. Thin-Thin",
+    "values": [
+      "Extremely Thin to Thin",
+      "Extremely Thin - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Extr. Thin-Very Thick",
+    "values": [
+      "Extremely Thin to Very Thick",
+      "Extremely Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Medium-Extr. Thick",
+    "values": [
+      "Medium to Extremely Thick",
+      "Medium - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Medium-Slightly Thick",
+    "values": [
+      "Medium to Slightly Thick",
+      "Medium - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Medium-Thick",
+    "values": [
+      "Medium to Thick",
+      "Medium - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Medium-Very Thick",
+    "values": [
+      "Medium to Very Thick",
+      "Medium - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Slightly Thick-Extr. Thick",
+    "values": [
+      "Slightly Thick to Extremely Thick",
+      "Slightly Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Slightly Thick-Medium",
+    "values": [
+      "Slightly Thick to Medium",
+      "Slightly Thick - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Slightly Thick-Thick",
+    "values": [
+      "Slightly Thick to Thick",
+      "Slightly Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Slightly Thick-Very Thick",
+    "values": [
+      "Slightly Thick to Very Thick",
+      "Slightly Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thick-Extr. Thick",
+    "values": [
+      "Thick to Extremely Thick",
+      "Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thick-Medium",
+    "values": [
+      "Thick to Medium",
+      "Thick - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thick-Slightly Thick",
+    "values": [
+      "Thick to Slightly Thick",
+      "Thick - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thick-Very Thick",
+    "values": [
+      "Thick to Very Thick",
+      "Thick - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thin-Extr. Thick",
+    "values": [
+      "Thin to Extremely Thick",
+      "Thin - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thin-Medium",
+    "values": [
+      "Thin to Medium",
+      "Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thin-Slightly Thick",
+    "values": [
+      "Thin to Slightly Thick",
+      "Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thin-Thick",
+    "values": [
+      "Thin to Thick",
+      "Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Thin-Very Thick",
+    "values": [
+      "Thin to Very Thick",
+      "Thin - Very Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thick-Extr. Thick",
+    "values": [
+      "Very Thick to Extremely Thick",
+      "Very Thick - Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thick-Slightly Thick",
+    "values": [
+      "Very Thick to Slightly Thick",
+      "Very Thick - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thick-Thick",
+    "values": [
+      "Very Thick to Thick",
+      "Very Thick - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thin-Extr. Thick",
+    "values": [
+      "Very Thin to Extremely Thick",
+      "Very Thin to Extremely Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thin-Extr. Thin",
+    "values": [
+      "Very Thin to Extremely Thin",
+      "Very Thin - Extremely Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thin-Medium",
+    "values": [
+      "Very Thin to Medium",
+      "Very Thin - Medium"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thin-Slightly Thick",
+    "values": [
+      "Very Thin to Slightly Thick",
+      "Very Thin - Slightly Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thin-Thick",
+    "values": [
+      "Very Thin to Thick",
+      "Very Thin - Thick"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thin-Thin",
+    "values": [
+      "Very Thin to Thin",
+      "Very Thin - Thin"
+    ],
+    "desc": ""
+  },
+  {
+    "code": "Very Thin-Very Thick",
+    "values": [
+      "Very Thin to Very Thick",
+      "Very Thin - Very Thick"
+    ],
+    "desc": ""
+  }
+]

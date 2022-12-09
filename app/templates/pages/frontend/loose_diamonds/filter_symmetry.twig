@@ -1,0 +1,83 @@
+<div class="o-col-lg-6 o-col-md-12 u-relative">
+    <div class="holder-info">
+        <a class="c-info-label s-sm-invisible">?</a>
+        <div class="info-desc">
+            <p>The symmetry of a diamond refers to the shape, placement and alignment of the facets. With poor symmetry the facets may have external imbalances that can misdirect light as it travels within the stone.  Look for "Very good" and "Excellent" symmetry.</p>
+        </div>
+    </div>
+
+    <p class="t-filter-label open" onclick="toggleBlock(this, 'symmetryFilter');">Symmetry</p>
+    <div class="u-clear"></div>
+    <ul id="symmetryFilter" class="t-filter-list t-filter-symmetry_list show">
+        {% for symmetry in symmetries %}
+            <li
+                id="s_{{ symmetry.code|split(' ')|join('') }}"
+                class="{{ symmetry.code in filter.symmetry_id ? 'active' : '' }}"
+                onclick="searchSymmetry('{{ symmetry.code }}')"
+            >
+                <a href="#" class="c-btn c-btn-sm c-light-btn" onclick="return false;">
+                    <p>{{ symmetry.code }}</p></a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    function searchSymmetry(value) {
+        var allSymmetries = 'All symmetries';
+        var param = UrlParams.get().symmetry_id;
+        if (!param) {
+            UrlParams.set({ symmetry_id: value }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        } else if (value === allSymmetries) {
+            UrlParams.set({ symmetry_id: param === value ? '' : value }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+      }
+            });
+        } else {
+            var values = param.split(',');
+            ~values.indexOf(value) ? values.splice(values.indexOf(value), 1) : values.push(value);
+            ~values.indexOf(allSymmetries) && values.splice(values.indexOf(allSymmetries), 1);
+            UrlParams.set({ symmetry_id: values.join(',') }, false);
+            const viewMode = UrlParams.get().v || 'g';
+            const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+            loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+                if(total == 0) {
+                    $('.results-message').html('<b>Please broaden your selection to view more diamond options</b>');
+                }
+                if(total > 0) {
+                    $('.results-message').html('');
+                }
+            });
+        }
+        $('#symmetryFilter > li').removeClass('active');
+        var symmetryNames = UrlParams.get().symmetry_id;
+        if (symmetryNames && symmetryNames.split(',').length) {
+            symmetryNames.split(',').map((symmetryName) => {
+                $('#s_' + symmetryName.split(' ').join('')).addClass('active');
+            });
+        }
+    }
+</script>

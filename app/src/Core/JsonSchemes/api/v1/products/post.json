@@ -1,0 +1,224 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "xxx",
+      "description": "asdfasdf",
+      "examples": [
+        "eee",
+        "nnn"
+      ],
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "category_id": {
+      "type": "string",
+      "minLength": 24,
+      "maxLength": 24
+    },
+    "sku": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "purchase_price": {
+      "pattern": "^(0{1}|([1-9]+[0-9]*))(\\.[0-9]{1,2})?$",
+      "minLength": 1,
+      "maxLength": 31
+    },
+    "price": {
+      "pattern": "^(0{1}|([1-9]+[0-9]*))(\\.[0-9]{1,2})?$",
+      "examples": [
+        "0",
+        "0.00"
+      ],
+      "minLength": 1,
+      "maxLength": 31
+    },
+    "retail_price": {
+      "pattern": "^(0{1}|([1-9]+[0-9]*))(\\.[0-9]{1,2})?$",
+      "minLength": 1,
+      "maxLength": 31
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^[a-z-0-9_]*$",
+      "minLength": 5,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "template": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 5000
+    },
+    "information": {
+      "type": "array"
+    },
+    "order": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    },
+    "jewelrytype_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 24,
+          "maxLength": 24
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    },
+    "jewelrytypestyle_id": {
+      "type": "array"
+    },
+    "jewelrystone_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 24,
+          "maxLength": 24
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    },
+    "jewelrypearl_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 24,
+          "maxLength": 24
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    },
+    "metal_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 24,
+          "maxLength": 24
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    },
+    "birthstone_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 24,
+          "maxLength": 24
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    },
+    "ringstyle_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 24,
+          "maxLength": 24
+        },
+        {
+          "type": "string",
+          "minLength": 0,
+          "maxLength": 0
+        }
+      ]
+    },
+    "is_diamond": {
+      "type": "boolean"
+    },
+    "is_pearl": {
+      "type": "boolean"
+    },
+    "is_birthstone": {
+      "type": "boolean"
+    },
+    "attributes": {
+      "type": "array"
+    },
+    "matchingItems": {
+      "type": "array"
+    },
+    "images": {
+      "type": "array"
+    },
+    "hide_customer_creation": {
+      "type": "boolean"
+    },
+    "customer_images": {
+      "type": "array"
+    },
+    "shipping_time": {
+      "type": "string"
+    },
+    "banner_show": {
+      "type": "boolean"
+    },
+    "banner_image": {
+      "type": "string"
+    },
+    "banner_html": {
+      "type": "string"
+    },
+    "is_for_builder": {
+      "type": "boolean"
+    },
+    "builder_show_shapes": {
+      "type": "boolean"
+    },
+    "builder_compatible": {
+      "anyOf": [
+        {
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "title",
+    "url",
+    "sku",
+    "price",
+    "description",
+    "category_id"
+  ],
+  "additionalProperties": false
+}

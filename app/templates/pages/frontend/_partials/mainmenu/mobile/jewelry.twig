@@ -1,0 +1,33 @@
+<li {% if isJewelrySection or isJewelryRingsSection %}class="active"{% endif %}>
+    <a class="c-nav-link" href="javascript: void(0);" onClick="toggleMobNav('nav_jewelry')">JEWELRY</a>
+    <div id="nav_jewelry" class="c-mob-nav-second-level">
+        <h6>ready to ship jewelry</h6>
+        <div class="u-clear"></div>
+        <ul class="t-second-nav-list t-second-nav-build">
+            <li><a href="/jewelry/rings">Rings</a></li>
+            <li><a href="/jewelry/earrings">Earrings</a></li>
+            <li><a href="/jewelry/bracelets">Bracelets</a></li>
+            <li><a href="/jewelry/pendants">Pendants</a></li>
+            <li><a href="/jewelry/all?jewelrystone=all">GemStone Jewelry</a></li>
+            <li><a href="/jewelry/all?birthstone=all">Personalized Jewelry</a></li>
+        </ul>
+        <h6>design your own jewelry</h6>
+        <div class="u-clear"></div>
+        <ul class="t-second-nav-list t-second-nav-build">
+            <li><a href="/jewelry/earrings?jewelrystone=diamond">Diamond Earrings</a></li>
+            <li><a href="/jewelry/pendants?jewelrystone=diamond">Diamond Pendants</a></li>
+            <li><a href="/jewelry/rings?jewelrystone=diamond">Diamond Rings</a></li>
+            <li><a href="/jewelry/?jewelrystone=all">GemStone Earrings</a></li>
+            <li><a href="/jewelry/pendants?jewelrystone=all">GemStone Pendants</a></li>
+            <li><a href="/jewelry/rings?jewelrystone=all">GemStone Rings</a></li>
+        </ul>
+        <h6>gifts</h6>
+        <div class="u-clear"></div>
+        <ul class="t-second-nav-list">
+            <li><a href="#">All Gifts</a></li>
+            <li><a href="#">Gifts Under {{ 250 | price }}</a></li>
+            <li><a href="#">Anniversary Gifts</a></li>
+            <li><a href="#">Top 20 Best Gifts</a></li>
+        </ul>
+    </div>
+</li>

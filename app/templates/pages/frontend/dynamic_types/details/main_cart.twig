@@ -1,0 +1,92 @@
+{% if isBuilder %}
+<button class="c-btn c-light-btn add-to-cart" style="padding:0;line-height:1;text-transform:initial;">
+  Buy This Setting
+  <br>
+  (without a center stone)
+</button>
+{% else %}
+<button class="c-btn c-dark-btn add-to-cart" style="padding:0">Add to cart</button>
+{% endif %}
+<div class="t_add_to_cart" id="cart-notification" style="display: none;">
+  <button class="close close_popup_btn"></button>
+  You added new product:
+  <div class="u-clear-10"></div>
+  <div class="t-add-to-cart-img">
+    {% set mainImage = '/images/jewelry/default.png' %}
+    {% set break = false %}
+    {% for image in product.images if not break %}
+    {% if image.type == 'img' %}
+    {% set mainImage = '/img.php?src=' ~ image.value|replace({ ('/content/'): '' }) ~ '&w=310' %}
+    {% set break = true %}
+    {% endif %}
+    {% endfor %}
+    <img src="{{ mainImage }}" alt="jewelry">
+  </div>
+
+  <p class="t-add-to-cart-title">{{ product.title }}</p>
+  {% for key, value in product.withAttributes %}
+  <p class="t-add-to-cart-price" style="margin-bottom: 0">{{ key }}: {{ value }}</p>
+  {% endfor %}
+  <p class="t-add-to-cart-price" style="margin-top: 10px">Price: {{ product.price | price }}</p>
+  <div class="u-clear-20"></div>
+  <a class="btn u-tc" href="/cart">Checkout</a>
+</div>
+<script>
+  $(document).ready(function () {
+    var $topCart = $('.t-top-icon-cart, .t-top-icon-mob-cart');
+    var $cartNotification = $('#cart-notification');
+
+    $('.add-to-cart').click(function () {
+      var errors = [];
+      product.attributes.forEach(({
+        name,
+        isRequired
+      }) => {
+        if (isRequired && !product.withAttributes[name])
+          errors.push(name);
+      });
+      if (errors.length) {
+        alert('Please select ' + errors.join(', '));
+        return false;
+      }
+
+      gtag('event', 'add_to_cart', {
+        'value': product.price,
+        'items': [{
+          'id': product._id,
+          'google_business_vertical': 'retail',
+        }]
+      });
+
+      // Criteo Basket / Cart Tag
+      window.criteo_q = window.criteo_q || [];
+      var deviceType = /iPad/.test(navigator.userAgent) ? "t" : /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Silk/.test(navigator.userAgent) ? "m" : "d";
+      window.criteo_q.push(
+        { event: "setAccount", account: 91590},
+        { event: "setEmail", email: "{{ user.email_hash }}", hash_method: "sha256" },
+        { event: "setSiteType", type: deviceType},
+        { event: "setZipcode", zipcode: "{{ user.zip_code }}" },
+        { event: "addToCart", item: [
+          {id: product._id, price: product.price, quantity: 1 }
+        ]}
+      );
+      // END Criteo Basket / Cart Tag
+
+      $.ajax({
+        method: 'POST',
+        url: '/cart',
+        data: {
+          product_id: product._id,
+          group: 'products',
+          withAttributes: window.product.withAttributes,
+        }
+      }).done(function () {
+        $topCart.attr('data-count', +($topCart.attr('data-count') || 0) + 1);
+        $cartNotification.show();
+      });
+    });
+    $cartNotification.find('.close').click(function () {
+      $cartNotification.hide();
+    });
+  });
+</script>

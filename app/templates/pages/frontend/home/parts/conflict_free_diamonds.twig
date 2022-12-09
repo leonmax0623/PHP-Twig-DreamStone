@@ -1,0 +1,18 @@
+<!-- CONFLICT-FREE DIAMONDS -->
+<div class="o-col-lg-12">
+    <div class="content t-conflict-free-diamonds">
+        <h6 class="u-color-dark-gray u-f28">Shop Conflict-Free Diamonds</h6>
+    <div class="u-clear"></div>
+        {% for shape in shapes %}
+            <div class="o-col-tenth-lg-1 o-col-sm-3 o-row">
+                <a href="/loose-diamonds/search?shape_id={{shape.code}}&v=t">
+                    {{ shape.image | raw }}
+                    <span>{{ shape.code }}</span>
+                </a>
+            </div>
+        {% endfor %}
+        <div class="u-clear"></div>
+    </div>
+</div>
+<div class="u-clear"></div>
+<!-- /CONFLICT-FREE DIAMONDS -->

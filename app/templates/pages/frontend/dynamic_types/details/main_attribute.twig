@@ -1,0 +1,25 @@
+{% set selected = '' %}
+{% set hasDefault = false %}
+{% for value in attribute.values %}
+    {% if value.isDefault %}
+        {% set hasDefault = true %}
+    {% elseif value.name == product.withAttributes[attribute.name] %}
+        {% set selected = value.name %}
+    {% endif %}
+{% endfor %}
+
+<p style="margin-bottom: 5px">
+    <div class="u-f18">{{ attribute.name }}{% if attribute.isRequired %} *{% endif %}:</div>
+        <select id="select-product" onchange="search('{{ attribute.name }}', this.value, false)">
+            {% if hasDefault != true %}
+                <option value="">-</option>
+            {% endif %}
+            {% for value in attribute.values %}
+                <option
+                    value="{{ value.isDefault ? '' : value.name }}"
+                    {{ value.name == selected or (selected == '' and value.isDefault) ? ' selected' : '' }}
+                >{{ value.name }}</option>
+            {% endfor %}
+        </select>
+</p>
+<div class="u-clear-10"></div>

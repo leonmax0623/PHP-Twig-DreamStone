@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="/css/nouislider.css">
+<!-- Filter -->
+<div class="o-col-lg-12  o-row">
+    <div class="c-filter-block">
+        {%  include "pages/frontend/loose_diamonds/filter_natural.twig" %}
+
+        {% include "pages/frontend/loose_diamonds/filter_shape.twig" %}
+        {% include "pages/frontend/loose_diamonds/filter_price.twig" %}
+        {% if isMobile %}
+        {% include "pages/frontend/loose_diamonds/filter_carat.twig" %}
+        {% include "pages/frontend/loose_diamonds/filter_cut.twig" %}
+        {% include "pages/frontend/loose_diamonds/filter_color.twig" %}
+        {% include "pages/frontend/loose_diamonds/filter_clarity.twig" %}
+
+        {% else %}
+        {% include "pages/frontend/loose_diamonds/filter_color.twig" %}
+        {% include "pages/frontend/loose_diamonds/filter_carat.twig" %}
+        {% include "pages/frontend/loose_diamonds/filter_clarity.twig" %}
+        {% include "pages/frontend/loose_diamonds/filter_cut.twig" %}
+        {% endif %}
+
+        <div class="u-clear u-border-hor-light s-sm-invisible"></div>
+        {% include "pages/frontend/loose_diamonds/filter_realview.twig" %}
+        <div class="o-col-lg-6 o-col-md-12 u-relative">
+            <p class="t-filter-label" onclick="openAdvancedSearch(this)">
+                <i class="t-toggle-filter s-sm-invisible"></i>ADVANCED SEARCH
+            </p>
+        </div>
+        <div class="u-clear"></div>
+        <div id="advancedSearch" class="o-col-lg-12 o-col-md-12 o-row t-advanced-block">
+            <div class="u-clear-20"></div>
+            {%  include "pages/frontend/loose_diamonds/filter_lab.twig" %}
+            <div class="u-clear-30 s-sm-invisible"></div>
+            {%  include "pages/frontend/loose_diamonds/filter_polish.twig" %}
+            {%  include "pages/frontend/loose_diamonds/filter_symmetry.twig" %}
+            <div class="u-clear-30 s-sm-invisible"></div>
+            {%  include "pages/frontend/loose_diamonds/filter_depth.twig" %}
+            {%  include "pages/frontend/loose_diamonds/filter_table.twig" %}
+            <div class="u-clear-30 s-sm-invisible"></div>
+            {%  include "pages/frontend/loose_diamonds/filter_ratio.twig" %}
+            {%  include "pages/frontend/loose_diamonds/filter_fluorescence.twig" %}
+            <div class="u-clear-30 s-sm-invisible"></div>
+        </div>
+        <div class="u-clear"></div>
+        {% include "pages/frontend/loose_diamonds/filter_realview_mob.twig" %}
+    </div>
+    <div class="o-col-lg-12 o-row">
+        <div class="o-col-lg-2 o-col-md-3 s-sm-invisible"></div>
+        <div class="o-col-lg-8 o-col-md-6 o-col-sm-6 t-filter-btn-block">
+            <a href="#" id="t-filter-close-btn" class="t-filter-close-btn">Close Filters</a>
+        </div>
+        <div class="o-col-lg-2 o-col-md-3 o-col-sm-6 t-filter-btn-block">
+            <a href="#" id="clear-filters" class="u-fr" onclick="resetFilters(); return false;">Clear Filters</a>
+        </div>
+    </div>
+</div>
+<div class="u-clear"></div>
+<!-- /Filter -->
+<div class="u-clear-10"></div>
+<div class="o-col-lg-3 o-row s-md-invisible"></div>
+<div class="o-col-lg-2 o-col-md-4 o-col-sm-12 o-row">
+    <a href="#" id="search-results-count" class="c-btn c-dark-btn t-results-btn-view" onclick="return false;">
+        Results
+    </a>
+</div>
+<div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+    <a href="/viewed" class="c-btn c-light-btn results-btn-viewed">recently viewed {{ viewedCount }}</a>
+</div>
+<div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+    <a href="/compare/diamonds" id="compareHref" data-count="{{ compareCount }}"
+        class="c-btn c-light-btn results-btn-comparison">comparison{{ compareCount ? ' ' ~ compareCount : '' }}</a>
+</div>
+<!-- <div class="u-clear-20"></div> -->
+<script>
+    function resetFilters() {
+        UrlParams.delete(true);
+    }
+
+    function refreshResultCounter(total) {
+        $('#search-results-count').html(`Results (${total})`);
+
+        localStorage.setItem('diamondCount', total);
+        localStorage.setItem('diamondUrl', window.location.href);
+    }
+</script>
+
+<script src="/js/nouislider.min.js"></script>

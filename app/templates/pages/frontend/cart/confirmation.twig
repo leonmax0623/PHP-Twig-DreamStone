@@ -1,0 +1,30 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    About Us - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    About Us,DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{% set page = 'confirmation' %}
+
+{% block content %}
+    {% include "pages/frontend/cart/order_page_navigation.twig" %}
+
+    <div class="content">
+        <h5>Your order {% if orderNumber %}(#{{orderNumber}}){% endif %} has been placed.</h5>
+        <p>You will receive an email with your order confirmation.</p>
+        <p>If you have any questions or need any changes to your order please email us at
+            <a href="mailto:service@dreamstone.com">service@dreamstone.com</a>
+            or call us at <a href="tel:800-818-8386">800-818-8386</a>.</p>
+        <p>Thank for shopping at DreamStone.</p>
+        <div class="u-clear u-border-hor-light"></div>
+        {% include "pages/frontend/cart/cards.twig" %}
+    </div>
+{% endblock %}

@@ -1,0 +1,59 @@
+[
+  {
+    "_id": "5d1a07eca5b0a50b5862d070",
+    "name": "Size",
+    "isEnabled": true,
+    "values": [
+      {
+        "_id": "5d1a07eca5b0a50b5862d470",
+        "name": "14",
+        "isEnabled": true
+      },
+      {
+        "_id": "5d1a07eca5b0a50b5862d570",
+        "name": "15",
+        "isEnabled": true
+      }
+    ]
+  },
+  {
+    "_id": "5d1a07eca5b0a50b5862d170",
+    "name": "Metal",
+    "isEnabled": true,
+    "values": [
+      {
+        "_id": "5d1a07eca5b0a50b5862d670",
+        "name": "White Gold",
+        "isEnabled": true
+      },
+      {
+        "_id": "5d1a07eca5b0a50b5862d770",
+        "name": "Platinum",
+        "isEnabled": false
+      }
+    ]
+  },
+  {
+    "_id": "5d1a07eca5b0a50b5862d270",
+    "name": "Size & Metal",
+    "isEnabled": true,
+    "values": [
+      {
+        "_id": "5d1a07eca5b0a50b5862d870",
+        "name": "14 White Gold",
+        "isEnabled": true
+      },
+      {
+        "_id": "5d1a07eca5b0a50b5862d970",
+        "name": "15 White Gold",
+        "isEnabled": true
+      }
+    ]
+  },
+  {
+    "_id": "5d1a07eca5b0a50b5862d370",
+    "name": "Box",
+    "isEnabled": true,
+    "values": []
+  }
+]

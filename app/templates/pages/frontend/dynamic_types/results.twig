@@ -1,0 +1,14 @@
+<ul class="t-search-results">
+    {% for product in products %}
+        {%  include "pages/frontend/dynamic_types/result.twig" %}
+    {% endfor %}
+</ul>
+
+<script>
+    function updateLinks() {
+        $('li.t-search-result-block a').click(function(e) {
+            let href = $(this).attr('href').split('?');
+            $(this).attr('href', href[0] + location.search);
+        });
+    }
+</script>

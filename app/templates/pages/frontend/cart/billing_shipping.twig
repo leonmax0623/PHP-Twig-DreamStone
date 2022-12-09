@@ -1,0 +1,632 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    About Us - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    About Us,DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{% set page = 'billing' %}
+
+{% block content %}
+    {%  include "pages/frontend/cart/order_page_navigation.twig" %}
+
+    {% set shipping_states = false %}
+    {% set billing_states = false %}
+    {% for country in countries %}
+        {% if billingInfo.shipping_country == country.code and country.states %}
+            {% set shipping_states = country.states %}
+        {% endif %}
+        {% if billingInfo.billing_country == country.code and country.states %}
+            {% set billing_states = country.states %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="content">
+        <h5>Shipping Address</h5>
+        <p>Please choose an address where an adult over 18 will be available to sign for the package</p>
+        <div class="u-clear-20"></div>
+        <form method="post" id="billing-shipping" action="/billing-shipping?returnUrl=/payment" class="form-address">
+            <div class="o-col-md-12 o-col-lg-1"></div>
+            <div class="o-col-sm-12 o-col-md-6 o-col-lg-5">
+                <div class="o-row">
+                   <div class="o-col-lg-4">
+                        <label for="shipping_first_name">* First name</label>
+                    </div>
+                    <div class="o-col-lg-6">
+                        <input name="shipping_first_name" id="shipping_first_name" type="text" value="{{ billingInfo.shipping_first_name }}">
+                        <label style="display: none; color: red;" class="out-first-name error1" for="shipping_first_name"></label>
+                    </div> 
+                </div>
+                <div class="o-row">
+                    <div class="o-col-lg-4">
+                        <label for="shipping_last_name">* Last name</label>
+                    </div>
+                    <div class="o-col-lg-6">
+                        <input name="shipping_last_name" id="shipping_last_name" type="text" value="{{ billingInfo.shipping_last_name }}">
+                        <label style="display: none; color: red;" class="out-last-name error1" for="shipping_last_name"></label>
+                    </div>
+                </div>
+                <div class="o-row">
+                    <div class="o-col-lg-4">
+                    <label for="shipping_company">Company</label>
+                </div>
+                <div class="o-col-lg-6">
+                    <input name="shipping_company" id="shipping_company" type="text" value="{{ billingInfo.shipping_company }}">
+                </div>
+                </div>
+                <div class="o-row">
+                <div class="o-col-lg-4">
+                    <label for="shipping_address">* Address</label>
+                </div>
+                <div class="o-col-lg-6">
+                    <input name="shipping_address" id="shipping_address" type="text" value="{{ billingInfo.shipping_address }}">
+                    <label style="display: none; color: red;" class="out-address error1" for="shipping_address"></label>
+                </div>
+                </div>
+                <div class="o-row">
+                    <div class="o-col-lg-4">
+                        <label for="shipping_address2"> Apt / Suite</label>
+                    </div>
+                    <div class="o-col-lg-6">
+                        <input name="shipping_address2" id="shipping_address2" type="text" value="{{ billingInfo.shipping_address2 }}">
+                        <label style="display: none; color: red;" class="out-address2 error1" for="shipping_address2"></label>
+                    </div>
+                </div>
+                <div class="o-row">
+                    <div class="o-col-lg-4">
+                    <label for="shipping_city">* City</label>
+                </div>
+                <div class="o-col-lg-6">
+                    <input name="shipping_city" id="shipping_city" type="text" value="{{ billingInfo.shipping_city }}">
+                    <label style="display: none; color: red;" class="out-city error1" for="shipping_city"></label>
+                </div>
+                </div>
+            </div>
+            <div class="o-col-sm-12 o-col-md-6 o-col-lg-5">
+                <div class="o-row">
+                    <div class="o-col-lg-4 shipping_state">
+                        <label>* <span id="sipping_admin_unit">State</span></label>
+                    </div>
+                    <div class="o-col-lg-6 shipping_state">
+                        {% if shipping_states %}
+                            <select name="shipping_state" id="shipping_state" class="shipping_state_select">
+                                <option value="-">-</option>
+                                {% for state in shipping_states %}
+                                    <option value="{{ state.code }}"{%
+                                        if billingInfo.shipping_state == state.code %} selected{% endif
+                                    %}>{{ state.name }}</option>
+                                {% endfor %}
+                            </select>
+                        {% else %}
+                            <input
+                                name="shipping_state"
+                                id="shipping_state"
+                                class="shipping_state_input"
+                                type="text"
+                                value="{{ billingInfo.shipping_state }}"
+                            >
+                            <label style="display: none; color: red;" class="out-state error1" for="shipping_state"></label>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="o-row">
+                    <div class="o-col-lg-4">
+                        <label for="shipping_zip">* Zip/Postal Code{{ foo }}</label>
+                    </div>
+                    <div class="o-col-lg-6">
+                        <input name="shipping_zip" id="shipping_zip" type="text" value="{{ billingInfo.shipping_zip }}">
+                        <label style="display: none; color: red;" class="out-zip error1" for="shipping_zip"></label>
+                    </div>
+                </div>
+                <div class="o-row">
+                    <div class="o-col-lg-4">
+                        <label>* Country</label>
+                    </div>
+                    <div class="o-col-lg-6">
+                        <select name="shipping_country" id="shipping_country">
+                            <option value="">Select the Country</option>
+                            {% for country in countries %}
+                                <option value="{{ country.code }}"{%
+                                    if billingInfo.shipping_country == country.code %} selected{% endif
+                                %}>{{ country.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="o-row">
+                    <div class="o-col-lg-4">
+                        <label for="shipping_phone">* Phone</label>
+                    </div>
+                    <div class="o-col-lg-6">
+                        <input name="shipping_phone" id="shipping_phone" type="text" value="{{ billingInfo.shipping_phone }}">
+                        <label style="display: none; color: red;" class="out-phone error1" for="shipping_phone"></label>
+                    </div>
+                </div>
+                <div class="o-row">
+                    <div class="o-col-lg-4">
+                        <label for="shipping_phone_extension">Phone Extension</label>
+                    </div>
+                    <div class="o-col-lg-6">
+                        <input
+                            name="shipping_phone_extension"
+                            id="shipping_phone_extension"
+                            type="text"
+                            value="{{ billingInfo.shipping_phone_extension }}"
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="u-clear"></div>
+            <div class="o-col-md-12 o-col-lg-1"></div>
+            <div class="o-col-sm-12 o-col-md-6 o-col-lg-5">
+                <div class="o-col-lg-12">
+                    <label for="show_shipping_instructions" class="u-pdg-right-10">Special instructions</label>
+                    <input
+                        type="checkbox"
+                        name="show_shipping_instructions"
+                        id="show_shipping_instructions"
+                        {% if billingInfo.show_shipping_instructions == 'on' %} checked{% endif %}
+                    >
+                </div>
+                <div class="o-col-lg-12" id="shipping_instructions" style="display:none">
+                    <textarea name="shipping_instructions">{{ billingInfo.shipping_instructions }}</textarea>
+                </div>
+            </div>
+            <div class="u-clear-20"></div>
+
+            <div>
+                <label for="same_billing_address">Billing address is same as shipping</label>
+                <input
+                    type="checkbox"
+                    checked="checked"
+                    name="same_billing_address"
+                    {#{% if billingInfo.same_billing_address %} checked{% endif %}#}
+                    id="same_billing_address"
+                >
+            </div>
+            <div id="billing_section" style="display:none">
+                <h5>Billing Address</h5>
+                <div class="o-col-sm-12 o-col-md-12 o-col-lg-1"></div>
+                <div class="o-col-sm-12 o-col-md-6 o-col-lg-5">
+                    <div class="o-row">
+                        <div class="o-col-lg-12">
+                            <input
+                                type="checkbox"
+                                name="billing_is_home_address"
+                                id="billing_is_home_address"
+                                {% if billingInfo.billing_is_home_address == 'on' %} checked{% endif %}
+                            >
+                            <label for="billing_is_home_address" class="u-pdg-right-10">This is a home address</label>
+                            <div class="u-clear-20"></div>
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-12">
+                            <input
+                                type="checkbox"
+                                name="billing_is_business_address"
+                                id="billing_is_business_address"
+                                {% if billingInfo.billing_is_business_address == 'on' %} checked{% endif %}
+                            >
+                            <label for="billing_is_business_address" class="u-pdg-right-10">This is a business address</label>
+                            <div class="u-clear-20"></div>
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-12">
+                            <input
+                                type="checkbox"
+                                name="billing_hold_at_fedex"
+                                id="billing_hold_at_fedex"
+                                {% if billingInfo.billing_hold_at_fedex == 'on' %} checked{% endif %}
+                            >
+                            <label for="billing_hold_at_fedex" class="u-pdg-right-10">Hold at FedEx facility</label>
+                            <div class="u-clear-20"></div>
+                    </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-4">
+                            <label for="billing_first_name">* First name</label>
+                        </div>
+                        <div class="o-col-lg-6">
+                            <input name="billing_first_name" id="billing_first_name" type="text" value="{{ billingInfo.billing_first_name }}">
+                            <label style="display: none; color: red;" class="out-billing-first-name error1" for="billing_first_name"></label>
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-4">
+                            <label for="billing_last_name">* Last name</label>
+                        </div>
+                        <div class="o-col-lg-6">
+                            <input name="billing_last_name" id="billing_last_name" type="text" value="{{ billingInfo.billing_last_name }}">
+                            <label style="display: none; color: red;" class="out-billing-last-name error1" for="billing_last_name"></label>
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-4">
+                            <label for="billing_company">Company</label>
+                        </div>
+                        <div class="o-col-lg-6">
+                            <input name="billing_company" id="billing_company" type="text" value="{{ billingInfo.billing_company }}">
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-4">
+                            <label for="billing_address">* Address</label>
+                        </div>
+                        <div class="o-col-lg-6">
+                            <input name="billing_address" id="billing_address" type="text" value="{{ billingInfo.billing_address }}">
+                            <label style="display: none; color: red;" class="out-billing-address error1" for="billing_address"></label>
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-4">
+                            <label for="billing_address2"> Apt / Suite</label>
+                        </div>
+                        <div class="o-col-lg-6">
+                            <input name="billing_address2" id="billing_address2" type="text" value="{{ billingInfo.billing_address2 }}">
+                            <label style="display: none; color: red;" class="out-billing-address2 error1" for="billing_address2"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="o-col-sm-12 o-col-md-6 o-col-lg-5">
+                    <div class="o-row">
+                        <div class="o-col-lg-4">
+                            <label for="billing_city">* City</label>
+                    </div>
+                        <div class="o-col-lg-6">
+                            <input name="billing_city" id="billing_city" type="text" value="{{ billingInfo.billing_city }}">
+                            <label style="display: none; color: red;" class="out-billing-city error1" for="billing_city"></label>
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-4 billing_state">
+                            <label>* <span id="billing_admin_unit">State</span></label>
+                        </div>
+                        <div class="o-col-lg-6 billing_state">
+                            {% if billing_states %}
+                                <select name="billing_state" id="billing_state" class="billing_state_select">
+                                    {% for state in billing_states %}
+                                        <option value="{{ state.code }}"{%
+                                            if billingInfo.billing_state == state.code %} selected{% endif
+                                        %}>{{ state.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            {% else %}
+                                <input
+                                    name="billing_state"
+                                    id="billing_state"
+                                    class="billing_state_input"
+                                    type="text"
+                                    value="{{ billingInfo.shipping_state }}"
+                                >
+                                <label style="display: none; color: red;" class="out-billing-state error1" for="billing_state"></label>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-4">
+                            <label for="billing_zip">* Zip/Postal Code</label>
+                        </div>
+                        <div class="o-col-lg-6">
+                            <input name="billing_zip" id="billing_zip" type="text" value="{{ billingInfo.billing_zip }}">
+                            <label style="display: none; color: red;" class="out-bill-zip error1" for="billing_zip"></label>
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-4">
+                            <label>* Country</label>
+                        </div>
+                        <div class="o-col-lg-6">
+                            <select name="billing_country" id="billing_country">
+                                <option value="">Select the Country</option>
+                                {% for country in countries %}
+                                    <option value="{{ country.code }}"{%
+                                        if 'US' == country.code %} selected{% endif
+                                    %}>{{ country.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-4">
+                            <label for="billing_phone">* Phone</label>
+                        </div>
+                        <div class="o-col-lg-6">
+                            <input name="billing_phone" id="billing_phone" type="text" value="{{ billingInfo.billing_phone }}">
+                            <label style="display: none; color: red;" class="out-billing-phone error1" for="billing_phone"></label>
+                        </div>
+                    </div>
+                    <div class="o-row">
+                        <div class="o-col-lg-4">
+                            <label for="billing_phone_extension">Phone Extension</label>
+                        </div>
+                        <div class="o-col-lg-6">
+                            <input
+                                name="billing_phone_extension"
+                                id="billing_phone_extension"
+                                type="text"
+                                value="{{ billingInfo.billing_phone_extension }}"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="o-col-lg-1 o-row"></div>
+            <div class="u-clear u-border-hor-light"></div>
+            <div class="o-col-sm-12 o-col-md-5 o-col-lg-4 u-fr">
+                <button id="submit">Continue</button>
+            </div>
+        </form>
+        <div class="u-clear-20"></div>
+        {%  include "pages/frontend/cart/cards.twig" %} 
+    </div>
+
+<script>
+$(document).ready(function() {
+    $('#shipping_first_name, #shipping_last_name, #shipping_address, #shipping_address2, #shipping_city, #shipping_state, #shipping_country, #shipping_zip,' +
+        ' #shipping_country, #shipping_phone, #shipping_phone_extension').keyup(function(){
+            $('input').css('border-color', '#cccccc');
+            $('#shipping_include_recept_warnint').text('');
+            $('.error1').css('display', 'none');
+        });
+    $('#billing_first_name, #billing_last_name, #billing_address, #billing_address2, #billing_city, #billing_state, #billing_country, #billing_zip,' +
+        ' #billing_country, #billing_phone, #billing_phone_extension').keyup(function(){
+            $('input').css('border-color', '#cccccc');
+            $('.error1').css('display', 'none');
+        });
+  $('#show_shipping_instructions').change(function() {
+    $('#shipping_instructions')[$(this).is(':checked') ? 'show' : 'hide']();
+  });
+    $('#same_billing_address').change(function() {
+      $('#billing_section')[$(this).is(':checked') ? 'hide' : 'show']();
+    });
+    $('form').submit(function(event) {
+        let regexp = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{1,24}$/i;
+        let resultFirstName = regexp.test($('#shipping_first_name').val());
+        if (!resultFirstName) {
+            event.preventDefault();
+            $('#shipping_first_name').css('border-color', 'red');
+            $('.out-first-name').css('display', 'block').html('enter the correct first name');
+        };
+        if (!$('#shipping_first_name').val()) {
+            event.preventDefault();
+            $('#shipping_first_name').css('border-color', 'red');
+        };
+        let resultLastName = regexp.test($('#shipping_last_name').val());
+        if (!resultLastName) {
+            event.preventDefault();
+            $('#shipping_last_name').css('border-color', 'red');
+            $('.out-last-name').css('display', 'block').html('enter the correct last name');
+        };
+        if (!$('#shipping_last_name').val()) {
+            event.preventDefault();
+            $('#shipping_last_name').css('border-color', 'red');
+        };
+        let regexpAddress = /[A-Za-z0-9'\.\-\s\,]{1,32}/;
+        let resultAddress = regexpAddress.test($('#shipping_address').val());
+        let resultAddress2 = regexpAddress.test($('#shipping_address2').val());
+        if (!resultAddress) {
+            event.preventDefault();
+            $('#shipping_address').css('border-color', 'red');
+            $('.out-address').css('display', 'block').html('enter the correct address');
+        };
+        if ($('#shipping_address2').val() && !resultAddress2) {
+            event.preventDefault();
+            $('#shipping_address2').css('border-color', 'red');
+            $('.out-address2').css('display', 'block').html('enter the correct apt/suite');
+        };
+        if (!$('#shipping_address').val()) {
+            event.preventDefault();
+            $('#shipping_address').css('border-color', 'red');
+        };
+        let resultCity = regexpAddress.test($('#shipping_city').val());
+        if (!resultCity) {
+            event.preventDefault();
+            $('#shipping_city').css('border-color', 'red');
+            $('.out-city').css('display', 'block').html('enter the correct city');
+        };
+        if (!$('#shipping_city').val()) {
+            event.preventDefault();
+            $('#shipping_city').css('border-color', 'red');
+        };
+        let resultState = regexpAddress.test($('#shipping_state').val());
+        if (!resultState) {
+            event.preventDefault();
+            $('#shipping_state').css('border-color', 'red');
+            $('.out-state').css('display', 'block').html('enter the correct state');
+        };
+        if (!$('#shipping_state').val() && $('#shipping_state').is(":visible")) {
+            event.preventDefault();
+            $('#shipping_state').css('border-color', 'red');
+        };
+        if (!$('#shipping_country').val()) {
+            event.preventDefault();
+            $('#shipping_country').css('border-color', 'red');
+        };
+        let regexpZip = /^[\w-\s\(\)]{0,16}$/;
+        let resultZip = regexpZip.test($('#shipping_zip').val());
+        if (!resultZip) {
+            event.preventDefault();
+            $('#shipping_zip').css('border-color', 'red');
+            $('.out-zip').css('display', 'block').html('enter the correct zip code');
+        };
+        if (!$('#shipping_zip').val()) {
+            event.preventDefault();
+            $('#shipping_zip').css('border-color', 'red');
+        };
+        let regexpPhone = /^[\+]{0,1}[\d-\s\(\)\.]{0,20}$/;
+        let resultPhone = regexpPhone.test($('#shipping_phone').val());
+        if (!resultPhone) {
+            event.preventDefault();
+            $('#shipping_phone').css('border-color', 'red');
+            $('.out-phone').css('display', 'block').html('enter the correct phone');
+        };
+        if (!$('#shipping_phone').val()) {
+            event.preventDefault();
+            $('#shipping_phone').css('border-color', 'red');
+        };
+
+        if (!$('#same_billing_address').is(':checked')) {
+            let resultBillFirstName = regexp.test($('#billing_first_name').val());
+            if (!resultBillFirstName) {
+                event.preventDefault();
+                $('#billing_first_name').css('border-color', 'red');
+                $('.out-billing-first-name').css('display', 'block').html('enter the correct first name');
+            };
+          if (!$('#billing_first_name').val()) {
+            event.preventDefault();
+            $('#billing_first_name').css('border-color', 'red');
+          };
+            let resultBillLastName = regexp.test($('#billing_last_name').val());
+            if (!resultBillLastName) {
+                event.preventDefault();
+                $('#billing_last_name').css('border-color', 'red');
+                $('.out-billing-last-name').css('display', 'block').html('enter the correct last name');
+            };
+          if (!$('#billing_last_name').val()) {
+            event.preventDefault();
+            $('#billing_last_name').css('border-color', 'red');
+          };
+          let resultBillAddress = regexpAddress.test($('#billing_address').val());
+          let resultBillAddress2 = regexpAddress.test($('#billing_address2').val());
+            if (!resultBillAddress) {
+                event.preventDefault();
+                $('#billing_address').css('border-color', 'red');
+                $('.out-billing-address').css('display', 'block').html('enter the correct address');
+            };
+            if ($('#billing_address2').val() && !resultBillAddress2) {
+                event.preventDefault();
+                $('#billing_address2').css('border-color', 'red');
+                $('.out-billing-address2').css('display', 'block').html('enter the correct apt/suite');
+            }
+          if (!$('#billing_address').val()) {
+            event.preventDefault();
+            $('#billing_address').css('border-color', 'red');
+          };
+          let resultBillCity = regexpAddress.test($('#billing_city').val());
+            if (!resultBillCity) {
+                event.preventDefault();
+                $('#billing_city').css('border-color', 'red');
+                $('.out-billing-city').css('display', 'block').html('enter the correct city');
+            };
+          if (!$('#billing_city').val()) {
+            event.preventDefault();
+            $('#billing_city').css('border-color', 'red');
+          };
+          let resultBillState = regexpAddress.test($('#billing_state').val());
+            if (!resultBillState) {
+                event.preventDefault();
+                $('#billing_state').css('border-color', 'red');
+                $('.out-billing-state').css('display', 'block').html('enter the correct state');
+            };
+          if (!$('#billing_state').val() && $('#billing_state').is(":visible")) {
+            event.preventDefault();
+            $('#billing_state').css('border-color', 'red');
+          };
+          if (!$('#billing_country').val()) {
+            event.preventDefault();
+            $('#billing_country').css('border-color', 'red');
+          };
+          let resultBillZip = regexpZip.test($('#billing_zip').val());
+            if (!resultBillZip) {
+                event.preventDefault();
+                $('#billing_zip').css('border-color', 'red');
+                $('.out-bill-zip').css('display', 'block').html('enter the correct zip code');
+            };
+          if (!$('#billing_zip').val()) {
+            event.preventDefault();
+            $('#billing_zip').css('border-color', 'red');
+          };
+          let resultPhone = regexpPhone.test($('#billing_phone').val());
+          if (!resultPhone) {
+            event.preventDefault();
+            $('#billing_phone').css('border-color', 'red');
+            $('.out-billing-phone').css('display', 'block').html('enter the correct phone');
+        };
+          if (!$('#billing_phone').val()) {
+            event.preventDefault();
+            $('#billing_phone').css('border-color', 'red');
+          };
+        }
+    });
+    $('#shipping_country').on('change', function() {
+        console.log('shipping', this.value);
+        switch(this.value) {
+            case 'GB':
+                $('#sipping_admin_unit').html('Region');
+                {% for country in countries %}{% if 'GB' == country.code %}$('#shipping_state').replaceWith(`
+                    <select name="shipping_state" id="shipping_state" class="shipping_state_select">
+                        {% for state in country.states %}<option value="{{ state.code }}">{{ state.name }}</option>{% endfor %}
+                    </select>
+                `);{% endif %}{% endfor %}
+                break;
+            case 'CA':
+                $('#sipping_admin_unit').html('Province');
+                {% for country in countries %}{% if 'CA' == country.code %}$('#shipping_state').replaceWith(`
+                    <select name="shipping_state" id="shipping_state" class="shipping_state_select">
+                        {% for state in country.states %}<option value="{{ state.code }}">{{ state.name }}</option>{% endfor %}
+                    </select>
+                `);{% endif %}{% endfor %}
+                break;
+            case 'US':
+                $('#sipping_admin_unit').html('State');
+                {% for country in countries %}{% if 'US' == country.code %}$('#shipping_state').replaceWith(`
+                    <select name="shipping_state" id="shipping_state" class="shipping_state_select">
+                        {% for state in country.states %}<option value="{{ state.code }}">{{ state.name }}</option>{% endfor %}
+                    </select>
+                `);{% endif %}{% endfor %}
+                break;
+            default:
+                $('#sipping_admin_unit').html('State / Province');
+                $('#shipping_state').replaceWith(`
+                    <input name="shipping_state" id="shipping_state" class="shipping_state_input" type="text" value="">
+                `);
+        }
+    });
+    $('#billing_country').on('change', function() {
+        console.log('billing', this.value);
+        switch(this.value) {
+            case 'GB':
+                $('#billing_admin_unit').html('Region');
+                {% for country in countries %}{% if 'GB' == country.code %}$('#billing_state').replaceWith(`
+                    <select name="billing_state" id="billing_state" class="billing_state_select">
+                        {% for state in country.states %}<option value="{{ state.code }}">{{ state.name }}</option>{% endfor %}
+                    </select>
+                `);{% endif %}{% endfor %}
+                break;
+            case 'CA':
+                $('#billing_admin_unit').html('Province');
+                {% for country in countries %}{% if 'CA' == country.code %}$('#billing_state').replaceWith(`
+                    <select name="billing_state" id="billing_state" class="billing_state_select">
+                        {% for state in country.states %}<option value="{{ state.code }}">{{ state.name }}</option>{% endfor %}
+                    </select>
+                `);{% endif %}{% endfor %}
+                break;
+            case 'US':
+                $('#billing_admin_unit').html('State');
+                {% for country in countries %}{% if 'US' == country.code %}$('#billing_state').replaceWith(`
+                    <select name="billing_state" id="billing_state" class="billing_state_select">
+                        {% for state in country.states %}<option value="{{ state.code }}">{{ state.name }}</option>{% endfor %}
+                    </select>
+                `);{% endif %}{% endfor %}
+                break;
+            default:
+                $('#billing_admin_unit').html('State / Province');
+                $('#billing_state').replaceWith(`
+                    <input name="billing_state" id="billing_state" class="billing_state_input" type="text" value="">
+                `);
+        }
+    });
+});
+
+</script>
+{% endblock %}

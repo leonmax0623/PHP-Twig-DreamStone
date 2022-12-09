@@ -1,0 +1,12 @@
+<h6 class="u-color-dark-gray u-tc u-f24">Diamond color</h6>
+<div id="fancy-color-slider">
+    {% for color in colors %}
+        <div>
+            <a href="{{ path_for('looseDiamonds-Search', {'filter': 'search?color_id=' ~ color.code ~ '&shape_id=Round'}) }}">
+                <div style="text-align: center;">
+                    <span class="fancy-span">{{ color.code }}</span>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>

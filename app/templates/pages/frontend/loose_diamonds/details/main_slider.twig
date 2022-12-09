@@ -1,0 +1,428 @@
+{% set mainImage = product.imageExternal
+    ? product.imageExternal
+    : '/images/loose_diamonds/nm_' ~ product.shape.code ~ '.png' %}
+{% set slideNumber = 0 %}
+<div
+	class="o-col-lg-6 o-col-sm-12 hide-mobile">
+	<!-- MAIN PRODUCT SLIDER -->
+	<div id="product_slider" class="cbp-contentslider diamond-product-slider">
+		<ul class="c-product-slider">
+			<p class="simple-text">{{
+                product.imageExternal or product.videoExternal ? 'Real Photo / Video' : 'Sample Photo'
+            }}</p>
+			{% if product.isNatural == false %}
+				<div class="diamond-lab">
+					<img src="/images/synthetic_diamond_02.png" alt="synthetic_diamond">
+				</div>
+			{% endif %}
+			{% if product.videoExternal %}
+				{% set slideNumber = slideNumber + 1 %}
+				<li id="slide{{ slideNumber }}">
+					<div class="t-main-image" style="display: flex; justify-content: center;">
+						<iframe style="width:100%; height: 100%;" src="{{ product.videoExternal }}"></iframe>
+					</div>
+				</li>
+			{% endif %}
+
+			{% if product.imageExternal %}
+				<li id="slide{{ slideNumber + 1 }}">
+					{% if '.j' in product.imageExternal %}
+						<div class="t-main-image">
+							<img src="{{ product.imageExternal }}"/>
+						</div>
+					{% elseif '.J' in product.imageExternal %}
+						<div class="t-main-image">
+							<img src="{{ product.imageExternal }}"/>
+						</div>
+					{% elseif 'http' in product.imageExternal %}
+						<div class="t-main-image">
+							<iframe style="width:100%; height: 100%;" src="{{ product.imageExternal }}"></iframe>
+						</div>
+					{% elseif product.imageExternal %}
+						<div class="t-main-image">
+							<img src="{{ product.imageExternal }}"/>
+						</div>
+					{% endif %}
+				</li>
+			{% endif %}
+
+			{% if not product.imageExternal and not product.videoExternal %}
+				<li id="slide-default">
+					<div class="t-main-image" style="align-items: flex-start;">
+						<img src="/images/loose_diamonds/nm_{{product.shape.code}}.png">
+					</div>
+				</li>
+				<p onclick="showRequestImageForm('{{product.certificateNumber}}', '{{product.stockNumber}}')" class="request-image">
+					<a>Request Actual Image</a>
+				</p>
+			{% endif %}
+
+			<li id="slide{{ slideNumber + 2 }}">
+				<div class="t-main-image">
+					{% include "pages/frontend/loose_diamonds/shapes_top/shape_" ~ product.shape.code|lower ~ ".twig" ignore missing %}
+					<img src="{{ app.request.getSchemeAndHttpHost() }}/images/loose_diamonds/{{ product.shape.code }}-top-general.jpg" alt="Top Dimensions" style="cursor: default;" border="0"/>
+				</div>
+			</li>
+			<li id="slide{{ slideNumber + 3 }}">
+				<div class="t-main-image">
+					{% include "pages/frontend/loose_diamonds/shapes_side/shape_" ~ product.shape.code|lower ~ ".twig" ignore missing %}
+					<img src="{{ app.request.getSchemeAndHttpHost() }}/images/loose_diamonds/{{ product.shape.code }}-side-general.jpg" alt="Side Dimensions" style="cursor: default;" border="0"/>
+				</div>
+			</li>
+		</ul>
+		<nav>
+			{% set slideNumber = 0 %}
+			{% if product.videoExternal %}
+				{% set slideNumber = slideNumber + 1 %}
+				<a href="#slide{{ slideNumber }}">
+					<div>
+						<img src="/images/loose_diamonds/g360.png" width="50" alt="g360"/>
+					</div>
+				</a>
+			{% endif %}
+			{% if product.imageExternal %}
+				<a href="#slide{{ slideNumber + 1 }}">
+					<div id="main-thumbnail"></div>
+				</a>
+			{% endif %}
+			{% if not product.imageExternal and not product.videoExternal %}
+				<a href="#slide-default">
+					<div>
+						<img src="/images/loose_diamonds/nm_{{product.shape.code}}.png">
+					</div>
+				</a>
+			{% endif %}
+			<a href="#slide{{ slideNumber + 2 }}">
+				<div><img src="/images/loose_diamonds/{{product.shape.code}}-top-general.jpg" alt="diamonds shape"></div>
+			</a>
+			<a href="#slide{{ slideNumber + 3 }}">
+				<div><img src="/images/loose_diamonds/{{product.shape.code}}-side-general.jpg" alt="diamonds shape"></div>
+			</a>
+			{% if showCerts %}
+				{% if product.lab == 'GIA' %}
+					<div class="hold-gia-certificate">
+						{% if 'gia.edu' in product.certificateURL %}
+							<a class="gia-certificate" href="{{ product.certificateURL }}" target="_blank">
+								<img src="/images/loose_diamonds/gia.png" style="padding:2px;width:50px" alt="gia"/>
+							</a>
+						{% else %}
+							<a class="gia-certificate gia-popup">
+								<img src="/images/loose_diamonds/gia.png" style="padding:2px;width:50px" alt="gia"/>
+							</a>
+						{% endif %}
+					</div>
+				{% endif %}
+
+				{% if product.lab == 'IGI' %}
+					<div class="hold-gia-certificate">
+						<a class="gia-certificate gia-popup">
+							<img src="/images/loose_diamonds/igi.png" style="padding:2px;width:50px" alt="igi"/>
+						</a>
+					</div>
+				{% endif %}
+				{% if product.lab == 'DFC' %}
+					<div class="hold-gia-certificate">
+						<a class="gia-certificate gia-popup">
+							<img src="/images/loose_diamonds/dfc.png" style="padding:2px;width:50px" alt="dfc"/>
+						</a>
+					</div>
+				{% endif %}
+
+			{% else %}
+				{% if product.lab == 'GIA' %}
+					<div class="hold-gia-certificate" onclick="showSkuForm('{{product.certificateNumber}}', '{{product.stockNumber}}', '{{product.certificateURL}}')">
+						<a class="gia-certificate sku-popup">
+							<img src="/images/loose_diamonds/gia.png" style="padding:2px;width:50px" alt="gia"/>
+						</a>
+					</div>
+				{% endif %}
+				{% if product.lab == 'IGI' %}
+					<div class="hold-gia-certificate" onclick="showSkuForm('{{product.certificateNumber}}', '{{product.stockNumber}}', '{{product.certificateURL}}')">
+						<a class="gia-certificate sku-popup">
+							<img src="/images/loose_diamonds/igi.png" style="padding:2px;width:50px" alt="igi"/>
+						</a>
+					</div>
+				{% endif %}
+				{% if product.lab == 'DFC' %}
+					<div class="hold-gia-certificate" onclick="showSkuForm('{{product.certificateNumber}}', '{{product.stockNumber}}', '{{product.certificateURL}}')">
+						<a class="gia-certificate sku-popup">
+							<img src="/images/loose_diamonds/dfc.png" style="padding:2px;width:50px" alt="dfc"/>
+						</a>
+					</div>
+				{% endif %}
+			{% endif %}
+		</nav>
+	</div>
+	{# <div class="hide-mobile examination u-tc o-col-lg-2">
+			<img class="t-examitation-img" src="../../images/examination.png" style="width: 46px;" alt="images">
+		</div>
+		<div class="hide-mobile o-col-lg-10 print_invisible">
+			<p style="font-size: 15px;">Our in-house gemologist at DreamStone inspect every diamond before it reaches you and we ship the diamond with the grading report and an insurance appraisal</p>
+		</div> #}
+</div>
+
+{% include "pages/frontend/loose_diamonds/details/form_sku.twig" %}
+{% include "pages/frontend/loose_diamonds/details/form_request_image.twig" %}
+<div class="diamond-slider-holder desctop-hide print_invisible">
+	<p class="simple-text">{{
+        product.imageExternal or product.videoExternal ? 'Real Photo / Video' : 'Sample Photo'
+    }}</p>
+	<div class="mobile-diamond-slider">
+		{% if product.videoExternal %}
+			<div>
+				<div class="t-main-image">
+					<iframe src="{{ product.videoExternal }}" style="width:100%;height:400px"></iframe>
+				</div>
+			</div>
+		{% endif %}
+		{% if product.imageExternal %}
+			<div>
+				{% if '.j' in product.imageExternal %}
+					<div class="t-main-image"><img src="{{ product.imageExternal }}"/></div>
+				{% elseif '.J' in product.imageExternal %}
+					<div class="t-main-image"><img src="{{ product.imageExternal }}"/></div>
+				{% elseif 'http' in product.imageExternal %}
+					<div class="t-main-image">
+						<iframe src="{{ product.imageExternal }}" style="width:100%;height:400px"></iframe>
+					</div>
+				{% elseif product.imageExternal %}
+					<div class="t-main-image"><img src="{{ product.imageExternal }}"/></div>
+				{% endif %}
+			</div>
+		{% endif %}
+		{% if not product.imageExternal and not product.videoExternal %}
+			<div>
+				<div class="t-main-image">
+					<img src="/images/loose_diamonds/nm_{{product.shape.code}}.png">
+				</div>
+				<p onclick="showRequestImageForm('{{product.certificateNumber}}', '{{product.stockNumber}}')" class="request-image">
+					<a>Request Actual Image</a>
+				</p>
+			</div>
+		{% endif %}
+		<div>
+			<div class="t-main-image">
+				{% include "pages/frontend/loose_diamonds/shapes_top/shape_" ~ product.shape.code|lower ~ ".twig" ignore missing %}
+				<img src="{{ app.request.getSchemeAndHttpHost() }}/images/loose_diamonds/{{ product.shape.code }}-top-general.jpg" alt="Top Dimensions" style="cursor: default;" border="0"/>
+			</div>
+		</div>
+		<div>
+			<div class="t-main-image">
+				{% include "pages/frontend/loose_diamonds/shapes_side/shape_" ~ product.shape.code|lower ~ ".twig" ignore missing %}
+				<img src="{{ app.request.getSchemeAndHttpHost() }}/images/loose_diamonds/{{ product.shape.code }}-side-general.jpg" alt="Side Dimensions" style="cursor: default;" border="0"/>
+			</div>
+		</div>
+	</div>
+	<div class="mobile-diamond-slider-nav">
+		{% set slideCount = 0 %}
+		{% if product.videoExternal %}
+			{% set slideCount = slideCount + 1 %}
+			<div class="diamond-slide-nav">
+				<div class="item-d-slid">
+					<img src="/images/loose_diamonds/g360.png" width="50" alt="g360"/>
+				</div>
+			</div>
+		{% endif %}
+		{% if product.imageExternal %}
+			{% set slideCount = slideCount + 1 %}
+			<div class="diamond-slide-nav">
+				<div class="item-d-slid">
+					{% if '.j' in product.imageExternal %}
+						<img src="{{ product.imageExternal }}" alt="loose_diamonds"/>
+					{% elseif '.J' in product.imageExternal %}
+						<img src="{{ product.imageExternal }}" alt="loose_diamonds"/>
+					{% elseif 'http' in product.imageExternal %}
+						<img src="/images/loose_diamonds/g360.png" width="50" alt="g360"/>
+					{% elseif diamond.imageExternal %}
+						<img src="{{ product.imageExternal }}"/>
+					{% endif %}
+				</div>
+			</div>
+		{% endif %}
+		{% if not product.imageExternal and not product.videoExternal %}
+			{% set slideCount = slideCount + 1 %}
+			<div class="diamond-slide-nav">
+				<div class="item-d-slid">
+					<img src="/images/loose_diamonds/nm_{{product.shape.code}}.png" alt="loose_diamonds shape">
+				</div>
+			</div>
+		{% endif %}
+		{% set slideCount = slideCount + 1 %}
+		<div class="diamond-slide-nav">
+			<div class="item-d-slid">
+				<img src="/images/loose_diamonds/{{product.shape.code}}-top-general.jpg" alt="loose_diamonds shape">
+			</div>
+		</div>
+		{% set slideCount = slideCount + 1 %}
+		<div class="diamond-slide-nav">
+			<div class="item-d-slid">
+				<img src="/images/loose_diamonds/{{product.shape.code}}-side-general.jpg" alt="loose_diamonds shape">
+			</div>
+		</div>
+		{% if showCerts %}
+			{% if product.lab == 'GIA' %}
+				{% set slideCount = slideCount + 1 %}
+				<div class="diamond-slide-nav" onclick="openCerts(event)">
+					<a class="gia-certificate">
+						<div class="item-d-slid gia-popup">
+							<img src="/images/loose_diamonds/gia.png" alt="loose_diamonds shape"/>
+						</div>
+					</a>
+				</div>
+			{% endif %}
+			{% if product.lab == 'IGI' %}
+				{% set slideCount = slideCount + 1 %}
+				<div class="diamond-slide-nav" onclick="openCerts(event)">
+					<a class="gia-certificate">
+						<div class="item-d-slid gia-popup">
+							<img src="/images/loose_diamonds/igi.png" alt="loose_diamonds shape"/>
+						</div>
+					</a>
+				</div>
+			{% endif %}
+			{% if product.lab == 'DFC' %}
+				{% set slideCount = slideCount + 1 %}
+				<div class="diamond-slide-nav" onclick="openCerts(event)">
+					<a class="gia-certificate">
+						<div class="item-d-slid gia-popup">
+							<img src="/images/loose_diamonds/dfc.png" alt="loose_diamonds shape"/>
+						</div>
+					</a>
+				</div>
+			{% endif %}
+		{% else %}
+			{% if product.lab == 'GIA' %}
+				<div class="diamond-slide-nav" onclick="showSkuForm('{{ product.certificateNumber }}', '{{ product.stockNumber }}')">
+					<div class="item-d-slid">
+						<img src="/images/loose_diamonds/gia.png" alt="loose_diamonds shape"/>
+					</div>
+				</div>
+			{% endif %}
+			{% if product.lab == 'IGI' %}
+				<div class="diamond-slide-nav" onclick="showSkuForm('{{ product.certificateNumber }}', '{{ product.stockNumber }}')">
+					<div class="item-d-slid">
+						<img src="/images/loose_diamonds/igi.png" alt="loose_diamonds shape"/>
+					</div>
+				</div>
+			{% endif %}
+			{% if product.lab == 'DFC' %}
+				<div class="diamond-slide-nav" onclick="showSkuForm('{{ product.certificateNumber }}', '{{ product.stockNumber }}')">
+					<div class="item-d-slid">
+						<img src="/images/loose_diamonds/dfc.png" alt="loose_diamonds shape"/>
+					</div>
+				</div>
+			{% endif %}
+		{% endif %}
+	</div>
+</div>
+
+<div class="popup-gia">
+	<div id="print-block" class="popup-gia-content">
+		<div class="popup-gia-header">
+			<div class="heading">
+				<h2>
+					{% if product.lab == 'GIA' %}
+						Gia certified
+					{% elseif product.lab == 'IGI' %}
+						IGI certified
+					{% elseif product.lab == 'DFC' %}
+						DFC certified
+					{% endif %}
+				</h2>
+			</div>
+			<div class="holder-close-print">
+				<button class="popup-gia-close">Close</button>
+			</div>
+		</div>
+		<div class="popup-gia-body">
+			<div class="popup-gia-panel"></div>
+			<div class="popup-gia-visual">
+				<div class="gia-visual">
+					{% if product.lab == 'GIA' or product.lab == 'DFC' %}
+						{% if 'http:' in product.certificateURL %}
+							{% set new_certificateURL = product.certificateURL %}
+							{% set replace = 'http' %}
+							{% set replace_with = 'https' %}
+							<iframe src="{{ new_certificateURL|replace({ (replace): replace_with }) }}" style="border: none;"></iframe>
+						{% else %}
+							<iframe src="{{product.certificateURL}}" style="border: none;"></iframe>
+						{% endif %}
+					{% endif %}
+					{% if product.lab == 'IGI' %}
+						<iframe src="https://www.igi.org/reports/verify-your-report?r={{ product.certificateNumber }}" style="border: none;"></iframe>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	(function () {
+const mainImage = new Image();
+mainImage.src = '{{ mainImage }}';
+mainImage.onload = function () {
+$('#main-image').html('<img src="  {{ mainImage }}" border="0" alt="images" />');
+$('#main-thumbnail').html('<img src="  {{ mainImage }}" alt="images" />');
+};
+mainImage.onerror = function () {
+$('#main-image').html('<iframe src="  {{ mainImage }}" style="width:100%;height:550px;border: none;"></iframe>');
+$('.simple-text').text('Real Photo / Video');
+$('#main-thumbnail').html('<img src="/images/loose_diamonds/g360.png" alt="g360" />');
+};
+})();
+</script>
+<!-- gia form -->
+<!-- gia certifacate -->
+<script>
+	const giaPopup = document.querySelector('.gia-popup');
+if (giaPopup) {
+const closeModal = document.querySelector('.popup-gia-close');
+const modal = document.querySelector('.popup-gia');
+giaPopup.onclick = function () {
+modal.style.display = 'flex'
+}
+closeModal.onclick = function () {
+modal.style.display = 'none'
+}
+
+}
+function openCerts(event) {
+event.preventDefault()
+if (giaPopup) {
+const closeModal = document.querySelector('.popup-gia-close');
+const modal = document.querySelector('.popup-gia');
+modal.style.display = 'flex'
+}
+}
+</script>
+
+<!-- slick -->
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<script src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/slick.css"/>
+<link
+rel="stylesheet" type="text/css" href="/css/slick-theme.css"/>
+{# <link rel="stylesheet" type="text/css" href="/js/slick.min.js"/> #}
+<script>
+	$('.mobile-diamond-slider').slick({
+slidesToShow: 1,
+slidesToScroll: 1,
+infinite: false,
+arrows: false,
+fade: true,
+asNavFor: '.mobile-diamond-slider-nav'
+});
+$('.mobile-diamond-slider-nav').slick({
+slidesToShow: {{ slideCount }},
+slidesToScroll: 3,
+infinite: false,
+arrows: false,
+asNavFor: '.mobile-diamond-slider',
+centerMode: true,
+focusOnSelect: true
+});
+</script>
+
+<!-- <link href="/js/dragscroll.js"/> -->
+<script src="/js/dragscroll.js"></script>

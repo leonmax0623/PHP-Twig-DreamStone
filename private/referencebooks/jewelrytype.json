@@ -1,0 +1,37 @@
+[
+  {
+    "_id": "5d1a07eca5b0a50b5862fe28",
+    "code": "jewelry",
+    "title": "",
+    "desc": "General type",
+    "keywords": ""
+  },
+  {
+    "_id": "5d1a07eca5b0a50b5862fe29",
+    "code": "engagement-rings",
+    "title": "",
+    "desc": "Shop dazzling rings and bands in classic and modern styles.",
+    "keywords": ""
+  },
+  {
+    "_id": "",
+    "code": "earrings",
+    "title": "",
+    "desc": "Shop a collection of diamond, pearl and gemstone earrings.",
+    "keywords": ""
+  },
+  {
+    "_id": "",
+    "code": "pendants",
+    "title": "",
+    "desc": "A stunning assortment of finely-crafted pendants & necklaces.",
+    "keywords": ""
+  },
+  {
+    "_id": "",
+    "code": "bracelets",
+    "title": "",
+    "desc": "",
+    "keywords": ""
+  }
+]

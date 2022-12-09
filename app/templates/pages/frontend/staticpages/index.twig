@@ -1,0 +1,29 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+   DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    DreamStone.com, DreamStone, About DreamStone.com, About DreamStone, Learn about dreamstone, has anyone heard of dreamstone, dream stone,DreamStone
+{%- endblock -%}
+
+{% block content %}
+    <div class="content">
+        <div class="u-clear-20"></div>
+        <ul class="t-static-page-list">
+        {% for staticpage in staticpages  %}
+            <li>
+                <h6>{{staticpage.title}}</h6>
+                <p>{{staticpage.description}}</p>
+                <a href="{{ path_for('staticpages-Page', {'filter': staticpage.url}) }}">Read more</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+ </div>
+{% endblock %}

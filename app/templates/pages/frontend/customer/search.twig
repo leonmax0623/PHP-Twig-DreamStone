@@ -1,0 +1,61 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Loose Diamonds | Ideal Cut Diamonds | Certified Diamonds | Diamond Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Shop diamond engagement rings, diamond stud earrings, diamond pendants, GIA diamonds online at dreamstone.com. DreamStone's comprehensive interactive education center will guide you through everything you need to know about diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Loose Diamonds, Ideal Cut Diamonds, Certified Diamonds, Princess Cut Diamond, Round Diamond, Diamond Engagement Rings, Diamond Stud Earrings, Solitaire Diamond Pendant, diamond education, designer engagement rings, unique engagement rings.
+{%- endblock -%}
+
+{% block content %}
+<div class="u-clear"></div>
+    <div class="content">
+        <div class="o-results-block">
+            <div class="o-col-lg-12 o-row pdg-tb-50">
+            <h2 style="text-align: center;"><strong>Customer Creations</strong></h2>
+                <ul class="t-search-results">
+                    {% for product in products %}
+                        {% include "pages/frontend/customer/result.twig" %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="u-clear"></div>
+    <script>
+      $(document).ready(function() {
+        var win = $(window);
+        var footerHeight = $('footer').height();
+        var limit = +'{{ filter.limit }}';
+        var offset = +limit;
+        var type = '{{ filter.jewelrytype }}';
+        var finish = false;
+        var lastOffset = 0;
+        win.scroll(function() {
+          if (lastOffset == offset) return;
+          scroll = ($(document).height() - win.height()) - (win.scrollTop() + footerHeight);
+          if (scroll < 1 && !finish) {
+            lastOffset = offset;
+            $.ajax({
+              url: `/customer_creation?json&limit=${limit}&offset=${offset}`,
+              dataType: 'json',
+              success: function(loadedData) {
+                if (!loadedData.finish && loadedData.items) {
+                  offset = +offset + limit;
+                  $('.t-search-results').append(loadedData.items.join("\n"));
+                  return;
+                }
+                finish = true;
+              }
+            });
+          }
+        });
+      });
+    </script>
+
+{% endblock %}

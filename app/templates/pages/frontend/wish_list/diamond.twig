@@ -1,0 +1,62 @@
+{% set permalink = path_for(
+    'looseDiamonds-Search',
+    {'filter': 'item/' ~ product.certificateNumber ~ '_' ~ product.stockNumber | url_encode}
+) %}
+
+<li class="t-search-result-block t-search-block sm-flexx">
+    <div id="wish-image-block" class="t-search-result-image-block">
+        <a href={{ permalink }}>
+            {% if '.j' in product.imageExternal %}
+                <img src="{{ product.imageExternal }}" alt="looseDiamonds" />
+            {% elseif '.J' in product.imageExternal %}  
+                <img src="{{ product.imageExternal }}" alt="looseDiamonds"/>
+            {% elseif 'http' in product.imageExternal %}
+                <img src="/images/loose_diamonds/Cut_{{product.shape.code}}.svg" style="height: 100%;"alt="looseDiamonds" >
+            {% elseif product.imageExternal %}
+                <img src="{{ product.imageExternal }}" alt="looseDiamonds"/>
+            {% else %}
+                <img src="/images/loose_diamonds/Cut_{{product.shape.code}}.svg" style="height: 100%;"alt="looseDiamonds">
+            {% endif %}
+        </a>
+    </div>
+    <div class="t-show-image-block"></div>
+    <div class="t-search-result-description-block">
+        <div class="t-search-result-block-data">
+            <a href={{ permalink }}>
+                <span class="t-search-result-short-desc">Carat {{ product.weight }}</span>
+                {% if product.color %}
+                    <span class="t-search-result-short-desc">Color {{ product.color.code }}</span>
+                {% endif %}
+                {% if product.clarity %}
+                    <span class="t-search-result-short-desc">Clarity {{ product.clarity.code }}</span>
+                {% endif %}
+                {% if product.cut %}
+                    <span class="t-search-result-short-desc">Cut {{ product.cut.code }}</span>
+                {% endif %}
+                <span class="t-search-result-price">Price: {{ product.priceInternal | price }}</span>
+            </a>
+            <div class="wish-list-btn">
+                <button id="del_{{ index }}_{{ product._id }}" class="btn btn_light active">Remove</button>
+                <button id="add_{{ index }}_{{ product._id }}">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</li>
+<script>
+$('#add_{{ index }}_{{ product._id }}').click(function(){
+  $.post('/cart', {
+    product_id: '{{ product._id }}',
+    group: 'diamonds',
+  }, function(){ location.reload(); });
+});
+$('#del_{{ index }}_{{ product._id }}').click(function() {
+  const $this = $(this);
+  const FavoriteModel = (new Favorites({{ user ? 'true' : 'false' }}));
+  FavoriteModel.delete('diamonds', { _id: '{{ product._id }}' }, function(){
+    $this.parents('li.t-search-result-block').remove();
+
+    const $icon = $('.t-top-icon-wishlist, .t-top-icon-mob-wishlist');
+    $icon.attr('data-count', +($icon.attr('data-count') || 0) - 1);
+  });
+});
+</script>

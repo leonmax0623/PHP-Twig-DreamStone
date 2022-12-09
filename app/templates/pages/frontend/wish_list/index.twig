@@ -1,0 +1,71 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Diamond Engagement Rings | Diamond Rings| Loose Diamonds | Wedding Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    DreamStone - New York's largest retailer of Diamond Engagement Rings, Wedding Rings, Diamond Rings, Loose Diamonds, Diamond Studs Earrings, Diamond Pendants, White Gold Engagement Rings, Platinum Engagement Rings.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Engagement Rings, Wedding Rings, Diamond Engagement Rings, Diamond Rings, Loose Diamonds, Design Your Own Engagement Ring, White Gold Engagement Rings, Platinum Engagement Rings
+{%- endblock -%}
+
+{% block content %}
+    <div class="content">
+        <div class="u-clear-30"></div>
+        <h6 class="u-f24 u-color-black u-tc">My wish list - {{ products | length }} items</h6>
+        <div class="o-results-block">
+            <div class="t-wishlist_block">
+                <div class="u-clear"></div>
+                    <div class="o-col-lg-12 o-row">
+                        <ul class="t-search-results">
+                            {% for index, product in products %}
+                                {% if product.group == 'products' %}
+                                    {% include "pages/frontend/wish_list/product.twig" %}
+                                {% elseif product.group == 'diamonds' %}
+                                    {% include "pages/frontend/wish_list/diamond.twig" %}
+                                {% elseif product.group == 'composites' %}
+                                    {% include "pages/frontend/wish_list/composite.twig" %}
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="u-clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+            var win = $(window);
+            var footerHeight = $('footer').height();
+            var limit = +'{{ filter.limit }}';
+            var offset = +limit;
+            var finish = false;
+            var loading = false;
+            win.scroll(function() {
+                if (loading) return;
+                scroll = ($(document).height() - win.height()) - (win.scrollTop() + footerHeight);
+                if (scroll < 1 && !finish) {
+                    loading = true;
+                    $.ajax({
+                        url: `/wish-list?json&limit=${limit}&offset=${offset}`,
+                        dataType: 'html',
+                        success: function(html) {
+                            let appendData = JSON.parse(html);
+                            if (!appendData.finish && appendData.items) {
+                                $('.t-search-results').append(appendData.items.join("\n"));
+                                setInterval(function () { loading = false; }, 1000);
+                                offset = +offset + limit;
+                                return;
+                            }
+                            finish = true;
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% set mainImage = '' %}
+{% set break = false %}
+{% for image in product.images if not break %}
+    {% if image.type == 'img' %}
+        {% set mainImage = '/img.php?src=' ~ image.value|replace({ ('/content/'): '' }) ~ '&w=310' %}
+        {% set break = true %}
+    {% endif %}
+{% endfor %}
+
+<li class="t-search-result-block t-search-block">
+    <div class="t-search-result-image-block">
+        <img src="{{ mainImage ? mainImage : '/images/jewelry/default.png' }}" alt="jewelry">
+    </div>
+    <div class="t-show-image-block"></div>
+    <div class="t-search-result-description-block">
+        <div class="t-product-hidden-block">
+            <div class="result-images-slider">
+                {% if mainImage %}
+                    {% for image in product.images if image.type == 'img' %}
+                        <div
+                            onmouseenter="showImageBlock(this, '/img.php?src={{ image.value |replace({ ('/content/'): '' })}}&w=310')"
+                            onmouseleave="hideImageBlock(this)"
+                        >
+                            <img src=/img.php?src={{ image.value |replace({ ('/content/'): '' })}}&w=310 alt="jewelry">
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <img src="/images/jewelry/default.png" alt="jewelry">
+                {% endif %}
+            </div>
+        </div>
+        <div class="t-search-result-block-data">
+            <span class="t-search-result-short-desc u-f16">{{ product.title }}</span>
+            {% for key, value in product.withAttributes %}<div>{{ key }}: {{ value }}</div>{% endfor %}
+            <span class="t-search-result-price">Price: {{ product.price | price }}</span>
+            <span class="t-search-result-short-desc u-f16">qty: {{ product.qty }}</span>
+        </div>
+    </div>
+</li>
+<!-- /one result -->

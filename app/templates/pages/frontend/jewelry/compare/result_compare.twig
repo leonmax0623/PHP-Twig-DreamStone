@@ -1,0 +1,41 @@
+<!-- one result -->
+{% set mainImage = '' %}
+{% set break = false %}
+{% for image in product.images if not break %}
+    {% if image.type == 'img' %}
+        {% set mainImage = '/img.php?src=' ~ image.value|replace({ ('/content/'): '' }) ~ '&w=310&sharpen&q=100' %}
+        {% set break = true %}
+    {% endif %}
+{% endfor %}
+<li class="t-compare-result-block holder-compare-cart">
+    <div class="compare-cart">
+        <button id="cd{{ product._id }}" onclick="deleteCompare(this,'{{ product._id }}')" class="t-compare-result-delete"></button>
+        <a href="{{ product.permalink }}">
+            <div class="t-search-result-image-block">
+                <a href={{ product.permalink }}>
+                    <img src="{{ mainImage ? mainImage : '/images/jewelry/default.png' }}" alt="jewelry">
+                </a>
+            </div>
+            <div class="t-show-image-block"></div>
+        </a>
+        <div class="t-compare-result-description-block">
+            <span class="t-compare-price">{{ product.price | price }}</span>
+            <div class="u-clear-10"></div>
+            <table class="t-compare-table">
+                <tr><td>title: </td><td>{{ product.title }}</td></tr>
+                <tr><td>description: </td><td>{{ product.description }}</td></tr>
+            </table>
+        </div>
+      </div>
+     <script>
+        function deleteCompare(e, id) {
+            const productItem = e;
+            const $icon = $('.results-btn-comparison-jewelry');
+            (new Compares()).delete('products', id, function(){
+                const count = +$icon.attr('data-count') - 1;
+                $icon.attr('data-count', count).text(`comparison${count ? ` ${count}` : ''}`);
+                productItem.parentNode.remove();
+            });
+        }
+    </script> 
+  </li>

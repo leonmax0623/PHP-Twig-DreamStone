@@ -1,0 +1,45 @@
+<!-- ORDER PAGE NAVIGATION -->
+<ul class="t-order-pages-nav">
+
+    {% set className = '' %}
+    <li class={{ page == 'cart' ? 'active' : '' }}>
+        <a href="/cart"><span class="c-step-icon t-step-shopping-curt"></span><p class="t-step-text"><span>shopping cart</span></p></a>
+    </li>
+
+    {% if step < 1 %}{% set className = 's-blocked-link' %}{% endif %}
+
+    <li class={{ page == 'payment_method' ? 'active' : className }}>
+        <a href="/payment-method">
+            <span class="c-step-icon t-step-shopping-curt"></span>
+            <p class="t-step-text"><span>payment method</span></p>
+        </a>
+    </li>
+
+    {% if step < 3 %}{% set className = 's-blocked-link' %}{% endif %}
+    <li class={{ page == 'billing' ? 'active' : className }}>
+        <a href="/billing-shipping">
+            <span class="c-step-icon t-step-billing"></span>
+            <p class="t-step-text"><span>billing & shipping</span></p>
+        </a>
+    </li>
+    
+    {% if (paymentMethod != 'phone') and (paymentMethod != 'transfer')%}
+        {% if step < 4 %}{% set className = 's-blocked-link' %}{% endif %}
+        <li class={{ page == 'payment' ? 'active' : className }}>
+            <a href="/payment">
+                <span class="c-step-icon t-step-payment"></span>
+                <p class="t-step-text"><span>payment</span></p>
+            </a>
+        </li>
+    {% endif %}
+
+    {% if step < 5 %}{% set className = 's-blocked-link' %}{% endif %}
+    <li class={{ page == 'confirmation' ? 'active' : className }}>
+        <a href="/confirmation">
+            <span class="c-step-icon t-step-confirmation"></span>
+            <p class="t-step-text"><span>confirmation</span></p>
+        </a>
+    </li>
+</ul>
+<div class="u-border-hor-light"></div>
+<!-- /ORDER PAGE NAVIGATION -->

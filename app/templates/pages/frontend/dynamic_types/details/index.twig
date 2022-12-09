@@ -1,0 +1,56 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Loose Diamonds | Ideal Cut Diamonds | Certified Diamonds | Diamond Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Shop diamond engagement rings, diamond stud earrings, diamond pendants, GIA diamonds online at dreamstone.com. DreamStone's comprehensive interactive education center will guide you through everything you need to know about diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Loose Diamonds, Ideal Cut Diamonds, Certified Diamonds, Princess Cut Diamond, Round Diamond, Diamond Engagement Rings, Diamond Stud Earrings, Solitaire Diamond Pendant, diamond education, designer engagement rings, unique engagement rings.
+{%- endblock -%}
+
+{%- block head_end -%}
+    {%  include "pages/frontend/dynamic_types/details/metatags.twig" %}
+{%- endblock -%}
+
+{% block content %}
+<script>
+window.product = JSON.parse($('<div>').html(
+  "{{ productJson }}".replace(/\u0022/g, "'").replace(/\n/g, "<br>")
+)[0].textContent);
+if (window.product.withAttributes.length === 0)
+  window.product.withAttributes = {};
+
+$(document).ready(function(){
+  $('.t-discover-more').click(function(){
+    $('#discover_more_block').toggle('slow');
+    $(this).toggleClass('t-open');
+  });
+});
+</script>
+<script src="{{ app.request.getSchemeAndHttpHost() }}/js/modernizr.custom.js"></script>
+    {%  include "pages/frontend/dynamic_types/details/main.twig" %}
+    {%  include "pages/frontend/dynamic_types/details/product-banner.twig" %}
+    {%  include "pages/frontend/dynamic_types/details/shipping.twig" %}
+    {%  include "pages/frontend/dynamic_types/details/financing.twig" %}
+    <div class="t-comments">
+        <div class="content-md">
+            {% set currentPath = current_path(app.request.attributes.get('_route')) %}
+            {% set currentDomain = base_url() %}
+            <div class="yotpo yotpo-main-widget"
+                data-product-id={{product._id}}
+                data-price={{product.price}}
+                data-currency="$"
+                data-name={{product.title}}
+                data-url={{currentDomain ~ currentPath}}
+                data-image-url={{currentDomain ~ product.images[0].value}}>
+            </div>
+        </div>
+    </div>
+    {%  include "pages/frontend/dynamic_types/details/viewed.twig" %}
+    {%  include "pages/frontend/dynamic_types/details/matching.twig" %}
+    {%  include "pages/frontend/dynamic_types/details/similar.twig" %}
+{% endblock %}

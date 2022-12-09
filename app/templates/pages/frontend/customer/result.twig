@@ -1,0 +1,70 @@
+{% set mainImage = '' %}
+{% set break = false %}
+{% for image in product.customer_images if not break %}
+    {% if image.type == 'img' %}
+        {# {% set mainImage = '/img.php?src=' ~ image.value|replace({ ('/content/'): '' }) ~ '&w=310&sharpen&q=100' %} #}
+        {% set mainImage =  image.value %}
+        {% set break = true %}
+    {% endif %}
+{% endfor %}
+{% set mainVideo = '' %}
+{% for video in product.customer_images if not break %}
+    {% if video.type == 'html' %}
+        {% set mainVideo =  video.value %}
+        {% set break = true %}
+    {% endif %}
+{% endfor %}
+
+
+<li class="t-search-result-block t-search-block" id="jewerly-list">
+    <div class="t-search-result-image-block">
+        <a href={{ product.permalink }}></a>
+            {% if mainImage %}
+                <img src="{{ mainImage ? mainImage : '/images/jewelry/default.png' }}">
+            {% endif %}
+            {% if mainVideo %}
+                {{mainVideo | raw }}
+            {% endif %}
+        </a>
+    </div>
+    <div class="t-show-image-block"></div>
+    <div class="t-search-result-description-block">
+        <div class="t-product-hidden-block" id="jewerly-block">
+            <div class="result-images-slider">
+                {% if mainImage or mainVideo %}
+                    {% for image in product.customer_images %}
+                        {% if image.type == 'img'%}
+                        <div
+                            {# onmouseenter="showImageBlock(this, '/img.php?src={{ image.value |replace({ ('/content/'): '' })}}&w=310&sharpen&q=100')" #}
+                            onmouseenter="showImageBlock(this, '{{ image.value}}')"
+                            onmouseleave="hideImageBlock(this)"
+                        >
+                            <a href={{ product.permalink }} class="mb-20">
+                                {# <img src=/img.php?src={{ image.value |replace({ ('/content/'): '' })}}&w=310&sharpen&q=100 > #}
+                                <img src="{{ image.value}}" alt="jewerly">
+                            </a>
+                        </div>
+                        {% elseif image.type == 'html' %}
+                            <a href={{ product.permalink }} style="display: block;padding: 0 3px;" class="mb-20">
+                                <img src="{{image.frameId}}" />
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <a href={{ product.permalink }} class="mb-20">
+                        <img src="/images/jewelry/default.png">
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="t-search-result-block-data" id="result-blocks">
+            <a href={{ product.permalink }}>
+                <span class="t-search-result-short-desc u-f16">{{ product.title }}</span>
+                <span class="t-search-result-price">Price: {%
+                    if product.retail_price %}<s>{{ product.retail_price | price }}</s> {% endif
+                %}{{ product.price | price }}
+                </span>
+            </a>
+        </div>
+    </div>
+</li>

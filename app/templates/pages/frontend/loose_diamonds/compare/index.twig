@@ -1,0 +1,45 @@
+{% extends "layouts/frontend.twig" %}
+
+{%- block head_title -%}
+    Loose Diamonds | Ideal Cut Diamonds | Certified Diamonds | Diamond Engagement Rings - DreamStone
+{%- endblock -%}
+
+{%- block meta_description -%}
+    Shop diamond engagement rings, diamond stud earrings, diamond pendants, GIA diamonds online at dreamstone.com. DreamStone's comprehensive interactive education center will guide you through everything you need to know about diamonds.
+{%- endblock -%}
+
+{%- block meta_keywords -%}
+    Loose Diamonds, Ideal Cut Diamonds, Certified Diamonds, Princess Cut Diamond, Round Diamond, Diamond Engagement Rings, Diamond Stud Earrings, Solitaire Diamond Pendant, diamond education, designer engagement rings, unique engagement rings.
+{%- endblock -%}
+
+{% set params = [] %}
+
+{% block content %}
+    <div class="u-clear-20"></div>
+
+    <div class="o-col-lg-3 o-row s-md-invisible"></div>
+    <div class="o-col-lg-2 o-col-md-4 o-col-sm-12 o-row">
+        <a href="/loose-diamonds/search" id="search-results-count" class="c-btn c-light-btn t-results-btn-view">Diamonds ({{diamondCount}})</a>
+    </div>
+    <div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+        <a href="/viewed" class="c-btn c-light-btn results-btn-viewed">recently viewed {{ viewedCount }}</a>
+    </div>
+    <div class="o-col-lg-2 o-col-md-4 o-col-sm-6 o-row">
+        <span
+            data-count="{{ compareCount }}"
+            class="c-btn c-dark-btn results-btn-comparison"
+        >comparison{{ compareCount ? ' ' ~ compareCount : '' }}</span>
+    </div>
+    <div class="u-clear"></div>
+    <div class="content">
+        {% include "pages/frontend/loose_diamonds/compare/results_compare.twig" %}
+    </div>
+    <script>
+        $(document).ready(function($) {
+            let diamondCount = localStorage.getItem('diamondCount');
+            let diamondUrl = localStorage.getItem('diamondUrl');
+            $('#search-results-count').html(`Diamonds (${diamondCount})`);
+            $('#search-results-return').attr('href', diamondUrl);
+        });
+    </script>
+{% endblock %}

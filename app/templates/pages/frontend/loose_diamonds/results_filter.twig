@@ -1,0 +1,208 @@
+<div class="o-results-block">
+    <header class="t-results-header">
+        <div class="o-col-lg-12 o-col-md-4 u-fr">
+            <div class="t-diamond-chat s-md-invisible">
+                <a id="my_custom_link" class="u-color-blue u-fr u-f14 u-text-upper u-text-none-underline">chat with a diamond expert</a>
+            </div>
+            <div class="select-node u-fr">
+                <label class="s-md-invisible">Sort by:</label>
+                <div class="select-block-control">
+                    <select class="select-control" onchange="search('sort_by', this.value, false)">
+                        {% for item in possibleSort %}
+                            <option value="{{ item.code }}"{{
+                                filter.sort_by == item.code ? ' selected' : ''
+                            }}>{{ item.title }}</option>
+                        {% endfor %}
+                    </select>
+                    <span class="select-icon"></span>
+                </div>
+            </div>
+            <div class="select-node u-fr s-md-invisible">
+                <label>Ships as a loose diamond by:</label>
+                <div class="select-block-control">
+                    <select class="select-control" onchange="search('ships_by', this.value, false)">
+                        {% for item in possibleShips %}
+                            <option value="{{ item.code }}"{{
+                                filter.ships_by == item.code ? ' selected' : ''
+                            }}>{{ item.title }}</option>
+                        {% endfor %}
+                    </select>
+                    <span class="select-icon"></span>
+                </div>
+            </div>
+            <div class="u-fl s-md-invisible">
+                <a href="javascript: void(0);" onclick="applyTableView();" class="t-display-style-btn t-display-style-list" id="table-mode"></a>
+                <a href="javascript: void(0);" onclick="applyGridView();" class="t-display-style-btn t-display-style-block" id="grid-mode"></a>
+                <a href="javascript: void(0);" onclick="applyG360View();" class="t-display-style-btn t-display-style-block-front" id="g360-mode"></a>
+            </div>
+            <div class="u-clear"></div>
+        </div>
+        <div class="u-clear"></div>
+    </header>
+
+    <div class="u-clear"></div>
+    <div class="o-col-lg-12 o-row results-inline">
+        {# {% if diamonds %} #}
+            <div class="results-message"></div>
+            {% include "pages/frontend/loose_diamonds/results.twig" %}
+            {% include "pages/frontend/loose_diamonds/results_inline.twig" %}
+            <div style="text-align: center;">
+                <div class="out-res"></div>
+            </div>
+        {# {% endif %} #}
+        {% include "pages/frontend/loose_diamonds/details/form_sku.twig" %}
+        {% include "pages/frontend/loose_diamonds/details/form_share.twig" %}
+        {% include "pages/frontend/loose_diamonds/details/form_mail.twig" %}
+        {% include "pages/frontend/_partials/affirm.twig" %}
+        {% include "pages/frontend/loose_diamonds/details/form_match.twig" %}
+        {% include "pages/frontend/loose_diamonds/details/form_book.twig" %}
+        {% include "pages/frontend/loose_diamonds/details/form_request_image.twig" %}
+    </div>
+    <div class="u-clear"></div>
+</div>
+{# <script src="/js/fixedSlideBlock.jquery.main.js"></script> #}
+<script src="/js/resizeSensor.js"></script>
+<script src="/js/sticky-sidebar.js"></script>
+    <script>
+        var limit = +'{{ filter.limit }}' || 10;
+        var offset = +limit;
+        var lastOffset = 0;
+        var finish = false;
+
+        if(window.innerWidth <= 1024) {
+            const viewMode = UrlParams.get().v || 'g';
+            switch (viewMode) {
+                case 't':
+                    applyTableView();
+                    break;
+                case 'g':
+                    applyGridView();
+                    break;
+                case 'g3':
+                    applyG360View();
+                    break;
+                default:
+                    applyGridView();
+            }
+        }else {
+            const viewMode = UrlParams.get().v || 't';
+            switch (viewMode) {
+                case 't':
+                    applyTableView();
+                    break;
+                case 'g':
+                    applyGridView();
+                    break;
+                case 'g3':
+                    applyG360View();
+                    break;
+                default:
+                    applyGridView();
+            }
+        }
+
+        $(document).ready(function() {
+            var win = $(window);
+            var footerHeight = $('footer').height();
+            win.scroll(function() {
+                if (lastOffset == offset) {
+                    $('.out-res').css('display', 'block');
+                    $('.out-res').html('<h3>loading...</h3>');
+                    return;
+                } 
+                scroll = ($(document).height() - win.height()) - (win.scrollTop() + footerHeight + win.height() / 2);
+                if (scroll < 1 && !finish) {
+                    lastOffset = offset;
+                    const viewMode = UrlParams.get().v || 'g';
+                    const url = `/loose-diamonds/search?${location.search.length ? (location.search.substring(1) + '&') : ''}limit=${limit}&offset=${offset}`;
+                    const reload = offset == 0;
+                    const itemsWrapper = viewMode == 't' ? '.t-resalt-table-body' : '.t-search-results';
+                    loadPageData(url, itemsWrapper, reload, function (resultFinish, total) {
+                        finish = resultFinish;
+                        offset = +offset + limit;
+                        updateLinks();
+                        refreshResultCounter(total);
+                        $('.out-res').css('display', 'none');
+                    });
+                }
+            });
+        });
+
+        function applyTableView() {
+            UrlParams.set({ v: 't' }, false);
+            const limit = +'{{ filter.limit }}' || 10;
+            const url = `/loose-diamonds/search?${location.search.length ? (location.search.substring(1) + '&') : ''}limit=${limit}&offset=0`;
+            loadPageData(url, '.t-resalt-table-body', true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+            });
+            $('.t-search-results').hide();
+            $('.t-resalt-table').show();
+            $('a#table-mode').addClass('active');
+            $('a#grid-mode').removeClass('active');
+            $('a#g360-mode').removeClass('active');
+
+            // jQuery(function() {
+            //     initStickyScrollBlock();
+            // });
+            // function initStickyScrollBlock() {
+            //     $('#diamond-table-list').stickyScrollBlock({
+            //         extraTop: 120,
+            //         positionType: 'fixed',
+            //         container: '.t-resalt-table',
+            //     });
+            //     console.log('initStickyScrollBlock');
+            // }
+            var sidebar = new StickySidebar('#sticky-sidebar', {
+                innerWrapperSelector: '.sidebar__inner',
+                resizeSensor: true,
+                topSpacing: 100,
+                // bottomSpacing: 20
+                containerSelector: '.t-resalt-table',
+            });
+        }
+
+        function applyGridView() {
+            UrlParams.set({ v: 'g' }, false);
+            const limit = +'{{ filter.limit }}' || 10;
+            const url = `/loose-diamonds/search?${location.search.length ? (location.search.substring(1) + '&') : ''}limit=${limit}&offset=0`;
+            loadPageData(url, '.t-search-results', true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+            });
+            $('.t-search-results').show();
+            $('.t-resalt-table').hide();
+            $('a#table-mode').removeClass('active');
+            $('a#grid-mode').addClass('active');
+            $('a#g360-mode').removeClass('active');
+        }
+
+        function applyG360View() {
+            UrlParams.set({ v: 'g3' }, false);
+            const limit = +'{{ filter.limit }}' || 10;
+            const url = `/loose-diamonds/search?${location.search.length ? (location.search.substring(1) + '&') : ''}limit=${limit}&offset=0`;
+            loadPageData(url, '.t-search-results', true, function (finish, total) {
+                updateLinks();
+                refreshResultCounter(total);
+            });
+            $('.t-search-results').show();
+            $('.t-resalt-table').hide();
+            $('a#table-mode').removeClass('active');
+            $('a#grid-mode').addClass('active');
+            $('a#g360-mode').toggleClass('active');
+        }
+
+        function updateLinks() {
+            $('.t-search-results a').click(function (e) {
+                let href = $(this).attr('href').split('?');
+                $(this).attr('href', href[0] + location.search);
+            });
+        }
+    </script>
+
+<script>
+    function openAdvancedSearch(e) {
+        toggleBlock(e, 'advancedSearch');
+        $('#diamond-table-list').css('position', 'fixed');
+    }
+</script>

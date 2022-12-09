@@ -1,0 +1,23 @@
+<div class="o-col-lg-6 o-col-md-12 s-sm-invisible u-fr">
+    <div class="o-col-lg-5 o-col-md-4 u-fr">
+        <label class="checkbox-label u-color-blue u-fr" for="bridal_rings">Real View Available <i class="t-360-icon"></i></label>
+        <div class="checkbox-block u-fr">
+            <input type="checkbox" id="bridal_rings"{{ filter.realview ? ' checked' : '' }}>
+            <label class="checkbox-view" for="bridal_rings"></label>
+        </div>
+    </div>
+</div>
+
+<script>
+  $('#bridal_rings').change(function(){
+    UrlParams.set({ realview: +this.checked }, false);
+
+    const viewMode = UrlParams.get().v || 'g';
+    const itemsWrapper = viewMode === 't' ? '.t-resalt-table-body' : '.t-search-results';
+    loadPageData(location.href, itemsWrapper, true, function (finish, total) {
+      updateLinks();
+      refreshResultCounter(total);
+    });
+    return false;
+  });
+</script>

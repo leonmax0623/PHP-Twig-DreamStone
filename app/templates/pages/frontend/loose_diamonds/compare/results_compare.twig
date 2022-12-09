@@ -1,0 +1,20 @@
+<div class="o-results-block">
+    <div class="o-col-lg-12 mb-20">
+        <a
+        id="search-results-return"
+        class="btn-sm t-return-to-search "
+        href="{{ path_for('looseDiamonds-Search', {'filter': 'search'}, []) }}"
+        > &lt; Return to search</a>
+    </div>
+    <div class="u-clear-20"></div>
+    <div class="o-col-lg-12 o-row">
+        <div class="o-col-lg-12 o-row">
+             <ul class="t-compare-results">
+                 {% for diamond in diamonds %}
+                     {% include "pages/frontend/loose_diamonds/compare/result_compare.twig" %}
+                 {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="u-clear"></div>
+</div>
